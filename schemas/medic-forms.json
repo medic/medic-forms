@@ -1,0 +1,381 @@
+{
+  "title": "Medic Mobile Form Definition Language",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "description":
+    "A schema for Medic Mobile's JSON-based form definition language",
+  
+  "type": "array",
+  "minItems": 0,
+  "uniqueItems": false,
+  "items": { "$ref": "#/library/form" },
+
+  "library": {
+
+    "l10n": {
+      "oneOf": [
+        { "$ref": "#/library/l10n-object" },
+        { "$ref": "#/library/l10n-string" }
+      ]
+    },
+
+    "l10n-object": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^\\w{2}$": { "type": "string" }
+      }
+    },
+
+    "l10n-string": {
+      "type": "string"
+    },
+
+    "form": {
+      "type": "object",
+      "required": [ "meta" ],
+      "properties": {
+        "id": { "$ref": "#/library/form" },
+        "meta": { "$ref": "#/library/meta" },
+        "fields": { "$ref": "#/library/fieldset" }
+      },
+      "additionalProperties": {
+        "type": [ "object", "array" ]
+      }
+    },
+
+    "meta": {
+      "type": "object",
+      "required": [ "id" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" }
+      }
+    },
+
+    "fieldset": {
+      "type": "array",
+      "minItems": 0,
+      "uniqueItems": false,
+      "items": {
+        "$ref": "#/library/field"
+      }
+    },
+
+    "field": {
+      "type": "object",
+      "oneOf": [
+        { "$ref": "#/library/field-string" },
+        { "$ref": "#/library/field-integer" },
+        { "$ref": "#/library/field-number" },
+        { "$ref": "#/library/field-date" },
+        { "$ref": "#/library/field-timestamp" },
+        { "$ref": "#/library/field-location" },
+        { "$ref": "#/library/field-image" },
+        { "$ref": "#/library/field-select" },
+        { "$ref": "#/library/field-recursive" }
+      ]
+    },
+
+    "field-string": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "string" ] },
+        "length": { "$ref": "#/library/length-specifier" }
+      }
+    },
+
+    "field-integer": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "integer" ] },
+        "range": { "$ref": "#/library/range-specifier-integer" }
+      }
+    },
+
+    "field-number": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "number" ] },
+        "range": { "$ref": "#/library/range-specifier-number" }
+      }
+    },
+
+    "field-date": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "date" ] },
+        "repeat": { "$ref": "#/library/repeat-specifier" }
+      }
+    },
+
+    "field-timestamp": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "timestamp" ] },
+        "repeat": { "$ref": "#/library/repeat-specifier" }
+      }
+    },
+
+    "field-location": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "location" ] }
+      }
+    },
+
+    "field-image": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "image" ] }
+      }
+    },
+
+    "field-select": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "select" ] },
+        "items": {
+          "anyOf": [
+            { "$ref": "#/library/i10n" },
+            {
+              "type": "object",
+              "patternProperties": {
+                "^.+$": { "$ref": "#/library/l10n" }
+              }
+            },
+            {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2,
+              "items": [
+                { "type": [ "integer", "string" ] },
+                { "$ref": "#/library/i10n" }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    "field-recursive": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "$/library/flags" },
+        "conditions": { "$ref": "$/library/conditions" },
+        "validations": { "$ref": "$/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+
+        "type": { "enum": [ "fields" ] },
+        "fields": { "$ref": "#/library/fieldset" }
+      }
+    },
+
+    "length-specifier": {
+      "oneOf": [
+        { "type": "integer" },
+        {
+          "type": "array",
+          "uniqueItems": false,
+          "minItems": 1, "maxItems": 2,
+          "items": { "type": [ "integer", "boolean" ] }
+        }
+      ],
+      "not": {
+        "type": "array",
+        "minItems": 1, "maxItems": 2,
+        "items": { "type": [ "boolean", "null" ] }
+      }
+    },
+
+    "repeat-specifier": {
+      "oneOf": [
+        { "type": [ "boolean", "integer" ] },
+        {
+          "type": "array",
+          "uniqueItems": false,
+          "minItems": 1, "maxItems": 2,
+          "items": { "type": [ "integer", "boolean" ] }
+        }
+      ],
+      "not": {
+        "type": "array",
+        "minItems": 1, "maxItems": 2,
+        "items": { "type": [ "boolean", "null" ] }
+      }
+    },
+
+    "range-specifier-integer": {
+      "oneOf": [
+        { "type": "integer" },
+        {
+          "type": "array",
+          "uniqueItems": false,
+          "minItems": 1, "maxItems": 2,
+          "items": { "type": "integer" }
+        }
+      ],
+      "not": {
+        "type": "array",
+        "minItems": 1, "maxItems": 2,
+        "items": { "type": [ "boolean", "null" ] }
+      }
+    },
+
+    "range-specifier-number": {
+      "oneOf": [
+        { "type": "number" },
+        {
+          "type": "array",
+          "uniqueItems": false,
+          "minItems": 1, "maxItems": 2,
+          "items": { "type": [ "number", "boolean" ] }
+        }
+      ],
+      "not": {
+        "type": "array",
+        "minItems": 1, "maxItems": 2,
+        "items": { "type": [ "boolean", "null" ] }
+      }
+    },
+
+    "flags": {
+      "type": "object",
+      "patternProperties": {
+        "^.+$": { "type": "boolean" }
+      }
+    },
+
+    "conditions": {
+      "type": "object",
+      "properties": {
+        "javascript": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ]
+        },
+        "builtin": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "validations": {
+      "type": "object",
+      "properties": {
+        "javascript": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ]
+        },
+        "structured": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    }
+
+  }
+}
+

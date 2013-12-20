@@ -1,0 +1,4 @@
+#!/bin/sh
+
+node tests/reference.js && node tests/validate.js
+

@@ -1,0 +1,20 @@
+{
+  "name": "medic-forms",
+  "version": "0.0.1",
+  "description": "An implementation of Medic Mobile's JSON form definition language",
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "scripts/run-tests"
+  },
+  "dependencies": {
+    "tv4": "1.x",
+    "deeper": "1.x",
+    "wru": "0.x",
+    "underscore": "1.x"
+  },
+  "readme": "README",
+  "repository": "http://github.com/browndav/medic-forms.git",
+  "author": "David Brown <david@medicmobile.org>",
+  "license": "GPLv3"
+}
+

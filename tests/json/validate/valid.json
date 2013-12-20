@@ -1,0 +1,392 @@
+[
+
+[],
+
+[{
+  "meta": {
+    "id": "test"
+  }
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "A form used for testing the JSON form validator"
+  }
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": { "en": "Example Form" },
+    "description": "A form used for testing the JSON form validator"
+  }
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": {
+      "en": "Example Form",
+      "fr": "Forme de l'exemple"
+    },
+    "description": {
+      "en": "This is an example JSON form"
+    }
+  }
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": {
+      "en": "This is an example JSON form",
+      "fr": "Bonjour, c'est une forme de JSON"
+    }
+  }
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "Example Form"
+  },
+  "fields": []
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "Example Form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "integer"
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "Example Form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "integer"
+    },
+    {
+      "id": "q2",
+      "type": "fields",
+      "name": "Example Section",
+      "repeat": [ 0, 3 ],
+      "fields": [
+        {
+          "id": "q2a",
+          "type": "integer"
+        }, {
+          "id": "q2b",
+          "type": "integer"
+        }
+      ]
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "Example Form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "repeat": false,
+      "type": "integer"
+    },
+    {
+      "id": "q2",
+      "type": "fields",
+      "name": "Example Section",
+      "repeat": [ 0, 3 ],
+      "fields": { "$ref": "#/library/numbers" }
+    }
+  ],
+  "library": {
+    "numbers": [
+      {
+        "id": "q2a",
+        "repeat": false,
+        "type": "integer"
+      }, {
+        "id": "q2b",
+        "type": "integer",
+        "repeat": [ 0, 2 ]
+      },
+      {
+        "id": "q2b",
+        "repeat": true,
+        "type": "integer"
+      }
+    ]
+  }
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "Example Form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "select",
+      "items": [
+        [ 1, "Hello" ],
+        [ 2, { "en": "Goodbye", "es": "Adiós" } ]
+      ]
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "This is an example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "select",
+      "required": false,
+      "items": [
+        { "1": "Hello" },
+        { "BYE": "Goodbye" }
+      ]
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "This is an example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "select",
+      "name": "Greeting",
+      "description": "Are you arriving or departing?",
+      "items": [
+        [ "HI", { "en": "Hello", "fr": "Bonjour" }],
+        [ "BYE", "Goodbye" ]
+      ]
+    },
+    {
+      "id": "q1a",
+      "type": "select",
+      "items": [
+        [ 1, "Now" ],
+        [ 2, "Later" ]
+      ],
+      "conditions": {
+        "$structured": { "q1": "BYE" }
+      }
+    },
+    {
+      "id": "q2",
+      "type": "string",
+      "length": [ 3, 45 ],
+      "conditions": {
+        "$structured": [
+          { "q1a": 2 },
+          { "$operator": "&&" },
+          { "q1": "BYE" }
+        ]
+      },
+      "validations": {
+        "$builtin": "is_phone_number"
+      }
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "This is an example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "select",
+      "items": { "$ref": "#/lists/example" }
+    }
+  ],
+  "lists": {
+    "example": [
+      [ 1, "Now" ],
+      [ 2, "Later" ]
+    ]
+  }
+}],
+
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "This is an example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "string",
+      "validations": {
+        "javascript": "function () { return true; }",
+        "builtin": [ "is_identifier", "is_alphanumeric" ]
+      },
+      "conditions": {
+        "javascript": "function () { return true; }"
+      }
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "This is an example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "string",
+      "description": "Test field #1",
+      "flags": { "is_special_magical_field": true }
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "moar",
+    "name": "Another Form",
+    "description": "An additional example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "string",
+      "description": "Test field #1"
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "test",
+    "name": "Example Form",
+    "description": "This is an example form"
+  },
+  "fields": [
+    {
+      "id": "q1a",
+      "type": "number",
+      "required": true
+    },
+    { "$ref": "#/library/q1b" },
+    {
+      "id": "q2a",
+      "type": "date",
+      "required": true
+    },
+    { "$ref": "#/library/q2b" },
+    {
+      "id": "q3a",
+      "type": "timestamp",
+      "required": true
+    },
+    { "$ref": "#/library/q3b" },
+    {
+      "id": "q4a",
+      "type": "location",
+      "required": true
+    },
+    { "$ref": "#/library/q4b" },
+    {
+      "id": "q5a",
+      "type": "image",
+      "required": true
+    },
+    { "$ref": "#/library/q5b" },
+    {
+      "id": "q6a",
+      "type": "fields",
+      "required": true,
+      "fields": { "$ref": "#/subfields" }
+    },
+    { "$ref": "#/library/q6b" }
+  ],
+  "library": {
+    "q1b": {
+      "id": "q1b",
+      "type": "number",
+      "required": false
+    },
+    "q2b": {
+      "id": "q2b",
+      "type": "date",
+      "required": false
+    },
+    "q3b": {
+      "id": "q3b",
+      "type": "timestamp",
+      "required": false
+    },
+    "q4b": {
+      "id": "q4b",
+      "type": "location",
+      "required": false
+    },
+    "q5b": {
+      "id": "q5a",
+      "type": "image",
+      "required": true
+    },
+    "q6b": {
+      "id": "q5a",
+      "type": "image",
+      "required": true
+    }
+  },
+  "subfields": [
+    {
+      "id": "q6",
+      "type": "integer",
+      "required": true
+    },
+    {
+      "id": "q7",
+      "type": "integer",
+      "required": true
+    }
+  ]
+}]
+
+]
+

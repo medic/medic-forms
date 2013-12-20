@@ -1,0 +1,83 @@
+[
+{
+  "from": {
+    "fields": { "$ref": "#/library/quux" },
+    "library": { "quux": [ 1, 2, 3, 4, 5 ] }
+  },
+
+  "to": {
+    "fields": [ 1, 2, 3, 4, 5 ],
+    "library": { "quux": [ 1, 2, 3, 4, 5 ] }
+  }
+},
+
+{
+  "from": {
+    "fields": {
+      "test": {
+        "foo": [
+          1, 2, { "$ref": "#/library/farb/quux" }, 2, 1
+        ],
+        "bar": { "$ref": "#/library/farb" }
+      }
+    },
+    "library": {
+      "farb": { "quux": [ 3, 4, 5, 4, 3 ] }
+    }
+  },
+  "to": {
+    "fields": {
+      "test": {
+        "foo": [
+          1, 2, [ 3, 4, 5, 4, 3 ], 2, 1
+        ],
+        "bar": { "quux": [ 3, 4, 5, 4, 3 ] }
+      }
+    },
+    "library": {
+      "farb": { "quux": [ 3, 4, 5, 4, 3 ] }
+    }
+  }
+},
+
+{
+  "from": {
+    "fields": [
+      { "id": "q1", "repeat": false, "type": "integer" },
+      {
+        "id": "q2",
+        "type": "fields",
+        "fields": { "$ref":"#/library/numbers" }
+      }
+    ],
+    "library": {
+      "numbers": [
+        {"id": "q2a", "repeat": false,"type": "integer" },
+        {"id": "q2b", "repeat": true, "type": "integer" },
+        {"id": "q2c", "type": "integer","repeat": [0,2] }
+      ]
+    }
+  },
+  "to": {
+    "fields": [
+      { "id": "q1", "repeat": false, "type": "integer" },
+      {
+        "id": "q2",
+        "type": "fields",
+        "fields": [
+          {"id": "q2a", "repeat": false,"type": "integer" },
+          {"id": "q2b", "repeat": true, "type": "integer" },
+          {"id": "q2c", "type": "integer","repeat": [ 0, 2 ] }
+        ]
+      }
+    ],
+    "library": {
+      "numbers": [
+        {"id": "q2a", "repeat": false,"type": "integer" },
+        {"id": "q2b", "repeat": true, "type": "integer" },
+        {"id": "q2c", "type": "integer","repeat": [ 0, 2 ] }
+      ]
+    }
+  }
+}
+]
