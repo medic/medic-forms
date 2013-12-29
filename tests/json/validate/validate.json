@@ -1,0 +1,251 @@
+[
+
+{
+  "valid": true,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer"
+      }
+    ]
+  }
+},
+
+{
+  "valid": false,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer"
+      },
+      {
+        "id": "q1",
+        "type": "integer"
+      }
+    ]
+  }
+},
+
+{
+  "valid": true,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer"
+      },
+      {
+        "id": "q2",
+        "type": "integer"
+      }
+    ]
+  }
+},
+
+{
+  "valid": true,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer"
+      },
+      {
+        "id": "q2",
+        "type": "fields",
+        "name": "Example Section",
+        "repeat": [ 0, 3 ],
+        "fields": [
+          {
+            "id": "q2a",
+            "type": "integer"
+          }, {
+            "id": "q2b",
+            "type": "integer"
+          }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  "valid": false,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer"
+      },
+      {
+        "id": "q2",
+        "type": "fields",
+        "name": "Example Section",
+        "repeat": [ 0, 3 ],
+        "fields": [
+          {
+            "id": "q2a",
+            "type": "integer"
+          }, {
+            "id": "q2b",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "q1",
+        "type": "integer"
+      }
+    ]
+  }
+},
+
+{
+  "valid": false,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer"
+      },
+      {
+        "id": "q2",
+        "type": "fields",
+        "name": "Example Section",
+        "repeat": [ 0, 3 ],
+        "fields": [
+          {
+            "id": "q2a",
+            "type": "integer"
+          }, {
+            "id": "q2a",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "id": "q3",
+        "type": "integer"
+      }
+    ]
+  }
+},
+
+{
+  "valid": true,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q2",
+        "type": "fields",
+        "name": "Example Section",
+        "repeat": [ 0, 3 ],
+        "fields": [
+          {
+            "id": "q2a",
+            "type": "integer"
+          }, {
+            "id": "q2b",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "q2aa",
+                "type": "integer"
+              }, {
+                "id": "q2ab",
+                "type": "integer"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  "valid": false,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q2",
+        "type": "fields",
+        "name": "Example Section",
+        "repeat": [ 0, 3 ],
+        "fields": [
+          {
+            "id": "q2a",
+            "type": "integer"
+          }, {
+            "id": "q2b",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "q2a",
+                "type": "integer"
+              }, {
+                "id": "q2b",
+                "type": "integer"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  "valid": false,
+
+  "form": {
+    "fields": [
+      {
+        "id": "q2",
+        "type": "fields",
+        "name": "Example Section",
+        "repeat": [ 0, 3 ],
+        "fields": [
+          {
+            "id": "q2a",
+            "type": "integer"
+          }, {
+            "id": "q2b",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "q2aa",
+                "type": "integer"
+              }, {
+                "id": "q2bb",
+                "type": "fields",
+                "fields": [
+                  {
+                    "id": "q2bb1",
+                    "type": "integer"
+                  },
+                  {
+                    "id": "q2",
+                    "type": "integer"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+
+]

@@ -1,9 +1,8 @@
 
 var fs = require('fs'),
-    tv4 = require('tv4'),
     wru = require('wru'),
     _ = require('underscore'),
-    r = require('../lib/reference.js');
+    v = require('../lib/validate.js');
 
 /**
  * @name fatal:
@@ -19,40 +18,22 @@ var fatal = function (_message) {
  */
 var main = function (_argc, _argv) {
 
-  var schema = JSON.parse(
-    fs.readFileSync('schemas/medic-forms.json')
-  );
+  var file = 'tests/json/validate/validate.json';
+  var tests = JSON.parse(fs.readFileSync(file));
 
-  var valid_tests = JSON.parse(
-    fs.readFileSync('tests/json/validate/valid.json')
-  );
-
-  var invalid_tests = JSON.parse(
-    fs.readFileSync('tests/json/validate/invalid.json')
-  );
-
-  if (!_.isArray(valid_tests)) {
-    fatal('tests/json/validate/valid.json is malformed; aborting');
+  if (!_.isArray(tests)) {
+    fatal(file + ' is malformed; aborting');
   }
   
-  if (!_.isArray(invalid_tests)) {
-    fatal('tests/json/validate/invalid.json is malformed; aborting');
-  }
-
   wru.test([{
-    name: 'valid-forms',
+    name: 'validate',
     test: function () {
-      _.each(valid_tests, function (_valid_forms, _i) {
-        var rv = tv4.validateResult(r.rewrite_each(_valid_forms), schema);
-        wru.assert('Item #' + (_i + 1) + ' should be valid', rv.valid);
-      });
-    }
-  }, {
-    name: 'invalid-forms',
-    test: function () {
-      _.each(invalid_tests, function (_invalid_forms, _i) {
-        var rv = tv4.validateResult(r.rewrite_each(_invalid_forms), schema);
-        wru.assert('Item #' + (_i + 1) + ' should be invalid', !rv.valid);
+      _.each(tests, function (_test, _i) {
+
+        var h = 'Test #' + (_i + 1) + ' ';
+        var rv = v.validate_field_names(_test.forms);
+
+        wru.assert(h + ' passes', (rv.valid === _test.valid));
       });
     }
   }]);

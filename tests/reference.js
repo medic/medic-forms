@@ -26,8 +26,6 @@ var compare = function (_lhs, _rhs) {
  */
 var main = function (_argc, _argv) {
 
-  console.log('Running tests...');
-
   var schema = JSON.parse(
     fs.readFileSync('schemas/medic-forms.json')
   );
