@@ -20,8 +20,8 @@ var fatal = function (_message) {
 var main = function (_argc, _argv) {
 
   var schema_file = 'schemas/medic-forms.json';
-  var valid_file = 'tests/json/validate/valid.json';
-  var invalid_file = 'tests/json/validate/invalid.json';
+  var valid_file = 'tests/json/forms/valid.json';
+  var invalid_file = 'tests/json/forms/invalid.json';
 
   var schema = JSON.parse(fs.readFileSync(schema_file));
   var valid_tests = JSON.parse(fs.readFileSync(valid_file));

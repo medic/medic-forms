@@ -1,0 +1,103 @@
+[
+
+{
+  "valid": true,
+
+  "forms": [{
+    "meta": { "id": "f1" }
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "meta": { "id": "f1" }
+  }, {
+    "meta": { "id": "f2" }
+  }, {
+    "meta": { "id": "f3" }
+  }, {
+    "meta": { "id": "f4" }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": "f1" }
+  }, {
+    "meta": { "id": "f2" }
+  }, {
+    "meta": { "id": "f2" }
+  }, {
+    "meta": { "id": "f3" }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": "f1" }
+  }, {
+    "meta": { "id": null }
+  }, {
+    "meta": { "id": "f2" }
+  }, {
+    "meta": { "id": "f3" }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": 0 }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": 0.0 }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": [] }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": {} }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": null }
+  }, {
+    "meta": { "id": false }
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "meta": { "id": true}
+  }]
+}
+
+]
