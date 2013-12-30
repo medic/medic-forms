@@ -3,20 +3,20 @@
 {
   "valid": true,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q1",
         "type": "integer"
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": false,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q1",
@@ -27,13 +27,13 @@
         "type": "integer"
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": true,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q1",
@@ -44,13 +44,13 @@
         "type": "integer"
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": true,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q1",
@@ -72,13 +72,13 @@
         ]
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": false,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q1",
@@ -104,13 +104,13 @@
         "type": "integer"
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": false,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q1",
@@ -136,13 +136,13 @@
         "type": "integer"
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": true,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q2",
@@ -169,13 +169,13 @@
         ]
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": false,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q2",
@@ -202,13 +202,13 @@
         ]
       }
     ]
-  }
+  }]
 },
 
 {
   "valid": false,
 
-  "form": {
+  "forms": [{
     "fields": [
       {
         "id": "q2",
@@ -245,7 +245,7 @@
         ]
       }
     ]
-  }
+  }]
 }
 
 ]

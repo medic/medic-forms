@@ -26,14 +26,17 @@ var main = function (_argc, _argv) {
   }
   
   wru.test([{
-    name: 'validate',
+    name: 'validation',
     test: function () {
       _.each(tests, function (_test, _i) {
 
         var h = 'Test #' + (_i + 1) + ' ';
-        var rv = v.validate_field_names(_test.forms);
+        var rv = v.validate_field_identifiers(_test.forms);
 
-        wru.assert(h + ' passes', (rv.valid === _test.valid));
+        wru.assert(
+          h + 'validates appropriately',
+            (rv.valid === _test.valid)
+        );
       });
     }
   }]);

@@ -39,7 +39,7 @@ var main = function (_argc, _argv) {
   }
   
   wru.test({
-    name: 'reference-rewriting',
+    name: 'rewriting',
 
     test: function () {
       _.each(tests, function (_test, _i) {
