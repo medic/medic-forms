@@ -46,19 +46,16 @@ var make_test = function (_name, _file, _function_name) {
  */
 var main = function (_argc, _argv) {
 
-  var tests = [];
-
-  tests.push(make_test(
-    'field-validation',
-       'tests/json/validate/fields.json', 'validate_field_identifiers'
-  ));
-
-  tests.push(make_test(
-    'form-validation',
-       'tests/json/validate/forms.json', 'validate_form_identifiers'
-  ));
-
-  wru.test(tests);
+  wru.test([
+    make_test(
+      'field-validation',
+         'tests/json/validate/fields.json', 'validate_field_identifiers'
+    ),
+    make_test(
+      'form-validation',
+         'tests/json/validate/forms.json', 'validate_form_identifiers'
+    )
+  ]);
 };
 
 
