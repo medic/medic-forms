@@ -1,0 +1,276 @@
+[
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": 100
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 0, 100 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 4 ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 4, 1e9999 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 5, false ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 5, 1e9999 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 6, null ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 6, 1e9999 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 6, true ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 6, 1e9999 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ false, 120 ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 0, 120 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ null, 121 ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 0, 121 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ true, 122 ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 0, 122 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "required": true,
+      "type": "integer",
+      "repeat": [ false, 122 ]
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": [ 1, 122 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": 100
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 100 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "number",
+      "range": 100.5
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "number",
+      "range": [ -1e9999, 100.5 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "number",
+      "range": [ 101.25 ] 
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "number",
+      "range": [ 101.25, 1e9999 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "number",
+      "range": [ 102 ] 
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "number",
+      "range": [ 102.0, 1e9999 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ null, 103 ] 
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 103 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ false, 104 ] 
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 104 ]
+    }]
+  }
+},
+
+{
+  "from": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ true, 105 ] 
+    }]
+  },
+  "to": {
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 105 ]
+    }]
+  }
+}
+
+]
