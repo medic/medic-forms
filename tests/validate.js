@@ -18,8 +18,7 @@ var fatal = function (_message) {
  */
 var make_test = function (_name, _file, _function_name) {
 
-  var file = 'tests/fixtures/validate/validate.json';
-  var tests = JSON.parse(fs.readFileSync(file));
+  var tests = JSON.parse(fs.readFileSync(_file));
 
   if (!_.isArray(tests)) {
     fatal(file + ' is malformed; aborting');
