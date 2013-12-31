@@ -2,6 +2,7 @@
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
+    deepEqual = require('deep-equal'),
     r = require('../lib/reference.js');
 
 /**
@@ -13,13 +14,6 @@ var fatal = function (_message) {
   process.exit(1);
 };
 
-/**
- * @name compare:
- */
-var compare = function (_lhs, _rhs) {
-
-  return (JSON.stringify(_lhs) === JSON.stringify(_rhs));
-};
 
 /**
  * @name main:
@@ -51,7 +45,7 @@ var main = function (_argc, _argv) {
 
         wru.assert(
           h + 'rewritten result must match expected',
-            compare(rewrite, _test.to)
+            deepEqual(rewrite, _test.to)
         );
       });
     }

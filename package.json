@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "tv4": "1.x",
-    "deeper": "1.x",
+    "deep-equal": "0.x",
     "wru": "0.x",
     "underscore": "1.x"
   },
