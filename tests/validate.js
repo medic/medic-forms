@@ -18,7 +18,7 @@ var fatal = function (_message) {
  */
 var main = function (_argc, _argv) {
 
-  var file = 'tests/json/validate/validate.json';
+  var file = 'tests/fixtures/validate/validate.json';
   var tests = JSON.parse(fs.readFileSync(file));
 
   if (!_.isArray(tests)) {

@@ -26,16 +26,14 @@ var compare = function (_lhs, _rhs) {
  */
 var main = function (_argc, _argv) {
 
-  var schema = JSON.parse(
-    fs.readFileSync('schemas/medic-forms.json')
-  );
+  var schema_file = 'schemas/medic-forms.json';
+  var fixture_file = 'tests/fixtures/reference/rewrite.json';
 
-  var tests = JSON.parse(
-    fs.readFileSync('tests/json/reference/rewrite.json')
-  );
+  var schema = JSON.parse(fs.readFileSync(schema_file));
+  var tests = JSON.parse(fs.readFileSync(fixture_file));
 
   if (!_.isArray(tests)) {
-    fatal('tests/json/reference/rewrite.json is malformed; aborting');
+    fatal(fixture_file + ' is malformed; aborting');
   }
   
   wru.test({
