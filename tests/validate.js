@@ -33,7 +33,7 @@ var make_test = function (_name, _file, _function_name) {
         var rv = v[_function_name].call(v, _test.forms);
 
         wru.assert(
-          h + 'should produce expected `valid` result',
+          h + 'must ' + (_test.valid ? '' : 'not ') + 'validate',
             (rv.valid === _test.valid)
         );
       });

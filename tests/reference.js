@@ -44,13 +44,13 @@ var main = function (_argc, _argv) {
 
         var h = 'Test #' + (_i + 1) + ' ';
 
-        wru.assert(h + 'should have `to` property', _.isObject(_test.to));
-        wru.assert(h + 'should have `from` property', _.isObject(_test.from));
+        wru.assert(h + 'must have `to` property', _.isObject(_test.to));
+        wru.assert(h + 'must have `from` property', _.isObject(_test.from));
 
         var rewrite = r.rewrite(_test.from);
 
         wru.assert(
-          h + 'expected output should match rewritten result',
+          h + 'rewritten result must match expected',
             compare(rewrite, _test.to)
         );
       });
