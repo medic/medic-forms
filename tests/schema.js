@@ -40,7 +40,7 @@ var main = function (_argc, _argv) {
     test: function () {
       _.each(valid_tests, function (_valid_forms, _i) {
         var rv = tv4.validateResult(r.rewrite_each(_valid_forms), schema);
-        wru.assert('Item #' + (_i + 1) + ' should be valid', rv.valid);
+        wru.assert('Form #' + (_i + 1) + ' should be valid', rv.valid);
       });
     }
   }, {
@@ -48,7 +48,7 @@ var main = function (_argc, _argv) {
     test: function () {
       _.each(invalid_tests, function (_invalid_forms, _i) {
         var rv = tv4.validateResult(r.rewrite_each(_invalid_forms), schema);
-        wru.assert('Item #' + (_i + 1) + ' should be invalid', !rv.valid);
+        wru.assert('Form #' + (_i + 1) + ' should be invalid', !rv.valid);
       });
     }
   }]);

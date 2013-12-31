@@ -42,7 +42,7 @@ var main = function (_argc, _argv) {
     test: function () {
       _.each(tests, function (_test, _i) {
 
-        var h = 'Item #' + (_i + 1) + ' ';
+        var h = 'Test #' + (_i + 1) + ' ';
 
         wru.assert(h + 'should have `to` property', _.isObject(_test.to));
         wru.assert(h + 'should have `from` property', _.isObject(_test.from));
@@ -50,7 +50,7 @@ var main = function (_argc, _argv) {
         var rewrite = r.rewrite(_test.from);
 
         wru.assert(
-          h + ': rewritten `from` property should equal `to`',
+          h + 'expected output should match rewritten result',
             compare(rewrite, _test.to)
         );
       });
