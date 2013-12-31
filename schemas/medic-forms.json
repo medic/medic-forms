@@ -308,7 +308,7 @@
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": "integer" }
+          "items": { "type": [ "integer", "boolean", "null" ] }
         }
       ],
       "not": {
@@ -325,7 +325,7 @@
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": [ "number", "boolean" ] }
+          "items": { "type": [ "number", "boolean", "null" ] }
         }
       ],
       "not": {

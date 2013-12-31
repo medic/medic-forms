@@ -14,9 +14,9 @@ var fatal = function (_message) {
 };
 
 /**
- * @name main:
+ * @name make_test
  */
-var main = function (_argc, _argv) {
+var make_test = function (_name, _file, _function_name) {
 
   var file = 'tests/fixtures/validate/validate.json';
   var tests = JSON.parse(fs.readFileSync(file));
@@ -25,19 +25,42 @@ var main = function (_argc, _argv) {
     fatal(file + ' is malformed; aborting');
   }
   
-  wru.test([{
-    name: 'validate',
+  return {
+    name: _name,
     test: function () {
       _.each(tests, function (_test, _i) {
 
         var h = 'Test #' + (_i + 1) + ' ';
-        var rv = v.validate_field_names(_test.forms);
+        var rv = v[_function_name].call(v, _test.forms);
 
-        wru.assert(h + ' passes', (rv.valid === _test.valid));
+        wru.assert(
+          h + 'validates appropriately',
+            (rv.valid === _test.valid)
+        );
       });
     }
-  }]);
+  };
 };
+
+/**
+ * @name main:
+ */
+var main = function (_argc, _argv) {
+
+  var base_path = 'tests/fixtures/validate';
+
+  wru.test([
+    make_test(
+      'field-validation',
+         base_path + '/fields.json', 'validate_field_identifiers'
+    ),
+    make_test(
+      'form-validation',
+         base_path + '/forms.json', 'validate_form_identifiers'
+    )
+  ]);
+};
+
 
 main(process.argc, process.argv);
 

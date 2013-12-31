@@ -1,4 +1,6 @@
 #!/bin/sh
 
-node tests/reference.js && node tests/validate.js
+node tests/reference.js &&
+node tests/schema.js &&
+node tests/validate.js
 
