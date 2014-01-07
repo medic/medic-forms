@@ -89,7 +89,7 @@
     "fields": [{
       "id": "f1",
       "name": "Field One",
-      "description": "This is the first field that you can fill in"
+      "description": "This is the first field"
     }]
   }],
   "to": [{
