@@ -1,2 +1,135 @@
 [
+
+{
+  "check": [ "items" ],
+
+  "from": [{
+    "meta": {
+      "language": "en"
+    },
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [ 1, 2, 3, 4, 5, 9 ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [
+        [ 1, { "en": "1" } ], [ 2, { "en": "2" } ],
+        [ 3, { "en": "3" } ], [ 4, { "en": "4" } ],
+        [ 5, { "en": "5" } ], [ 9, { "en": "9" } ]
+      ]
+    }]
+  }]
+},
+
+{
+  "check": [ "items" ],
+
+  "from": [{
+    "meta": {
+      "language": "en"
+    },
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [ "Hello", "Goodbye", [ 9, "Mahalo" ], "Greetings" ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [
+        [ 1, { "en": "Hello" } ],
+        [ 2, { "en": "Goodbye" } ],
+        [ 9, { "en": "Unknown" } ],
+        [ 3, { "en": "Greetings" } ]
+      ]
+    }]
+  }]
+},
+
+{
+  "check": [ "items" ],
+
+  "from": [{
+    "meta": {
+      "language": "en"
+    },
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [
+        { "en": "Hello #1" },
+        [ 1, { "en": "Hello #2" } ],
+        "Hello #3",
+        [ false, "Hello #4" ],
+        [ true, { "en": "Hello #5" } ],
+        [ 0, "Hello #6" ]
+      ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [
+        [ 2, { "en": "Hello #1" } ],
+        [ 1, { "en": "Hello #2" } ],
+        [ 3, { "en": "Hello #3" } ],
+        [ 4, { "en": "Hello #4" } ],
+        [ 5, { "en": "Hello #5" } ],
+        [ 0, { "en": "Hello #6" } ]
+      ]
+    }]
+  }]
+},
+
+{
+  "check": [ "items" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": false
+    }, {
+      "id": "f2",
+      "type": "select",
+      "items": true
+    }, {
+      "id": "f3",
+      "type": "select",
+      "items": null
+    }, {
+      "id": "f4",
+      "type": "select",
+      "items": []
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": []
+    }, {
+      "id": "f2",
+      "type": "select",
+      "items": []
+    }, {
+      "id": "f3",
+      "type": "select",
+      "items": []
+    }, {
+      "id": "f4",
+      "type": "select",
+      "items": []
+    }]
+  }]
+}
+
 ]

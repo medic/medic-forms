@@ -1,0 +1,123 @@
+[
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ 1, "Test #1" ], 
+          [ 2, "Test #2" ], 
+          [ 3, "Test #3" ], 
+          [ 4, "Test #4" ]
+        ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          1,
+          [ 2, "Test #2" ], 
+          3,
+          "Test #4"
+        ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ 1, { "en": "Test #1" } ], 
+          { "en": "Test #2" }
+        ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ 1, { "en": "Test #1" } ], 
+          [ 2, { "en": "Test #2" } ], 
+          [ 1, { "en": "Test #1" } ]
+        ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          1, 2, 3, 3
+        ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          1,
+          [ 1, { "en": "Test #1" } ]
+        ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [ 1, "1" ]
+      }
+    ]
+  }]
+}
+
+]

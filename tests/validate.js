@@ -2,6 +2,7 @@
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
+    jsdump = require('jsDump'),
     v = require('../lib/validate.js');
 
 /**
@@ -51,11 +52,15 @@ var main = function (_argc, _argv) {
   wru.test([
     make_test(
       'field-validation',
-         base_path + '/fields.json', 'validate_field_identifiers'
+         base_path + '/fields.json', 'validate_forms'
     ),
     make_test(
       'form-validation',
-         base_path + '/forms.json', 'validate_form_identifiers'
+         base_path + '/forms.json', 'validate_forms'
+    ),
+    make_test(
+      'select-list-validation',
+         base_path + '/select-lists.json', 'validate_forms'
     )
   ]);
 };

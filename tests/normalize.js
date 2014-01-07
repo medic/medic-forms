@@ -123,11 +123,11 @@ var main = function (_argc, _argv) {
   wru.test([
     make_test(
       'field-name-normalization', 'fields',
-        'tests/fixtures/normalize/field-names.json'
+        'tests/fixtures/normalize/field-identifiers.json'
     ),
     make_test(
       'field-option-normalization', 'fields',
-        'tests/fixtures/normalize/field-options.json'
+        'tests/fixtures/normalize/field-properties.json'
     ),
     make_test(
       'field-select-normalization', 'fields',
@@ -135,11 +135,11 @@ var main = function (_argc, _argv) {
     ),
     make_test(
       'form-name-normalization', 'meta',
-        'tests/fixtures/normalize/form-names.json'
+        'tests/fixtures/normalize/form-identifiers.json'
     ),
     make_test(
       'form-option-normalization', 'meta',
-        'tests/fixtures/normalize/form-options.json'
+        'tests/fixtures/normalize/form-properties.json'
     )
   ]);
 

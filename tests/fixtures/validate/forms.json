@@ -96,7 +96,7 @@
   "valid": false,
 
   "forms": [{
-    "meta": { "id": true}
+    "meta": { "id": true }
   }]
 }
 
