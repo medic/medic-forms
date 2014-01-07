@@ -19,7 +19,7 @@ var fatal = function (_message) {
  */
 var main = function (_argc, _argv) {
 
-  var schema_file = 'schemas/medic-forms.json';
+  var schema_file = 'schemas/base.json';
   var valid_file = 'tests/fixtures/forms/valid.json';
   var invalid_file = 'tests/fixtures/forms/invalid.json';
 

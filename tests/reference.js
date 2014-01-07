@@ -20,7 +20,7 @@ var fatal = function (_message) {
  */
 var main = function (_argc, _argv) {
 
-  var schema_file = 'schemas/medic-forms.json';
+  var schema_file = 'schemas/base.json';
   var fixture_file = 'tests/fixtures/reference/rewrite.json';
 
   var schema = JSON.parse(fs.readFileSync(schema_file));

@@ -88,9 +88,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "string" ] },
@@ -107,9 +107,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "integer" ] },
@@ -126,9 +126,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "number" ] },
@@ -145,9 +145,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "date" ] },
@@ -164,9 +164,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "timestamp" ] },
@@ -183,9 +183,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "location" ] }
@@ -201,9 +201,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "image" ] }
@@ -219,31 +219,29 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "select" ] },
         "items": {
-          "anyOf": [
-            { "$ref": "#/library/i10n" },
-            {
-              "type": "object",
-              "patternProperties": {
-                "^.+$": { "$ref": "#/library/l10n" }
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "#/library/l10n" },
+              {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 2,
+                "items": [
+                  { "type": [ "integer", "string" ] },
+                  { "$ref": "#/library/l10n" }
+                ]
               }
-            },
-            {
-              "type": "array",
-              "minItems": 2,
-              "maxItems": 2,
-              "items": [
-                { "type": [ "integer", "string" ] },
-                { "$ref": "#/library/i10n" }
-              ]
-            }
-          ]
+            ]
+          }
         }
       }
     },
@@ -257,9 +255,9 @@
         "required": { "type": "boolean" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "$/library/flags" },
-        "conditions": { "$ref": "$/library/conditions" },
-        "validations": { "$ref": "$/library/validations" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "fields" ] },

@@ -200,6 +200,49 @@
     }]
   }]
 },
+
+{
+  "check": [ "repeat", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "required": true,
+      "repeat": [ false, 1 ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "required": true,
+      "type": "integer",
+      "repeat": [ 1, 1 ]
+    }]
+  }]
+},
+
+{
+  "check": [ "repeat", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "required": false,
+      "repeat": [ false, 1 ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "required": false,
+      "type": "integer",
+      "repeat": [ 0, 1 ]
+    }]
+  }]
+},
+
 {
   "check": [ "repeat", "required" ],
 
@@ -785,6 +828,101 @@
 },
 
 {
+  "check": [ "range" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": false
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 1e9999 ]
+    }]
+  }]
+},
+
+{
+  "check": [ "range" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": true
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 1e9999 ]
+    }]
+  }]
+},
+
+{
+  "check": [ "range" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ false, false ] 
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 1e9999 ]
+    }]
+  }]
+},
+
+{
+  "check": [ "range" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ true, 0 ] 
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ -1e9999, 0 ]
+    }]
+  }]
+},
+
+{
+  "check": [ "range" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ 1, 1 ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "range": [ 1, 1 ]
+    }]
+  }]
+},
+
+{
   "check": [ "length" ],
 
   "from": [{
@@ -804,7 +942,7 @@
 },
 
 {
-  "check": [ "length" ],
+  "check": [ "length", "required" ],
 
   "from": [{
     "fields": [{
@@ -818,9 +956,175 @@
     "fields": [{
       "id": "f1",
       "type": "integer",
-      "length": [ 1, 100 ]
+      "length": [ 1, 100 ],
+      "required": true
+    }]
+  }]
+},
+
+{
+  "check": [ "length", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ false, false ],
+      "required": false
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 0, 1e9999 ],
+      "required": false
+    }]
+  }]
+},
+
+{
+  "check": [ "length", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ 100, 1 ],
+      "required": false
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 1, 100 ],
+      "required": false
+    }]
+  }]
+},
+
+{
+  "check": [ "length" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ -100, 100 ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 0, 100 ]
+    }]
+  }]
+},
+
+{
+  "check": [ "length", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ -100, 100 ],
+      "required": true
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 1, 100 ],
+      "required": true
+    }]
+  }]
+},
+
+{
+  "check": [ "length", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ 100, -100 ],
+      "required": true
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 1, 100 ],
+      "required": true
+    }]
+  }]
+},
+
+{
+  "check": [ "length", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ 100, -100 ],
+      "required": false
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 0, 100 ],
+      "required": false
+    }]
+  }]
+},
+
+{
+  "check": [ "length" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ -100, -100 ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 0, 1e9999 ]
+    }]
+  }]
+},
+
+{
+  "check": [ "length", "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "length": [ -100, -100 ],
+      "required": true
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": [ 1, 1e9999 ],
+      "required": true
     }]
   }]
 }
 
 ]
+

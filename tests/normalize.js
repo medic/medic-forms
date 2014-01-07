@@ -36,20 +36,18 @@ var compare_partial = function (_lhs, _rhs, _properties) {
 };
 
 /**
- * @name main:
+ * @name make_test:
  */
-var main = function (_argc, _argv) {
+var make_test = function (_name, _scope, _file) {
 
-  var fixture_file = 'tests/fixtures/normalize/forms.json';
-  var tests = JSON.parse(fs.readFileSync(fixture_file));
+  var tests = JSON.parse(fs.readFileSync(_file));
 
   if (!_.isArray(tests)) {
-    fatal(fixture_file + ' is malformed; aborting');
+    fatal(_file + ' is malformed; aborting');
   }
 
-  wru.test({
-    name: 'normalization',
-
+  return {
+    name: _name,
     test: function () {
       _.each(tests, function (_test, _i) {
 
@@ -65,10 +63,14 @@ var main = function (_argc, _argv) {
         for (var i = 0, len = from.length; i < len; ++i) {
 
           var check = _test.check;
-          var lhs = (to[i].fields || []);
-          var rhs = (from[i].fields || []);
+          var lhs = (to[i][_scope] || []);
+          var rhs = (from[i][_scope] || []);
 
-          /* For each field */
+          if (!_.isArray(rhs)) {
+            rhs = [ rhs ];
+          }
+
+          /* For each checkable object in scope */
           for (var j = 0, ln = lhs.length; j < ln; ++j) {
 
             wru.assert(
@@ -79,7 +81,32 @@ var main = function (_argc, _argv) {
         }
       });
     }
-  });
+  };
+};
+
+/**
+ * @name main:
+ */
+var main = function (_argc, _argv) {
+
+  wru.test([
+    make_test(
+      'field-name-normalization', 'fields',
+        'tests/fixtures/normalize/field-names.json'
+    ),
+    make_test(
+      'field-option-normalization', 'fields',
+        'tests/fixtures/normalize/field-options.json'
+    ),
+    make_test(
+      'form-name-normalization', 'meta',
+        'tests/fixtures/normalize/form-names.json'
+    ),
+    make_test(
+      'form-option-normalization', 'meta',
+        'tests/fixtures/normalize/form-options.json'
+    )
+  ]);
 
   return 0;
 };

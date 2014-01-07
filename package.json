@@ -10,7 +10,8 @@
     "tv4": "1.x",
     "deep-equal": "0.x",
     "wru": "0.x",
-    "underscore": "1.x"
+    "underscore": "1.x",
+    "jsDump": "1.x"
   },
   "readme": "README",
   "repository": "http://github.com/browndav/medic-forms.git",
