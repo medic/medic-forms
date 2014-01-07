@@ -27,6 +27,7 @@ var compare_partial = function (_lhs, _rhs, _properties) {
   } else {
     for (var i = 0, len = _properties.length; i < len; ++i) {
       var k = _properties[i];
+
       if (!deepEqual(_lhs[k], _rhs[k])) {
         return false;
       }
@@ -46,6 +47,10 @@ var check_fields = function (_name, _fields,
 
   if (!_.isArray(_expected)) {
     _expected = [ _expected ];
+  }
+
+  if (!_.isArray(_fields)) {
+    _fields = [ _fields ];
   }
 
   /* For each checkable object in scope */
@@ -123,6 +128,10 @@ var main = function (_argc, _argv) {
     make_test(
       'field-option-normalization', 'fields',
         'tests/fixtures/normalize/field-options.json'
+    ),
+    make_test(
+      'field-select-normalization', 'fields',
+        'tests/fixtures/normalize/field-select-lists.json'
     ),
     make_test(
       'form-name-normalization', 'meta',

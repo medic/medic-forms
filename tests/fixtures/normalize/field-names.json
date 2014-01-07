@@ -99,6 +99,136 @@
       "description": { "en": "This is the first field" }
     }]
   }]
+},
+
+{
+  "check": [ "id", "name", "description" ],
+
+  "from": [{
+    "meta": {
+      "language": "en"
+    },
+    "fields": [{
+      "id": "f1",
+      "name": "Field One",
+      "description": "This is the first field"
+    }, {
+      "id": "f2",
+      "type": "fields",
+      "name": { "es": "Segundo campo" },
+      "fields": [{
+        "id": "f3",
+        "name": "Field Three",
+        "description": { "fr": "C'est le troisième domaine" }
+      }, {
+        "id": "f4",
+        "name": "Field Four",
+        "description": {
+          "en": "This is the fourth field",
+          "fr": "C'est la quatrième domaine"
+        }
+      }]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "name": { "en": "Field One" },
+      "description": { "en": "This is the first field" }
+    }, {
+      "id": "f2",
+      "type": "fields",
+      "name": {
+        "en": "f2",
+        "es": "Segundo campo"
+      },
+      "fields": [{
+        "id": "f3",
+        "name": { "en": "Field Three" },
+        "description": {
+          "en": "Field Three",
+          "fr": "C'est le troisième domaine"
+        }
+      }, {
+        "id": "f4",
+        "name": { "en": "Field Four" },
+        "description": {
+          "en": "This is the fourth field",
+          "fr": "C'est la quatrième domaine"
+        }
+      }]
+    }]
+  }]
+},
+
+{
+  "check": [ "id", "name", "description" ],
+
+  "from": [{
+    "meta": {
+      "language": "en"
+    },
+    "fields": [{
+      "id": "f1",
+      "name": { "es": "Campo uno" },
+      "description": { "fr": "Premier champ" }
+    }, {
+      "id": "f2",
+      "type": "fields",
+      "fields": [{
+        "id": "f3",
+        "name": { "es": "Tercer campo" },
+        "description": {
+          "en": "Third field",
+          "fr": "C'est le troisième domaine"
+        }
+      }, {
+        "id": "f4",
+        "name": {
+          "en": "Fourth field",
+          "es": "Cuarto campo"
+        },
+        "description": { "fr": "C'est la quatrième domaine" }
+      }]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "name": {
+        "en": "f1",
+        "es": "Campo uno"
+      },
+      "description": {
+        "en": "f1",
+        "fr": "Premier champ"
+      }
+    }, {
+      "id": "f2",
+      "type": "fields",
+      "fields": [{
+        "id": "f3",
+        "name": {
+          "en": "f3",
+          "es": "Tercer campo"
+        },
+        "description": {
+          "en": "Third field",
+          "fr": "C'est le troisième domaine"
+        }
+      }, {
+        "id": "f4",
+        "name": {
+          "en": "Fourth field",
+          "es": "Cuarto campo"
+        },
+        "description": {
+          "en": "Fourth field",
+          "fr": "C'est la quatrième domaine"
+        }
+      }]
+    }]
+  }]
 }
 
 ]
