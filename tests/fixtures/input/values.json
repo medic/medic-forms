@@ -1,0 +1,17 @@
+[
+  {
+    "valid": true,
+    "field": {
+      "type": "integer"
+    },
+    "values": [ 1, 10, 100, 1e9999, -1e9999 ]
+  },
+  {
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "range": [ 0, 100 ]
+    },
+    "values": [ 0, 1, 10, 100 ]
+  }
+]
