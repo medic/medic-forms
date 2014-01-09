@@ -13,5 +13,13 @@
       "range": [ 0, 100 ]
     },
     "values": [ 0, 1, 10, 100 ]
+  },
+  {
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "range": [ 1, 50 ]
+    },
+    "values": [ 0, -1e9999, -1, 51, 500, 1e9999 ]
   }
 ]
