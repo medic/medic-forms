@@ -6,6 +6,7 @@
     },
     "values": [ 1, 10, 100, 1e9999, -1e9999 ]
   },
+
   {
     "valid": true,
     "field": {
@@ -14,6 +15,7 @@
     },
     "values": [ 0, 1, 10, 100 ]
   },
+
   {
     "valid": false,
     "field": {
@@ -22,11 +24,108 @@
     },
     "values": [ 0, -1e9999, -1, 51, 500, 1e9999 ]
   },
+
   {
     "valid": false,
     "field": {
       "type": "integer"
     },
     "values": [ -0.1, 0.2, -0.3, 0.4, 100.5, 1000.6 ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "number"
+    },
+    "values": [ -0.1, 0.2, -0.3, 0.4, 100.5, 1000.6 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "number"
+    },
+    "values": [ "a", "bb", "ccc", "dddd", true, false, null ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "number"
+    },
+    "values": [ 1, 2, 3, 4, 5, 6 ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "number",
+      "range": [ -1e9999, 1e9999 ]
+    },
+    "values": [ 0, -9999.99, 99.9, 9999.99, 1e9999, -1e9999, 1 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "range": [ -1e9999, 1e9999 ]
+    },
+    "values": [ -99999.0001, -9999.99, 99.9, 9999.99, 99999.0001 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "range": [ -999, 999 ]
+    },
+    "values": [ -1000.1, -999.9, -1000, 999.9, 1000, 1000.1 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "number",
+      "range": [ 1, 999 ]
+    },
+    "values": [ 0, 0.99, -0.99, 999.0001, 999.001, 999.01, 999.1, 1000 ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "length": [ 3, 5 ]
+    },
+    "values": [ 123, 4567, 89000 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "length": [ 3, 5 ]
+    },
+    "values": [ 1, 23, 456789 ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "number",
+      "length": [ 1, 4 ]
+    },
+    "values": [ 1, 1.2, 1.33, -1.2, -1, 0 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "number",
+      "length": [ 1, 4 ]
+    },
+    "values": [ -1.23, 1.234, 0.123 ]
   }
 ]
