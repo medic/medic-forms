@@ -44,9 +44,28 @@
   {
     "valid": false,
     "field": {
-      "type": "number"
+      "type": "number",
+      "required": true
     },
     "values": [ "a", "bb", "ccc", "dddd", true, false, null ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": false
+    },
+    "values": [ true, false, null ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": true
+    },
+    "values": [ 0, -1e9999, 1e9999 ]
   },
 
   {
