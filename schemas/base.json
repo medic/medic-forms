@@ -132,6 +132,7 @@
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "number" ] },
+        "length": { "$ref": "#/library/length-specifier" },
         "range": { "$ref": "#/library/range-specifier-number" }
       }
     },
@@ -323,7 +324,7 @@
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": [ "number", "boolean", "null" ] }
+          "items": { "type": [ "integer", "number", "boolean", "null" ] }
         }
       ],
       "not": {
