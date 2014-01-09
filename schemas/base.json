@@ -228,7 +228,7 @@
         "range": { "$ref": "#/library/range-specifier-number" },
 
         "type": { "enum": [ "gps" ] },
-        "elevation": {"type": "boolean"}
+        "elevation": {"type": [ "boolean", "null" ]  }
       }
     },
 

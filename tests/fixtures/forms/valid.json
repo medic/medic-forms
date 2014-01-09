@@ -295,9 +295,22 @@
       "description": "Test field #1"
     },
     {
-      "id": "g1",
+      "id": "q2",
       "type": "gps",
-      "description": "GPS Test field #1"
+      "description": "Test field #2",
+      "elevation": true
+    },
+    {
+      "id": "q3",
+      "type": "gps",
+      "description": "Test field #3",
+      "elevation": false
+    },
+    {
+      "id": "q4",
+      "type": "gps",
+      "description": "Test field #4",
+      "elevation": null
     }
   ]
 }],

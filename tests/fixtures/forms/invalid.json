@@ -16,6 +16,38 @@
     "name": "Example Form"
   },
   "fields": false
+}],
+
+[{
+  "meta": {
+    "id": "moar",
+    "name": "Another Form",
+    "description": "An additional example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "gps",
+      "description": "Test field #1",
+      "elevation": 0
+    }
+  ]
+}],
+
+[{
+  "meta": {
+    "id": "moar",
+    "name": "Another Form",
+    "description": "An additional example form"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "gps",
+      "description": "Test field #1",
+      "elevation": "Yes, please"
+    }
+  ]
 }]
 
 ]
