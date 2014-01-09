@@ -4,7 +4,7 @@
 
   "description":
     "A schema for Medic Mobile's JSON-based form definition language",
-  
+
   "type": "array",
   "minItems": 0,
   "uniqueItems": false,
@@ -73,6 +73,7 @@
         { "$ref": "#/library/field-date" },
         { "$ref": "#/library/field-timestamp" },
         { "$ref": "#/library/field-location" },
+        { "$ref": "#/library/field-gps" },
         { "$ref": "#/library/field-image" },
         { "$ref": "#/library/field-select" },
         { "$ref": "#/library/field-recursive" }
@@ -208,6 +209,26 @@
         "repeat": { "$ref": "#/library/repeat-specifier" },
 
         "type": { "enum": [ "image" ] }
+      }
+    },
+
+
+    "field-gps": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "type": "boolean" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+        "range": { "$ref": "#/library/range-specifier-number" },
+
+        "type": { "enum": [ "gps" ] },
+        "elevation": {"type": "boolean"}
       }
     },
 

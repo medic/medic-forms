@@ -127,5 +127,66 @@
       "length": [ 1, 4 ]
     },
     "values": [ -1.23, 1.234, 0.123 ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "gps"
+    },
+    "values": [
+                [-10.23, 10.234],
+                [89.900, -179.99234],
+                {
+                  "latitude": -0.2,
+                  "longitude": 1.2
+                }
+              ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "gps"
+    },
+    "values": [
+                [-90.1, 1.234],
+                [-1.23, 181.9],
+                {
+                  "latitude": -100.2,
+                  "longitude": 1.2
+                }
+             ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "gps",
+      "elevation": true
+    },
+    "values": [
+                [-1.23, 1.234],
+                [-11.23, 11.234],
+                {
+                  "latitude": -0.2,
+                  "longitude": 1.2
+                } ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "gps",
+      "elevation": true
+    },
+    "values": [ [-12.23, 12.234, 1000],
+                [-15.23, 91.234, 2000],
+                {
+                  "latitude": -0.2,
+                  "longitude": 1.2,
+                  "elevation": 1099
+                }
+              ]
   }
 ]

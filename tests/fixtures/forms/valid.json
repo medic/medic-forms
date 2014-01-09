@@ -293,6 +293,11 @@
       "id": "q1",
       "type": "string",
       "description": "Test field #1"
+    },
+    {
+      "id": "g1",
+      "type": "gps",
+      "description": "GPS Test field #1"
     }
   ]
 }],
