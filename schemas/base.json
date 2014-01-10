@@ -225,6 +225,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "range": { "$ref": "#/library/range-specifier-number" },
 
         "type": { "enum": [ "gps" ] },
         "elevation": {"type": "boolean"}

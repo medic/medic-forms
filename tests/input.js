@@ -25,7 +25,7 @@ var make_test = function (_name, _file) {
   if (!_.isArray(tests)) {
     fatal(file + ' is malformed; aborting');
   }
-  
+
   return {
     name: _name,
     test: function () {
@@ -35,7 +35,7 @@ var make_test = function (_name, _file) {
         var field = _test.field;
         var values = _test.values;
 
-        var h = 'Test #' + (_i + 1) + ' ';
+        var h = 'Test #' + (_i + 1) + ' ' + JSON.stringify(_test) + ' ';
 
         wru.assert(
           h + ' must provide an array for the `values` property',
@@ -49,7 +49,7 @@ var make_test = function (_name, _file) {
 
         wru.assert(
           h + ' must specify an object for the `field` property',
-            _.isBoolean(valid)
+            _.isObject(field)
         );
 
         _.each(values, function (_value, _j) {
