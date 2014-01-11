@@ -246,6 +246,160 @@
       }
     ]
   }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "default": 1
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": []
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": [ 1, 2, 3 ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": false
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": null
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": true
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "repeat": [ 3, 3 ],
+        "default": [ "Hello", "world", "!" ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "repeat": [ 2, 4 ],
+        "default": [ "Hello", "world", "!" ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "default": []
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": [ "Hello" ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": [ true ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": [ null ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": true,
+        "default": [ false ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": [ 10, 20 ],
+        "default": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "repeat": [ 3, 3 ],
+        "default": [ "Hello", "world" ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "repeat": [ 3, 6 ],
+        "default": [ "Hello", "world" ]
+      }
+    ]
+  }]
 }
 
 ]
