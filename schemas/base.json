@@ -72,7 +72,6 @@
         { "$ref": "#/library/field-number" },
         { "$ref": "#/library/field-date" },
         { "$ref": "#/library/field-timestamp" },
-        { "$ref": "#/library/field-location" },
         { "$ref": "#/library/field-gps" },
         { "$ref": "#/library/field-image" },
         { "$ref": "#/library/field-select" },
@@ -93,6 +92,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "string" ] },
         "length": { "$ref": "#/library/length-specifier" }
@@ -112,6 +112,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "integer" ] },
         "range": { "$ref": "#/library/range-specifier-integer" }
@@ -131,6 +132,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "number" ] },
         "length": { "$ref": "#/library/length-specifier" },
@@ -151,6 +153,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "date" ] },
         "repeat": { "$ref": "#/library/repeat-specifier" }
@@ -170,27 +173,10 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "timestamp" ] },
         "repeat": { "$ref": "#/library/repeat-specifier" }
-      }
-    },
-
-    "field-location": {
-      "type": "object",
-      "required": [ "id", "type" ],
-      "additionalProperties": false,
-      "properties": {
-        "id": { "type": "string" },
-        "required": { "type": "boolean" },
-        "name": { "$ref": "#/library/l10n" },
-        "description": { "$ref": "#/library/l10n" },
-        "flags": { "$ref": "#/library/flags" },
-        "conditions": { "$ref": "#/library/conditions" },
-        "validations": { "$ref": "#/library/validations" },
-        "repeat": { "$ref": "#/library/repeat-specifier" },
-
-        "type": { "enum": [ "location" ] }
       }
     },
 
@@ -207,6 +193,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "image" ] }
       }
@@ -226,6 +213,7 @@
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
         "range": { "$ref": "#/library/range-specifier-number" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "gps" ] },
         "elevation": {"type": [ "boolean", "null" ]  }
@@ -245,6 +233,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "select" ] },
         "items": {
@@ -281,6 +270,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
 
         "type": { "enum": [ "fields" ] },
         "fields": { "$ref": "#/library/fieldset" }

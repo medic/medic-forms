@@ -342,7 +342,7 @@
     { "$ref": "#/library/q3b" },
     {
       "id": "q4a",
-      "type": "location",
+      "type": "gps",
       "required": true
     },
     { "$ref": "#/library/q4b" },
@@ -378,7 +378,7 @@
     },
     "q4b": {
       "id": "q4b",
-      "type": "location",
+      "type": "gps",
       "required": false
     },
     "q5b": {
