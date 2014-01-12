@@ -171,6 +171,7 @@
         "id": "q1",
         "type": "select",
         "repeat": [ 1, 3 ],
+        "required": true,
         "items": [
           [ 1, "Hello" ],
           [ 2, "Goodbye" ],
@@ -185,6 +186,7 @@
         "id": "q1",
         "type": "select",
         "repeat": [ 1, 3 ],
+        "required": true,
         "items": [
           [ 1, "Hello" ],
           [ "BYE", "Goodbye" ],
@@ -333,6 +335,7 @@
         "id": "q1",
         "type": "fields",
         "repeat": [ 5, 5 ],
+        "required": true,
         "fields": [{
           "id": "greeting",
           "type": "select",
@@ -377,9 +380,11 @@
         "id": "q1",
         "type": "fields",
         "repeat": [ 3, 5 ],
+        "required": true,
         "fields": [{
           "id": "greeting",
           "type": "select",
+          "required": true,
           "repeat": [ 1, 3 ],
           "items": [
             [ 1, "Hello" ],
@@ -391,6 +396,7 @@
           "id": "closing",
           "type": "select",
           "repeat": [ 0, 3 ],
+          "required": false,
           "items": [
             [ 1, "Cheers" ],
             [ 2, "Sincerely" ],

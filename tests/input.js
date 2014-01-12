@@ -35,7 +35,8 @@ var make_test = function (_name, _file) {
         var field = _test.field;
         var values = _test.values;
 
-        var h = 'Test #' + (_i + 1) + ' ' + JSON.stringify(_test) + ' ';
+        var h = 'Test #' + (_i + 1);
+        var json = JSON.stringify(_test);
 
         wru.assert(
           h + ' must provide an array for the `values` property',
@@ -54,11 +55,12 @@ var make_test = function (_name, _file) {
 
         _.each(values, function (_value, _j) {
 
-          var label = h + (_j > 0 ? 'at offset ' + _j + ' ': '');
+          var label = h + ' at offset ' + _j;
+          var detail = ' (test was `' + json + '`)';
           var rv = input.validate_any.call(input, _value, field);
 
           wru.assert(
-            label + 'must ' + (valid ? '' : 'not ') + 'validate',
+            label + ' must ' + (valid ? '' : 'not ') + 'validate' + detail,
               (rv.valid === valid)
           );
         });
