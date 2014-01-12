@@ -114,7 +114,89 @@
       {
         "id": "q1",
         "type": "select",
-        "items": [ 1, "1" ]
+        "items": [
+          [ 1, "1" ]
+        ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ 1, "Hello" ]
+        ],
+        "default": 1
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ "HI", "Hello" ]
+        ],
+        "default": "HI"
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ 0, "Hello" ],
+          [ 1, { "en": "Goodbye" } ]
+        ],
+        "default": 0
+      }
+    ]
+  }]
+},
+
+{
+  "valid": false,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ 1, "Hello" ]
+        ],
+        "default": 2
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ "HI", "Hello" ]
+        ],
+        "default": "BYE"
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": [
+          [ 0, "Hello" ],
+          [ 1, { "en": "Goodbye" } ]
+        ],
+        "default": "Goodbye"
       }
     ]
   }]
