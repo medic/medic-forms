@@ -312,11 +312,52 @@
     },
     "values": [
       [ ],
+      false,
       [ { } ],
       [ { "greeting": [ 1 ] } ],
       [ { "closing": [ 1 ] } ],
       [ { "greeting": [ 1 ], "closing": [ ] } ],
-      [ { "closing": [ 1 ], "greeting": [ ] } ]
+      [ { "closing": [ 1 ], "greeting": [ ] } ],
+      [ { "greeting": false, "closing": false } ]
+    ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "id": "q1",
+      "type": "fields",
+      "repeat": [ 0, 5 ],
+      "required": false,
+      "fields": [{
+        "id": "greeting",
+        "type": "select",
+        "required": false,
+        "repeat": [ 0, 3 ],
+        "items": [
+          [ 1, { "en": "Hello", "es": "Hola" } ],
+          [ 2, "Good Day" ],
+          [ 3, "Greetings" ],
+          [ 4, "Mahalo" ]
+        ]
+      }, {
+        "id": "closing",
+        "type": "select",
+        "repeat": [ 0, 3 ],
+        "required": false,
+        "items": [
+          [ 1, { "en": "Cheers" } ],
+          [ 2, "Sincerely" ],
+          [ 3, { "en": "Goodbye" } ],
+          [ 4, "Ta ta" ]
+        ]
+      }]
+    },
+    "values": [
+      [ false ],
+      [ { "closing": [ null ] } ],
+      [ { "closing": [ true ] } ],
+      [ { "greeting": [ false ] } ]
     ]
   }
 
