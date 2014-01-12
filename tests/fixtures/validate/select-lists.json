@@ -163,6 +163,66 @@
 },
 
 {
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "repeat": [ 1, 3 ],
+        "items": [
+          [ 1, "Hello" ],
+          [ 2, "Goodbye" ],
+          [ 0, "None" ]
+        ],
+        "default": [ 1, 2 ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "repeat": [ 1, 3 ],
+        "items": [
+          [ 1, "Hello" ],
+          [ "BYE", "Goodbye" ],
+          [ 0, "None" ]
+        ],
+        "default": [ 0, 1, "BYE" ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "repeat": [ 0, 1e9999 ],
+        "items": [
+          [ "HI", { "en": "Hello" } ],
+          [ "BYE", { "en": "Goodbye" } ]
+        ],
+        "default": [ "HI", "BYE" ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "repeat": false,
+        "items": [
+          [ "HI", { "en": "Hello" } ],
+          [ "BYE", { "en": "Goodbye" } ]
+        ],
+        "default": "HI"
+      }
+    ]
+  }]
+},
+
+{
   "valid": false,
 
   "forms": [{
@@ -182,7 +242,8 @@
         "id": "q1",
         "type": "select",
         "items": [
-          [ "HI", "Hello" ]
+          [ "HI", "Hello" ],
+          [ 1, "BYE" ]
         ],
         "default": "BYE"
       }
@@ -197,6 +258,155 @@
           [ 1, { "en": "Goodbye" } ]
         ],
         "default": "Goodbye"
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "repeat": [ 0, 1e9999 ],
+        "items": [
+          [ 0, "Hello" ],
+          [ 1, { "en": "Goodbye" } ]
+        ],
+        "default": [ 0, 1, 2 ]
+      }
+    ]
+  }, {
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "repeat": [ 0, 1e9999 ],
+        "items": [
+          [ "HI", "Hello" ],
+          [ "BYE", { "en": "Goodbye" } ]
+        ],
+        "default": [ 0, 1 ]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "fields",
+        "fields": [{
+          "id": "greeting",
+          "type": "select",
+          "items": [
+            [ 1, "Hello" ],
+            [ 2, "Good Day" ],
+            [ 3, "Greetings" ],
+            [ 4, "Mahalo" ]
+          ]
+        }, {
+          "id": "closing",
+          "type": "select",
+          "items": [
+            [ 1, "Cheers" ],
+            [ 2, "Sincerely" ],
+            [ 3, "Goodbye" ],
+            [ 4, "Ta ta" ]
+          ]
+        }],
+        "default": {
+          "greeting": 1, "closing": 3
+        }
+      }
+    ]
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "fields",
+        "repeat": [ 5, 5 ],
+        "fields": [{
+          "id": "greeting",
+          "type": "select",
+          "items": [
+            [ 1, "Hello" ],
+            [ 2, "Good Day" ],
+            [ 3, "Greetings" ],
+            [ 4, "Mahalo" ]
+          ]
+        }, {
+          "id": "closing",
+          "type": "select",
+          "items": [
+            [ 1, "Cheers" ],
+            [ 2, "Sincerely" ],
+            [ 3, "Goodbye" ],
+            [ 4, "Ta ta" ]
+          ]
+        }],
+        "default": [{
+          "greeting": 1, "closing": 2
+        }, {
+          "greeting": 3, "closing": 4
+        }, {
+          "greeting": 4, "closing": 3
+        }, {
+          "greeting": 2, "closing": 1
+        }, {
+          "greeting": 1, "closing": 2
+        }]
+      }
+    ]
+  }]
+},
+
+{
+  "valid": true,
+
+  "forms": [{
+    "fields": [
+      {
+        "id": "q1",
+        "type": "fields",
+        "repeat": [ 3, 5 ],
+        "fields": [{
+          "id": "greeting",
+          "type": "select",
+          "repeat": [ 1, 3 ],
+          "items": [
+            [ 1, "Hello" ],
+            [ 2, "Good Day" ],
+            [ 3, "Greetings" ],
+            [ 4, "Mahalo" ]
+          ]
+        }, {
+          "id": "closing",
+          "type": "select",
+          "repeat": [ 0, 3 ],
+          "items": [
+            [ 1, "Cheers" ],
+            [ 2, "Sincerely" ],
+            [ 3, "Goodbye" ],
+            [ 4, "Ta ta" ]
+          ]
+        }],
+        "default": [{
+          "greeting": [ 1, 2 ], "closing": [ 1, 2, 3 ]
+        }, {
+          "greeting": [ 3, 4 ], "closing": [ ]
+        }, {
+          "greeting": [ 4, 3 ], "closing": [ 4, 3 ]
+        }, {
+          "greeting": [ 2, 1 ], "closing": [ 2, 1 ]
+        }]
       }
     ]
   }]
