@@ -354,10 +354,14 @@
       }]
     },
     "values": [
-      [ false ],
+      [ 1, 2, 3 ],
+      [ [], [], [] ],
+      [ false, true, null ],
+      [ {}, {}, {}, {}, {}, {} ],
       [ { "closing": [ null ] } ],
       [ { "closing": [ true ] } ],
-      [ { "greeting": [ false ] } ]
+      [ { "greeting": [ false ] } ],
+      [ false ], [ true ], [ null ]
     ]
   }
 
