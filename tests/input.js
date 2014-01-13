@@ -36,10 +36,11 @@ var _assert = function (_test, _i) {
 
   _.each(values, function (_value, _j) {
 
+    var async_ready = false;
+
     var label = h + ' at offset ' + _j;
     var detail = ' (test was `' + json + '`)';
 
-    var async_ready;
     if (is_async) {
       async_ready = label + " ready";
       field.validationReady = async_ready;
@@ -47,7 +48,7 @@ var _assert = function (_test, _i) {
 
     var rv = input.validate_any.call(input, _value, field);
 
-    if (rv === null && async_ready) {
+    if (!rv && async_ready) {
 
       /* Asynchronous assertion */
       input.getEventEmitter().once(
