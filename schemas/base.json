@@ -115,6 +115,7 @@
         "default": { "type": "any" },
 
         "type": { "enum": [ "integer" ] },
+        "length": { "$ref": "#/library/length-specifier" },
         "range": { "$ref": "#/library/range-specifier-integer" }
       }
     },
