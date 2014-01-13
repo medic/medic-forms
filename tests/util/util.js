@@ -9,6 +9,7 @@ var fs = require('fs'),
  *   Exit with a fatal error message
  */
 var _fatal = function (_message) {
+
   console.log("Fatal error: " + _message);
   process.exit(1);
 };
