@@ -26,7 +26,7 @@ var _assert = function(_test, _i) {
 wru.test(
   tests.make_test(
     'rewriting', 
-    'tests/fixtures/reference/rewrite.json', 
-    _assert
+      'tests/fixtures/reference/rewrite.json', _assert
   )
 );
+

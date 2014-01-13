@@ -23,17 +23,18 @@ var _assert = function(_test, _i) {
 wru.test([
   tests.make_test(
     'field-validation', 
-    'tests/fixtures/validate/fields.json', 
-    _assert
+      'tests/fixtures/validate/fields.json', 
+      _assert
   ),
   tests.make_test(
     'form-validation', 
-    'tests/fixtures/validate/forms.json', 
-    _assert
+      'tests/fixtures/validate/forms.json', 
+      _assert
   ),
   tests.make_test(
     'select-list-validation', 
-    'tests/fixtures/validate/select-lists.json', 
-    _assert
+      'tests/fixtures/validate/select-lists.json', 
+      _assert
   )
 ]);
+

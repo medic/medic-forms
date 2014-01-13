@@ -47,7 +47,8 @@ var _assert = function (_test, _i) {
 
     var rv = input.validate_any.call(input, _value, field);
 
-    if (rv === null && async_ready) { //async validation test
+    if (rv === null && async_ready) {
+
       /* Asynchronous assertion */
       input.getEventEmitter().once(
         async_ready,
@@ -58,6 +59,7 @@ var _assert = function (_test, _i) {
           );
         })
       );
+
     } else {
 
       /* Synchronous assertion */

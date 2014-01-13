@@ -23,14 +23,13 @@ var _assert = function(_test, _i, _valid) {
 wru.test([
   tests.make_test(
     'valid-forms', 
-    'tests/fixtures/forms/valid.json', 
-    _assert,
-    true
+      'tests/fixtures/forms/valid.json', 
+      _assert, [ true ]
   ),
   tests.make_test(
     'invalid-forms', 
-    'tests/fixtures/forms/invalid.json', 
-    _assert,
-    false
+      'tests/fixtures/forms/invalid.json', 
+      _assert, [ false ]
   )
 ]);
+

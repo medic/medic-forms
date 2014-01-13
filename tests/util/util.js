@@ -6,7 +6,7 @@ var fs = require('fs'),
 
 /**
  * @name _fatal
- *   Exit with a fatal error message
+ *   Exit with a fatal error message.
  */
 var _fatal = function (_message) {
 
@@ -17,9 +17,13 @@ var _fatal = function (_message) {
 
 /**
  * @name make_test
- *   Creates the tests
+ *   Creates a list of tests for `wru`, given a test name,
+ *   a path to a JSON-encoded fixture file, a function `_assertion_fn`
+ *   containing the test code to be executed, and a list of one or more
+ *   parameters to be provided to `_assertion_fn`.
+ *
  */
-exports.make_test = function(_name, _file, _assertion_fn, _assertion_param) {
+exports.make_test = function(_name, _file, _assertion_fn, _assertion_args) {
 
   var tests = JSON.parse(fs.readFileSync(_file));
 
@@ -31,7 +35,7 @@ exports.make_test = function(_name, _file, _assertion_fn, _assertion_param) {
     name: _name,
     test: function() {
       _.each(tests, function (_test, _i) {
-        _assertion_fn.call(this, _test, _i, _assertion_param);
+        _assertion_fn.apply(this, [ _test, _i ].concat(_assertion_args));
       });
     }
   };
