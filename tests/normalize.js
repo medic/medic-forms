@@ -1,19 +1,10 @@
-
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
     deepEqual = require('deep-equal'),
+    tests = require('./util/util.js'),
     n = require('../lib/normalize.js');
-
-/**
- * @name fatal:
- */
-var fatal = function (_message) {
-
-  puts("Fatal error: " + _message);
-  process.exit(1);
-};
 
 /**
  * @name compare_partial:
@@ -80,66 +71,61 @@ var check_fields = function (_name, _fields,
 };
 
 /**
- * @name make_test:
+ * @name _assert
  */
-var make_test = function (_name, _scope, _file) {
+var _assert = function(_test, _i, _scope) {
+  var name = 'Test #' + (_i + 1);
+  var from = _test.from, to = _test.to;
 
-  var tests = JSON.parse(fs.readFileSync(_file));
+  wru.assert(name + ' must have `to` property', _.isObject(to));
+  wru.assert(name + ' must have `from` property', _.isObject(from));
 
-  if (!_.isArray(tests)) {
-    fatal(_file + ' is malformed; aborting');
+  n.normalize_forms(from);
+
+  /* For each form */
+  for (var i = 0, len = from.length; i < len; ++i) {
+    check_fields(
+      name, (from[i][_scope] || []),
+        (to[i][_scope] || []), _test.check
+    );
   }
-
-  return {
-    name: _name,
-    test: function () {
-      _.each(tests, function (_test, _i) {
-
-        var name = 'Test #' + (_i + 1);
-        var from = _test.from, to = _test.to;
-
-        wru.assert(name + ' must have `to` property', _.isObject(to));
-        wru.assert(name + ' must have `from` property', _.isObject(from));
-
-        n.normalize_forms(from);
-
-        /* For each form */
-        for (var i = 0, len = from.length; i < len; ++i) {
-          check_fields(
-            name, (from[i][_scope] || []),
-              (to[i][_scope] || []), _test.check
-          );
-        }
-      });
-    }
-  };
-};
+}
 
 /**
- * @name main:
+ * @name main
  */
 var main = function (_argc, _argv) {
 
   wru.test([
-    make_test(
-      'field-name-normalization', 'fields',
-        'tests/fixtures/normalize/field-identifiers.json'
+    tests.make_test(
+      'field-name-normalization', 
+      'tests/fixtures/normalize/field-identifiers.json',
+      _assert,
+      'fields'
     ),
-    make_test(
-      'field-option-normalization', 'fields',
-        'tests/fixtures/normalize/field-properties.json'
+    tests.make_test(
+      'field-option-normalization',
+      'tests/fixtures/normalize/field-properties.json',
+      _assert, 
+      'fields'
     ),
-    make_test(
-      'field-select-normalization', 'fields',
-        'tests/fixtures/normalize/field-select-lists.json'
+    tests.make_test(
+      'field-select-normalization', 
+      'tests/fixtures/normalize/field-select-lists.json',
+      _assert, 
+      'fields'
     ),
-    make_test(
-      'form-name-normalization', 'meta',
-        'tests/fixtures/normalize/form-identifiers.json'
+    tests.make_test(
+      'form-name-normalization',
+      'tests/fixtures/normalize/form-identifiers.json',
+      _assert,
+      'meta'
     ),
-    make_test(
-      'form-option-normalization', 'meta',
-        'tests/fixtures/normalize/form-properties.json'
+    tests.make_test(
+      'form-option-normalization',
+      'tests/fixtures/normalize/form-properties.json',
+      _assert,
+      'meta'
     )
   ]);
 
