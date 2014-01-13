@@ -34,6 +34,7 @@ var make_test = function (_name, _file) {
         var valid = _test.valid;
         var field = _test.field;
         var values = _test.values;
+        var async = _test.async;
 
         var h = 'Test #' + (_i + 1);
         var json = JSON.stringify(_test);
@@ -53,16 +54,33 @@ var make_test = function (_name, _file) {
             _.isObject(field)
         );
 
-        _.each(values, function (_value, _j) {
+         _.each(values, function (_value, _j) {
 
-          var label = h + ' at offset ' + _j;
-          var detail = ' (test was `' + json + '`)';
+          var label = h + (_j > 0 ? 'at offset ' + _j + ' ' : '');
+          var testReady;
+          if (async) {
+            testReady = 'Test #' + (_i + 1) +
+              (_j > 0 ? ' at offset ' + _j + ' ' : '') +
+              " ready";
+            field.validationReady = testReady;
+          }
+
           var rv = input.validate_any.call(input, _value, field);
 
-          wru.assert(
-            label + ' must ' + (valid ? '' : 'not ') + 'validate' + detail,
-              (rv.valid === valid)
-          );
+          if (rv === null && testReady) {
+            /* Asynchronous assertion */
+            input.getEventEmitter().once(testReady,
+              wru.async(function (rv) {
+                wru.assert(
+                  label + 'must ' + (valid ? '' : 'not ') + 'validate', (rv.valid === valid)
+                );
+              }));
+          } else {
+            /* Synchronous assertion */
+            wru.assert(
+              label + 'must ' + (valid ? '' : 'not ') + 'validate', (rv.valid === valid)
+            );
+          }
         });
       });
     }

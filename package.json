@@ -12,11 +12,11 @@
     "deep-equal": "0.x",
     "wru": "0.x",
     "underscore": "1.x",
-    "jsDump": "1.x"
+    "jsDump": "1.x",
+    "mmmagic": "~0.3.5"
   },
   "readme": "README",
   "repository": "http://github.com/browndav/medic-forms.git",
   "author": "David Brown <david@medicmobile.org>",
   "license": "GPLv3"
 }
-
