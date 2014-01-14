@@ -317,6 +317,21 @@
 
 [{
   "meta": {
+    "id": "moar",
+    "name": "Another Form",
+    "description": "image form example"
+  },
+  "fields": [
+    {
+      "id": "q1",
+      "type": "image",
+      "description": "Test field #1"
+    }
+  ]
+}],
+
+[{
+  "meta": {
     "id": "test",
     "name": "Example Form",
     "description": "This is an example form"
