@@ -373,7 +373,8 @@
       "type": "object",
       "properties": {
         "operator": {
-          "type": "string"
+          "type": "string",
+          "enum": ["&&", "||"]
         },
         "javascript": {
           "oneOf": [
@@ -383,8 +384,8 @@
         },
         "registered": {
           "type": "array",
-          "items": {
-            "type": "object"
+          "items": { 
+            "type": "string"
           }
         }
       }

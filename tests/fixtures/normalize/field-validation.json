@@ -42,6 +42,22 @@
       }
     }]
   }]
+},
+{
+  "check": [ "validations" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1"
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "validations": {
+        "operator": "&&"
+      }
+    }]
+  }]
 }
 
 ]
