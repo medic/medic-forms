@@ -1,5 +1,43 @@
 [
+{
+  "check": [ "validations" ],
 
+  "from": [{
+    "fields": [{
+      "id": "f1"
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": []
+      }
+    }]
+  }]
+},
+{
+  "check": [ "validations" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "validations": {
+        "javascript": {}
+      }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": []
+      }
+    }]
+  }]
+},
 {
   "check": [ "validations" ],
 
@@ -18,7 +56,8 @@
         "operator": "||",
         "javascript": {
           "default": "return true;"
-        }
+        },
+        "registered": []
       }
     }]
   }]
@@ -30,7 +69,8 @@
     "fields": [{
       "id": "f1",
       "validations": {
-        "javascript": {}
+        "operator": "&&",
+        "registered": []
       }
     }]
   }],
@@ -38,24 +78,8 @@
     "fields": [{
       "validations": {
         "operator": "&&",
-        "javascript": {}
-      }
-    }]
-  }]
-},
-{
-  "check": [ "validations" ],
-
-  "from": [{
-    "fields": [{
-      "id": "f1"
-    }]
-  }],
-  "to": [{
-    "fields": [{
-      "validations": {
-        "operator": "&&",
-        "javascript": {}
+        "javascript": {},
+        "registered": []
       }
     }]
   }]
@@ -67,7 +91,8 @@
     "fields": [{
       "id": "f1",
       "validations": {
-        "operator": "&&"
+        "operator": "&&",
+        "javascript": {}
       }
     }]
   }],
@@ -75,7 +100,31 @@
     "fields": [{
       "validations": {
         "operator": "&&",
-        "javascript": {}
+        "javascript": {},
+        "registered": []
+      }
+    }]
+  }]
+},
+{
+  "check": [ "validations" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": "foo"
+      }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": ["foo"]
       }
     }]
   }]

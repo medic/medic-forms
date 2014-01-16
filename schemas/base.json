@@ -379,14 +379,14 @@
         "javascript": {
           "oneOf": [
             { "type": "string" },
-            { "type": "array", "items": { "type": "string" } }
+            { "type": "object" }
           ]
         },
         "registered": {
-          "type": "array",
-          "items": { 
-            "type": "string"
-          }
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ]
         }
       }
     }
