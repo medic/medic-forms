@@ -37,9 +37,7 @@ var _assert = function (_test, _i) {
   _.each(values, function (_value, _j) {
 
     var async_ready = false;
-
     var label = h + ' at offset ' + _j;
-    var detail = ' (test was `' + json + '`)';
 
     if (is_async) {
       async_ready = label + " ready";
@@ -54,23 +52,25 @@ var _assert = function (_test, _i) {
       input.getEventEmitter().once(
         async_ready,
         wru.async(function (rv) {
-          wru.assert(
-            label + ' must ' + (valid ? '' : 'not ') + 'validate' + detail,
-              (rv.valid === valid)
-          );
+          _assert_single(label, valid, rv, json);
         })
       );
 
     } else {
-
       /* Synchronous assertion */
-      wru.assert(
-        label + ' must ' + (valid ? '' : 'not ') + 'validate' + detail,
-          (rv.valid === valid)
-      );
+      _assert_single(label, valid, rv, json);
     }
   });
 };
+
+var _assert_single = function (label, valid, rv, json) {
+  wru.assert(
+    label + ' must ' + (valid ? '' : 'not ') + 'validate'
+     + '\n\terror was `' + rv.error + '`'
+     + '\n\ttest was `' + json + '`)',
+      (rv.valid === valid)
+  );
+}
 
 wru.test(
   tests.make_test(
