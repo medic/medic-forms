@@ -16,7 +16,7 @@ var _fatal = function (_message) {
 
 /**
  * @name make_test
- *   Creates and execute the tests
+ *   Creates the tests
  */
 exports.make_test = function(_name, _file, _assertion_fn) {
 
@@ -26,13 +26,13 @@ exports.make_test = function(_name, _file, _assertion_fn) {
     _fatal(_file + ' is malformed; aborting');
   }
 
-  wru.test([{
+  return {
     name: _name,
     test: function() {
       _.each(tests, function (_test, _i) {
         _assertion_fn.call(this, _test, _i);
       });
     }
-  }]);
+  };
   
 };
