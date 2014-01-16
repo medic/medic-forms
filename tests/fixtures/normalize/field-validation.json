@@ -54,7 +54,28 @@
   "to": [{
     "fields": [{
       "validations": {
+        "operator": "&&",
+        "javascript": {}
+      }
+    }]
+  }]
+},
+{
+  "check": [ "validations" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "validations": {
         "operator": "&&"
+      }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "validations": {
+        "operator": "&&",
+        "javascript": {}
       }
     }]
   }]
