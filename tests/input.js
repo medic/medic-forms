@@ -69,8 +69,10 @@ var _assert = function (_test, _i) {
   });
 };
 
-tests.make_test(
-  'input-value-validation',
-    'tests/fixtures/input/values.json', _assert
+wru.test(
+  tests.make_test(
+    'input-value-validation',
+      'tests/fixtures/input/values.json', _assert
+  )
 );
 
