@@ -3,7 +3,7 @@ var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
-    testUtil = require('./util/util.js'),
+    tests = require('./util/util.js'),
     v = require('../lib/validate.js');
 
 /**
@@ -21,17 +21,17 @@ var _assert = function(_test, _i) {
 }
 
 wru.test([
-  testUtil.make_test(
+  tests.make_test(
     'field-validation', 
     'tests/fixtures/validate/fields.json', 
     _assert
   ),
-  testUtil.make_test(
+  tests.make_test(
     'form-validation', 
     'tests/fixtures/validate/forms.json', 
     _assert
   ),
-  testUtil.make_test(
+  tests.make_test(
     'select-list-validation', 
     'tests/fixtures/validate/select-lists.json', 
     _assert
