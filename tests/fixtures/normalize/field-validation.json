@@ -1,0 +1,27 @@
+[
+
+{
+  "check": [ "validations" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "validations": {
+        "operator": "||",
+        "javascript": "return true;"
+      }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "validations": {
+        "operator": "||",
+        "javascript": {
+          "default": "return true;"
+        }
+      }
+    }]
+  }]
+}
+
+]

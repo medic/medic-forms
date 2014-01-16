@@ -121,6 +121,11 @@ var main = function (_argc, _argv) {
       'form-option-normalization',
         'tests/fixtures/normalize/form-properties.json',
         _assert, [ 'meta' ]
+    ),
+    tests.make_test(
+      'field-validation',
+        'tests/fixtures/normalize/field-validation.json',
+        _assert, [ 'fields' ]
     )
   ]);
 
