@@ -12,7 +12,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {},
-        "registered": []
+        "registered": {}
       }
     }]
   }]
@@ -33,7 +33,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {},
-        "registered": []
+        "registered": {}
       }
     }]
   }]
@@ -57,7 +57,7 @@
         "javascript": {
           "default": "return true;"
         },
-        "registered": []
+        "registered": {}
       }
     }]
   }]
@@ -70,7 +70,7 @@
       "id": "f1",
       "validations": {
         "operator": "&&",
-        "registered": []
+        "registered": {}
       }
     }]
   }],
@@ -79,7 +79,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {},
-        "registered": []
+        "registered": {}
       }
     }]
   }]
@@ -101,7 +101,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {},
-        "registered": []
+        "registered": {}
       }
     }]
   }]
@@ -124,7 +124,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {},
-        "registered": ["foo"]
+        "registered": {"foo": true}
       }
     }]
   }]
