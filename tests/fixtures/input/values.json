@@ -505,7 +505,7 @@
       "type": "integer",
       "validations": {
         "javascript": {
-          "default": "_input == 10"
+          "default": "input == 10"
         }
       }
     },
@@ -519,7 +519,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {
-          "default": "_input > 10"
+          "default": "input > 10"
         }
       }
     },
@@ -533,8 +533,8 @@
       "validations": {
         "operator": "&&",
         "javascript": {
-          "big": "_input > 10",
-          "even": "_input % 2 == 0"
+          "big": "input > 10",
+          "even": "input % 2 == 0"
         }
       }
     },
@@ -548,8 +548,8 @@
       "validations": {
         "operator": "||",
         "javascript": {
-          "big": "_input > 10",
-          "even": "_input % 2 == 0"
+          "big": "input > 10",
+          "even": "input % 2 == 0"
         }
       }
     },
@@ -563,8 +563,8 @@
       "validations": {
         "operator": "||",
         "javascript": {
-          "big": "_input > 10",
-          "even": "_input % 2 == 0"
+          "big": "input > 10",
+          "even": "input % 2 == 0"
         }
       }
     },
