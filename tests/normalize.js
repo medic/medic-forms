@@ -3,7 +3,7 @@ var fs = require('fs'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
     deepEqual = require('deep-equal'),
-    testUtil = require('./util/util.js'),
+    tests = require('./util/util.js'),
     n = require('../lib/normalize.js');
 
 /**
@@ -97,31 +97,31 @@ var _assert = function(_test, _i, _scope) {
 var main = function (_argc, _argv) {
 
   wru.test([
-    testUtil.make_test(
+    tests.make_test(
       'field-name-normalization', 
       'tests/fixtures/normalize/field-identifiers.json',
       _assert,
       'fields'
     ),
-    testUtil.make_test(
+    tests.make_test(
       'field-option-normalization',
       'tests/fixtures/normalize/field-properties.json',
       _assert, 
       'fields'
     ),
-    testUtil.make_test(
+    tests.make_test(
       'field-select-normalization', 
       'tests/fixtures/normalize/field-select-lists.json',
       _assert, 
       'fields'
     ),
-    testUtil.make_test(
+    tests.make_test(
       'form-name-normalization',
       'tests/fixtures/normalize/form-identifiers.json',
       _assert,
       'meta'
     ),
-    testUtil.make_test(
+    tests.make_test(
       'form-option-normalization',
       'tests/fixtures/normalize/form-properties.json',
       _assert,

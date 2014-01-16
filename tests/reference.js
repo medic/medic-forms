@@ -1,60 +1,32 @@
-
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
     deepEqual = require('deep-equal'),
+    tests = require('./util/util.js'),
     r = require('../lib/reference.js');
 
 /**
- * @name fatal:
+ * @name _assert
  */
-var fatal = function (_message) {
+var _assert = function(_test, _i) {
 
-  puts("Fatal error: " + _message);
-  process.exit(1);
-};
+  var h = 'Test #' + (_i + 1) + ' ';
 
+  wru.assert(h + 'must have `to` property', _.isObject(_test.to));
+  wru.assert(h + 'must have `from` property', _.isObject(_test.from));
 
-/**
- * @name main:
- */
-var main = function (_argc, _argv) {
+  var rewrite = r.rewrite(_test.from);
 
-  var schema_file = 'schemas/base.json';
-  var fixture_file = 'tests/fixtures/reference/rewrite.json';
+  wru.assert(
+    h + 'rewritten result must match expected',
+      deepEqual(rewrite, _test.to)
+  );
+}
 
-  var schema = JSON.parse(fs.readFileSync(schema_file));
-  var tests = JSON.parse(fs.readFileSync(fixture_file));
-
-  if (!_.isArray(tests)) {
-    fatal(fixture_file + ' is malformed; aborting');
-  }
-  
-  wru.test({
-    name: 'rewriting',
-
-    test: function () {
-      _.each(tests, function (_test, _i) {
-
-        var h = 'Test #' + (_i + 1) + ' ';
-
-        wru.assert(h + 'must have `to` property', _.isObject(_test.to));
-        wru.assert(h + 'must have `from` property', _.isObject(_test.from));
-
-        var rewrite = r.rewrite(_test.from);
-
-        wru.assert(
-          h + 'rewritten result must match expected',
-            deepEqual(rewrite, _test.to)
-        );
-      });
-    }
-  });
-
-  return 0;
-};
-
-process.exit(
-  main(process.argc, process.argv)
+wru.test(
+  tests.make_test(
+    'rewriting', 
+    'tests/fixtures/reference/rewrite.json', 
+    _assert
+  )
 );
-
