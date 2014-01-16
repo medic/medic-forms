@@ -22,6 +22,26 @@
       }
     }]
   }]
+},
+{
+  "check": [ "validations" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "validations": {
+        "javascript": {}
+      }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "validations": {
+        "operator": "&&",
+        "javascript": {}
+      }
+    }]
+  }]
 }
 
 ]

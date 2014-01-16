@@ -372,13 +372,16 @@
     "validations": {
       "type": "object",
       "properties": {
+        "operator": {
+          "type": "string"
+        },
         "javascript": {
           "oneOf": [
             { "type": "string" },
             { "type": "array", "items": { "type": "string" } }
           ]
         },
-        "structured": {
+        "registered": {
           "type": "array",
           "items": {
             "type": "object"
