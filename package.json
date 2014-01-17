@@ -4,12 +4,13 @@
   "description": "An implementation of Medic Mobile's JSON form definition language",
   "main": "lib/main.js",
   "scripts": {
-    "test": "scripts/run-tests"
+    "test": "scripts/run-tests",
+    "postinstall": "scripts/postinstall"
   },
   "dependencies": {
     "tv4": "1.x",
-    "deep-equal": "0.x",
     "wru": "0.x",
+    "deep-equal": "0.x",
     "underscore": "1.x",
     "jsDump": "1.x",
     "mmmagic": "~0.3.5",
