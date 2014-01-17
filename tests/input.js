@@ -34,6 +34,26 @@ var _assert = function (_test, _i) {
       _.isObject(field)
   );
 
+  input.register_validator('startsWithA', function(_input) {
+    if(_input.charAt(0) === 'A') {
+      return {valid: true};
+    }
+    return {
+      valid: false,
+      error: 'Input does not start with the letter A'
+    }
+  });
+
+  input.register_validator('endsWithA', function(_input) {
+    if(_input.charAt(_input.length - 1) === 'A') {
+      return {valid: true};
+    }
+    return {
+      valid: false,
+      error: 'Input does not end with the letter A'
+    }
+  });
+
   _.each(values, function (_value, _j) {
 
     var async_ready = false;

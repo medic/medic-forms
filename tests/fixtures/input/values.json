@@ -480,7 +480,8 @@
       "type": "integer",
       "validations": {
         "operator": "||",
-        "javascript": {}
+        "javascript": {},
+        "registered": {}
       }
     },
     "values": [ 10, 20 ]
@@ -493,7 +494,8 @@
       "validations": {
         "javascript": {
           "default": "true"
-        }
+        },
+        "registered": {}
       }
     },
     "values": [ 10, 20 ]
@@ -506,7 +508,8 @@
       "validations": {
         "javascript": {
           "default": "input == 10"
-        }
+        },
+        "registered": {}
       }
     },
     "values": [ 10 ]
@@ -520,7 +523,8 @@
         "operator": "&&",
         "javascript": {
           "default": "input > 10"
-        }
+        },
+        "registered": {}
       }
     },
     "values": [ 10 ]
@@ -535,7 +539,8 @@
         "javascript": {
           "big": "input > 10",
           "even": "input % 2 == 0"
-        }
+        },
+        "registered": {}
       }
     },
     "values": [ 18 ]
@@ -550,7 +555,8 @@
         "javascript": {
           "big": "input > 10",
           "even": "input % 2 == 0"
-        }
+        },
+        "registered": {}
       }
     },
     "values": [ 8 ]
@@ -565,11 +571,73 @@
         "javascript": {
           "big": "input > 10",
           "even": "input % 2 == 0"
-        }
+        },
+        "registered": {}
       }
     },
     "values": [ 9 ]
-  }
+  },
 
+  {
+    "valid": true,
+    "field": {
+      "type": "string",
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true
+        }
+      }
+    },
+    "values": [ "Avenue", "Ankle" ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "string",
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true
+        }
+      }
+    },
+    "values": [ "Boardwalk", "" ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "string",
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true,
+          "endsWithA": true
+        }
+      }
+    },
+    "values": [ "ALPACA", "A" ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "string",
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true,
+          "endsWithA": true
+        }
+      }
+    },
+    "values": [ "Aaron", "BANANA", "" ]
+  }
 
 ]
