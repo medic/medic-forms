@@ -1,4 +1,3 @@
-
 {
   "name": "medic-forms",
   "version": "0.0.1",
@@ -13,7 +12,8 @@
     "wru": "0.x",
     "underscore": "1.x",
     "jsDump": "1.x",
-    "mmmagic": "~0.3.5"
+    "mmmagic": "~0.3.5",
+    "brfs": "0.0.8"
   },
   "readme": "README",
   "repository": "http://github.com/browndav/medic-forms.git",
