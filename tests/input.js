@@ -12,6 +12,7 @@ var fs = require('fs'),
 var _assert = function (_test, _i) {
 
   var valid = _test.valid;
+  var skipped = _test.skipped;
   var field = _test.field;
   var values = _test.values;
   var is_async = _test.async;
@@ -72,23 +73,28 @@ var _assert = function (_test, _i) {
       input.getEventEmitter().once(
         async_ready,
         wru.async(function (rv) {
-          _assert_single(label, valid, rv, json);
+          _assert_single(label, valid, skipped, rv, json);
         })
       );
 
     } else {
       /* Synchronous assertion */
-      _assert_single(label, valid, rv, json);
+      _assert_single(label, valid, skipped, rv, json);
     }
   });
 };
 
-var _assert_single = function (label, valid, rv, json) {
+var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
   wru.assert(
-    label + ' must ' + (valid ? '' : 'not ') + 'validate'
-     + '\n\terror was `' + rv.error + '`'
-     + '\n\ttest was `' + json + '`)',
-      (rv.valid === valid)
+    _label + ' must ' + (_valid ? '' : 'not ') + 'validate'
+      + '\n\terror was `' + _rv.error + '`'
+      + '\n\ttest was `' + _json + '`)',
+      (_rv.valid === _valid)
+  );
+  wru.assert(
+    _label + ' must ' + (_skipped ? '' : 'not ') + 'be skipped'
+      + '\n\ttest was `' + _json + '`)',
+      (_rv.skipped === _skipped)
   );
 }
 

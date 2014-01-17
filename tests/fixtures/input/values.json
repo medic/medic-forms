@@ -638,6 +638,22 @@
       }
     },
     "values": [ "Aaron", "BANANA", "" ]
+  },
+
+  {
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "integer",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {
+          "default": "true"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ 10 ]
   }
 
 ]
