@@ -356,15 +356,21 @@
     "conditions": {
       "type": "object",
       "properties": {
+        "operator": {
+          "type": "string",
+          "enum": ["&&", "||"]
+        },
         "javascript": {
           "oneOf": [
             { "type": "string" },
-            { "type": "array", "items": { "type": "string" } }
+            { "type": "object" }
           ]
         },
-        "builtin": {
-          "type": "array",
-          "items": { "type": "string" }
+        "registered": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "object" }
+          ]
         }
       }
     },

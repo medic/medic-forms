@@ -126,6 +126,11 @@ var main = function (_argc, _argv) {
       'field-validation',
         'tests/fixtures/normalize/field-validation.json',
         _assert, [ 'fields' ]
+    ),
+    tests.make_test(
+      'field-condition',
+        'tests/fixtures/normalize/field-condition.json',
+        _assert, [ 'fields' ]
     )
   ]);
 
