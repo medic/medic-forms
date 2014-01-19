@@ -779,6 +779,22 @@
       "animal": "elephant"
     },
     "values": [ "" ]
-  }
+  },
 
+  {
+    "valid": true,
+    "field": {
+      "type": "email"
+    },
+    "values": [ "john@hotmail.com" ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "email"
+    },
+    "values": [ "john" ]
+  }
+  
 ]
