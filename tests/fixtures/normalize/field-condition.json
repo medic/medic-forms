@@ -12,7 +12,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "registered": {}
+        "structured": {}
       }
     }]
   }]
@@ -33,7 +33,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "registered": {}
+        "structured": {}
       }
     }]
   }]
@@ -57,7 +57,7 @@
         "javascript": {
           "default": "return true;"
         },
-        "registered": {}
+        "structured": {}
       }
     }]
   }]
@@ -70,7 +70,7 @@
       "id": "f1",
       "conditions": {
         "operator": "&&",
-        "registered": {}
+        "structured": {}
       }
     }]
   }],
@@ -79,7 +79,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "registered": {}
+        "structured": {}
       }
     }]
   }]
@@ -101,7 +101,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "registered": {}
+        "structured": {}
       }
     }]
   }]
@@ -115,7 +115,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "registered": "foo"
+        "structured": "foo"
       }
     }]
   }],
@@ -124,7 +124,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "registered": {"foo": true}
+        "structured": {"foo": true}
       }
     }]
   }]

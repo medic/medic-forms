@@ -650,7 +650,7 @@
         "javascript": {
           "default": "true"
         },
-        "registered": {}
+        "structured": {}
       }
     },
     "values": [ "" ]
@@ -666,7 +666,7 @@
         "javascript": {
           "default": "true"
         },
-        "registered": {}
+        "structured": {}
       }
     },
     "values": [ "should not have value" ]
@@ -682,7 +682,7 @@
         "javascript": {
           "default": "false"
         },
-        "registered": {}
+        "structured": {}
       }
     },
     "values": [ "value" ]
@@ -699,7 +699,7 @@
           "one": "false",
           "two": "true"
         },
-        "registered": {}
+        "structured": {}
       }
     },
     "values": [ "" ]
@@ -716,7 +716,7 @@
           "one": "false",
           "two": "true && false"
         },
-        "registered": {}
+        "structured": {}
       }
     },
     "values": [ "" ]
