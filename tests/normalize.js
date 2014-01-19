@@ -1,7 +1,6 @@
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
-    jsdump = require('jsDump'),
     deepEqual = require('deep-equal'),
     tests = require('./util/util.js'),
     n = require('../lib/normalize.js');

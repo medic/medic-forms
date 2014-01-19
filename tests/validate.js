@@ -2,7 +2,6 @@
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
-    jsdump = require('jsDump'),
     tests = require('./util/util.js'),
     v = require('../lib/validate.js');
 
