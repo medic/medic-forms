@@ -795,6 +795,53 @@
       "type": "email"
     },
     "values": [ "john" ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "date"
+    },
+    "values": [ "2012-11-05" ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "date"
+    },
+    "values": [ "2012-13-05" ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "date"
+    },
+    "values": [ "2012-11" ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "date"
+    },
+    "values": [ "2012-11-05 xxx" ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "timestamp"
+    },
+    "values": [ "2012-11-05T11:40:52.280Z" ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "timestamp"
+    },
+    "values": [ "2012-11-05T25:40:52.280Z" ]
   }
-  
 ]
