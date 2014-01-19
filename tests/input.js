@@ -93,8 +93,9 @@ var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
   );
   wru.assert(
     _label + ' must ' + (_skipped ? '' : 'not ') + 'be skipped'
+      + '\n\terror was `' + _rv.error + '`'
       + '\n\ttest was `' + _json + '`)',
-      (_rv.skipped === _skipped)
+      ((_rv.skipped === _skipped) || (!_skipped && !_rv.skipped))
   );
 }
 

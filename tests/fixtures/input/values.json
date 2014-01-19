@@ -644,7 +644,7 @@
     "valid": true,
     "skipped": true,
     "field": {
-      "type": "integer",
+      "type": "string",
       "conditions": {
         "operator": "&&",
         "javascript": {
@@ -653,7 +653,39 @@
         "registered": {}
       }
     },
-    "values": [ 10 ]
+    "values": [ "" ]
+  },
+
+  {
+    "valid": false,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {
+          "default": "true"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ "should not have value" ]
+  },
+
+  {
+    "valid": true,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {
+          "default": "false"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ "value" ]
   }
 
 ]
