@@ -720,6 +720,65 @@
       }
     },
     "values": [ "" ]
+  },
+
+  {
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "no"
+    },
+    "values": [ "" ]
+  },
+
+  {
+    "valid": true,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "yes"
+    },
+    "values": [ "" ]
+  },
+
+  {
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "||",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no",
+          "animal": "elephant"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "yes",
+      "animal": "elephant"
+    },
+    "values": [ "" ]
   }
 
 ]

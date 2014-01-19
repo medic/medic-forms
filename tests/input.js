@@ -16,6 +16,7 @@ var _assert = function (_test, _i) {
   var field = _test.field;
   var values = _test.values;
   var is_async = _test.async;
+  var inputs = _test.inputs;
 
   var h = 'Test #' + (_i + 1);
   var json = JSON.stringify(_test);
@@ -65,7 +66,7 @@ var _assert = function (_test, _i) {
       field.validationReady = async_ready;
     }
 
-    var rv = input.validate_any.call(input, _value, field);
+    var rv = input.validate_any.call(input, _value, field, inputs);
 
     if (!rv && async_ready) {
 
