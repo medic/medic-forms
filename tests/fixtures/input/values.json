@@ -686,6 +686,40 @@
       }
     },
     "values": [ "value" ]
+  },
+
+  {
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "||",
+        "javascript": {
+          "one": "false",
+          "two": "true"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ "" ]
+  },
+
+  {
+    "valid": true,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "||",
+        "javascript": {
+          "one": "false",
+          "two": "true && false"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ "" ]
   }
 
 ]
