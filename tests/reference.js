@@ -2,8 +2,9 @@ var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
     deepEqual = require('deep-equal'),
-    tests = require('./util/util.js'),
-    r = require('../lib/reference.js');
+    util = require('./util/util.js'),
+    r = require('../lib/reference.js'),
+    tests = require('./fixtures.js');
 
 /**
  * @name _assert
@@ -24,9 +25,10 @@ var _assert = function(_test, _i) {
 }
 
 wru.test(
-  tests.make_test(
-    'rewriting', 
-      'tests/fixtures/reference/rewrite.json', _assert
+  util.make_test(
+    'rewriting',
+    tests.fixtures.reference.rewrite,
+    _assert
   )
 );
 

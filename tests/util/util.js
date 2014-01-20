@@ -18,23 +18,20 @@ var _fatal = function (_message) {
 /**
  * @name make_test
  *   Creates a list of tests for `wru`, given a test name,
- *   a path to a JSON-encoded fixture file, a function `_assertion_fn`
- *   containing the test code to be executed, and a list of one or more
+ *   a `_tests` object, a function `_assertion_fn` containing the 
+ *   test code to be executed, and a list of one or more
  *   parameters to be provided to `_assertion_fn`.
- *
  */
-exports.make_test = function(_name, _file, _assertion_fn, _assertion_args) {
+exports.make_test = function(_name, _tests, _assertion_fn, _assertion_args) {
 
-  var tests = JSON.parse(fs.readFileSync(_file));
-
-  if (!_.isArray(tests)) {
+  if (!_.isArray(_tests)) {
     _fatal(_file + ' is malformed; aborting');
   }
 
   return {
     name: _name,
     test: function() {
-      _.each(tests, function (_test, _i) {
+      _.each(_tests, function (_test, _i) {
         _assertion_fn.apply(this, [ _test, _i ].concat(_assertion_args));
       });
     }

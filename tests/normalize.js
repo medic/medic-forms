@@ -2,8 +2,9 @@ var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
     deepEqual = require('deep-equal'),
-    tests = require('./util/util.js'),
-    n = require('../lib/normalize.js');
+    util = require('./util/util.js'),
+    n = require('../lib/normalize.js'),
+    tests = require('./fixtures.js');
 
 /**
  * @name compare_partial:
@@ -96,40 +97,47 @@ var _assert = function(_test, _i, _scope) {
 var main = function (_argc, _argv) {
 
   wru.test([
-    tests.make_test(
+    util.make_test(
       'field-name-normalization', 
-        'tests/fixtures/normalize/field-identifiers.json',
-        _assert, [ 'fields' ]
+      tests.fixtures.normalize.field_identifiers,
+      _assert, 
+      [ 'fields' ]
     ),
-    tests.make_test(
+    util.make_test(
       'field-option-normalization',
-        'tests/fixtures/normalize/field-properties.json',
-        _assert, [ 'fields' ]
+      tests.fixtures.normalize.field_properties,
+      _assert, 
+      [ 'fields' ]
     ),
-    tests.make_test(
+    util.make_test(
       'field-select-normalization', 
-        'tests/fixtures/normalize/field-select-lists.json',
-        _assert, [ 'fields' ]
+      tests.fixtures.normalize.field_select_lists,
+      _assert, 
+      [ 'fields' ]
     ),
-    tests.make_test(
+    util.make_test(
       'form-name-normalization',
-        'tests/fixtures/normalize/form-identifiers.json',
-        _assert, [ 'meta' ]
+      tests.fixtures.normalize.form_identifiers,
+      _assert, 
+      [ 'meta' ]
     ),
-    tests.make_test(
+    util.make_test(
       'form-option-normalization',
-        'tests/fixtures/normalize/form-properties.json',
-        _assert, [ 'meta' ]
+      tests.fixtures.normalize.form_properties,
+      _assert, 
+      [ 'meta' ]
     ),
-    tests.make_test(
+    util.make_test(
       'field-validation',
-        'tests/fixtures/normalize/field-validation.json',
-        _assert, [ 'fields' ]
+      tests.fixtures.normalize.field_validation,
+      _assert, 
+      [ 'fields' ]
     ),
-    tests.make_test(
+    util.make_test(
       'field-condition',
-        'tests/fixtures/normalize/field-condition.json',
-        _assert, [ 'fields' ]
+      tests.fixtures.normalize.field_condition,
+      _assert, 
+      [ 'fields' ]
     )
   ]);
 

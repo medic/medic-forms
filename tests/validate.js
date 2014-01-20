@@ -2,8 +2,9 @@
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
-    tests = require('./util/util.js'),
-    v = require('../lib/validate.js');
+    util = require('./util/util.js'),
+    v = require('../lib/validate.js'),
+    tests = require('./fixtures.js');
 
 /**
  * @name _assert
@@ -20,20 +21,20 @@ var _assert = function(_test, _i) {
 }
 
 wru.test([
-  tests.make_test(
+  util.make_test(
     'field-validation', 
-      'tests/fixtures/validate/fields.json', 
-      _assert
+    tests.fixtures.validate.fields,
+    _assert
   ),
-  tests.make_test(
+  util.make_test(
     'form-validation', 
-      'tests/fixtures/validate/forms.json', 
-      _assert
+    tests.fixtures.validate.forms,
+    _assert
   ),
-  tests.make_test(
+  util.make_test(
     'select-list-validation', 
-      'tests/fixtures/validate/select-lists.json', 
-      _assert
+    tests.fixtures.validate.select_lists,
+    _assert
   )
 ]);
 

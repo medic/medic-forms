@@ -2,8 +2,9 @@
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
-    tests = require('./util/util.js'),
-    input = require('../lib/input.js');
+    util = require('./util/util.js'),
+    input = require('../lib/input.js'),
+    tests = require('./fixtures.js');
 
 /**
  * @name _assert:
@@ -100,9 +101,10 @@ var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
 }
 
 wru.test(
-  tests.make_test(
+  util.make_test(
     'input-value-validation',
-      'tests/fixtures/input/values.json', _assert
+    tests.fixtures.input.values, 
+    _assert
   )
 );
 
