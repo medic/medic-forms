@@ -88,16 +88,17 @@ var _assert = function (_test, _i) {
 var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
   wru.assert(
     _label + ' must ' + (_valid ? '' : 'not ') + 'validate'
-      + '\n\terror was `' + _rv.error + '`'
-      + '\n\ttest was `' + _json + '`)',
+      + '\n\tError was: `' + _rv.error + '`'
+      + '\n\tTest was: `' + _json + '`)',
       (_rv.valid === _valid)
   );
   wru.assert(
     _label + ' must ' + (_skipped ? '' : 'not ') + 'be skipped'
-      + '\n\terror was `' + _rv.error + '`'
-      + '\n\ttest was `' + _json + '`)',
+      + '\n\tError was: `' + _rv.error + '`'
+      + '\n\tTest was: `' + _json + '`)',
       ((_rv.skipped === _skipped) || (!_skipped && !_rv.skipped))
   );
+
 }
 
 wru.test(

@@ -1,2 +1,4 @@
 #!/bin/sh
-node scripts/postinstall.js
+
+exec node scripts/postinstall.js
+

@@ -597,6 +597,7 @@
     "valid": false,
     "field": {
       "type": "string",
+      "required": true,
       "validations": {
         "operator": "&&",
         "javascript": {},
@@ -612,6 +613,7 @@
     "valid": true,
     "field": {
       "type": "string",
+      "required": false,
       "validations": {
         "operator": "&&",
         "javascript": {},
@@ -621,13 +623,14 @@
         }
       }
     },
-    "values": [ "ALPACA", "A" ]
+    "values": [ "ALPACA", "A", "" ]
   },
 
   {
     "valid": false,
     "field": {
       "type": "string",
+      "required": true,
       "validations": {
         "operator": "&&",
         "javascript": {},
@@ -645,6 +648,7 @@
     "skipped": true,
     "field": {
       "type": "string",
+      "required": true,
       "conditions": {
         "operator": "&&",
         "javascript": {
@@ -693,6 +697,7 @@
     "skipped": true,
     "field": {
       "type": "string",
+      "required": true,
       "conditions": {
         "operator": "||",
         "javascript": {
@@ -727,6 +732,7 @@
     "skipped": true,
     "field": {
       "type": "string",
+      "required": true,
       "conditions": {
         "operator": "&&",
         "javascript": {},
@@ -765,6 +771,7 @@
     "skipped": true,
     "field": {
       "type": "string",
+      "required": true,
       "conditions": {
         "operator": "||",
         "javascript": {},
