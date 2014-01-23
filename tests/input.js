@@ -16,7 +16,6 @@ var _assert = function (_test, _i) {
   var skipped = _test.skipped;
   var field = _test.field;
   var values = _test.values;
-  var is_async = _test.async;
   var inputs = _test.inputs;
 
   var h = 'Test #' + (_i + 1);
@@ -65,9 +64,13 @@ var _assert = function (_test, _i) {
 
     var label = h + ' at offset ' + _j;
 
-    input.validate_any(_value, field, inputs, {}, function (_r) {
-      _assert_single(label, valid, skipped, _r, json);
-    });
+    input.validate_any(_value, field, inputs, {}, 
+      wru.async(
+        function (_r) {
+          _assert_single(label, valid, skipped, _r, json);
+        }
+      )
+    );
   });
 };
 
@@ -79,15 +82,15 @@ var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
 
   wru.assert(
     _label + ' must ' + (_valid ? '' : 'not ') + 'validate'
-      + '\n\tResult was: `' + JSON.stringify(_rv) + '`'
-      + '\n\tTest was: `' + _json + '`)',
+      + '\n\tResult was: `' + JSON.stringify(_rv).substr(0, 200) + '`'
+      + '\n\tTest was: `' + _json.substr(0, 200) + '`)',
       (_rv.valid === _valid)
   );
 
   wru.assert(
     _label + ' must ' + (_skipped ? '' : 'not ') + 'be skipped'
-      + '\n\tResult was: `' + JSON.stringify(_rv) + '`'
-      + '\n\tTest was: `' + _json + '`)',
+      + '\n\tResult was: `' + JSON.stringify(_rv).substr(0, 200) + '`'
+      + '\n\tTest was: `' + _json.substr(0, 200) + '`)',
       ((_rv.skipped === _skipped) || (!_skipped && !_rv.skipped))
   );
 
