@@ -93,8 +93,6 @@ var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
       + '\n\tTest was: `' + _json.substr(0, 200) + '`)',
       ((_rv.skipped === _skipped) || (!_skipped && !_rv.skipped))
   );
-
-  console.log('asserted', _label);
 };
 
 
