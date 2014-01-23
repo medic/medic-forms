@@ -22,7 +22,7 @@ var _fatal = function (_message) {
  *   test code to be executed, and a list of one or more
  *   parameters to be provided to `_assertion_fn`.
  */
-exports.make_test = function(_name, _tests, _assertion_fn, _assertion_args) {
+exports.make_test = function (_name, _tests, _assertion_fn, _assertion_args) {
 
   if (!_.isArray(_tests)) {
     _fatal(_file + ' is malformed; aborting');

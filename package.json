@@ -10,11 +10,12 @@
   "dependencies": {
     "tv4": "1.x",
     "wru": "0.x",
+    "async": "0.x",
     "deep-equal": "0.x",
     "underscore": "1.x",
-    "mmmagic": "~0.3.5",
-    "brfs": "0.0.8",
-    "validator": "3.x.x"
+    "mmmagic": "0.x",
+    "brfs": "0.x",
+    "validator": "3.x"
   },
   "readme": "README",
   "repository": "http://github.com/browndav/medic-forms.git",

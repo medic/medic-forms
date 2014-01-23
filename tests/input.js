@@ -2,6 +2,7 @@
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
+    jsdump = require('jsDump'),
     util = require('./util/util.js'),
     input = require('../lib/input.js'),
     tests = require('./fixtures.js');
@@ -36,76 +37,68 @@ var _assert = function (_test, _i) {
       _.isObject(field)
   );
 
-  input.register_validator('startsWithA', function(_input) {
-    if(_input.charAt(0) === 'A') {
-      return {valid: true};
+  input.register_validator('startsWithA', function (_input) {
+
+    if (_input.charAt(0) === 'A') {
+      return { valid: true };
     }
+
     return {
       valid: false,
       error: 'Input does not start with the letter A'
-    }
+    };
   });
 
-  input.register_validator('endsWithA', function(_input) {
-    if(_input.charAt(_input.length - 1) === 'A') {
-      return {valid: true};
+  input.register_validator('endsWithA', function (_input) {
+
+    if (_input.charAt(_input.length - 1) === 'A') {
+      return { valid: true };
     }
+
     return {
       valid: false,
       error: 'Input does not end with the letter A'
-    }
+    };
   });
 
-  _.each(values, function (_value, _j) {
+  return _.each(values, function (_value, _j) {
 
-    var async_ready = false;
     var label = h + ' at offset ' + _j;
 
-    if (is_async) {
-      async_ready = label + " ready";
-      field.validationReady = async_ready;
-    }
-
-    var rv = input.validate_any.call(input, _value, field, inputs);
-
-    if (!rv && async_ready) {
-
-      /* Asynchronous assertion */
-      input.getEventEmitter().once(
-        async_ready,
-        wru.async(function (rv) {
-          _assert_single(label, valid, skipped, rv, json);
-        })
-      );
-
-    } else {
-      /* Synchronous assertion */
-      _assert_single(label, valid, skipped, rv, json);
-    }
+    input.validate_any(_value, field, inputs, {}, function (_r) {
+      _assert_single(label, valid, skipped, _r, json);
+    });
   });
 };
 
+
+/**
+ * @name _assert_single:
+ */
 var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
+
   wru.assert(
     _label + ' must ' + (_valid ? '' : 'not ') + 'validate'
-      + '\n\tError was: `' + _rv.error + '`'
+      + '\n\tResult was: `' + JSON.stringify(_rv) + '`'
       + '\n\tTest was: `' + _json + '`)',
       (_rv.valid === _valid)
   );
+
   wru.assert(
     _label + ' must ' + (_skipped ? '' : 'not ') + 'be skipped'
-      + '\n\tError was: `' + _rv.error + '`'
+      + '\n\tResult was: `' + JSON.stringify(_rv) + '`'
       + '\n\tTest was: `' + _json + '`)',
       ((_rv.skipped === _skipped) || (!_skipped && !_rv.skipped))
   );
 
-}
+  console.log('asserted', _label);
+};
+
 
 wru.test(
   util.make_test(
     'input-value-validation',
-    tests.fixtures.input.values, 
-    _assert
+      tests.fixtures.input.values, _assert
   )
 );
 
