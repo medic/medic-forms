@@ -19,7 +19,7 @@ var _assert = function (_test, _i) {
   var inputs = _test.inputs;
 
   var h = 'Test #' + (_i + 1);
-  var json = JSON.stringify(_test);
+  var json = JSON.stringify(_test).substr(0, 200);
 
   wru.assert(
     h + ' must provide an array for the `values` property',
@@ -67,36 +67,28 @@ var _assert = function (_test, _i) {
     input.validate_any(_value, field, inputs, {}, 
       wru.async(
         function (_r) {
-          _assert_single(label, valid, skipped, _r, json);
+
+          var result = JSON.stringify(_r).substr(0, 200);
+
+          wru.assert(
+            label + ' must ' + (valid ? '' : 'not ') + 'validate'
+              + '\n\tResult was: `' + result + '`'
+              + '\n\tTest was: `' + json + '`)',
+              (_r.valid === valid)
+          );
+
+          wru.assert(
+            label + ' must ' + (skipped ? '' : 'not ') + 'be skipped'
+              + '\n\tResult was: `' + result + '`'
+              + '\n\tTest was: `' + json + '`)',
+              (!_r.skipped === !skipped)
+          );
+
         }
       )
     );
   });
 };
-
-
-/**
- * @name _assert_single:
- */
-var _assert_single = function (_label, _valid, _skipped, _rv, _json) {
-
-  wru.assert(
-    _label + ' must ' + (_valid ? '' : 'not ') + 'validate'
-      + '\n\tResult was: `' + JSON.stringify(_rv).substr(0, 200) + '`'
-      + '\n\tTest was: `' + _json.substr(0, 200) + '`)',
-      (_rv.valid === _valid)
-  );
-
-  wru.assert(
-    _label + ' must ' + (_skipped ? '' : 'not ') + 'be skipped'
-      + '\n\tResult was: `' + JSON.stringify(_rv).substr(0, 200) + '`'
-      + '\n\tTest was: `' + _json.substr(0, 200) + '`)',
-      ((_rv.skipped === _skipped) || (!_skipped && !_rv.skipped))
-  );
-
-  console.log('asserted', _label);
-};
-
 
 wru.test(
   util.make_test(

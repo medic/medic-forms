@@ -422,7 +422,7 @@
   },
 
   {
-    "valid": true,
+    "valid": false,
     "comment": "Data is a base64-encoded text string and it will be treated as a valid image type in browser client side testing",
     "field": {
       "type": "image"
@@ -433,7 +433,7 @@
   },
 
   {
-    "valid": true,
+    "valid": false,
     "comment": "Data is a base64-encoded text string, but it is not a correct image type when the server side can use mmmagic to test against it.",
     "field": {
       "type": "image"
@@ -460,7 +460,7 @@
 
 
   {
-    "valid": true,
+    "valid": false,
     "comment": "Data is a base64-encoded image/x-icon",
     "field": {
       "type": "image"
