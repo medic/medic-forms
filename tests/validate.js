@@ -11,13 +11,20 @@ var fs = require('fs'),
  */
 var _assert = function(_test, _i) {
 
-  var h = 'Test #' + (_i + 1) + ' ';
-  var rv = v['validate_forms'].call(v, _test.forms);
-
-  wru.assert(
-    h + 'must ' + (_test.valid ? '' : 'not ') + 'validate',
-      (rv.valid === _test.valid)
+  var label = (
+    'Test #' + (_i + 1) +
+      ' must ' + (_test.valid ? '' : 'not ') + 'validate'
   );
+
+  v.validate_forms.call(
+    v, _test.forms,
+    wru.async(
+      label, function (_rv) {
+        wru.assert(label, (_rv.valid === _test.valid))
+      }
+    )
+  );
+
 }
 
 wru.test([

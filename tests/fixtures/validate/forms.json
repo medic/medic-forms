@@ -14,25 +14,28 @@
   "forms": [{
     "meta": { "id": "f1" }
   }, {
-    "meta": { "id": "f2" }
+    "meta": { "id": "f2" },
+    "fields": false
   }, {
-    "meta": { "id": "f3" }
+    "meta": { "id": "f3" },
+    "fields": true
   }, {
-    "meta": { "id": "f4" }
+    "meta": { "id": "f4" },
+    "fields": null
   }]
 },
 
 {
-  "valid": false,
+  "valid": true,
 
   "forms": [{
-    "meta": { "id": "f1" }
+    "fields": []
   }, {
-    "meta": { "id": "f2" }
+    "fields": false
   }, {
-    "meta": { "id": "f2" }
+    "fields": null
   }, {
-    "meta": { "id": "f3" }
+    "fields": true
   }]
 },
 
