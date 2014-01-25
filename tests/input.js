@@ -65,26 +65,24 @@ var _assert = function (_test, _i) {
     var label = h + ' at offset ' + _j;
 
     input.validate_any(_value, field, inputs, {}, 
-      wru.async(
-        function (_r) {
+      wru.async(function (_r) {
 
-          var result = JSON.stringify(_r).substr(0, 200);
+        var result = JSON.stringify(_r).substr(0, 200);
 
-          wru.assert(
-            label + ' must ' + (valid ? '' : 'not ') + 'validate'
-              + '\n\tResult was: `' + result + '`'
-              + '\n\tTest was: `' + json + '`)',
-              (_r.valid === valid)
-          );
+        wru.assert(
+          label + ' must ' + (valid ? '' : 'not ') + 'validate'
+            + '\n\tResult was: `' + result + '`'
+            + '\n\tTest was: `' + json + '`)',
+            (_r.valid === valid)
+        );
 
-          wru.assert(
-            label + ' must ' + (skipped ? '' : 'not ') + 'be skipped'
-              + '\n\tResult was: `' + result + '`'
-              + '\n\tTest was: `' + json + '`)',
-              (!_r.skipped === !skipped)
-          );
-        }
-      )
+        wru.assert(
+          label + ' must ' + (skipped ? '' : 'not ') + 'be skipped'
+            + '\n\tResult was: `' + result + '`'
+            + '\n\tTest was: `' + json + '`)',
+            (!_r.skipped === !skipped)
+        );
+      })
     );
   });
 };
