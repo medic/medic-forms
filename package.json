@@ -14,7 +14,6 @@
     "deep-equal": "0.x",
     "underscore": "1.x",
     "mmmagic": "0.x",
-    "brfs": "0.x",
     "validator": "3.x"
   },
   "readme": "README",
