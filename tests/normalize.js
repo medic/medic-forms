@@ -144,7 +144,7 @@ var main = function (_argc, _argv) {
   return 0;
 };
 
-process.exit(
-  main(process.argc, process.argv)
-);
+
+/* Start */
+return main(process.argc, process.argv);
 

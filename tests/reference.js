@@ -1,3 +1,4 @@
+
 var fs = require('fs'),
     wru = require('wru'),
     _ = require('underscore'),
@@ -5,6 +6,7 @@ var fs = require('fs'),
     util = require('./util/util.js'),
     r = require('../lib/reference.js'),
     tests = require('./fixtures.js');
+
 
 /**
  * @name _assert
@@ -24,7 +26,9 @@ var _assert = function(_test, _i) {
   );
 }
 
-wru.test(
+
+/* Start */
+return wru.test(
   util.make_test(
     'rewriting',
     tests.fixtures.reference.rewrite,

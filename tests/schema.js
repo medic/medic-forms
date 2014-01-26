@@ -7,6 +7,7 @@ var fs = require('fs'),
     r = require('../lib/reference.js'),
     tests = require('./fixtures.js');
 
+
 /**
  * @name _assert
  */
@@ -15,10 +16,11 @@ var _assert = function(_test, _i, _valid) {
   var rv = tv4.validateResult(r.rewrite_each(_test), tests.schema);
   wru.assert('Form #' + (_i + 1) + ' must ' + 
     (!_valid ? 'not ' : '') + 'validate', rv.valid === _valid);
-
 }
 
-wru.test([
+
+/* Start */
+return wru.test([
   util.make_test(
     'valid-forms', 
     tests.fixtures.forms.valid,

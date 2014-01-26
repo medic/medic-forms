@@ -6,6 +6,7 @@ var fs = require('fs'),
     v = require('../lib/validate.js'),
     tests = require('./fixtures.js');
 
+
 /**
  * @name _assert
  */
@@ -24,10 +25,11 @@ var _assert = function(_test, _i) {
       }
     )
   );
-
 }
 
-wru.test([
+
+/* Start */
+return wru.test([
   util.make_test(
     'field-validation', 
     tests.fixtures.validate.fields,

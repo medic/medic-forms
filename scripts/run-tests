@@ -4,5 +4,6 @@ node tests/input.js &&
 node tests/schema.js &&
 node tests/validate.js &&
 node tests/normalize.js &&
-node tests/reference.js
+node tests/reference.js &&
+node tests/errors.js
 

@@ -87,7 +87,7 @@ var _assert = function (_test, _i) {
   });
 };
 
-wru.test(
+return wru.test(
   util.make_test(
     'input-value-validation',
       tests.fixtures.input.values, _assert

@@ -1,0 +1,26 @@
+
+[
+
+  {
+    "form": {
+      "meta": { "id": "f1" },
+      "fields": [{
+        "id": "q1",
+        "type": "integer"
+      }]
+    },
+    "input": {
+      "q1": 1
+    },
+    "expect": {
+      "valid": true,
+      "detail": {
+        "q1": {
+          "valid": true
+        }
+      }
+    }
+  }
+
+]
+
