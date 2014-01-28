@@ -121,6 +121,48 @@
         }
       }
     }]
+  },
+
+  {
+    "form": {
+      "meta": { "id": "f1" },
+      "fields": [{
+        "id": "q1",
+        "type": "integer"
+      }, {
+        "id": "q2",
+        "type": "fields",
+        "repeat": true,
+        "required": true,
+        "fields": [{
+          "id": "q3",
+          "type": "integer"
+        }, {
+          "id": "q4",
+          "type": "string"
+        }]
+      }]
+    },
+    "input": [{
+      "q2": []
+    }, {
+      "q2": [{}]
+    }],
+    "expect": [{
+      "valid": false,
+      "detail": {
+        "q2": {
+          "valid": false
+        }
+      }
+    }, {
+      "valid": true,
+      "detail": {
+        "q2": {
+          "valid": true
+        }
+      }
+    }]
   }
 
 ]

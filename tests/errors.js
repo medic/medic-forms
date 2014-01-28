@@ -35,7 +35,7 @@ var compare_recursive_partial = function (_expect, _data) {
       }
     }
   /* Other cases */
-  } else {
+  } else if (!_.isUndefined(_expect)) {
     return deepEqual(_data, _expect);
   }
 
