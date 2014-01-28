@@ -4,9 +4,10 @@ var fs = require('fs'),
     _ = require('underscore'),
     deepEqual = require('deep-equal'),
     util = require('./util/util.js'),
-    n = require('../lib/normalize.js'),
-    i = require('../lib/input.js'),
+    normalizer = require('../lib/normalize.js'),
+    input_validator = require('../lib/input.js'),
     tests = require('./fixtures/compiled.js');
+
 
 /**
  * @name compare_partial_recursive:
@@ -41,6 +42,24 @@ var compare_recursive_partial = function (_expect, _data) {
   return true;
 };
 
+
+/**
+ * @name _validate:
+ */
+var _validate = function (_fields, _expect, _input, _label, _i) {
+
+  input_validator.validate_all(
+    _input, _fields,
+    wru.async(_label, function (_rv) {
+      wru.assert(
+        _label + ' at offset ' + _i + ' should produce expected output',
+          compare_recursive_partial(_expect, _rv)
+      );
+    })
+  );
+};
+
+
 /**
  * @name _assert
  */
@@ -51,25 +70,20 @@ var _assert = function (_test, _i, _scope) {
   var form = _test.form;
   var input = _test.input, expect = _test.expect;
 
-  wru.assert(label + ' must have `form` property', _.isObject(form));
-  wru.assert(label + ' must have `input` property', _.isObject(input));
-  wru.assert(label + ' must have `expect` property', _.isObject(expect));
+  wru.assert(label + ' must have valid `form` property', _.isObject(form));
+  wru.assert(label + ' must have valid `input` property', _.isArray(input));
+  wru.assert(label + ' must have valid`expect` property', _.isArray(expect));
 
   var forms = [ form ];
-  var fields = n.normalize_forms(forms)[0].fields;
+  var fields = normalizer.normalize_forms(forms)[0].fields;
 
   wru.assert(label + ' must normalize properly', _.isArray(fields));
 
-  i.validate_all(
-    input, fields,
-    wru.async(label, function (_rv) {
-      wru.assert(
-        label + ' should produce expected error output',
-          compare_recursive_partial(expect, _rv)
-      );
-    })
-  );
+  for (var i = 0, len = input.length; i < len; ++i) {
+    _validate(fields, expect[i], input[i], label, i);
+  }
 }
+
 
 /**
  * @name main
