@@ -5,7 +5,7 @@ var fs = require('fs'),
     deepEqual = require('deep-equal'),
     util = require('./util/util.js'),
     r = require('../lib/reference.js'),
-    tests = require('./fixtures.js');
+    tests = require('./fixtures/compiled.js');
 
 
 /**

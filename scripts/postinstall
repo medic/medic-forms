@@ -1,4 +1,4 @@
 #!/bin/sh
 
-exec node scripts/postinstall.js
+exec node scripts/compile-fixtures.js
 

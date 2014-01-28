@@ -5,7 +5,7 @@ var fs = require('fs'),
     jsdump = require('jsDump'),
     util = require('./util/util.js'),
     input = require('../lib/input.js'),
-    tests = require('./fixtures.js');
+    tests = require('./fixtures/compiled.js');
 
 /**
  * @name _assert:

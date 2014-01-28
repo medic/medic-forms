@@ -4,7 +4,7 @@ var fs = require('fs'),
     deepEqual = require('deep-equal'),
     util = require('./util/util.js'),
     n = require('../lib/normalize.js'),
-    tests = require('./fixtures.js');
+    tests = require('./fixtures/compiled.js');
 
 /**
  * @name compare_partial:

@@ -5,7 +5,7 @@ var fs = require('fs'),
     _ = require('underscore'),
     util = require('./util/util.js'),
     r = require('../lib/reference.js'),
-    tests = require('./fixtures.js');
+    tests = require('./fixtures/compiled.js');
 
 
 /**

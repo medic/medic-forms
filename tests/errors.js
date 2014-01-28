@@ -6,7 +6,7 @@ var fs = require('fs'),
     util = require('./util/util.js'),
     n = require('../lib/normalize.js'),
     i = require('../lib/input.js'),
-    tests = require('./fixtures.js');
+    tests = require('./fixtures/compiled.js');
 
 /**
  * @name compare_partial_recursive:
