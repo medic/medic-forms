@@ -147,6 +147,13 @@
       "q2": []
     }, {
       "q2": [{}]
+    }, {
+      "q2": {}
+    }, {
+      "q2": [
+        { "q3": 1, "q4": "Hello" },
+        { "q3": 2, "q4": "Goodbye" }
+      ]
     }],
     "expect": [{
       "valid": false,
@@ -160,6 +167,36 @@
       "detail": {
         "q2": {
           "valid": true
+        }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "q1": {
+          "omitted": true
+        },
+        "q2": {
+          "valid": false
+        }
+      }
+    }, {
+      "valid": true,
+      "detail": {
+        "q2": {
+          "valid": true,
+          "detail": [{
+            "valid": true,
+            "detail": {
+              "q3": { "valid": true },
+              "q4": { "valid": true }
+            }
+          }, {
+            "valid": true,
+            "detail": {
+              "q3": { "valid": true },
+              "q4": { "valid": true }
+            }
+          }]
         }
       }
     }]
