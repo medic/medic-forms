@@ -1,9 +1,13 @@
 [
 
 {
+  "all": true,
   "valid": true,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q1",
@@ -14,9 +18,13 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q1",
@@ -31,9 +39,13 @@
 },
 
 {
+  "all": true,
   "valid": true,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q1",
@@ -48,37 +60,13 @@
 },
 
 {
+  "all": true,
   "valid": true,
 
   "forms": [{
-    "fields": [
-      {
-        "id": "q1",
-        "type": "integer"
-      },
-      {
-        "id": "q2",
-        "type": "fields",
-        "name": "Example Section",
-        "repeat": [ 0, 3 ],
-        "fields": [
-          {
-            "id": "q2a",
-            "type": "integer"
-          }, {
-            "id": "q2b",
-            "type": "integer"
-          }
-        ]
-      }
-    ]
-  }]
-},
-
-{
-  "valid": false,
-
-  "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q1",
@@ -98,6 +86,38 @@
             "type": "integer"
           }
         ]
+      }
+    ]
+  }]
+},
+
+{
+  "all": true,
+  "valid": false,
+
+  "forms": [{
+    "meta": {
+      "id": "f1"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer"
+      },
+      {
+        "id": "q2",
+        "type": "fields",
+        "name": "Example Section",
+        "repeat": [ 0, 3 ],
+        "fields": [
+          {
+            "id": "q2a",
+            "type": "integer"
+          }, {
+            "id": "q2b",
+            "type": "integer"
+          }
+        ]
       },
       {
         "id": "q1",
@@ -108,9 +128,13 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q1",
@@ -140,9 +164,13 @@
 },
 
 {
+  "all": true,
   "valid": true,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q2",
@@ -173,9 +201,13 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q2",
@@ -206,9 +238,13 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q2",
@@ -249,9 +285,13 @@
 },
 
 {
+  "all": true,
   "valid": true,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q1",
@@ -260,6 +300,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f2"
+    },
     "fields": [
       {
         "id": "q1",
@@ -269,6 +312,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f3"
+    },
     "fields": [
       {
         "id": "q1",
@@ -278,6 +324,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f4"
+    },
     "fields": [
       {
         "id": "q1",
@@ -287,6 +336,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f5"
+    },
     "fields": [
       {
         "id": "q1",
@@ -296,6 +348,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f6"
+    },
     "fields": [
       {
         "id": "q1",
@@ -305,6 +360,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f7"
+    },
     "fields": [
       {
         "id": "q1",
@@ -314,6 +372,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f8"
+    },
     "fields": [
       {
         "id": "q1",
@@ -326,9 +387,13 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
+    "meta": {
+      "id": "f1"
+    },
     "fields": [
       {
         "id": "q1",
@@ -337,6 +402,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f2"
+    },
     "fields": [
       {
         "id": "q1",
@@ -346,6 +414,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f3"
+    },
     "fields": [
       {
         "id": "q1",
@@ -355,6 +426,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f4"
+    },
     "fields": [
       {
         "id": "q1",
@@ -364,6 +438,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f5"
+    },
     "fields": [
       {
         "id": "q1",
@@ -373,6 +450,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f6"
+    },
     "fields": [
       {
         "id": "q1",
@@ -382,6 +462,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f7"
+    },
     "fields": [
       {
         "id": "q1",
@@ -391,6 +474,9 @@
       }
     ]
   }, {
+    "meta": {
+      "id": "f8"
+    },
     "fields": [
       {
         "id": "q1",

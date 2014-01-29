@@ -9,6 +9,7 @@
 },
 
 {
+  "all": true,
   "valid": true,
 
   "forms": [{
@@ -26,7 +27,8 @@
 },
 
 {
-  "valid": true,
+  "all": true,
+  "valid": false,
 
   "forms": [{
     "fields": []
@@ -36,10 +38,14 @@
     "fields": null
   }, {
     "fields": true
+  }, {
+    "meta": {},
+    "fields": []
   }]
 },
 
 {
+  "all": false,
   "valid": false,
 
   "forms": [{
@@ -54,6 +60,7 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
@@ -62,6 +69,7 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
@@ -70,6 +78,7 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
@@ -78,6 +87,7 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
@@ -86,6 +96,7 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
@@ -96,6 +107,7 @@
 },
 
 {
+  "all": true,
   "valid": false,
 
   "forms": [{
