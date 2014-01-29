@@ -1,9 +1,20 @@
 #!/bin/sh
 
-node tests/input.js &&
-node tests/schema.js &&
-node tests/validate.js &&
-node tests/normalize.js &&
-node tests/reference.js &&
-node tests/errors.js
+fatal()
+{
+  echo 'One or more tests failed; stopping' >&2
+  exit 1
+}
+
+run_tests()
+{
+  local driver='node_modules/nodeunit/bin/nodeunit'
+
+  for harness in "$@"; do
+    "$driver" "tests/$harness.js" || fatal
+  done
+}
+
+run_tests \
+  input schema validate normalize reference errors
 

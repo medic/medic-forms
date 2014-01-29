@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "tv4": "1.x",
-    "wru": "0.x",
     "async": "0.x",
     "deep-equal": "0.x",
     "underscore": "1.x",
     "mmmagic": "0.x",
     "moment": "2.x",
+    "nodeunit": "0.x",
     "validator": "3.x"
   },
   "readme": "README",
