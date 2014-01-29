@@ -17,8 +17,10 @@ exports.make_tests = function (_name, _exports,
   _.each(_fixtures, function (_fixture, _i) {
     if (_fixture.values) {
       _.each(_fixture.values, function (_value, _j) {
-        _export(_name + ': Test fixture #' + (_i + 1) + ' - Value: `' + JSON.stringify(_value).substr(0, 100) + '`', 
-          _fixture, _exports, _test_fn, _test_args, _value);
+        _export(
+          _name + ': Test fixture #' + (_i + 1) + ' at input offset ' + _j,
+            _fixture, _exports, _test_fn, _test_args, _value
+        );
       });
     } else {
       _export(_name + ': Test fixture #' + (_i + 1), 
@@ -27,7 +29,9 @@ exports.make_tests = function (_name, _exports,
   });
 };
 
-_export = function(_name, _fixture, _exports, _test_fn, _test_args, _value) {
+var _export = function (_name, _fixture, _exports,
+                        _test_fn, _test_args, _value) {
+
   _exports[_name] = function (_test) {
     _test_fn.apply(
       this, [ _test, _fixture, _value ].concat(_test_args)
