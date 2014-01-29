@@ -18,7 +18,7 @@ exports.make_tests = function (_name, _exports,
     if (_fixture.values) {
       _.each(_fixture.values, function (_value, _j) {
         _export(
-          _name + ': Test fixture #' + (_i + 1) + ' at input offset ' + _j,
+          _name + ': Test fixture #' + (_i + 1) + ' at offset ' + _j,
             _fixture, _exports, _test_fn, _test_args, _value
         );
       });
