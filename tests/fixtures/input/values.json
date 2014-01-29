@@ -835,6 +835,55 @@
   {
     "valid": true,
     "field": {
+      "type": "month"
+    },
+    "values": [ 11 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "month"
+    },
+    "values": [ 13 ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "day"
+    },
+    "values": [ 7 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "day"
+    },
+    "values": [ 13 ]
+  },
+
+  {
+    "valid": true,
+    "field": {
+      "type": "week"
+    },
+    "values": [ 11 ]
+  },
+
+  {
+    "valid": false,
+    "field": {
+      "type": "week"
+    },
+    "values": [ 60 ]
+  },
+
+
+  {
+    "valid": true,
+    "field": {
       "type": "timestamp"
     },
     "values": [ "2012-11-05T11:40:52.280Z" ]
