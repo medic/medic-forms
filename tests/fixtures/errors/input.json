@@ -3,7 +3,9 @@
 
   {
     "form": {
-      "meta": { "id": "f1" },
+      "meta": {
+        "id": "f1"
+      },
       "fields": [{
         "id": "q1",
         "type": "integer"
@@ -55,7 +57,9 @@
 
   {
     "form": {
-      "meta": { "id": "f1" },
+      "meta": {
+        "id": "f1"
+      },
       "fields": [{
         "id": "q1",
         "type": "integer"
@@ -148,7 +152,9 @@
   },
   {
     "form": {
-      "meta": { "id": "f1" },
+      "meta": {
+        "id": "f1"
+      },
       "fields": [{
         "id": "q1",
         "type": "integer"
@@ -224,14 +230,22 @@
               "detail": [{
                 "valid": true,
                 "detail": {
-                  "q3": { "valid": true },
-                  "q4": { "valid": true }
+                  "q3": {
+                    "valid": true
+                  },
+                  "q4": {
+                    "valid": true
+                  }
                 }
               }, {
                 "valid": true,
                 "detail": {
-                  "q3": { "valid": true },
-                  "q4": { "valid": true }
+                  "q3": {
+                    "valid": true
+                  },
+                  "q4": {
+                    "valid": true
+                  }
                 }
               }]
             }
