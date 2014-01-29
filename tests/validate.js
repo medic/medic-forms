@@ -57,15 +57,15 @@ var _assert = function (_test, _fixture) {
 
 /* Tests */
 util.make_tests(
-  'form-validation', exports,
+  'forms', exports,
     tests.fixtures.validate.forms, _assert
 );
 util.make_tests(
-  'field-validation', exports,
+  'fields', exports,
     tests.fixtures.validate.fields, _assert
 );
 util.make_tests(
-  'select-list-validation', exports,
+  'select-lists', exports,
     tests.fixtures.validate.select_lists, _assert
 );
 

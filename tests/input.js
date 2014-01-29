@@ -56,6 +56,6 @@ var _assert = function (_test, _fixture, _value) {
 };
 
 util.make_tests(
-  'input-value-validation', exports,
+  'input', exports,
     tests.fixtures.input.values, _assert
 );

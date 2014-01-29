@@ -21,11 +21,11 @@ var _assert = function(_test, _fixture, _value, _valid) {
 }
 
 util.make_tests(
-  'valid-forms', exports,
+  'valid', exports,
     tests.fixtures.forms.valid, _assert, [ true ]
 );
 
 util.make_tests(
-  'invalid-forms', exports,
+  'invalid', exports,
     tests.fixtures.forms.invalid, _assert, [ false ]
 );

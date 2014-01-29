@@ -94,30 +94,30 @@ var _assert = function(_test, _fixture, _value, _scope) {
 
 /* Tests */
 util.make_tests(
-  'field-name-normalization', exports,
+  'field-identifiers', exports,
     tests.fixtures.normalize.field_identifiers, _assert, [ 'fields' ]
 );
 util.make_tests(
-  'field-option-normalization', exports,
+  'field-properties', exports,
     tests.fixtures.normalize.field_properties, _assert, [ 'fields' ]
 );
 util.make_tests(
-  'field-select-normalization', exports,
+  'field-select-lists', exports,
     tests.fixtures.normalize.field_select_lists, _assert, [ 'fields' ]
 );
 util.make_tests(
-  'field-name-normalization', exports,
+  'form-identifiers', exports,
     tests.fixtures.normalize.form_identifiers, _assert, [ 'meta' ]
 );
 util.make_tests(
-  'field-option-normalization', exports,
+  'field-properties', exports,
     tests.fixtures.normalize.form_properties, _assert, [ 'meta' ]
 );
 util.make_tests(
-  'field-validation', exports,
-    tests.fixtures.normalize.field_validation, _assert, [ 'fields' ]
+  'field-validations', exports,
+    tests.fixtures.normalize.field_validations, _assert, [ 'fields' ]
 );
 util.make_tests(
-  'field-condition', exports,
-    tests.fixtures.normalize.field_condition, _assert, [ 'fields' ]
+  'field-conditions', exports,
+    tests.fixtures.normalize.field_conditions, _assert, [ 'fields' ]
 );
