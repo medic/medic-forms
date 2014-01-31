@@ -15,11 +15,23 @@ exports.make_tests = function (_name, _exports,
                                _fixtures, _test_fn, _test_args) {
 
   _.each(_fixtures, function (_fixture, _i) {
-    _exports[_name + ': Test fixture #' + (_i + 1)] = function (_test) {
-      _test_fn.apply(
-        this, [ _test, _fixture, _i ].concat(_test_args)
-      );
-    };
+    if (_fixture.values) {
+      _.each(_fixture.values, function (_value, _j) {
+        _export(_name + ': Test fixture #' + (_i + 1) + ' - Value: `' + JSON.stringify(_value).substr(0, 100) + '`', 
+          _fixture, _exports, _test_fn, _test_args, _value);
+      });
+    } else {
+      _export(_name + ': Test fixture #' + (_i + 1), 
+        _fixture, _exports, _test_fn, _test_args);
+    }
   });
+};
+
+_export = function(_name, _fixture, _exports, _test_fn, _test_args, _value) {
+  _exports[_name] = function (_test) {
+    _test_fn.apply(
+      this, [ _test, _fixture, _value ].concat(_test_args)
+    );
+  };
 };
 

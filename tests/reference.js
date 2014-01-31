@@ -1,38 +1,34 @@
 
 var fs = require('fs'),
-    wru = require('wru'),
     _ = require('underscore'),
     deepEqual = require('deep-equal'),
-    util = require('./util/util.js'),
-    r = require('../lib/reference.js'),
-    tests = require('./fixtures/compiled.js');
+    util = require('./util'),
+    r = require('../lib/reference'),
+    tests = require('./fixtures/compiled');
 
 
 /**
  * @name _assert
  */
-var _assert = function(_test, _i) {
+var _assert = function(_test, _fixture) {
 
-  var h = 'Test #' + (_i + 1) + ' ';
+  _test.expect(3);
 
-  wru.assert(h + 'must have `to` property', _.isObject(_test.to));
-  wru.assert(h + 'must have `from` property', _.isObject(_test.from));
+  _test.ok(_.isObject(_fixture.to), 'must have `to` property');
+  _test.ok(_.isObject(_fixture.from), 'must have `from` property');
 
-  var rewrite = r.rewrite(_test.from);
+  var rewrite = r.rewrite(_fixture.from);
 
-  wru.assert(
-    h + 'rewritten result must match expected',
-      deepEqual(rewrite, _test.to)
+  _test.ok(
+    deepEqual(rewrite, _fixture.to),
+    'rewritten result must match expected'
   );
+
+  _test.done();
 }
 
-
-/* Start */
-return wru.test(
-  util.make_test(
-    'rewriting',
-    tests.fixtures.reference.rewrite,
-    _assert
-  )
+/* Tests */
+util.make_tests(
+  'rewriting', exports,
+    tests.fixtures.reference.rewrite, _assert
 );
-

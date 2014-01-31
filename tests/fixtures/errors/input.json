@@ -9,36 +9,48 @@
         "type": "integer"
       }]
     },
-    "input": [{
-      "q1": 1
-    }, {
-      "q1": false
-    }, {
-      "q1": "Goodbye"
-    }],
-    "expect": [{
-      "valid": true,
-      "detail": {
-        "q1": {
-          "valid": true
-        }
-      }
-    }, {
-      "valid": true,
-      "detail": {
-        "q1": {
+    "values": [
+      {
+        "input": {
+          "q1": 1
+        },
+        "expect": {
           "valid": true,
-          "omitted": true
+          "detail": {
+            "q1": {
+              "valid": true
+            }
+          }
+        }
+      },
+      {
+        "input": {
+          "q1": false
+        },
+        "expect": {
+          "valid": true,
+          "detail": {
+            "q1": {
+              "valid": true,
+              "omitted": true
+            }
+          }
+        }
+      },
+      {
+        "input": {
+          "q1": "Goodbye"
+        },
+        "expect": {
+          "valid": false,
+          "detail": {
+            "q1": {
+              "valid": false
+            }
+          }
         }
       }
-    }, {
-      "valid": false,
-      "detail": {
-        "q1": {
-          "valid": false
-        }
-      }
-    }]
+    ]
   },
 
   {
@@ -60,69 +72,80 @@
         }]
       }]
     },
-    "input": [{
-      "q1": "Hello",
-      "q2": {
-        "q4": "World"
-      }
-    }, {
-      "q1": 1
-    }, {
-      "q2": {
-        "q3": 1
-      }
-    }],
-    "expect": [{
-      "valid": false,
-      "detail": {
-        "q1": {
-          "valid": false
-        },
-        "q2": {
-          "valid": true,
-          "detail": {
-            "q3": {
-              "valid": true,
-              "omitted": true
-            },
-            "q4": {
-              "valid": true
-            }
+    "values": [
+      {
+        "input": {
+          "q1": "Hello",
+          "q2": {
+            "q4": "World"
           }
-        }
-      }
-    }, {
-      "valid": true,
-      "detail": {
-        "q1": {
-          "valid": true
         },
-        "q2": {
-          "valid": true,
-          "omitted": true
-        }
-      }
-    }, {
-      "valid": false,
-      "detail": {
-        "q1": {
-          "valid": true
-        },
-        "q2": {
+        "expect": {
           "valid": false,
           "detail": {
-            "q3": {
+            "q1": {
+              "valid": false
+            },
+            "q2": {
+              "valid": true,
+              "detail": {
+                "q3": {
+                  "valid": true,
+                  "omitted": true
+                },
+                "q4": {
+                  "valid": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "input": {
+          "q1": 1
+        },
+        "expect": {
+          "valid": true,
+          "detail": {
+            "q1": {
               "valid": true
             },
-            "q4": {
-              "valid": false
+            "q2": {
+              "valid": true,
+              "omitted": true
+            }
+          }
+        }
+      },
+      {
+        "input": {
+          "q2": {
+            "q3": 1
+          }
+        },
+        "expect": {
+          "valid": false,
+          "detail": {
+            "q1": {
+              "valid": true
+            },
+            "q2": {
+              "valid": false,
+              "detail": {
+                "q3": {
+                  "valid": true
+                },
+                "q4": {
+                  "valid": false
+                }
+              }
             }
           }
         }
       }
-    }]
+    ]
   },
-
   {
     "form": {
       "meta": { "id": "f1" },
@@ -143,64 +166,81 @@
         }]
       }]
     },
-    "input": [{
-      "q2": []
-    }, {
-      "q2": [{}]
-    }, {
-      "q2": {}
-    }, {
-      "q2": [
-        { "q3": 1, "q4": "Hello" },
-        { "q3": 2, "q4": "Goodbye" }
-      ]
-    }],
-    "expect": [{
-      "valid": false,
-      "detail": {
-        "q2": {
-          "valid": false
-        }
-      }
-    }, {
-      "valid": true,
-      "detail": {
-        "q2": {
-          "valid": true
-        }
-      }
-    }, {
-      "valid": false,
-      "detail": {
-        "q1": {
-          "omitted": true
+    "values": [
+      {
+        "input": {
+          "q2": []
         },
-        "q2": {
-          "valid": false
+        "expect": {
+          "valid": false,
+          "detail": {
+            "q2": {
+              "valid": false
+            }
+          }
         }
-      }
-    }, {
-      "valid": true,
-      "detail": {
-        "q2": {
+      },
+      {
+        "input": {
+          "q2": [{}]
+        },
+        "expect": {
           "valid": true,
-          "detail": [{
-            "valid": true,
-            "detail": {
-              "q3": { "valid": true },
-              "q4": { "valid": true }
+          "detail": {
+            "q2": {
+              "valid": true
             }
-          }, {
-            "valid": true,
-            "detail": {
-              "q3": { "valid": true },
-              "q4": { "valid": true }
+          }
+        }
+      },
+      {
+        "input": {
+          "q2": {}
+        },
+        "expect": {
+          "valid": false,
+          "detail": {
+            "q1": {
+              "omitted": true
+            },
+            "q2": {
+              "valid": false
             }
-          }]
+          }
+        }
+      },
+      {
+        "input": {
+          "q2": [
+            { "q3": 1, "q4": "Hello" },
+            { "q3": 2, "q4": "Goodbye" }
+          ]
+        },
+        "expect": {
+          "valid": true,
+          "detail": {
+            "q2": {
+              "valid": true,
+              "detail": [{
+                "valid": true,
+                "detail": {
+                  "q3": { "valid": true },
+                  "q4": { "valid": true }
+                }
+              }, {
+                "valid": true,
+                "detail": {
+                  "q3": { "valid": true },
+                  "q4": { "valid": true }
+                }
+              }]
+            }
+          }
         }
       }
-    }]
+    ]
   }
+
 
 ]
 

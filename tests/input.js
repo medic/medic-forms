@@ -1,40 +1,22 @@
 
 var fs = require('fs'),
-    wru = require('wru'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
-    util = require('./util/util.js'),
-    input = require('../lib/input.js'),
-    tests = require('./fixtures/compiled.js');
+    util = require('./util'),
+    input = require('../lib/input'),
+    tests = require('./fixtures/compiled');
 
 /**
  * @name _assert:
  */
-var _assert = function (_test, _i) {
+var _assert = function (_test, _fixture, _value) {
 
-  var valid = _test.valid;
-  var skipped = _test.skipped;
-  var field = _test.field;
-  var values = _test.values;
-  var inputs = _test.inputs;
+  var valid = _fixture.valid;
+  var skipped = _fixture.skipped;
+  var field = _fixture.field;
+  var inputs = _fixture.inputs;
 
-  var h = 'Test #' + (_i + 1);
-  var json = JSON.stringify(_test).substr(0, 200);
-
-  wru.assert(
-    h + ' must provide an array for the `values` property',
-      _.isArray(values)
-  );
-
-  wru.assert(
-    h + ' must specify a boolean value for the `valid` property',
-      _.isBoolean(valid)
-  );
-
-  wru.assert(
-    h + ' must specify an object for the `field` property',
-      _.isObject(field)
-  );
+  _test.expect(2);
 
   input.register_validator('startsWithA', function (_input) {
 
@@ -60,37 +42,20 @@ var _assert = function (_test, _i) {
     };
   });
 
-  return _.each(values, function (_value, _j) {
 
-    var label = h + ' at offset ' + _j;
+  input.validate_any(_value, field, inputs, {}, 
+    function (_r) {
+      _test.equal(_r.valid, valid, 
+        _value + ' must ' + (valid ? '' : 'not ') + 'validate');
+      _test.equal(!_r.skipped, !skipped, 
+        _value + ' must ' + (skipped ? '' : 'not ') + 'be skipped');
+      _test.done();
+    }
+  );
 
-    input.validate_any(_value, field, inputs, {}, 
-      wru.async(function (_r) {
-
-        var result = JSON.stringify(_r).substr(0, 200);
-
-        wru.assert(
-          label + ' must ' + (valid ? '' : 'not ') + 'validate'
-            + '\n\tResult was: `' + result + '`'
-            + '\n\tTest was: `' + json + '`)',
-            (_r.valid === valid)
-        );
-
-        wru.assert(
-          label + ' must ' + (skipped ? '' : 'not ') + 'be skipped'
-            + '\n\tResult was: `' + result + '`'
-            + '\n\tTest was: `' + json + '`)',
-            (!_r.skipped === !skipped)
-        );
-      })
-    );
-  });
 };
 
-return wru.test(
-  util.make_test(
-    'input-value-validation',
-      tests.fixtures.input.values, _assert
-  )
+util.make_tests(
+  'input-value-validation', exports,
+    tests.fixtures.input.values, _assert
 );
-

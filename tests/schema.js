@@ -1,37 +1,31 @@
 
 var fs = require('fs'),
     tv4 = require('tv4'),
-    wru = require('wru'),
+    // wru = require('wru'),
     _ = require('underscore'),
-    util = require('./util/util.js'),
-    r = require('../lib/reference.js'),
-    tests = require('./fixtures/compiled.js');
+    util = require('./util'),
+    r = require('../lib/reference'),
+    tests = require('./fixtures/compiled');
 
 
 /**
  * @name _assert
  */
-var _assert = function(_test, _i, _valid) {
+var _assert = function(_test, _fixture, _value, _valid) {
 
-  var rv = tv4.validateResult(r.rewrite_each(_test), tests.schema);
-  wru.assert('Form #' + (_i + 1) + ' must ' + 
-    (!_valid ? 'not ' : '') + 'validate', rv.valid === _valid);
+  var rv = tv4.validateResult(r.rewrite_each(_fixture), tests.schema);
+  _test.expect(1);
+  _test.equal(rv.valid, _valid, 
+    ' must ' + (!_valid ? 'not ' : '') + 'validate');
+  _test.done();
 }
 
+util.make_tests(
+  'valid-forms', exports,
+    tests.fixtures.forms.valid, _assert, [ true ]
+);
 
-/* Start */
-return wru.test([
-  util.make_test(
-    'valid-forms', 
-    tests.fixtures.forms.valid,
-    _assert,
-    [ true ]
-  ),
-  util.make_test(
-    'invalid-forms', 
-    tests.fixtures.forms.invalid,
-    _assert,
-    [ false ]
-  )
-]);
-
+util.make_tests(
+  'invalid-forms', exports,
+    tests.fixtures.forms.invalid, _assert, [ false ]
+);

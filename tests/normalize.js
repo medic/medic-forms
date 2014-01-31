@@ -1,10 +1,9 @@
 var fs = require('fs'),
-    wru = require('wru'),
     _ = require('underscore'),
     deepEqual = require('deep-equal'),
-    util = require('./util/util.js'),
-    n = require('../lib/normalize.js'),
-    tests = require('./fixtures/compiled.js');
+    util = require('./util'),
+    n = require('../lib/normalize'),
+    tests = require('./fixtures/compiled');
 
 /**
  * @name compare_partial:
@@ -31,7 +30,7 @@ var compare_partial = function (_lhs, _rhs, _properties) {
 /**
  * @name check_fields:
  */
-var check_fields = function (_name, _fields,
+var check_fields = function (_test, _fields,
                              _expected, _properties, _context) {
 
   var context = (_context || []);
@@ -50,7 +49,7 @@ var check_fields = function (_name, _fields,
     if (_expected[i].type == 'fields') {
 
       check_fields(
-        _name, (_fields[i].fields || []), (_expected[i].fields || []),
+        _test, (_fields[i].fields || []), (_expected[i].fields || []),
           _properties, context.concat([ i ])
       );
 
@@ -61,10 +60,10 @@ var check_fields = function (_name, _fields,
           ', along subfield path ' + JSON.stringify(context) : ''
       );
 
-      wru.assert(
-        _name + path_text + ': properties ' +
-          JSON.stringify(_properties) + ' must match',
-        compare_partial(_expected[i], _fields[i], _properties)
+      _test.ok(
+        compare_partial(_expected[i], _fields[i], _properties),
+        path_text + ': properties ' +
+          JSON.stringify(_properties) + ' must match'
       );
     }
   }
@@ -73,78 +72,52 @@ var check_fields = function (_name, _fields,
 /**
  * @name _assert
  */
-var _assert = function(_test, _i, _scope) {
-  var name = 'Test #' + (_i + 1);
-  var from = _test.from, to = _test.to;
+var _assert = function(_test, _fixture, _value, _scope) {
 
-  wru.assert(name + ' must have `to` property', _.isObject(to));
-  wru.assert(name + ' must have `from` property', _.isObject(from));
+  var from = _fixture.from, to = _fixture.to;
+
+  _test.ok(_.isObject(to), 'must have `to` property');
+  _test.ok(_.isObject(from), 'must have `from` property');
 
   n.normalize_forms(from);
 
   /* For each form */
   for (var i = 0, len = from.length; i < len; ++i) {
     check_fields(
-      name, (from[i][_scope] || []),
-        (to[i][_scope] || []), _test.check
+      _test, (from[i][_scope] || []),
+        (to[i][_scope] || []), _fixture.check
     );
   }
+
+  _test.done();
 }
 
-/**
- * @name main
- */
-var main = function (_argc, _argv) {
-
-  wru.test([
-    util.make_test(
-      'field-name-normalization', 
-      tests.fixtures.normalize.field_identifiers,
-      _assert, 
-      [ 'fields' ]
-    ),
-    util.make_test(
-      'field-option-normalization',
-      tests.fixtures.normalize.field_properties,
-      _assert, 
-      [ 'fields' ]
-    ),
-    util.make_test(
-      'field-select-normalization', 
-      tests.fixtures.normalize.field_select_lists,
-      _assert, 
-      [ 'fields' ]
-    ),
-    util.make_test(
-      'form-name-normalization',
-      tests.fixtures.normalize.form_identifiers,
-      _assert, 
-      [ 'meta' ]
-    ),
-    util.make_test(
-      'form-option-normalization',
-      tests.fixtures.normalize.form_properties,
-      _assert, 
-      [ 'meta' ]
-    ),
-    util.make_test(
-      'field-validation',
-      tests.fixtures.normalize.field_validation,
-      _assert, 
-      [ 'fields' ]
-    ),
-    util.make_test(
-      'field-condition',
-      tests.fixtures.normalize.field_condition,
-      _assert, 
-      [ 'fields' ]
-    )
-  ]);
-
-  return 0;
-};
-
-
-/* Start */
-return main(process.argc, process.argv);
-
+/* Tests */
+util.make_tests(
+  'field-name-normalization', exports,
+    tests.fixtures.normalize.field_identifiers, _assert, [ 'fields' ]
+);
+util.make_tests(
+  'field-option-normalization', exports,
+    tests.fixtures.normalize.field_properties, _assert, [ 'fields' ]
+);
+util.make_tests(
+  'field-select-normalization', exports,
+    tests.fixtures.normalize.field_select_lists, _assert, [ 'fields' ]
+);
+util.make_tests(
+  'field-name-normalization', exports,
+    tests.fixtures.normalize.form_identifiers, _assert, [ 'meta' ]
+);
+util.make_tests(
+  'field-option-normalization', exports,
+    tests.fixtures.normalize.form_properties, _assert, [ 'meta' ]
+);
+util.make_tests(
+  'field-validation', exports,
+    tests.fixtures.normalize.field_validation, _assert, [ 'fields' ]
+);
+util.make_tests(
+  'field-condition', exports,
+    tests.fixtures.normalize.field_condition, _assert, [ 'fields' ]
+);
