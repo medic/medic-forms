@@ -54,7 +54,7 @@ function _object_name_from_path(_path, _base_path) {
 
   /* Strip base path */
   if (_path.indexOf(_base_path) === 0) {
-    _path = _path.substring(_base_path.length, _path.length);
+    _path = _path.substring(_base_path.length);
   }
 
   /* Convert path to object notation */
