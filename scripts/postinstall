@@ -1,4 +1,5 @@
 #!/bin/sh
 
-exec node scripts/compile-fixtures.js
+node scripts/compile-schema.js &&
+  node scripts/compile-fixtures.js
 

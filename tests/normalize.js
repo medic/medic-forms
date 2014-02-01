@@ -1,9 +1,9 @@
 var fs = require('fs'),
     _ = require('underscore'),
-    deepEqual = require('deep-equal'),
-    util = require('./util'),
     n = require('../lib/normalize'),
-    tests = require('./fixtures/compiled');
+    util = require('./include/util'),
+    deepEqual = require('deep-equal'),
+    fixtures = require('./fixtures/compiled');
 
 /**
  * @name compare_partial:
@@ -95,29 +95,29 @@ var _assert = function(_test, _fixture, _value, _scope) {
 /* Tests */
 util.make_tests(
   'field-identifiers', exports,
-    tests.fixtures.normalize.field_identifiers, _assert, [ 'fields' ]
+    fixtures.normalize.field_identifiers, _assert, [ 'fields' ]
 );
 util.make_tests(
   'field-properties', exports,
-    tests.fixtures.normalize.field_properties, _assert, [ 'fields' ]
+    fixtures.normalize.field_properties, _assert, [ 'fields' ]
 );
 util.make_tests(
   'field-select-lists', exports,
-    tests.fixtures.normalize.field_select_lists, _assert, [ 'fields' ]
+    fixtures.normalize.field_select_lists, _assert, [ 'fields' ]
 );
 util.make_tests(
   'form-identifiers', exports,
-    tests.fixtures.normalize.form_identifiers, _assert, [ 'meta' ]
+    fixtures.normalize.form_identifiers, _assert, [ 'meta' ]
 );
 util.make_tests(
   'field-properties', exports,
-    tests.fixtures.normalize.form_properties, _assert, [ 'meta' ]
+    fixtures.normalize.form_properties, _assert, [ 'meta' ]
 );
 util.make_tests(
   'field-validations', exports,
-    tests.fixtures.normalize.field_validations, _assert, [ 'fields' ]
+    fixtures.normalize.field_validations, _assert, [ 'fields' ]
 );
 util.make_tests(
   'field-conditions', exports,
-    tests.fixtures.normalize.field_conditions, _assert, [ 'fields' ]
+    fixtures.normalize.field_conditions, _assert, [ 'fields' ]
 );

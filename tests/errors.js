@@ -1,11 +1,11 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
+    util = require('./include/util'),
     deepEqual = require('deep-equal'),
-    util = require('./util'),
     normalizer = require('../lib/normalize'),
     input_validator = require('../lib/input'),
-    tests = require('./fixtures/compiled');
+    fixtures = require('./fixtures/compiled');
 
 
 /**
@@ -79,5 +79,5 @@ var _assert = function (_test, _fixture, _value) {
 /* Tests */
 util.make_tests(
   'input-validation-errors', exports,
-    tests.fixtures.errors.input, _assert
+    fixtures.errors.input, _assert
 );

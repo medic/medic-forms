@@ -1,10 +1,10 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
+    util = require('./include/util'),
     deepEqual = require('deep-equal'),
-    util = require('./util'),
-    r = require('../lib/reference'),
-    tests = require('./fixtures/compiled');
+    fixtures= require('./fixtures/compiled'),
+    reference_rewriter = require('../lib/reference');
 
 
 /**
@@ -17,7 +17,7 @@ var _assert = function(_test, _fixture) {
   _test.ok(_.isObject(_fixture.to), 'must have `to` property');
   _test.ok(_.isObject(_fixture.from), 'must have `from` property');
 
-  var rewrite = r.rewrite(_fixture.from);
+  var rewrite = reference_rewriter.rewrite(_fixture.from);
 
   _test.ok(
     deepEqual(rewrite, _fixture.to),
@@ -30,5 +30,5 @@ var _assert = function(_test, _fixture) {
 /* Tests */
 util.make_tests(
   'rewriting', exports,
-    tests.fixtures.reference.rewrite, _assert
+    fixtures.reference.rewrite, _assert
 );

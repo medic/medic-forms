@@ -1,8 +1,8 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
-    util = require('./util.js'),
-    tests = require('./fixtures/compiled.js'),
+    util = require('./include/util.js'),
+    fixtures = require('./fixtures/compiled.js'),
     form_validator = require('../lib/validate.js');
 
 
@@ -58,14 +58,14 @@ var _assert = function (_test, _fixture) {
 /* Tests */
 util.make_tests(
   'forms', exports,
-    tests.fixtures.validate.forms, _assert
+    fixtures.validate.forms, _assert
 );
 util.make_tests(
   'fields', exports,
-    tests.fixtures.validate.fields, _assert
+    fixtures.validate.fields, _assert
 );
 util.make_tests(
   'select-lists', exports,
-    tests.fixtures.validate.select_lists, _assert
+    fixtures.validate.select_lists, _assert
 );
 

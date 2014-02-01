@@ -2,9 +2,9 @@
 var fs = require('fs'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
-    util = require('./util'),
     input = require('../lib/input'),
-    tests = require('./fixtures/compiled');
+    util = require('./include/util'),
+    fixtures = require('./fixtures/compiled');
 
 /**
  * @name _assert:
@@ -57,5 +57,5 @@ var _assert = function (_test, _fixture, _value) {
 
 util.make_tests(
   'input', exports,
-    tests.fixtures.input.values, _assert
+    fixtures.input.values, _assert
 );
