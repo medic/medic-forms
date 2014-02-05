@@ -12,12 +12,17 @@ var tv4 = require('tv4'),
  */
 var _assert = function(_test, _fixture, _value, _valid) {
 
-  var rv = tv4.validateResult(
-    reference_rewriter.rewrite_each(_fixture),
-      schemas.core
+  _test.expect(2);
+
+  /* Rewrite references */
+  var rv = reference_rewriter.rewrite_each(_fixture);
+
+  _test.ok(
+    rv.valid, 'Rewriting must succeed'
   );
 
-  _test.expect(1);
+  /* Validate against schema */
+  rv = tv4.validateResult(_fixture, schemas.core);
 
   _test.equal(
     rv.valid, _valid, 

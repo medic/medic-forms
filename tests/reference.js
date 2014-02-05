@@ -13,16 +13,27 @@ var fs = require('fs'),
  */
 var _assert = function(_test, _fixture) {
 
-  _test.expect(3);
-
-  _test.ok(_.isObject(_fixture.to), 'must have `to` property');
-  _test.ok(_.isObject(_fixture.from), 'must have `from` property');
-
-  var rewrite = reference_rewriter.rewrite(_fixture.from);
+  _test.expect(4);
 
   _test.ok(
-    deepEqual(rewrite, _fixture.to),
-    'rewritten result must match expected'
+    _.isObject(_fixture.to),
+      'Fixture must have `to` property'
+  );
+
+  _test.ok(
+    _.isObject(_fixture.from),
+      'Fixture must have `from` property'
+  );
+
+  var rv = reference_rewriter.rewrite(_fixture.from);
+
+  _test.ok(
+    rv.valid, 'Reference rewriting must succeed'
+  );
+
+  _test.ok(
+    deepEqual(_fixture.from, _fixture.to),
+      'Rewritten result must match expected'
   );
 
   _test.done();
