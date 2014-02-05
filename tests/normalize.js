@@ -1,9 +1,11 @@
+
 var fs = require('fs'),
     _ = require('underscore'),
     n = require('../lib/normalize'),
     util = require('./include/util'),
     deepEqual = require('deep-equal'),
     fixtures = require('./fixtures/compiled');
+
 
 /**
  * @name compare_partial:
@@ -26,6 +28,7 @@ var compare_partial = function (_lhs, _rhs, _properties) {
 
   return true;
 };
+
 
 /**
  * @name check_fields:
@@ -69,6 +72,7 @@ var check_fields = function (_test, _fields,
   }
 };
 
+
 /**
  * @name _assert
  */
@@ -79,7 +83,7 @@ var _assert = function(_test, _fixture, _value, _scope) {
   _test.ok(_.isObject(to), 'must have `to` property');
   _test.ok(_.isObject(from), 'must have `from` property');
 
-  n.normalize_forms(from);
+  n.normalize_all(from);
 
   /* For each form */
   for (var i = 0, len = from.length; i < len; ++i) {
@@ -91,6 +95,7 @@ var _assert = function(_test, _fixture, _value, _scope) {
 
   _test.done();
 }
+
 
 /* Tests */
 util.make_tests(
@@ -121,3 +126,4 @@ util.make_tests(
   'field-conditions', exports,
     fixtures.normalize.field_conditions, _assert, [ 'fields' ]
 );
+

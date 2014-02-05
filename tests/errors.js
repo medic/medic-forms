@@ -59,7 +59,7 @@ var _assert = function (_test, _fixture, _value) {
   _test.ok(_.isObject(expect), 'must have valid `expect` property');
 
   var forms = [ form ];
-  var fields = normalizer.normalize_forms(forms)[0].fields;
+  var fields = normalizer.normalize_all(forms)[0].fields;
 
   _test.ok(_.isArray(fields), 'must normalize properly');
 

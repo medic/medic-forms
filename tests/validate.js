@@ -1,9 +1,9 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
-    util = require('./include/util.js'),
-    fixtures = require('./fixtures/compiled.js'),
-    form_validator = require('../lib/validate.js');
+    util = require('./include/util'),
+    fixtures = require('./fixtures/compiled'),
+    form_validator = require('../lib/validate');
 
 
 /**
@@ -20,7 +20,7 @@ var _assert = function (_test, _fixture) {
     _.isArray(forms), 'must provide an array for the `forms` property'
   );
 
-  form_validator.validate_forms(forms, function (_rv) {
+  form_validator.validate_all(forms, function (_rv) {
 
     /* Check top-level validity:
      *   This is an all-or-nothing result for all form

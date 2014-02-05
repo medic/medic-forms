@@ -2,8 +2,8 @@
 var tv4 = require('tv4'),
     _ = require('underscore'),
     util = require('./include/util'),
-    schemas = require('../lib/schemas/all.js'),
-    fixtures = require('./fixtures/compiled.js'),
+    schemas = require('../lib/schemas/all'),
+    fixtures = require('./fixtures/compiled'),
     reference_rewriter = require('../lib/reference');
 
 
@@ -15,7 +15,7 @@ var _assert = function(_test, _fixture, _value, _valid) {
   _test.expect(2);
 
   /* Rewrite references */
-  var rv = reference_rewriter.rewrite_each(_fixture);
+  var rv = reference_rewriter.rewrite_all(_fixture);
 
   _test.ok(
     rv.valid, 'Rewriting must succeed'
