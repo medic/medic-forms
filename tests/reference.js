@@ -1,9 +1,10 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
+    jsdump = require('jsDump'),
     util = require('./include/util'),
     deepEqual = require('deep-equal'),
-    fixtures= require('./fixtures/compiled'),
+    fixtures = require('./fixtures/compiled'),
     reference_rewriter = require('../lib/reference');
 
 

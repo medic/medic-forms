@@ -79,5 +79,108 @@
       ]
     }
   }
+},
+
+{
+  "from": {
+    "fields": {
+      "2": 3, "4": 5,
+      "$ref": "#/library/quux"
+    },
+    "library": { "quux": [ 1, 2, 2, 4 ] }
+  },
+
+  "to": {
+    "fields": [ 1, 2, 3, 4, 5 ],
+    "library": { "quux": [ 1, 2, 2, 4 ] }
+  }
+},
+
+{
+  "from": {
+    "field": {
+      "$ref": "#/library/fields",
+      "required": true,
+      "one": {
+        "fields": [ null, { "id": "f0", "type": "number" } ],
+        "required": false
+      },
+      "another": {
+        "type": "integer",
+        "range": { "1": 1000 },
+        "repeat": [ 1, null ]
+      }
+    },
+    "library": {
+      "fields": {
+        "one": {
+          "type": "fields",
+          "fields": [{
+            "id": "f1",
+            "type": "integer"
+          }, {
+            "id": "f2",
+            "type": "integer"
+          }, {
+            "id": "f3",
+            "type": "integer"
+          }]
+        },
+        "another": {
+          "type": "number",
+          "repeat": [ 0, 3 ],
+          "range": [ 1, 100 ]
+        }
+      }
+    }
+  },
+
+  "to": {
+    "field": {
+      "required": true,
+      "one": {
+        "type": "fields",
+        "required": false,
+        "fields": [{
+          "id": "f1",
+          "type": "integer"
+        }, {
+          "id": "f0",
+          "type": "number"
+        }, {
+          "id": "f3",
+          "type": "integer"
+        }]
+      },
+      "another": {
+        "type": "integer",
+        "repeat": [ 1, 3 ],
+        "range": [ 1, 1000 ]
+      }
+    },
+    "library": {
+      "fields": {
+        "one": {
+          "type": "fields",
+          "fields": [{
+            "id": "f1",
+            "type": "integer"
+          }, {
+            "id": "f2",
+            "type": "integer"
+          }, {
+            "id": "f3",
+            "type": "integer"
+          }]
+        },
+        "another": {
+          "type": "number",
+          "repeat": [ 0, 3 ],
+          "range": [ 1, 100 ]
+        }
+      }
+    }
+  }
 }
+
 ]

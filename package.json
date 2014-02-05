@@ -10,6 +10,7 @@
   "dependencies": {
     "tv4": "1.x",
     "async": "0.x",
+    "clone": "0.x",
     "deep-equal": "0.x",
     "underscore": "1.x",
     "mmmagic": "0.x",
