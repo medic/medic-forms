@@ -34,13 +34,11 @@
     "form": {
       "type": "object",
       "required": [ "meta" ],
+      "additionalProperties": true,
       "properties": {
         "id": { "$ref": "#/library/form" },
         "meta": { "$ref": "#/library/meta" },
         "fields": { "$ref": "#/library/fieldset" }
-      },
-      "additionalProperties": {
-        "type": [ "object", "array" ]
       }
     },
 

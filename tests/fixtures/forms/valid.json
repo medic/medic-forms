@@ -5,7 +5,8 @@
 [{
   "meta": {
     "id": "test"
-  }
+  },
+  "_name": "Metadata (id only)"
 }],
 
 [{
@@ -13,7 +14,8 @@
     "id": "test",
     "name": "Example Form",
     "description": "A form used for testing the JSON form validator"
-  }
+  },
+  "_name": "Metadata (id, name, description)"
 }],
 
 [{
@@ -21,7 +23,8 @@
     "id": "test",
     "name": { "en": "Example Form" },
     "description": "A form used for testing the JSON form validator"
-  }
+  },
+  "_name": "Metadata (localized name)"
 }],
 
 [{
@@ -34,7 +37,8 @@
     "description": {
       "en": "This is an example JSON form"
     }
-  }
+  },
+  "_name": "Metadata (localized name and description)"
 }],
 
 [{
@@ -45,7 +49,8 @@
       "en": "This is an example JSON form",
       "fr": "Bonjour, c'est une forme de JSON"
     }
-  }
+  },
+  "_name": "Metadata (localized description)"
 }],
 
 [{
@@ -54,7 +59,8 @@
     "name": "Example Form",
     "description": "Example Form"
   },
-  "fields": []
+  "fields": [],
+  "_name": "Empty fields array"
 }],
 
 [{
@@ -68,7 +74,8 @@
       "id": "q1",
       "type": "integer"
     }
-  ]
+  ],
+  "_name": "Single integer field"
 }],
 
 [{
@@ -97,7 +104,8 @@
         }
       ]
     }
-  ]
+  ],
+  "_name": "Simple nested fieldset"
 }],
 
 [{
@@ -137,7 +145,8 @@
         "type": "integer"
       }
     ]
-  }
+  },
+  "_name": "Repeating fieldset (via reference_"
 }],
 
 [{
@@ -155,7 +164,8 @@
         [ 2, { "en": "Goodbye", "es": "Adiós" } ]
       ]
     }
-  ]
+  ],
+  "_name": "Selection list (localized)"
 }],
 
 [{
@@ -174,7 +184,8 @@
         [ "BYE", "Goodbye" ]
       ]
     }
-  ]
+  ],
+  "_name": "Selection list (string-based keys)"
 }],
 
 [{
@@ -220,7 +231,8 @@
         "$builtin": "is_phone_number"
       }
     }
-  ]
+  ],
+  "_name": "Simple validations (structured, builtin)"
 }],
 
 [{
@@ -241,7 +253,8 @@
       [ 1, "Now" ],
       [ 2, "Later" ]
     ]
-  }
+  },
+  "_name": "Selection list (via reference)"
 }],
 
 
@@ -263,7 +276,8 @@
         "javascript": "function () { return true; }"
       }
     }
-  ]
+  ],
+  "_name": "Simple validations (javascript, built-in array)"
 }],
 
 [{
@@ -279,7 +293,8 @@
       "description": "Test field #1",
       "flags": { "is_special_magical_field": true }
     }
-  ]
+  ],
+  "_name": "Per-field flags (simple)"
 }],
 
 [{
@@ -312,7 +327,8 @@
       "description": "Test field #4",
       "elevation": null
     }
-  ]
+  ],
+  "_name": "GPS fields (no elevation)"
 }],
 
 [{
@@ -327,7 +343,8 @@
       "type": "image",
       "description": "Test field #1"
     }
-  ]
+  ],
+  "_name": "Image field"
 }],
 
 [{
@@ -418,7 +435,8 @@
       "type": "integer",
       "required": true
     }
-  ]
+  ],
+  "_name": "Fields and subfields (via reference)"
 }]
 
 ]

@@ -1,13 +1,15 @@
 [
 
 [{
-  "meta": {}
+  "meta": {},
+  "_name": "Missing metadata id"
 }],
 
 [{
   "meta": {
     "name": "Example Form"
-  }
+  },
+  "_name": "Missing metadata id (with name)"
 }],
 
 [{
@@ -15,7 +17,8 @@
     "id": "example",
     "name": "Example Form"
   },
-  "fields": false
+  "fields": {},
+  "_name": "Invalid fields value (object)"
 }],
 
 [{
@@ -31,7 +34,8 @@
       "description": "Test field #1",
       "elevation": 0
     }
-  ]
+  ],
+  "_name": "Invalid GPS elevation (integer)"
 }],
 
 [{
@@ -47,7 +51,8 @@
       "description": "Test field #1",
       "elevation": "Yes, please"
     }
-  ]
+  ],
+  "_name": "Invalid GPS elevation (string)"
 }]
 
 ]
