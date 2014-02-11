@@ -543,6 +543,7 @@
   },
 
   {
+    "_name": "Validate with `||` operator returns true if one javascript rule matches",
     "valid": true,
     "field": {
       "type": "integer",

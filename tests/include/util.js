@@ -15,16 +15,14 @@ exports.make_tests = function (_name, _exports,
                                _fixtures, _test_fn, _test_args) {
 
   _.each(_fixtures, function (_fixture, _i) {
+    var _test_name = _generate_test_name(_name, _fixture, _i);
     if (_fixture.values) {
       _.each(_fixture.values, function (_value, _j) {
-        _export(
-          _name + ': Test fixture #' + (_i + 1) + ' at offset ' + _j,
-            _fixture, _exports, _test_fn, _test_args, _value
-        );
+        _export(_test_name + _generate_test_name_suffix(_fixture, _j), 
+          _fixture, _exports, _test_fn, _test_args, _value);
       });
     } else {
-      _export(_name + ': Test fixture #' + (_i + 1), 
-        _fixture, _exports, _test_fn, _test_args);
+      _export(_test_name, _fixture, _exports, _test_fn, _test_args);
     }
   });
 };
@@ -39,3 +37,14 @@ var _export = function (_name, _fixture, _exports,
   };
 };
 
+var _generate_test_name = function(_name, _fixture, _index) {
+  return _name + ': ' + 
+    (_fixture._name ? _fixture._name : 'Test fixture #' + (_index + 1));
+};
+
+var _generate_test_name_suffix = function(_fixture, _offset) {
+  if (_fixture.values && _fixture.values.length > 1) {
+    return ' at offset ' + _offset;
+  }
+  return '';
+}
