@@ -15,14 +15,14 @@ var _assert = function(_test, _fixture, _value, _valid) {
   _test.expect(2);
 
   /* Rewrite references */
-  var rv = reference_rewriter.rewrite_all(_fixture);
+  var rv = reference_rewriter.rewrite_all(_fixture.content);
 
   _test.ok(
     rv.valid, 'Rewriting must succeed'
   );
 
   /* Validate against schema */
-  rv = tv4.validateResult(_fixture, schemas.core);
+  rv = tv4.validateResult(_fixture.content, schemas.core);
 
   _test.equal(
     rv.valid, _valid, 

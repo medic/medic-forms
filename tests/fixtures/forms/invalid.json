@@ -1,58 +1,67 @@
 [
 
-[{
-  "meta": {},
-  "_name": "Missing metadata id"
-}],
+{
+  "_name": "Missing metadata id",
+  "content": [{
+    "meta": {}
+  }]
+},
 
-[{
-  "meta": {
-    "name": "Example Form"
-  },
-  "_name": "Missing metadata id (with name)"
-}],
-
-[{
-  "meta": {
-    "id": "example",
-    "name": "Example Form"
-  },
-  "fields": {},
-  "_name": "Invalid fields value (object)"
-}],
-
-[{
-  "meta": {
-    "id": "moar",
-    "name": "Another Form",
-    "description": "An additional example form"
-  },
-  "fields": [
-    {
-      "id": "q1",
-      "type": "gps",
-      "description": "Test field #1",
-      "elevation": 0
+{
+  "_name": "Missing metadata id (with name)",
+  "content": [{
+    "meta": {
+      "name": "Example Form"
     }
-  ],
-  "_name": "Invalid GPS elevation (integer)"
-}],
+  }]
+},
 
-[{
-  "meta": {
-    "id": "moar",
-    "name": "Another Form",
-    "description": "An additional example form"
-  },
-  "fields": [
-    {
-      "id": "q1",
-      "type": "gps",
-      "description": "Test field #1",
-      "elevation": "Yes, please"
-    }
-  ],
-  "_name": "Invalid GPS elevation (string)"
-}]
+{
+  "_name": "Invalid fields value (object)",
+  "content": [{
+    "meta": {
+      "id": "example",
+      "name": "Example Form"
+    },
+    "fields": {}
+  }]
+},
 
+{
+  "_name": "Invalid GPS elevation (integer)",
+  "content": [{
+    "meta": {
+      "id": "moar",
+      "name": "Another Form",
+      "description": "An additional example form"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "gps",
+        "description": "Test field #1",
+        "elevation": 0
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Invalid GPS elevation (string)",
+  "content": [{
+    "meta": {
+      "id": "moar",
+      "name": "Another Form",
+      "description": "An additional example form"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "gps",
+        "description": "Test field #1",
+        "elevation": "Yes, please"
+      }
+    ]
+  }]
+}
 ]
