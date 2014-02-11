@@ -69,6 +69,42 @@
   },
 
   {
+    "_name": "When required javascript evals to true, field without value is invalid",
+    "valid": false,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "true"
+      }
+    },
+    "values": [ "", null ]
+  },
+
+  {
+    "_name": "When required javascript evals to true, field with value is valid",
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "true"
+      }
+    },
+    "values": [ 1, 0 ]
+  },
+
+  {
+    "_name": "When required javascript evals to false, field without value is valid",
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "false"
+      }
+    },
+    "values": [ true, false, null ]
+  },
+
+  {
     "valid": true,
     "field": {
       "type": "number"

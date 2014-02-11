@@ -83,7 +83,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -103,7 +103,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -124,7 +124,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -145,7 +145,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -165,7 +165,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -185,7 +185,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -205,7 +205,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "conditions": { "$ref": "#/library/conditions" },
@@ -225,7 +225,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -262,7 +262,7 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "required": { "type": "boolean" },
+        "required": { "$ref": "#/library/required" },
         "name": { "$ref": "#/library/l10n" },
         "description": { "$ref": "#/library/l10n" },
         "flags": { "$ref": "#/library/flags" },
@@ -349,6 +349,18 @@
       "patternProperties": {
         "^.+$": { "type": "boolean" }
       }
+    },
+
+    "required": {
+      "oneOf": [
+        { "type": "boolean" },
+        {
+          "type": "object",
+          "properties": {
+            "javascript": { "type": "string" }
+          }
+        }
+      ]
     },
 
     "conditions": {

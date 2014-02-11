@@ -472,6 +472,25 @@
       }
     ]
   }]
+},
+{
+  "_name": "Required based on javascript expression",
+  "content": [{
+    "meta": {
+      "id": "test",
+      "name": "Example Form",
+      "description": "Example Form"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "required": {
+          "javascript": "true"
+        }
+      }
+    ]
+  }]
 }
 
 
