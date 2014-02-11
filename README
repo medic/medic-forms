@@ -12,3 +12,4 @@ collection.
 
 This repository is a work in progress, and should not be used in production.
 
+[![Build Status](https://travis-ci.org/medic/medic-forms.png?branch=master)](https://travis-ci.org/medic/medic-forms)
