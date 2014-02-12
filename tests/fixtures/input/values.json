@@ -51,6 +51,26 @@
   },
 
   {
+    "_name": "Required fields mark empty values as invalid",
+    "valid": false,
+    "field": {
+      "type": "string",
+      "required": true
+    },
+    "values": [ null, "" ]
+  },
+
+  {
+    "_name": "Optional fields mark empty values as valid",
+    "valid": false,
+    "field": {
+      "type": "string",
+      "required": true
+    },
+    "values": [ "" ]
+  },
+
+  {
     "valid": true,
     "field": {
       "type": "number",
@@ -107,9 +127,10 @@
   {
     "_name": "Complex require condition, negative",
     "valid": false,
+    "error": "Value must be a single plain-text string",
     "field": {
       "id": "child",
-      "type": "number",
+      "type": "string",
       "required": {
         "javascript": "inputs.parent === 'cheese'"
       }
@@ -727,6 +748,7 @@
   },
 
   {
+    "_name": "Simple condition with no value",
     "valid": true,
     "skipped": true,
     "field": {
