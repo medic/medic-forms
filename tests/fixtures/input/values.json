@@ -93,7 +93,7 @@
   },
 
   {
-    "_name": "When required javascript evals to false, field without value is valid",
+    "_name": "When required javascript evals to false, all values are valid",
     "valid": true,
     "field": {
       "type": "number",
@@ -101,7 +101,55 @@
         "javascript": "false"
       }
     },
-    "values": [ true, false, null ]
+    "values": [ true, false, null, 1, 0 ]
+  },
+
+  {
+    "_name": "Complex require condition, negative",
+    "valid": false,
+    "field": {
+      "id": "child",
+      "type": "number",
+      "required": {
+        "javascript": "inputs.parent === 'cheese'"
+      }
+    },
+    "inputs": {
+      "parent": "cheese"
+    },
+    "values": [ null ]
+  },
+
+  {
+    "_name": "Complex require condition, positive",
+    "valid": true,
+    "field": {
+      "id": "child",
+      "type": "number",
+      "required": {
+        "javascript": "inputs.parent === 'cheese'"
+      }
+    },
+    "inputs": {
+      "parent": "cheese"
+    },
+    "values": [ 4 ]
+  },
+
+  {
+    "_name": "Complex require condition, parent does not match",
+    "valid": true,
+    "field": {
+      "id": "child",
+      "type": "number",
+      "required": {
+        "javascript": "inputs.parent === 'brie'"
+      }
+    },
+    "inputs": {
+      "parent": "cheese"
+    },
+    "values": [ 4, null ]
   },
 
   {
@@ -596,7 +644,9 @@
   },
 
   {
+    "_name": "`||` operator requires at least one validation to pass",
     "valid": false,
+    "error": "Value causes one or more validations to fail",
     "field": {
       "type": "integer",
       "validations": {

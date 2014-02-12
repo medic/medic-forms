@@ -15,8 +15,9 @@ var _assert = function (_test, _fixture, _value) {
   var skipped = _fixture.skipped;
   var field = _fixture.field;
   var inputs = _fixture.inputs;
+  var error = _fixture.error;
 
-  _test.expect(2);
+  _test.expect(error ? 3 : 2);
 
   input.register_validator('startsWithA', function (_input) {
 
@@ -49,6 +50,9 @@ var _assert = function (_test, _fixture, _value) {
         _value + ' must ' + (valid ? '' : 'not ') + 'validate');
       _test.equal(!_r.skipped, !skipped, 
         _value + ' must ' + (skipped ? '' : 'not ') + 'be skipped');
+      if (error) {
+        _test.equal(_r.error, error);
+      }
       _test.done();
     }
   );
