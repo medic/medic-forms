@@ -1,7 +1,7 @@
-
 [
   {
     "_name": "Integers (simple)",
+
     "valid": true,
     "field": {
       "type": "integer"
@@ -11,6 +11,7 @@
 
   {
     "_name": "Integers (with range, valid)",
+
     "valid": true,
     "field": {
       "type": "integer",
@@ -21,6 +22,7 @@
 
   {
     "_name": "Integers (with range, invalid)",
+
     "valid": false,
     "field": {
       "type": "integer",
@@ -31,6 +33,7 @@
 
   {
     "_name": "Integers (numeric values, invalid)",
+
     "valid": false,
     "field": {
       "type": "integer"
@@ -40,6 +43,7 @@
 
   {
     "_name": "Numbers (simple)",
+
     "valid": true,
     "field": {
       "type": "number"
@@ -49,6 +53,7 @@
 
   {
     "_name": "Numbers (multiple types, invalid)",
+
     "valid": false,
     "field": {
       "type": "number",
@@ -59,6 +64,7 @@
 
   {
     "_name": "Required fields (empty is invalid)",
+
     "valid": false,
     "field": {
       "type": "string",
@@ -69,6 +75,7 @@
 
   {
     "_name": "Optional fields (empty is valid)",
+
     "valid": false,
     "field": {
       "type": "string",
@@ -79,6 +86,7 @@
 
   {
     "_name": "Required fields (false, empty is valid)",
+
     "valid": true,
     "field": {
       "type": "number",
@@ -89,6 +97,7 @@
 
   {
     "_name": "Required fields (true, non-empty is valid)",
+
     "valid": true,
     "field": {
       "type": "number",
@@ -99,6 +108,7 @@
 
   {
     "_name": "Required fields (javascript -> true, empty is invalid)",
+
     "valid": false,
     "field": {
       "type": "number",
@@ -111,6 +121,7 @@
 
   {
     "_name": "Required fields (javascript -> true, non-empty is valid)",
+
     "valid": true,
     "field": {
       "type": "number",
@@ -123,6 +134,7 @@
 
   {
     "_name": "Required fields (javascript -> false, all is valid)",
+
     "valid": true,
     "field": {
       "type": "number",
@@ -135,6 +147,7 @@
 
   {
     "_name": "Required fields (complex javascript -> false, empty is valid)",
+
     "valid": false,
     "error": "Value must be a single plain-text string",
     "field": {
@@ -152,6 +165,7 @@
 
   {
     "_name": "Required fields (complex javascript -> true, non-empty is valid)",
+
     "valid": true,
     "field": {
       "id": "child",
@@ -168,6 +182,7 @@
 
   {
     "_name": "Required fields (complex javascript -> false, all is valid)",
+
     "valid": true,
     "field": {
       "id": "child",
@@ -184,6 +199,7 @@
 
   {
     "_name": "Numbers (integers, valid)",
+
     "valid": true,
     "field": {
       "type": "number"
@@ -193,6 +209,7 @@
 
   {
     "_name": "Range (infinite, valid numbers)",
+
     "valid": true,
     "field": {
       "type": "number",
@@ -203,6 +220,7 @@
 
   {
     "_name": "Range (integer, infinite, input has decimal portion)",
+
     "valid": false,
     "field": {
       "type": "integer",
@@ -213,6 +231,7 @@
 
   {
     "_name": "Range (integer, finite, input has decimal portion)",
+
     "valid": false,
     "field": {
       "type": "integer",
@@ -223,6 +242,7 @@
 
   {
     "_name": "Range (integer, positive, mixed invalid input)",
+
     "valid": false,
     "field": {
       "type": "number",
@@ -233,6 +253,7 @@
 
   {
     "_name": "Length (limited, integer values, valid input)",
+
     "valid": true,
     "field": {
       "type": "integer",
@@ -243,6 +264,7 @@
 
   {
     "_name": "Length (limited, integer values, invalid input)",
+
     "valid": false,
     "field": {
       "type": "integer",
@@ -253,6 +275,7 @@
 
   {
     "_name": "Length (limited, numeric values, valid input)",
+
     "valid": true,
     "field": {
       "type": "number",
@@ -263,6 +286,7 @@
 
   {
     "_name": "Length (limited, numeric values, invalid input)",
+
     "valid": false,
     "field": {
       "type": "number",
@@ -273,6 +297,7 @@
 
   {
     "_name": "GPS (objects/arrays, valid)",
+
     "valid": true,
     "field": {
       "type": "gps"
@@ -289,6 +314,7 @@
 
   {
     "_name": "GPS (objects/arrays, invalid)",
+
     "valid": false,
     "field": {
       "type": "gps"
@@ -305,6 +331,7 @@
 
   {
     "_name": "GPS (objects/arrays, missing elevation)",
+
     "valid": false,
     "field": {
       "type": "gps",
@@ -322,6 +349,7 @@
 
   {
     "_name": "GPS (objects/arrays, elevation, valid)",
+
     "valid": true,
     "field": {
       "type": "gps",
@@ -340,6 +368,7 @@
 
   {
     "_name": "GPS (more objects/arrays, elevation, valid)",
+
     "valid": true,
     "field": {
       "type": "gps",
@@ -358,6 +387,7 @@
 
   {
     "_name": "Repetition (limited, GPS with elevation, valid",
+
     "valid": true,
     "field": {
       "type": "gps",
@@ -385,6 +415,7 @@
 
   {
     "_name": "Repetition (limited, GPS with elevation, invalid",
+
     "valid": false,
     "field": {
       "type": "gps",
@@ -411,6 +442,7 @@
 
   {
     "_name": "Repetition (limited, nested fields, valid)",
+
     "valid": true,
     "field": {
       "id": "q1",
@@ -454,7 +486,8 @@
   },
 
   {
-    "_name": "Image (invalid base64 data)",
+    "_name": "Image (base64 data, invalid)",
+
     "valid": false,
     "field": {
       "type": "image"
@@ -467,6 +500,7 @@
 
   {
     "_name": "Repetition (limited, nested fields, invalid)",
+
     "valid": false,
     "field": {
       "id": "q1",
@@ -510,6 +544,8 @@
   },
 
   {
+    "_name": "Repetition (limited, nested fields, required, invalid)",
+
     "valid": false,
     "field": {
       "id": "q1",
@@ -555,6 +591,7 @@
 
   {
     "_name": "Image (valid base64 data)",
+
     "valid": false,
     "field": {
       "type": "image"
@@ -566,6 +603,7 @@
 
   {
     "_name": "Image (valid base64 data, invalid format)",
+
     "valid": false,
     "field": {
       "type": "image"
@@ -577,6 +615,7 @@
 
   {
     "_name": "Image (valid formats: jpeg, gif, png, tiff)",
+
     "valid": true,
     "async" : true,
     "field": {
@@ -604,6 +643,7 @@
 
   {
     "_name": "Validations (trivial, 'or' operator)",
+
     "valid": true,
     "field": {
       "type": "integer",
@@ -618,6 +658,7 @@
 
   {
     "_name": "Validations (javascript, simple)",
+
     "valid": true,
     "field": {
       "type": "integer",
@@ -633,6 +674,7 @@
 
   {
     "_name": "Validations (javascript, equality)",
+
     "valid": true,
     "field": {
       "type": "integer",
@@ -648,6 +690,7 @@
 
   {
     "_name": "Validations (javascript, greater-than)",
+
     "valid": false,
     "field": {
       "type": "integer",
@@ -664,6 +707,7 @@
 
   {
     "_name": "Validations (javascript, modulus/equality)",
+
     "valid": true,
     "field": {
       "type": "integer",
@@ -681,6 +725,7 @@
 
   {
     "_name": "Validations ('or' operator, javascript, mixed-pass/fail)",
+
     "valid": true,
     "field": {
       "type": "integer",
@@ -698,6 +743,7 @@
 
   {
     "_name": "Validations ('or' operator, javascript, all-fail)",
+
     "valid": false,
     "field": {
       "type": "integer",
@@ -716,6 +762,7 @@
 
   {
     "_name": "Validations ('and' operator, registered, single-rule pass)",
+
     "valid": true,
     "field": {
       "type": "string",
@@ -732,6 +779,7 @@
 
   {
     "_name": "Validations ('and' operator, registered, single-rule fail)",
+
     "valid": false,
     "field": {
       "type": "string",
@@ -749,6 +797,7 @@
 
   {
     "_name": "Validations ('and' operator, registered, multi-rule pass)",
+
     "valid": true,
     "field": {
       "type": "string",
@@ -767,6 +816,7 @@
 
   {
     "_name": "Validations ('and' operator, registered, multi-rule fail)",
+
     "valid": false,
     "field": {
       "type": "string",
@@ -785,6 +835,7 @@
 
   {
     "_name": "Conditions (required, valid, skipped)",
+
     "valid": true,
     "skipped": true,
     "field": {
@@ -803,6 +854,7 @@
 
   {
     "_name": "Conditions (not required, invalid, skipped)",
+
     "valid": false,
     "skipped": true,
     "field": {
@@ -820,6 +872,7 @@
 
   {
     "_name": "Conditions (not required, valid, not skipped)",
+
     "valid": true,
     "skipped": false,
     "field": {
@@ -837,6 +890,7 @@
 
   {
     "_name": "Conditions (javascript, 'or' operator, valid, skipped)",
+
     "valid": true,
     "skipped": true,
     "field": {
@@ -856,6 +910,7 @@
 
   {
     "_name": "Conditions (javascript, 'or' operator, valid, not skipped)",
+
     "valid": true,
     "skipped": false,
     "field": {
@@ -874,6 +929,7 @@
 
   {
     "_name": "Conditions (javascript, 'and' operator, valid, skipped)",
+
     "valid": true,
     "skipped": true,
     "field": {
@@ -895,6 +951,7 @@
 
   {
     "_name": "Conditions (javascript, 'and' operator, valid, not skipped)",
+
     "valid": true,
     "skipped": false,
     "field": {
@@ -915,6 +972,7 @@
 
   {
     "_name": "Conditions (structured, 'or' operator, valid, skipped)",
+
     "valid": true,
     "skipped": true,
     "field": {
@@ -938,6 +996,7 @@
 
   {
     "_name": "E-mail (simple, valid)",
+
     "valid": true,
     "field": {
       "type": "email"
@@ -947,6 +1006,7 @@
 
   {
     "_name": "E-mail (simple, invalid)",
+
     "valid": false,
     "field": {
       "type": "email"
@@ -956,6 +1016,7 @@
 
   {
     "_name": "Date (simple, valid)",
+
     "valid": true,
     "field": {
       "type": "date"
@@ -965,6 +1026,7 @@
 
   {
     "_name": "Date (invalid, month > 12)",
+
     "valid": false,
     "field": {
       "type": "date"
@@ -974,6 +1036,7 @@
 
   {
     "_name": "Date (invalid, missing day)",
+
     "valid": false,
     "field": {
       "type": "date"
@@ -983,6 +1046,7 @@
 
   {
     "_name": "Date (invalid, trailing data)",
+
     "valid": false,
     "field": {
       "type": "date"
@@ -992,6 +1056,7 @@
 
   {
     "_name": "Month (simple, valid)",
+
     "valid": true,
     "field": {
       "type": "month"
@@ -1001,6 +1066,7 @@
 
   {
     "_name": "Month (simple, invalid)",
+
     "valid": false,
     "field": {
       "type": "month"
@@ -1010,6 +1076,7 @@
 
   {
     "_name": "Day (simple, valid)",
+
     "valid": true,
     "field": {
       "type": "day"
@@ -1019,6 +1086,7 @@
 
   {
     "_name": "Day (simple, invalid)",
+
     "valid": false,
     "field": {
       "type": "day"
@@ -1028,6 +1096,7 @@
 
   {
     "_name": "Week (simple, valid)",
+
     "valid": true,
     "field": {
       "type": "week"
@@ -1037,6 +1106,7 @@
 
   {
     "_name": "Week (simple, invalid)",
+
     "valid": false,
     "field": {
       "type": "week"
@@ -1047,6 +1117,7 @@
 
   {
     "_name": "Timestamp (simple, valid)",
+
     "valid": true,
     "field": {
       "type": "timestamp"
@@ -1056,6 +1127,7 @@
 
   {
     "_name": "Timestamp (simple, invalid)",
+
     "valid": false,
     "field": {
       "type": "timestamp"
@@ -1063,4 +1135,3 @@
     "values": [ "2012-11-05T25:40:52.280Z" ]
   }
 ]
-

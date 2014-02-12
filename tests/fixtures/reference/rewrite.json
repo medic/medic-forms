@@ -2,6 +2,8 @@
 [
 
 {
+  "_name": "Top-level substitution (in object)",
+
   "from": {
     "fields": { "$ref": "#/library/quux" },
     "library": { "quux": [ 1, 2, 3, 4, 5 ] }
@@ -10,12 +12,12 @@
   "to": {
     "fields": [ 1, 2, 3, 4, 5 ],
     "library": { "quux": [ 1, 2, 3, 4, 5 ] }
-  },
-
-  "_name": "Top-level substitution (in object)"
+  }
 },
 
 {
+  "_name": "Nested substitution (in array, object)",
+
   "from": {
     "fields": {
       "test": {
@@ -41,12 +43,12 @@
     "library": {
       "farb": { "quux": [ 3, 4, 5, 4, 3 ] }
     }
-  },
-
-  "_name": "Nested substitution (in array, object)"
+  }
 },
 
 {
+  "_name": "Nested substitution (fields)",
+
   "from": {
     "fields": [
       { "id": "q1", "repeat": false, "type": "integer" },
@@ -84,12 +86,12 @@
         {"id": "q2c", "type": "integer","repeat": [ 0, 2 ] }
       ]
     }
-  },
-
-  "_name": "Nested substitution (fields)"
+  }
 },
 
 {
+  "_name": "Sparse override (array)",
+
   "from": {
     "fields": {
       "2": 3, "4": 5,
@@ -101,12 +103,12 @@
   "to": {
     "fields": [ 1, 2, 3, 4, 5 ],
     "library": { "quux": [ 1, 2, 2, 4 ] }
-  },
-
-  "_name": "Sparse override (array)"
+  }
 },
 
 {
+  "_name": "Sparse override (form)",
+
   "from": {
     "field": {
       "$ref": "#/library/fields",
@@ -190,12 +192,12 @@
         }
       }
     }
-  },
-
-  "_name": "Sparse override (form)"
+  }
 },
 
 {
+  "_name": "Sparse override (abstract)",
+
   "from": {
     "rewrite": {
       "$ref": "#/include",
@@ -238,9 +240,7 @@
         "h": 9
       }
     }
-  },
-
-  "_name": "Sparse override (abstract)"
+  }
 }
 
 ]

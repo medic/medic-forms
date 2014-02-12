@@ -1,6 +1,8 @@
 [
 
 {
+  "_name": "Items (simple, valid)",
+
   "all": true,
   "valid": true,
 
@@ -24,6 +26,8 @@
 },
 
 {
+  "_name": "Items (mixed integer/string/array, valid)",
+
   "all": true,
   "valid": true,
 
@@ -47,6 +51,8 @@
 },
 
 {
+  "_name": "Items (l10n object, l10n object in array, valid)",
+
   "all": true,
   "valid": true,
 
@@ -68,6 +74,8 @@
 },
 
 {
+  "_name": "Items (duplicate keys, l10n object in array, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -90,6 +98,8 @@
 },
 
 {
+  "_name": "Items (duplicate keys, integers, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -110,6 +120,8 @@
 },
 
 {
+  "_name": "Items (integer, l10n object in array, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -131,6 +143,8 @@
 },
 
 {
+  "_name": "Items (integer, string, valid)",
+
   "all": true,
   "valid": true,
 
@@ -151,6 +165,8 @@
 },
 
 {
+  "_name": "Default value (integer, string, valid)",
+
   "all": true,
   "valid": true,
 
@@ -201,6 +217,8 @@
 },
 
 {
+  "_name": "Default value (repeating integer/string, valid)",
+
   "all": true,
   "valid": true,
 
@@ -276,6 +294,8 @@
 },
 
 {
+  "_name": "Default value (repeating integer/string, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -359,6 +379,8 @@
 },
 
 {
+  "_name": "Default value (set of fields, valid)",
+
   "all": true,
   "valid": true,
 
@@ -398,6 +420,8 @@
 },
 
 {
+  "_name": "Default value (repeating set of select lists, valid)",
+
   "all": true,
   "valid": true,
 
@@ -447,6 +471,8 @@
 },
 
 {
+  "_name": "Default value (set of repeating select lists, valid)",
+
   "all": true,
   "valid": true,
 

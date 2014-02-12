@@ -1,6 +1,8 @@
 [
 
 {
+  "_name": "Simple (valid)",
+
   "all": true,
   "valid": true,
 
@@ -18,6 +20,8 @@
 },
 
 {
+  "_name": "Simple (duplicate identifier, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -39,6 +43,8 @@
 },
 
 {
+  "_name": "Simple (non-duplicate identifiers, valid)",
+
   "all": true,
   "valid": true,
 
@@ -60,6 +66,8 @@
 },
 
 {
+  "_name": "Nested (two-level non-duplicate identifiers, valid)",
+
   "all": true,
   "valid": true,
 
@@ -92,6 +100,8 @@
 },
 
 {
+  "_name": "Nested (top-level duplicate identifiers, valid)",
+
   "all": true,
   "valid": false,
 
@@ -128,6 +138,8 @@
 },
 
 {
+  "_name": "Nested (second-level duplicate identifiers, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -164,6 +176,8 @@
 },
 
 {
+  "_name": "Nested (three-level non-duplicate identifiers, valid)",
+
   "all": true,
   "valid": true,
 
@@ -201,6 +215,8 @@
 },
 
 {
+  "_name": "Nested (cross-level duplicate identifiers, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -238,6 +254,8 @@
 },
 
 {
+  "_name": "Nested (top-level/lowest-level duplicate identifiers, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -285,6 +303,8 @@
 },
 
 {
+  "_name": "Default Values (repetition/required, valid)",
+
   "all": true,
   "valid": true,
 
@@ -387,6 +407,8 @@
 },
 
 {
+  "_name": "Default Values (repetition/required, invalid)",
+
   "all": true,
   "valid": false,
 

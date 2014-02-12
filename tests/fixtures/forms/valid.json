@@ -2,11 +2,13 @@
 
 {
   "_name": "Empty",
+
   "content": []
 },
 
 {
   "_name": "Metadata (id only)",
+
   "content": [{
     "meta": {
       "id": "test"
@@ -16,6 +18,7 @@
 
 {
   "_name": "Metadata (id, name, description)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -27,6 +30,7 @@
 
 {
   "_name": "Metadata (localized name)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -38,6 +42,7 @@
 
 {
   "_name": "Metadata (localized name and description)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -54,6 +59,7 @@
 
 {
   "_name": "Metadata (localized description)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -68,6 +74,7 @@
 
 {
   "_name": "Empty fields array",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -80,6 +87,7 @@
 
 {
   "_name": "Single integer field",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -97,6 +105,7 @@
 
 {
   "_name": "Simple nested fieldset",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -129,6 +138,7 @@
 
 {
   "_name": "Repeating fieldset (via reference)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -172,6 +182,7 @@
 
 {
   "_name": "Selection list (localized)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -193,6 +204,7 @@
 
 {
   "_name": "Selection list (string-based keys)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -215,6 +227,7 @@
 
 {
   "_name": "Simple validations (structured, builtin)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -264,6 +277,7 @@
 
 {
   "_name": "Selection list (via reference)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -288,6 +302,7 @@
 
 {
   "_name": "Simple validations (javascript, built-in array)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -311,6 +326,7 @@
 },
 {
   "_name": "Per-field flags (simple)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -329,6 +345,7 @@
 },
 {
   "_name": "GPS fields (no elevation)",
+
   "content": [{
     "meta": {
       "id": "moar",
@@ -364,6 +381,7 @@
 },
 {
   "_name": "Image field",
+
   "content": [{
     "meta": {
       "id": "moar",
@@ -382,6 +400,7 @@
 
 {
   "_name": "Fields and subfields (via reference)",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -475,6 +494,7 @@
 },
 {
   "_name": "Required based on javascript expression",
+
   "content": [{
     "meta": {
       "id": "test",
@@ -493,6 +513,4 @@
   }]
 }
 
-
 ]
-

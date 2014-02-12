@@ -2,6 +2,7 @@
 
 {
   "_name": "Missing metadata id",
+
   "content": [{
     "meta": {}
   }]
@@ -9,6 +10,7 @@
 
 {
   "_name": "Missing metadata id (with name)",
+
   "content": [{
     "meta": {
       "name": "Example Form"
@@ -18,6 +20,7 @@
 
 {
   "_name": "Invalid fields value (object)",
+
   "content": [{
     "meta": {
       "id": "example",
@@ -29,6 +32,7 @@
 
 {
   "_name": "Invalid GPS elevation (integer)",
+
   "content": [{
     "meta": {
       "id": "moar",
@@ -48,6 +52,7 @@
 
 {
   "_name": "Invalid GPS elevation (string)",
+
   "content": [{
     "meta": {
       "id": "moar",

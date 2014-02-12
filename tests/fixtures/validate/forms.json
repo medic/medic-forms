@@ -1,6 +1,8 @@
 [
 
 {
+  "_name": "Metadata (identifier, valid)",
+
   "valid": true,
 
   "forms": [{
@@ -9,6 +11,8 @@
 },
 
 {
+  "_name": "Fields (missing, valid)",
+
   "all": true,
   "valid": true,
 
@@ -27,6 +31,8 @@
 },
 
 {
+  "_name": "Structure (missing meta/fields, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -45,6 +51,8 @@
 },
 
 {
+  "_name": "Metadata (mixed present/non-present identifier, invalid)",
+
   "all": false,
   "valid": false,
 
@@ -60,6 +68,8 @@
 },
 
 {
+  "_name": "Metadata (improperly-typed identifier, integer, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -69,6 +79,8 @@
 },
 
 {
+  "_name": "Metadata (improperly-typed identifier, numeric, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -78,6 +90,8 @@
 },
 
 {
+  "_name": "Metadata (improperly-typed identifier, array, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -87,6 +101,8 @@
 },
 
 {
+  "_name": "Metadata (improperly-typed identifier, object, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -96,6 +112,8 @@
 },
 
 {
+  "_name": "Metadata (improperly-typed identifier, false/null, invalid)",
+
   "all": true,
   "valid": false,
 
@@ -107,6 +125,8 @@
 },
 
 {
+  "_name": "Metadata (improperly-typed identifier, true, invalid)",
+
   "all": true,
   "valid": false,
 
