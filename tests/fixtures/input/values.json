@@ -510,6 +510,7 @@
   },
 
   {
+    "_name": "Required repeat fields",
     "valid": false,
     "field": {
       "id": "q1",

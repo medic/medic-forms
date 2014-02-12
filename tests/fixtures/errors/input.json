@@ -1,7 +1,61 @@
 
 [
+  {
+    "_name": "JavaScript validation with reference to another inputs value",
+    "form": {
+      "meta": {
+        "id": "f1"
+      },
+      "fields": [{
+        "id": "q1",
+        "type": "integer"
+      },
+      {
+        "id": "q2",
+        "type": "string",
+        "validations": {
+          "javascript": "inputs.q1 >= 0 ? input === 'positive' : input === 'negative'"
+        }
+      }]
+    },
+    "values": [
+      {
+        "input": {
+          "q1": 1,
+          "q2": "positive"
+        },
+        "expect": {
+          "valid": true
+        }
+      },
+      {
+        "input": {
+          "q1": -1,
+          "q2": "negative"
+        },
+        "expect": {
+          "valid": true
+        }
+      },
+      {
+        "input": {
+          "q1": -1,
+          "q2": "positive"
+        },
+        "expect": {
+          "valid": false,
+          "detail": {
+            "q2": {
+              "valid": false
+            }
+          }
+        }
+      }
+    ]
+  },
 
   {
+    "_name": "Integer validation",
     "form": {
       "meta": {
         "id": "f1"
@@ -56,6 +110,7 @@
   },
 
   {
+    "_name": "Nested fields",
     "form": {
       "meta": {
         "id": "f1"
@@ -151,6 +206,7 @@
     ]
   },
   {
+    "_name": "Repeated fields",
     "form": {
       "meta": {
         "id": "f1"
