@@ -1,7 +1,8 @@
 
 [
   {
-    "_name": "JavaScript validation with reference to another inputs value",
+    "_name": "Validations (javascript, field references)",
+
     "form": {
       "meta": {
         "id": "f1"
@@ -55,7 +56,8 @@
   },
 
   {
-    "_name": "Integer validation",
+    "_name": "Validation (integer, non-required)",
+
     "form": {
       "meta": {
         "id": "f1"
@@ -110,7 +112,8 @@
   },
 
   {
-    "_name": "Nested fields",
+    "_name": "Nested fields (mixed required/non-required)",
+
     "form": {
       "meta": {
         "id": "f1"
@@ -206,7 +209,7 @@
     ]
   },
   {
-    "_name": "Repeated fields",
+    "_name": "Repetition (with nested fields)",
     "form": {
       "meta": {
         "id": "f1"

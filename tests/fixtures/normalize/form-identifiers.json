@@ -1,6 +1,8 @@
 [
 
 {
+  "_name": "Optional attributes (l10n, missing name/description)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{

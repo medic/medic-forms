@@ -1,5 +1,7 @@
 [
 {
+  "_name": "Conditions (default)",
+
   "check": [ "conditions" ],
 
   "from": [{
@@ -18,6 +20,8 @@
   }]
 },
 {
+  "_name": "Conditions (javascript only, no operator, object)",
+
   "check": [ "conditions" ],
 
   "from": [{
@@ -39,6 +43,8 @@
   }]
 },
 {
+  "_name": "Conditions (javascript only, 'or' operator, string)",
+
   "check": [ "conditions" ],
 
   "from": [{
@@ -63,6 +69,8 @@
   }]
 },
 {
+  "_name": "Conditions (structured only, 'and' operator)",
+
   "check": [ "conditions" ],
 
   "from": [{
@@ -84,7 +92,10 @@
     }]
   }]
 },
+
 {
+  "_name": "Conditions (javascript only, 'and' operator)",
+
   "check": [ "conditions" ],
 
   "from": [{
@@ -106,7 +117,10 @@
     }]
   }]
 },
+
 {
+  "_name": "Conditions (structured string, javascript object)",
+
   "check": [ "conditions" ],
 
   "from": [{
@@ -124,7 +138,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "structured": {"foo": true}
+        "structured": { "foo": true }
       }
     }]
   }]

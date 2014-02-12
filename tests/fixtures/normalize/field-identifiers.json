@@ -1,6 +1,8 @@
 [
 
 {
+  "_name": "Localization (no language, name, description)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{
@@ -18,6 +20,8 @@
 },
 
 {
+  "_name": "Localization (language present, omitted name/description)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{
@@ -38,6 +42,8 @@
 },
 
 {
+  "_name": "Localization (description, omitted name)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{
@@ -59,6 +65,8 @@
 },
 
 {
+  "_name": "Localization (name, omitted description)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{
@@ -80,6 +88,8 @@
 },
 
 {
+  "_name": "Localization (name, description)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{
@@ -102,6 +112,8 @@
 },
 
 {
+  "_name": "Localization (nested, missing description translations)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{
@@ -162,6 +174,8 @@
 },
 
 {
+  "_name": "Localization (nested, missing name translations)",
+
   "check": [ "id", "name", "description" ],
 
   "from": [{

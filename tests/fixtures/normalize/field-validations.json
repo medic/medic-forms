@@ -1,5 +1,8 @@
 [
+
 {
+  "_name": "Validation (omitted properties, top-level)",
+
   "check": [ "validations" ],
 
   "from": [{
@@ -17,7 +20,10 @@
     }]
   }]
 },
+
 {
+  "_name": "Validation (omitted properties, auto-add operator/registered)",
+
   "check": [ "validations" ],
 
   "from": [{
@@ -38,7 +44,10 @@
     }]
   }]
 },
+
 {
+  "_name": "Validation (javascript as string, auto-add registered)",
+
   "check": [ "validations" ],
 
   "from": [{
@@ -62,7 +71,10 @@
     }]
   }]
 },
+
 {
+  "_name": "Validation (auto-add javascript)",
+
   "check": [ "validations" ],
 
   "from": [{
@@ -84,7 +96,10 @@
     }]
   }]
 },
+
 {
+  "_name": "Validation (auto-add registered)",
+
   "check": [ "validations" ],
 
   "from": [{
@@ -106,7 +121,10 @@
     }]
   }]
 },
+
 {
+  "_name": "Validation (registered as string)",
+
   "check": [ "validations" ],
 
   "from": [{
@@ -124,7 +142,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {},
-        "registered": {"foo": true}
+        "registered": { "foo": true }
       }
     }]
   }]

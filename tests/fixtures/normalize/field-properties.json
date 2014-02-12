@@ -1,6 +1,8 @@
 [
 
 {
+  "_name": "Repetition (single integer)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -21,6 +23,8 @@
 },
 
 {
+  "_name": "Repetition (short array, auto-require)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -41,6 +45,8 @@
 },
 
 {
+  "_name": "Repetition (array, second item is false)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -61,6 +67,8 @@
 },
 
 {
+  "_name": "Repetition (array, second item is null)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -81,6 +89,8 @@
 },
 
 {
+  "_name": "Repetition (array, second item is true)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -101,6 +111,8 @@
 },
 
 {
+  "_name": "Repetition (array, first item is false)",
+
   "check": [ "repeat" ],
 
   "from": [{
@@ -120,6 +132,8 @@
 },
 
 {
+  "_name": "Repetition (array, first item is null)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -140,6 +154,8 @@
 },
 
 {
+  "_name": "Repetition (array, first item is true)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -160,6 +176,8 @@
 },
 
 {
+  "_name": "Repetition (array, first item is false, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -181,27 +199,8 @@
 },
 
 {
-  "check": [ "repeat", "required" ],
+  "_name": "Repetition (array, first item is false, required)",
 
-  "from": [{
-    "fields": [{
-      "id": "f1",
-      "type": "integer",
-      "required": true,
-      "repeat": [ false, 122 ]
-    }]
-  }],
-  "to": [{
-    "fields": [{
-      "id": "f1",
-      "required": true,
-      "type": "integer",
-      "repeat": [ 1, 122 ]
-    }]
-  }]
-},
-
-{
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -223,6 +222,8 @@
 },
 
 {
+  "_name": "Repetition (array, omitted first item, second item is one)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -244,6 +245,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using false)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -265,6 +268,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using zero, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -286,6 +291,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using array of zeroes, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -307,6 +314,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, zero/false array, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -328,6 +337,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, zero/null array, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -349,6 +360,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, zero/false array, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -370,6 +383,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, zero/null array, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -390,6 +405,8 @@
   }]
 },
 {
+  "_name": "Repetition (disabled using false/zero array, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -411,6 +428,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using null/zero array, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -432,6 +451,8 @@
 },
 
 {
+  "_name": "Repetition (integer, valid is one)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -453,6 +474,8 @@
 },
 
 {
+  "_name": "Repetition (positive lower bound, false for upper bound)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -474,6 +497,8 @@
 },
 
 {
+  "_name": "Repetition (positive lower bound, null for upper bound)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -495,6 +520,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using false, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -515,6 +542,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using zero, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -535,6 +564,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, short array containing zero)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -555,6 +586,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, array containing zeroes)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -575,6 +608,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using false/zero array, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -595,6 +630,8 @@
 },
 
 {
+  "_name": "Repetition (disabled using null/zero array, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -615,6 +652,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, zero/null array, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -635,6 +674,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, zero/false array, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -655,6 +696,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, true, not required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -675,6 +718,8 @@
 },
 
 {
+  "_name": "Repetition (unbounded, true, required)",
+
   "check": [ "repeat", "required" ],
 
   "from": [{
@@ -695,6 +740,8 @@
   }]
 },
 {
+  "_name": "Range (number, integer range)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -714,6 +761,8 @@
 },
 
 {
+  "_name": "Range (number, numeric range)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -733,6 +782,8 @@
 },
 
 {
+  "_name": "Range (number type, short array with numeric item)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -752,6 +803,8 @@
 },
 
 {
+  "_name": "Range (number type, short array with integer item)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -771,6 +824,8 @@
 },
 
 {
+  "_name": "Range (integer type, array with null/integer items)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -790,6 +845,8 @@
 },
 
 {
+  "_name": "Range (integer type, array with false/integer items)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -809,6 +866,8 @@
 },
 
 {
+  "_name": "Range (integer type, array with true/integer items)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -828,6 +887,8 @@
 },
 
 {
+  "_name": "Range (unbounded, boolean range, false)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -847,6 +908,8 @@
 },
 
 {
+  "_name": "Range (unbounded, boolean range, true)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -866,6 +929,8 @@
 },
 
 {
+  "_name": "Range (unbounded, array with false items)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -885,6 +950,8 @@
 },
 
 {
+  "_name": "Range (negatively unbounded, array with true/integer items)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -904,6 +971,8 @@
 },
 
 {
+  "_name": "Range (array with identical integer items)",
+
   "check": [ "range" ],
 
   "from": [{
@@ -923,6 +992,8 @@
 },
 
 {
+  "_name": "Length (integer, not required)",
+
   "check": [ "length" ],
 
   "from": [{
@@ -942,6 +1013,8 @@
 },
 
 {
+  "_name": "Length (integer, required)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -963,6 +1036,8 @@
 },
 
 {
+  "_name": "Length (array with false items)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -984,6 +1059,8 @@
 },
 
 {
+  "_name": "Length (inverted array with integer items)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -1005,6 +1082,8 @@
 },
 
 {
+  "_name": "Length (array with negative integer item, not required)",
+
   "check": [ "length" ],
 
   "from": [{
@@ -1024,6 +1103,8 @@
 },
 
 {
+  "_name": "Length (array with negative integer item, required)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -1045,6 +1126,8 @@
 },
 
 {
+  "_name": "Length (inverted array with negative integer item, required)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -1066,6 +1149,8 @@
 },
 
 {
+  "_name": "Length (inverted array with negative integer item, not required)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -1087,6 +1172,8 @@
 },
 
 {
+  "_name": "Length (array with identical negative integer items)",
+
   "check": [ "length" ],
 
   "from": [{
@@ -1106,6 +1193,8 @@
 },
 
 {
+  "_name": "Length (integer, array with false/integer items)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -1144,6 +1233,8 @@
 },
 
 {
+  "_name": "Length (null, nested array with null items)",
+
   "check": [ "length", "required" ],
 
   "from": [{
@@ -1190,4 +1281,3 @@
 }
 
 ]
-

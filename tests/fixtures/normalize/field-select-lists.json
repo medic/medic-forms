@@ -1,6 +1,8 @@
 [
 
 {
+  "_name": "Items (integers only)",
+
   "check": [ "items" ],
 
   "from": [{
@@ -27,6 +29,8 @@
 },
 
 {
+  "_name": "Items (mixed strings and key/value arrays)",
+
   "check": [ "items" ],
 
   "from": [{
@@ -54,6 +58,8 @@
 },
 
 {
+  "_name": "Items (strings, arrays, omitted keys, i10n objects)",
+
   "check": [ "items" ],
 
   "from": [{
@@ -90,6 +96,8 @@
 },
 
 {
+  "_name": "Items (boolean/null, empty array)",
+
   "check": [ "items" ],
 
   "from": [{
