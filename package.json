@@ -15,7 +15,7 @@
     "mmmagic": "0.x",
     "moment": "2.x",
     "nodeunit": "0.x",
-    "tv4": "1.x",
+    "tv4": "1.0.14",
     "underscore": "1.x",
     "validator": "3.x"
   },
