@@ -226,7 +226,7 @@
 },
 
 {
-  "_name": "Simple validations (structured, builtin)",
+  "_name": "Simple validations/conditions",
 
   "content": [{
     "meta": {
@@ -253,7 +253,9 @@
           [ 2, "Later" ]
         ],
         "conditions": {
-          "$structured": { "q1": "BYE" }
+          "structured": {
+            "q1": "BYE"
+          }
         }
       },
       {
@@ -261,14 +263,13 @@
         "type": "string",
         "length": [ 3, 45 ],
         "conditions": {
-          "$structured": [
-            { "q1a": 2 },
-            { "$operator": "&&" },
-            { "q1": "BYE" }
-          ]
+          "operator": "&&",
+          "structured": {
+            "q1a": 2, "q1": "BYE"
+          }
         },
         "validations": {
-          "$builtin": "is_phone_number"
+          "registered": "is_phone_number"
         }
       }
     ]
@@ -315,7 +316,10 @@
         "type": "string",
         "validations": {
           "javascript": "function () { return true; }",
-          "builtin": [ "is_identifier", "is_alphanumeric" ]
+          "registered": {
+            "is_identifier": true,
+            "is_alphanumeric": true
+          }
         },
         "conditions": {
           "javascript": "function () { return true; }"

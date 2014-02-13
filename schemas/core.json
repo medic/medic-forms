@@ -276,6 +276,26 @@
       }
     },
 
+    "script-specifier": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": [ "javascript" ],
+          "additionalProperties": false,
+          "properties": {
+            "javascript": {
+              "type": [ "string", "object" ]
+            }
+          }
+        }
+      ]
+    },
+
+    "operator-specifier": {
+      "type": "string",
+      "enum": [ "&&", "||" ]
+    },
+
     "length-specifier": {
       "oneOf": [
         { "type": "integer" },
@@ -285,29 +305,20 @@
           "minItems": 1, "maxItems": 2,
           "items": { "type": [ "integer", "boolean" ] }
         }
-      ],
-      "not": {
-        "type": "array",
-        "minItems": 1, "maxItems": 2,
-        "items": { "type": [ "boolean", "null" ] }
-      }
+      ]
     },
 
     "repeat-specifier": {
       "oneOf": [
         { "type": [ "boolean", "integer" ] },
+        { "$ref": "#/library/script-specifier" },
         {
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": [ "integer", "boolean" ] }
+          "items": { "type": [ "integer", "boolean", "null" ] }
         }
-      ],
-      "not": {
-        "type": "array",
-        "minItems": 1, "maxItems": 2,
-        "items": { "type": [ "boolean", "null" ] }
-      }
+      ]
     },
 
     "range-specifier-integer": {
@@ -317,14 +328,11 @@
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": [ "integer", "boolean", "null" ] }
+          "items": {
+            "type": [ "integer", "boolean", "null" ]
+          }
         }
-      ],
-      "not": {
-        "type": "array",
-        "minItems": 1, "maxItems": 2,
-        "items": { "type": [ "boolean", "null" ] }
-      }
+      ]
     },
 
     "range-specifier-number": {
@@ -334,14 +342,11 @@
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": [ "integer", "number", "boolean", "null" ] }
+          "items": {
+            "type": [ "integer", "number", "boolean", "null" ]
+          }
         }
-      ],
-      "not": {
-        "type": "array",
-        "minItems": 1, "maxItems": 2,
-        "items": { "type": [ "boolean", "null" ] }
-      }
+      ]
     },
 
     "flags": {
@@ -354,59 +359,44 @@
     "required": {
       "oneOf": [
         { "type": "boolean" },
-        {
-          "type": "object",
-          "properties": {
-            "javascript": { "type": "string" }
-          }
-        }
+        { "$ref": "#/library/script-specifier" }
       ]
     },
 
     "conditions": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "operator": {
-          "type": "string",
-          "enum": ["&&", "||"]
+          "$ref": "#/library/operator-specifier"
         },
         "javascript": {
-          "oneOf": [
-            { "type": "string" },
-            { "type": "object" }
-          ]
+          "type": [ "string", "object" ]
+        },
+        "structured": {
+          "type": [ "string", "object" ]
         },
         "registered": {
-          "oneOf": [
-            { "type": "string" },
-            { "type": "object" }
-          ]
+          "type": [ "string", "object" ]
         }
       }
     },
 
     "validations": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "operator": {
-          "type": "string",
-          "enum": ["&&", "||"]
+          "$ref": "#/library/operator-specifier"
         },
         "javascript": {
-          "oneOf": [
-            { "type": "string" },
-            { "type": "object" }
-          ]
+          "type": [ "string", "object" ]
         },
         "registered": {
-          "oneOf": [
-            { "type": "string" },
-            { "type": "object" }
-          ]
+          "type": [ "string", "object" ]
         }
       }
     }
-
   }
 }
 
