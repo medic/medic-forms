@@ -34,10 +34,10 @@ var _assert = function(_test, _fixture, _value, _valid) {
 
 util.make_tests(
   'valid', exports,
-    fixtures.forms.valid, _assert, [ true ]
+    fixtures.schema.valid, _assert, [ true ]
 );
 
 util.make_tests(
   'invalid', exports,
-    fixtures.forms.invalid, _assert, [ false ]
+    fixtures.schema.invalid, _assert, [ false ]
 );
