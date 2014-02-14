@@ -1278,6 +1278,43 @@
       }]
     }]
   }]
+},
+
+{
+ "_name": "Script directive pass-through (required, repeat, default)",
+
+  "check": [ "required", "repeat", "default" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "required": {
+        "javascript": "return true;"
+      },
+      "repeat": {
+        "javascript": "return [ 0, 3 ];"
+      },
+      "default": {
+        "javascript": "return [ 0, 1, 2 ];"
+      }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "required": {
+        "javascript": "return true;"
+      },
+      "repeat": {
+        "javascript": "return [ 0, 3 ];"
+      },
+      "default": {
+        "javascript": "return [ 0, 1, 2 ];"
+      }
+    }]
+  }]
 }
 
 ]
