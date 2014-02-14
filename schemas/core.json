@@ -299,6 +299,7 @@
     "length-specifier": {
       "oneOf": [
         { "type": "integer" },
+        { "$ref": "#/library/script-specifier" },
         {
           "type": "array",
           "uniqueItems": false,
@@ -324,6 +325,7 @@
     "range-specifier-integer": {
       "oneOf": [
         { "type": "integer" },
+        { "$ref": "#/library/script-specifier" },
         {
           "type": "array",
           "uniqueItems": false,
@@ -338,6 +340,7 @@
     "range-specifier-number": {
       "oneOf": [
         { "type": "number" },
+        { "$ref": "#/library/script-specifier" },
         {
           "type": "array",
           "uniqueItems": false,
