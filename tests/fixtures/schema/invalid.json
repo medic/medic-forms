@@ -68,5 +68,108 @@
       }
     ]
   }]
+},
+
+{
+  "_name": "Invalid repeat property (negative)",
+
+  "content": [{
+    "meta": {
+      "id": "f"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "repeat": -1000,
+        "type": "integer"
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Invalid repeat property (negative, array)",
+
+  "content": [{
+    "meta": {
+      "id": "f"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": [ -1, 10 ]
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Invalid repeat property (negative, short array)",
+
+  "content": [{
+    "meta": {
+      "id": "f"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": [ -1 ]
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Invalid length property (negative)",
+
+  "content": [{
+    "meta": {
+      "id": "f"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "repeat": -10,
+        "type": "integer"
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Invalid length property (negative, array)",
+
+  "content": [{
+    "meta": {
+      "id": "f"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": [ -10, 10 ]
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Invalid length property (negative, short array)",
+
+  "content": [{
+    "meta": {
+      "id": "f"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "repeat": [ -10 ]
+      }
+    ]
+  }]
 }
+
 ]

@@ -298,26 +298,38 @@
 
     "length-specifier": {
       "oneOf": [
-        { "type": "integer" },
+        { "type": [ "boolean", "null" ] },
+        { "type": "integer", "minimum": 0 },
         { "$ref": "#/library/script-specifier" },
         {
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": [ "integer", "boolean" ] }
+          "items": {
+            "oneOf": [
+              { "type": [ "boolean", "null" ] },
+              { "type": "integer", "minimum": 0 }
+            ]
+          }
         }
       ]
     },
 
     "repeat-specifier": {
       "oneOf": [
-        { "type": [ "boolean", "integer" ] },
+        { "type": [ "boolean", "null" ] },
+        { "type": "integer", "minimum": 0 },
         { "$ref": "#/library/script-specifier" },
         {
           "type": "array",
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
-          "items": { "type": [ "integer", "boolean", "null" ] }
+          "items": {
+            "oneOf": [
+              { "type": [ "boolean", "null" ] },
+              { "type": "integer", "minimum": 0 }
+            ]
+          }
         }
       ]
     },
