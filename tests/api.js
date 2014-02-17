@@ -38,6 +38,6 @@ var _assert = function (_test, _fixture) {
 
 /* Tests */
 util.make_tests(
-  'api-form-load',
+  'load-forms',
     exports, fixtures.api.load, _assert
 );
