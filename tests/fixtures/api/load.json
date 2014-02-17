@@ -1,0 +1,42 @@
+[
+
+{
+  "_name": "Single field (all properties, valid)",
+
+  "forms": [
+    {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer"
+      }]
+    }
+  ],
+
+  "expect": {
+    "valid": true,
+    "result": [{
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer",
+        "name": { "un": "field" },
+        "description": { "un": "field" },
+        "repeat": false,
+        "range": [ -1e9999, 1e9999 ],
+        "length": [ 0, 1e9999 ],
+        "required": false,
+        "conditions": { "operator": "&&", "javascript": {}, "structured": {} },
+        "validations": { "operator": "&&", "javascript": {}, "registered": {} }
+      }]
+    }]
+  }
+}
+
+]

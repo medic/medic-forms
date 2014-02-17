@@ -41,3 +41,4 @@ util.make_tests(
   'invalid', exports,
     fixtures.schema.invalid, _assert, [ false ]
 );
+

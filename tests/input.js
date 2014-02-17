@@ -44,18 +44,24 @@ var _assert = function (_test, _fixture, _value) {
   });
 
 
-  input.validate_any(_value, field, inputs, {}, 
-    function (_r) {
-      _test.equal(_r.valid, valid, 
-        _value + ' must ' + (valid ? '' : 'not ') + 'validate');
-      _test.equal(!_r.skipped, !skipped, 
-        _value + ' must ' + (skipped ? '' : 'not ') + 'be skipped');
-      if (error) {
-        _test.equal(_r.error, error);
-      }
-      _test.done();
+  input.validate_any(_value, field, inputs, {}, function (_r) {
+
+    _test.equal(
+      _r.valid, valid, 
+        _value + ' must ' + (valid ? '' : 'not ') + 'validate'
+    );
+
+    _test.equal(
+      !_r.skipped, !skipped, 
+        _value + ' must ' + (skipped ? '' : 'not ') + 'be skipped'
+    );
+
+    if (error) {
+      _test.equal(_r.error, error);
     }
-  );
+
+    _test.done();
+  });
 
 };
 

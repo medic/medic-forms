@@ -65,8 +65,8 @@ var check_fields = function (_test, _fields,
 
       _test.ok(
         compare_partial(_expected[i], _fields[i], _properties),
-        path_text + ': properties ' +
-          JSON.stringify(_properties) + ' must match'
+        (path_text + ': properties ' +
+          JSON.stringify(_properties) + ' must match')
       );
     }
   }

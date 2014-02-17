@@ -18,7 +18,7 @@ run_tests()
 main()
 {
   npm run-script postinstall &&
-  run_tests input schema validate normalize reference errors
+  run_tests reference schema validate normalize input errors api
 }
 
 main "$@"
