@@ -15,7 +15,8 @@
         "id": "q2",
         "type": "string",
         "validations": {
-          "javascript": "inputs.q1 >= 0 ? input === 'positive' : input === 'negative'"
+          "javascript":
+            "inputs.q1 >= 0 ? input === 'positive' : input === 'negative'"
         }
       }]
     },

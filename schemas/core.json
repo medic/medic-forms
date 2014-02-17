@@ -49,6 +49,7 @@
       "properties": {
         "id": { "type": "string" },
         "name": { "$ref": "#/library/l10n" },
+        "language": { "pattern": "^\\w{2}$" },
         "description": { "$ref": "#/library/l10n" }
       }
     },

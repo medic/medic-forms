@@ -1,7 +1,7 @@
 [
 
 {
-  "_name": "Single field (all properties, valid)",
+  "_name": "All properties (valid)",
 
   "forms": [
     {
@@ -34,6 +34,202 @@
         "required": false,
         "conditions": { "operator": "&&", "javascript": {}, "structured": {} },
         "validations": { "operator": "&&", "javascript": {}, "registered": {} }
+      }]
+    }]
+  }
+},
+
+{
+  "_name": "Repeat (valid)",
+
+  "forms": [
+    {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "repeat": true,
+        "type": "integer"
+      }]
+    }
+  ],
+
+  "expect": {
+    "valid": true,
+    "result": [{
+      "fields": [{
+        "repeat": [ 0, 1e9999 ]
+      }]
+    }]
+  }
+},
+
+{
+  "_name": "Repeat (required, valid)",
+
+  "forms": [
+    {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "repeat": true,
+        "required": true,
+        "type": "integer"
+      }]
+    }
+  ],
+
+  "expect": {
+    "valid": true,
+    "result": [{
+      "fields": [{
+        "repeat": [ 1, 1e9999 ]
+      }]
+    }]
+  }
+},
+
+{
+  "_name": "Repeat (string, invalid)",
+
+  "forms": [
+    {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer",
+        "repeat": "Testing"
+      }]
+    }
+  ],
+
+  "expect": {
+    "valid": false,
+    "phase": "schema"
+  }
+},
+
+{
+  "_name": "Repeat (negative, invalid)",
+
+  "forms": [
+    {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer",
+        "repeat": -1
+      }]
+    }
+  ],
+
+  "expect": {
+    "valid": false,
+    "phase": "schema"
+  }
+},
+
+{
+  "_name": "Repeat (negative array items, invalid)",
+
+  "forms": [
+    {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer",
+        "repeat": [ -2, -1 ]
+      }]
+    }
+  ],
+
+  "expect": {
+    "valid": false,
+    "phase": "schema"
+  }
+},
+
+{
+  "_name": "Identifiers (l10n, valid)",
+
+  "forms": [
+    {
+      "meta": {
+        "id": "form",
+        "language": "en",
+        "description": "Example form"
+      },
+      "fields": [{
+        "id": "f1",
+        "type": "integer"
+      }, {
+        "id": "f2",
+        "type": "number",
+        "name": "second-field"
+      }, {
+        "id": "f3",
+        "type": "string",
+        "description": "Third field"
+      }, {
+        "id": "f4",
+        "type": "timestamp",
+        "name": "fourth-field",
+        "description": "Fourth field"
+      }, {
+        "id": "f5",
+        "type": "date",
+        "name": { "en": "Hello", "fr": "Bonjour" }
+      }, {
+        "id": "f6",
+        "type": "gps",
+        "description": { "en": "Hello", "fr": "Bonjour" }
+      }, {
+        "id": "f7",
+        "type": "image",
+        "name": { "es": "Hola" },
+        "description": { "fr": "Bonjour" }
+      }]
+    }
+  ],
+
+  "expect": {
+    "valid": true,
+    "result": [{
+      "meta": {
+        "id": "form",
+        "name": { "en": "form" },
+        "description": { "en": "Example form" }
+      },
+      "fields": [{
+        "name": { "en": "f1" },
+        "description": { "en": "f1" }
+      }, {
+        "name": { "en": "second-field" },
+        "description": { "en": "second-field" }
+      }, {
+        "name": { "en": "f3" },
+        "description": { "en": "Third field" }
+      }, {
+        "name": { "en": "fourth-field" },
+        "description": { "en": "Fourth field" }
+      }, {
+        "name": { "en": "Hello", "fr": "Bonjour" },
+        "description": { "en": "Hello", "fr": "Bonjour" }
+      }, {
+        "name": { "en": "f6" },
+        "description": { "en": "Hello", "fr": "Bonjour" }
+      }, {
+        "name": { "es": "Hola" },
+        "description": { "fr": "Bonjour" }
       }]
     }]
   }
