@@ -1,10 +1,10 @@
 [
 
 {
-  "_name": "Properties (valid)",
+  "_name": "Properties (simple, valid)",
 
-  "forms": [
-    {
+  "fixtures": {
+    "forms": [{
       "meta": {
         "id": "form"
       },
@@ -12,38 +12,44 @@
         "id": "field",
         "type": "integer"
       }]
-    }
-  ],
+    }],
+    "input": [
+    ]
+  },
 
   "expect": {
-    "valid": true,
-    "result": [{
-      "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
-      },
-      "fields": [{
-        "id": "field",
-        "type": "integer",
-        "name": { "un": "field" },
-        "description": { "un": "field" },
-        "repeat": false,
-        "range": [ -1e9999, 1e9999 ],
-        "length": [ 0, 1e9999 ],
-        "required": false,
-        "conditions": { "operator": "&&", "javascript": {}, "structured": {} },
-        "validations": { "operator": "&&", "javascript": {}, "registered": {} }
+    "forms": {
+      "valid": true,
+      "result": [{
+        "meta": {
+          "id": "form",
+          "name": { "un": "form" },
+          "description": { "un": "form" }
+        },
+        "fields": [{
+          "id": "field",
+          "type": "integer",
+          "name": { "un": "field" },
+          "description": { "un": "field" },
+          "repeat": false,
+          "range": [ -1e9999, 1e9999 ],
+          "length": [ 0, 1e9999 ],
+          "required": false,
+          "conditions": { "operator": "&&", "javascript": {}, "structured": {} },
+          "validations": { "operator": "&&", "javascript": {}, "registered": {} }
+        }]
       }]
-    }]
+    },
+    "input": [
+    ]
   }
 },
 
 {
   "_name": "Repeat (valid)",
 
-  "forms": [
-    {
+  "fixtures": {
+    "forms": [{
       "meta": {
         "id": "form"
       },
@@ -52,24 +58,30 @@
         "repeat": true,
         "type": "integer"
       }]
-    }
-  ],
+    }],
+    "input": [
+    ]
+  },
 
   "expect": {
-    "valid": true,
-    "result": [{
-      "fields": [{
-        "repeat": [ 0, 1e9999 ]
+    "forms": {
+      "valid": true,
+      "result": [{
+        "fields": [{
+          "repeat": [ 0, 1e9999 ]
+        }]
       }]
-    }]
+    },
+    "input": [
+    ]
   }
 },
 
 {
   "_name": "Repeat (required, valid)",
 
-  "forms": [
-    {
+  "fixtures": {
+    "forms": [{
       "meta": {
         "id": "form"
       },
@@ -79,24 +91,30 @@
         "required": true,
         "type": "integer"
       }]
-    }
-  ],
+    }],
+    "input": [
+    ]
+  },
 
   "expect": {
-    "valid": true,
-    "result": [{
-      "fields": [{
-        "repeat": [ 1, 1e9999 ]
+    "forms": {
+      "valid": true,
+      "result": [{
+        "fields": [{
+          "repeat": [ 1, 1e9999 ]
+        }]
       }]
-    }]
+    },
+    "input": [
+    ]
   }
 },
 
 {
   "_name": "Repeat (string, invalid)",
 
-  "forms": [
-    {
+  "fixtures": {
+    "forms": [{
       "meta": {
         "id": "form"
       },
@@ -105,20 +123,26 @@
         "type": "integer",
         "repeat": "Testing"
       }]
-    }
-  ],
+    }],
+    "input": [
+    ]
+  },
 
   "expect": {
-    "valid": false,
-    "phase": "schema"
+    "forms": {
+      "valid": false,
+      "phase": "schema"
+    },
+    "input": [
+    ]
   }
 },
 
 {
   "_name": "Repeat (negative, invalid)",
 
-  "forms": [
-    {
+  "fixtures": {
+    "forms": [{
       "meta": {
         "id": "form"
       },
@@ -127,20 +151,26 @@
         "type": "integer",
         "repeat": -1
       }]
-    }
-  ],
+    }],
+    "input": [
+    ]
+  },
 
   "expect": {
-    "valid": false,
-    "phase": "schema"
+    "forms": {
+      "valid": false,
+      "phase": "schema"
+    },
+    "input": [
+    ]
   }
 },
 
 {
   "_name": "Repeat (negative array items, invalid)",
 
-  "forms": [
-    {
+  "fixtures": {
+    "forms": [{
       "meta": {
         "id": "form"
       },
@@ -149,20 +179,26 @@
         "type": "integer",
         "repeat": [ -2, -1 ]
       }]
-    }
-  ],
+    }],
+    "input": [
+    ]
+  },
 
   "expect": {
-    "valid": false,
-    "phase": "schema"
+    "forms": {
+      "valid": false,
+      "phase": "schema"
+    },
+    "input": [
+    ]
   }
 },
 
 {
   "_name": "Identifiers (l10n, valid)",
 
-  "forms": [
-    {
+  "fixtures": {
+    "forms": [{
       "meta": {
         "id": "form",
         "language": "en",
@@ -198,40 +234,46 @@
         "name": { "es": "Hola" },
         "description": { "fr": "Bonjour" }
       }]
-    }
-  ],
+    }],
+    "input": [
+    ]
+  },
 
   "expect": {
-    "valid": true,
-    "result": [{
-      "meta": {
-        "id": "form",
-        "name": { "en": "form" },
-        "description": { "en": "Example form" }
-      },
-      "fields": [{
-        "name": { "en": "f1" },
-        "description": { "en": "f1" }
-      }, {
-        "name": { "en": "second-field" },
-        "description": { "en": "second-field" }
-      }, {
-        "name": { "en": "f3" },
-        "description": { "en": "Third field" }
-      }, {
-        "name": { "en": "fourth-field" },
-        "description": { "en": "Fourth field" }
-      }, {
-        "name": { "en": "Hello", "fr": "Bonjour" },
-        "description": { "en": "Hello", "fr": "Bonjour" }
-      }, {
-        "name": { "en": "f6" },
-        "description": { "en": "Hello", "fr": "Bonjour" }
-      }, {
-        "name": { "es": "Hola" },
-        "description": { "fr": "Bonjour" }
+    "forms": {
+      "valid": true,
+      "result": [{
+        "meta": {
+          "id": "form",
+          "name": { "en": "form" },
+          "description": { "en": "Example form" }
+        },
+        "fields": [{
+          "name": { "en": "f1" },
+          "description": { "en": "f1" }
+        }, {
+          "name": { "en": "second-field" },
+          "description": { "en": "second-field" }
+        }, {
+          "name": { "en": "f3" },
+          "description": { "en": "Third field" }
+        }, {
+          "name": { "en": "fourth-field" },
+          "description": { "en": "Fourth field" }
+        }, {
+          "name": { "en": "Hello", "fr": "Bonjour" },
+          "description": { "en": "Hello", "fr": "Bonjour" }
+        }, {
+          "name": { "en": "f6" },
+          "description": { "en": "Hello", "fr": "Bonjour" }
+        }, {
+          "name": { "es": "Hola" },
+          "description": { "fr": "Bonjour" }
+        }]
       }]
-    }]
+    },
+    "input": [
+    ]
   }
 }
 
