@@ -133,7 +133,7 @@
   },
 
   {
-    "_name": "Required fields (javascript -> false, all is valid)",
+    "_name": "Required fields (javascript -> false, all valid)",
 
     "valid": true,
     "field": {
@@ -181,7 +181,7 @@
   },
 
   {
-    "_name": "Required fields (complex javascript -> false, all is valid)",
+    "_name": "Required fields (complex javascript -> false, all valid)",
 
     "valid": true,
     "field": {
@@ -194,7 +194,7 @@
     "inputs": {
       "parent": "cheese"
     },
-    "values": [ 4, null ]
+    "values": [ 4, null, false, 1e9999 ]
   },
 
   {
