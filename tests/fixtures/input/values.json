@@ -249,6 +249,70 @@
   },
 
   {
+    "_name": "Range (javascript with inputs, upper bound, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "range": {
+        "javascript": "inputs.maximum + 1"
+      }
+    },
+    "inputs": {
+      "maximum": 5
+    },
+    "values": [ 0, 0.5, 1, 2, 2.5, 3, 4, 5, 5.5, 6 ]
+  },
+
+  {
+    "_name": "Range (javascript with inputs, array, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "range": {
+        "javascript": "[ 4, inputs.maximum + 1 ]"
+      }
+    },
+    "inputs": {
+      "maximum": 7
+    },
+    "values": [ 4, 5, 6, 7, 8 ]
+  },
+
+  {
+    "_name": "Range (javascript with inputs, upper bound, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "range": {
+        "javascript": "inputs.maximum + 1"
+      }
+    },
+    "inputs": {
+      "maximum": 100
+    },
+    "values": [ 102, 203, 304, 405 ]
+  },
+
+  {
+    "_name": "Range (javascript with inputs, array, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "number",
+      "range": {
+        "javascript": "[ 3, inputs.maximum + 1 ]"
+      }
+    },
+    "inputs": {
+      "maximum": 4
+    },
+    "values": [ 0, 1, 2, 6, 180, 3600 ]
+  },
+
+  {
     "_name": "Length (simple, valid)",
 
     "valid": true,
