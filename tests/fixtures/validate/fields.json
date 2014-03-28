@@ -508,6 +508,100 @@
       }
     ]
   }]
+},
+
+{
+  "_name": "Scripted properties (required)",
+
+  "all": true,
+  "valid": true,
+
+  "forms": [{
+    "meta": {
+      "id": "f1"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "required": {
+          "javascript": "((new Date()).getDay() % 2 == 0)"
+        }
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Scripted properties (length)",
+
+  "all": true,
+  "valid": true,
+
+  "forms": [{
+    "meta": {
+      "id": "f1"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "length": {
+          "javascript": "2 + 2"
+        }
+      },
+      {
+        "id": "q2",
+        "type": "integer",
+        "length": {
+          "javascript": "[ 2 + 2 ]"
+        }
+      },
+      {
+        "id": "q3",
+        "type": "integer",
+        "length": {
+          "javascript": "[ 2 + 2, 5 * 2 ]"
+        }
+      }
+    ]
+  }]
+},
+
+{
+  "_name": "Scripted properties (range)",
+
+  "all": true,
+  "valid": true,
+
+  "forms": [{
+    "meta": {
+      "id": "f1"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "integer",
+        "range": {
+          "javascript": "3 + 3"
+        }
+      },
+      {
+        "id": "q2",
+        "type": "integer",
+        "range": {
+          "javascript": "[ 1 + 1 ]"
+        }
+      },
+      {
+        "id": "q3",
+        "type": "integer",
+        "range": {
+          "javascript": "[ 1 + 1, 10 * 2 ]"
+        }
+      }
+    ]
+  }]
 }
 
 ]

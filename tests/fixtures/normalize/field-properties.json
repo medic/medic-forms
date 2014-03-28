@@ -1315,6 +1315,72 @@
       }
     }]
   }]
+},
+
+{
+  "_name": "Scripted properties (required)",
+
+  "check": [ "required" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "required": { "javascript": "2 > 1" }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "required": { "javascript": "2 > 1" }
+    }]
+  }]
+},
+
+{
+  "_name": "Scripted properties (repeat)",
+
+  "check": [ "repeat" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": { "javascript": "[ 1, 2 + 3 ]" }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "repeat": { "javascript": "[ 1, 2 + 3 ]" }
+    }]
+  }]
+},
+
+{
+  "_name": "Scripted properties (length, range)",
+
+  "check": [ "length", "range" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": { "javascript": "1 + 1" },
+      "range": { "javascript": "[ 20, 50 * 2 ]" }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "integer",
+      "length": { "javascript": "1 + 1" },
+      "range": { "javascript": "[ 20, 50 * 2 ]" }
+    }]
+  }]
 }
+
 
 ]
