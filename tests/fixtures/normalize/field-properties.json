@@ -1281,20 +1281,15 @@
 },
 
 {
- "_name": "Script directive pass-through (required, repeat, default)",
+ "_name": "Scripted properties (default)",
 
-  "check": [ "required", "repeat", "default" ],
+  "check": [ "default" ],
 
   "from": [{
     "fields": [{
       "id": "f1",
       "type": "integer",
-      "required": {
-        "javascript": "return true;"
-      },
-      "repeat": {
-        "javascript": "return [ 0, 3 ];"
-      },
+      "repeat": true,
       "default": {
         "javascript": "return [ 0, 1, 2 ];"
       }
@@ -1304,12 +1299,7 @@
     "fields": [{
       "id": "f1",
       "type": "integer",
-      "required": {
-        "javascript": "return true;"
-      },
-      "repeat": {
-        "javascript": "return [ 0, 3 ];"
-      },
+      "repeat": true,
       "default": {
         "javascript": "return [ 0, 1, 2 ];"
       }
