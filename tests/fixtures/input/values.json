@@ -107,7 +107,7 @@
   },
 
   {
-    "_name": "Required fields (javascript -> true, empty is invalid)",
+    "_name": "Required fields (javascript, empty is invalid)",
 
     "valid": false,
     "field": {
@@ -120,7 +120,7 @@
   },
 
   {
-    "_name": "Required fields (javascript -> true, non-empty is valid)",
+    "_name": "Required fields (javascript, non-empty is valid)",
 
     "valid": true,
     "field": {
@@ -133,7 +133,7 @@
   },
 
   {
-    "_name": "Required fields (javascript -> false, all valid)",
+    "_name": "Required fields (javascript, all valid)",
 
     "valid": true,
     "field": {
@@ -146,12 +146,11 @@
   },
 
   {
-    "_name": "Required fields (complex javascript -> false, empty is valid)",
+    "_name": "Required fields (javascript with inputs, empty is valid)",
 
     "valid": false,
     "error": "Value must be a single plain-text string",
     "field": {
-      "id": "child",
       "type": "string",
       "required": {
         "javascript": "inputs.parent === 'cheese'"
@@ -164,11 +163,10 @@
   },
 
   {
-    "_name": "Required fields (complex javascript -> true, non-empty is valid)",
+    "_name": "Required fields (javascript with inputs, non-empty is valid)",
 
     "valid": true,
     "field": {
-      "id": "child",
       "type": "number",
       "required": {
         "javascript": "inputs.parent === 'cheese'"
@@ -177,15 +175,14 @@
     "inputs": {
       "parent": "cheese"
     },
-    "values": [ 4 ]
+    "values": [ 4, 1e9999, 1.25 ]
   },
 
   {
-    "_name": "Required fields (complex javascript -> false, all valid)",
+    "_name": "Required (javascript with inputs, all valid)",
 
     "valid": true,
     "field": {
-      "id": "child",
       "type": "number",
       "required": {
         "javascript": "inputs.parent === 'brie'"
@@ -252,7 +249,18 @@
   },
 
   {
-    "_name": "Length (limited, integer values, valid input)",
+    "_name": "Length (simple, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "string",
+      "length": [ 0, 4 ]
+    },
+    "values": [ "", "a", "ab", "abc", "abcd" ]
+  },
+
+  {
+    "_name": "Length (integer values, valid)",
 
     "valid": true,
     "field": {
@@ -263,7 +271,7 @@
   },
 
   {
-    "_name": "Length (limited, integer values, invalid input)",
+    "_name": "Length (integer values, invalid)",
 
     "valid": false,
     "field": {
@@ -274,7 +282,7 @@
   },
 
   {
-    "_name": "Length (limited, numeric values, valid input)",
+    "_name": "Length (numeric values, valid)",
 
     "valid": true,
     "field": {
@@ -285,7 +293,7 @@
   },
 
   {
-    "_name": "Length (limited, numeric values, invalid input)",
+    "_name": "Length (numeric values, invalid input)",
 
     "valid": false,
     "field": {
@@ -293,6 +301,70 @@
       "length": [ 1, 4 ]
     },
     "values": [ -1.23, 1.234, 0.123 ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, upper bound, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "inputs.limit + 1"
+      }
+    },
+    "inputs": {
+      "limit": 5
+    },
+    "values": [ "", "a", "ab", "abc", "abcd", "abcde", "abcdef" ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, upper bound, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "inputs.limit + 1"
+      }
+    },
+    "inputs": {
+      "limit": 1
+    },
+    "values": [ "abc", "abcd", "abcde", "abcdef" ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, array, valid)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "return [ 3, 2 + 2 ]"
+      }
+    },
+    "inputs": {
+      "limit": 1
+    },
+    "values": [ "abc", "abcd" ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, array, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "return [ 9, 5 * 2 ]"
+      }
+    },
+    "inputs": {
+      "limit": 1
+    },
+    "values": [ "a", "ab", "abc", "abcd" ]
   },
 
   {
