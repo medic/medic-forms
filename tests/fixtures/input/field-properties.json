@@ -1,0 +1,1034 @@
+[
+  {
+    "_name": "Required fields (empty is invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "required": true
+    },
+    "values": [ null, "" ]
+  },
+
+  {
+    "_name": "Required fields (empty is valid)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "required": true
+    },
+    "values": [ "" ]
+  },
+
+  {
+    "_name": "Required fields (false, empty is valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": false
+    },
+    "values": [ true, false, null ]
+  },
+
+  {
+    "_name": "Required fields (true, non-empty is valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": true
+    },
+    "values": [ 0, -1e9999, 1e9999 ]
+  },
+
+  {
+    "_name": "Required fields (javascript, empty is invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "true"
+      }
+    },
+    "values": [ "", null ]
+  },
+
+  {
+    "_name": "Required fields (javascript, non-empty is valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "true"
+      }
+    },
+    "values": [ 1, 0 ]
+  },
+
+  {
+    "_name": "Required fields (javascript, all valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "false"
+      }
+    },
+    "values": [ true, false, null, 1, 0 ]
+  },
+
+  {
+    "_name": "Required fields (javascript with inputs, empty is valid)",
+
+    "valid": false,
+    "error": "Value must be a single plain-text string",
+    "field": {
+      "type": "string",
+      "required": {
+        "javascript": "inputs.parent === 'cheese'"
+      }
+    },
+    "inputs": {
+      "parent": "cheese"
+    },
+    "values": [ null ]
+  },
+
+  {
+    "_name": "Required fields (javascript with inputs, non-empty is valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "inputs.parent === 'cheese'"
+      }
+    },
+    "inputs": {
+      "parent": "cheese"
+    },
+    "values": [ 4, 1e9999, 1.25 ]
+  },
+
+  {
+    "_name": "Required (javascript with inputs, all valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "required": {
+        "javascript": "inputs.parent === 'brie'"
+      }
+    },
+    "inputs": {
+      "parent": "cheese"
+    },
+    "values": [ 4, null, false, 1e9999 ]
+  },
+
+  {
+    "_name": "Range (infinite, valid numbers)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "range": [ -1e9999, 1e9999 ]
+    },
+    "values": [ 0, -9999.99, 99.9, 9999.99, 1e9999, -1e9999, 1 ]
+  },
+
+  {
+    "_name": "Range (integer, infinite, input has decimal portion)",
+
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "range": [ -1e9999, 1e9999 ]
+    },
+    "values": [ -99999.0001, -9999.99, 99.9, 9999.99, 99999.0001 ]
+  },
+
+  {
+    "_name": "Range (integer, finite, input has decimal portion)",
+
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "range": [ -999, 999 ]
+    },
+    "values": [ -1000.1, -999.9, -1000, 999.9, 1000, 1000.1 ]
+  },
+
+  {
+    "_name": "Range (integer, positive, mixed invalid input)",
+
+    "valid": false,
+    "field": {
+      "type": "number",
+      "range": [ 1, 999 ]
+    },
+    "values": [ 0, 0.99, -0.99, 999.0001, 999.001, 999.01, 999.1, 1000 ]
+  },
+
+  {
+    "_name": "Range (javascript with inputs, upper bound, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "range": {
+        "javascript": "inputs.maximum + 1"
+      }
+    },
+    "inputs": {
+      "maximum": 5
+    },
+    "values": [ 0, 0.5, 1, 2, 2.5, 3, 4, 5, 5.5, 6 ]
+  },
+
+  {
+    "_name": "Range (javascript with inputs, array, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "range": {
+        "javascript": "[ 4, inputs.maximum + 1 ]"
+      }
+    },
+    "inputs": {
+      "maximum": 7
+    },
+    "values": [ 4, 5, 6, 7, 8 ]
+  },
+
+  {
+    "_name": "Range (javascript with inputs, upper bound, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "range": {
+        "javascript": "inputs.maximum + 1"
+      }
+    },
+    "inputs": {
+      "maximum": 100
+    },
+    "values": [ 102, 203, 304, 405 ]
+  },
+
+  {
+    "_name": "Range (javascript with inputs, array, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "number",
+      "range": {
+        "javascript": "[ 3, inputs.maximum + 1 ];"
+      }
+    },
+    "inputs": {
+      "maximum": 4
+    },
+    "values": [ 0, 1, 2, 6, 180, 3600 ]
+  },
+
+  {
+    "_name": "Length (simple, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "string",
+      "length": [ 0, 4 ]
+    },
+    "values": [ "", "a", "ab", "abc", "abcd" ]
+  },
+
+  {
+    "_name": "Length (integer values, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "length": [ 3, 5 ]
+    },
+    "values": [ 123, 4567, 89000 ]
+  },
+
+  {
+    "_name": "Length (integer values, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "length": [ 3, 5 ]
+    },
+    "values": [ 1, 23, 456789 ]
+  },
+
+  {
+    "_name": "Length (numeric values, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "number",
+      "length": [ 1, 4 ]
+    },
+    "values": [ 1, 1.2, 1.33, -1.2, -1, 0 ]
+  },
+
+  {
+    "_name": "Length (numeric values, invalid input)",
+
+    "valid": false,
+    "field": {
+      "type": "number",
+      "length": [ 1, 4 ]
+    },
+    "values": [ -1.23, 1.234, 0.123 ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, upper bound, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "inputs.limit + 1"
+      }
+    },
+    "inputs": {
+      "limit": 5
+    },
+    "values": [ "", "a", "ab", "abc", "abcd", "abcde", "abcdef" ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, upper bound, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "inputs.limit + 1"
+      }
+    },
+    "inputs": {
+      "limit": 1
+    },
+    "values": [ "abc", "abcd", "abcde", "abcdef" ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, array, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "[ 3, 2 + 2 ];"
+      }
+    },
+    "inputs": {
+      "limit": 1
+    },
+    "values": [ "abc", "abcd" ]
+  },
+
+  {
+    "_name": "Length (javascript with inputs, array, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "length": {
+        "javascript": "[ 9, 5 * 2 ]"
+      }
+    },
+    "inputs": {
+      "limit": 1
+    },
+    "values": [ "a", "ab", "abc", "abcd" ]
+  },
+
+  {
+    "_name": "Repetition (limited, GPS with elevation, valid",
+
+    "valid": true,
+    "field": {
+      "type": "gps",
+      "elevation": true,
+      "repeat": [ 1, 3 ]
+    },
+    "values": [
+      [ [ -12.23, 12.234, -10 ] ],
+      [ [ 0, 0, 0 ], [ -15.23, 91.234, -100 ] ],
+      [
+        [ 0, 0, 0 ],
+        {
+          "latitude": 90,
+          "longitude": 180,
+          "elevation": -1000
+        },
+        {
+          "latitude": -90,
+          "longitude": 180,
+          "elevation": 1000
+        }
+      ]
+    ]
+  },
+
+  {
+    "_name": "Repetition (limited, GPS with elevation, invalid",
+
+    "valid": false,
+    "field": {
+      "type": "gps",
+      "elevation": false,
+      "repeat": [ 4, 8 ]
+    },
+    "values": [
+      [ ],
+      [ [ -12.23, 12.234 ] ],
+      [ [ 0, 0 ], [ -15.23, 91.234 ] ],
+      [
+        [ 0, 0 ],
+        {
+          "latitude": 90,
+          "longitude": 180
+        },
+        {
+          "latitude": -90,
+          "longitude": 180
+        }
+      ]
+    ]
+  },
+
+  {
+    "_name": "Repetition (limited, nested fields, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "fields",
+      "repeat": [ 0, 5 ],
+      "required": false,
+      "fields": [{
+        "id": "greeting",
+        "type": "select",
+        "required": false,
+        "repeat": [ 0, 3 ],
+        "items": [
+          [ 1, { "en": "Hello", "es": "Hola" } ],
+          [ 2, "Good Day" ],
+          [ 3, "Greetings" ],
+          [ 4, "Mahalo" ]
+        ]
+      }, {
+        "id": "closing",
+        "type": "select",
+        "repeat": [ 0, 3 ],
+        "required": false,
+        "items": [
+          [ 1, { "en": "Cheers" } ],
+          [ 2, "Sincerely" ],
+          [ 3, { "en": "Goodbye" } ],
+          [ 4, "Ta ta" ]
+        ]
+      }]
+    },
+    "values": [
+      [ ],
+      false,
+      [ { } ],
+      [ { "greeting": [ 1 ] } ],
+      [ { "closing": [ 1 ] } ],
+      [ { "greeting": [ 1 ], "closing": [ ] } ],
+      [ { "closing": [ 1 ], "greeting": [ ] } ],
+      [ { "greeting": false, "closing": false } ]
+    ]
+  },
+
+  {
+    "_name": "Repetition (limited, nested fields, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "fields",
+      "repeat": [ 0, 5 ],
+      "required": false,
+      "fields": [{
+        "id": "greeting",
+        "type": "select",
+        "required": false,
+        "repeat": [ 0, 3 ],
+        "items": [
+          [ 1, { "en": "Hello", "es": "Hola" } ],
+          [ 2, "Good Day" ],
+          [ 3, "Greetings" ],
+          [ 4, "Mahalo" ]
+        ]
+      }, {
+        "id": "closing",
+        "type": "select",
+        "repeat": [ 0, 3 ],
+        "required": false,
+        "items": [
+          [ 1, { "en": "Cheers" } ],
+          [ 2, "Sincerely" ],
+          [ 3, { "en": "Goodbye" } ],
+          [ 4, "Ta ta" ]
+        ]
+      }]
+    },
+    "values": [
+      [ 1, 2, 3 ],
+      [ [], [], [] ],
+      [ false, true, null ],
+      [ {}, {}, {}, {}, {}, {} ],
+      [ { "closing": [ null ] } ],
+      [ { "closing": [ true ] } ],
+      [ { "greeting": [ false ] } ],
+      [ false ], [ true ], [ null ]
+    ]
+  },
+
+  {
+    "_name": "Repetition (limited, nested fields, required, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "fields",
+      "repeat": [ 1, 5 ],
+      "required": true,
+      "fields": [{
+        "id": "greeting",
+        "type": "select",
+        "required": true,
+        "repeat": [ 1, 3 ],
+        "items": [
+          [ 1, "Hello" ],
+          [ 2, "Good Day" ],
+          [ 3, "Greetings" ],
+          [ 4, "Mahalo" ]
+        ]
+      }, {
+        "id": "closing",
+        "type": "select",
+        "repeat": [ 1, 3 ],
+        "required": true,
+        "items": [
+          [ 1, "Cheers" ],
+          [ 2, "Sincerely" ],
+          [ 3, "Goodbye" ],
+          [ 4, "Ta ta" ]
+        ]
+      }]
+    },
+    "values": [
+      [],
+      [ {} ],
+      [ false ],
+      [ { "closing": [ 1, 2 ] }],
+      [ { "greeting": [ 1, 2 ] }],
+      [ { "closing": [ ], "greeting": [ ] }],
+      [ { "greeting": [ 1, 2 ], "closing": false }],
+      [ { "closing": [ 1, 2 ], "greeting": false }],
+      [ { "closing": [ false, 2 ], "greeting": [ 1, false ] } ]
+    ]
+  },
+
+  {
+    "_name": "Repetition (javascript, upper bound, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "repeat": { "javascript": "2 + 2;" }
+    },
+    "values": [
+      [ ],
+      [ 1 ],
+      [ 1, 2 ],
+      [ 1, 2, 3 ],
+      [ 1, 2, 3, 4 ]
+    ]
+  },
+
+  {
+    "_name": "Repetition (javascript, array, required, invalid)",
+
+    "valid": false,
+    "field": {
+      "required": true,
+      "type": "integer",
+      "repeat": { "javascript": "[ lower - 1, upper + 1 ];" }
+    },
+    "values": [
+      [ ],
+      [ 1, 2, 3 ],
+      [ 1, 2, 3, 4 ],
+      [ 1, 2, 3, 4, 5 ],
+      [ 1, 2, 3, 4, 5, 6 ]
+    ],
+    "inputs": {
+      "lower": 4, "upper": 5
+    }
+  },
+
+  {
+    "_name": "Repetition (javascript, invalid return)",
+
+    "valid": false,
+    "field": {
+      "required": true,
+      "type": "integer",
+      "repeat": { "javascript": "{ javascript: '2 + 2' }" }
+    },
+    "values": [
+      [ 1 ],
+      [ 1, 2 ],
+      [ 1, 2, 3 ],
+      [ 1, 2, 3, 4 ]
+    ]
+  },
+
+  {
+    "_name": "Validations (trivial, 'or' operator)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "validations": {
+        "operator": "||",
+        "javascript": {},
+        "registered": {}
+      }
+    },
+    "values": [ 10, 20 ]
+  },
+
+  {
+    "_name": "Validations (javascript, simple)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "validations": {
+        "javascript": {
+          "default": "true"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ 10, 20 ]
+  },
+
+  {
+    "_name": "Validations (javascript, equality)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "validations": {
+        "javascript": {
+          "default": "input == 10"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ 10 ]
+  },
+
+  {
+    "_name": "Validations (javascript, greater-than)",
+
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "validations": {
+        "operator": "&&",
+        "javascript": {
+          "default": "input > 10"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ 10 ]
+  },
+
+  {
+    "_name": "Validations (javascript, modulus/equality)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "validations": {
+        "operator": "&&",
+        "javascript": {
+          "big": "input > 10",
+          "even": "input % 2 == 0"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ 18 ]
+  },
+
+  {
+    "_name": "Validations ('or' operator, javascript, mixed-pass/fail)",
+
+    "valid": true,
+    "field": {
+      "type": "integer",
+      "validations": {
+        "operator": "||",
+        "javascript": {
+          "big": "input > 10",
+          "even": "input % 2 == 0"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ 8 ]
+  },
+
+  {
+    "_name": "Validations ('or' operator, javascript, all-fail)",
+
+    "valid": false,
+    "field": {
+      "type": "integer",
+      "validations": {
+        "operator": "||",
+        "javascript": {
+          "big": "input > 10",
+          "even": "input % 2 == 0"
+        },
+        "registered": {}
+      }
+    },
+    "values": [ 1, 3, 5, 7, 9 ],
+    "error": "Value causes one or more validations to fail"
+  },
+
+  {
+    "_name": "Validations ('and' operator, registered, single-rule pass)",
+
+    "valid": true,
+    "field": {
+      "type": "string",
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true
+        }
+      }
+    },
+    "values": [ "Avenue", "Ankle" ]
+  },
+
+  {
+    "_name": "Validations ('and' operator, registered, single-rule fail)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "required": true,
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true
+        }
+      }
+    },
+    "values": [ "Boardwalk", "" ]
+  },
+
+  {
+    "_name": "Validations ('and' operator, registered, multi-rule pass)",
+
+    "valid": true,
+    "field": {
+      "type": "string",
+      "required": false,
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true,
+          "endsWithA": true
+        }
+      }
+    },
+    "values": [ "ALPACA", "A", "" ]
+  },
+
+  {
+    "_name": "Validations ('and' operator, registered, multi-rule fail)",
+
+    "valid": false,
+    "field": {
+      "type": "string",
+      "required": true,
+      "validations": {
+        "operator": "&&",
+        "javascript": {},
+        "registered": {
+          "startsWithA": true,
+          "endsWithA": true
+        }
+      }
+    },
+    "values": [ "Aaron", "BANANA", "" ]
+  },
+
+  {
+    "_name": "Validations (javascript, nested fields, input)",
+
+    "valid": true,
+    "field": {
+      "type": "fields",
+      "required": true,
+      "fields": [{
+        "id": "a",
+        "type": "integer",
+        "validations": {
+          "javascript": {
+            "upper": "inputs.top && input <= inputs.bounds.max"
+          }
+        }
+      }, {
+        "id": "b",
+        "type": "integer",
+        "validations": {
+          "javascript": {
+            "lower": "inputs.top && input >= inputs.bounds.min"
+          }
+        }
+      }]
+    },
+    "values": [
+      { "a": 3, "b": 5 }, { "a": 4, "b": 4 }, { "a": 5, "b": 3 }
+    ],
+    "inputs": {
+      "top": true,
+      "bounds": { "min": 3, "max": 5 }
+    }
+  },
+
+  {
+    "_name": "Conditions (required, valid, skipped)",
+
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "&&",
+        "javascript": {
+          "default": "true"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ "" ]
+  },
+
+  {
+    "_name": "Conditions (not required, invalid, skipped)",
+
+    "valid": false,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {
+          "default": "true"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ "should not have value" ]
+  },
+
+  {
+    "_name": "Conditions (not required, valid, not skipped)",
+
+    "valid": true,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {
+          "default": "false"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ "value", "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (required, 'or' operator, invalid, not skipped)",
+
+    "valid": false,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "||",
+        "javascript": {
+          "default": "false"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (javascript, 'or' operator, valid, skipped)",
+
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "||",
+        "javascript": {
+          "one": "false",
+          "two": "true"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (javascript, 'or' operator, valid, not skipped)",
+
+    "valid": true,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "||",
+        "javascript": {
+          "one": "false",
+          "two": "true && false"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (javascript, 'and' operator, valid, skipped)",
+
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "&&",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "no"
+    },
+    "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (javascript, 'and' operator, valid, not skipped)",
+
+    "valid": true,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "conditions": {
+        "operator": "&&",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "yes"
+    },
+    "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (structured, 'or' operator, valid, skipped)",
+
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "||",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no",
+          "animal": "elephant"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "yes",
+      "animal": "elephant"
+    },
+    "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (structured, 'and' operator, invalid, not skipped)",
+
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "&&",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no",
+          "animal": "elephant"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "no",
+      "animal": "elephant"
+    },
+    "values": [ "", false, null ]
+  }
+
+]

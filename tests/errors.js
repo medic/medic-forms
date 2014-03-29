@@ -64,7 +64,7 @@ var _assert = function (_test, _fixture, _value) {
   _test.ok(_.isArray(fields), 'must normalize properly');
 
   input_validator.validate_all(
-    _value.input, fields, function (_rv) {
+    fields, _value.input, false, function (_rv) {
       _test.ok(
         util.is_recursive_subset(_value.expect, _rv),
           'should produce expected output'
