@@ -1021,7 +1021,26 @@
         "structured": {}
       }
     },
-    "values": [ "value", "" ]
+    "values": [ "value", "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (required, 'or' operator, invalid, not skipped)",
+
+    "valid": false,
+    "skipped": false,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "||",
+        "javascript": {
+          "default": "false"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ "", false, null ]
   },
 
   {
@@ -1041,7 +1060,7 @@
         "structured": {}
       }
     },
-    "values": [ "" ]
+    "values": [ "", false, null ]
   },
 
   {
@@ -1060,7 +1079,7 @@
         "structured": {}
       }
     },
-    "values": [ "" ]
+    "values": [ "", false, null ]
   },
 
   {
@@ -1082,7 +1101,7 @@
     "inputs": {
       "some_radio_input": "no"
     },
-    "values": [ "" ]
+    "values": [ "", false, null ]
   },
 
   {
@@ -1103,7 +1122,7 @@
     "inputs": {
       "some_radio_input": "yes"
     },
-    "values": [ "" ]
+    "values": [ "", false, null ]
   },
 
   {
@@ -1127,7 +1146,31 @@
       "some_radio_input": "yes",
       "animal": "elephant"
     },
-    "values": [ "" ]
+    "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Conditions (structured, 'and' operator, invalid, not skipped)",
+
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "string",
+      "required": true,
+      "conditions": {
+        "operator": "&&",
+        "javascript": {},
+        "structured": {
+          "some_radio_input": "no",
+          "animal": "elephant"
+        }
+      }
+    },
+    "inputs": {
+      "some_radio_input": "no",
+      "animal": "elephant"
+    },
+    "values": [ "", false, null ]
   },
 
   {
