@@ -303,7 +303,7 @@
     "field": {
       "type": "number",
       "range": {
-        "javascript": "[ 3, inputs.maximum + 1 ]"
+        "javascript": "[ 3, inputs.maximum + 1 ];"
       }
     },
     "inputs": {
@@ -402,11 +402,11 @@
   {
     "_name": "Length (javascript with inputs, array, valid)",
 
-    "valid": false,
+    "valid": true,
     "field": {
       "type": "string",
       "length": {
-        "javascript": "return [ 3, 2 + 2 ]"
+        "javascript": "[ 3, 2 + 2 ];"
       }
     },
     "inputs": {
@@ -422,7 +422,7 @@
     "field": {
       "type": "string",
       "length": {
-        "javascript": "return [ 9, 5 * 2 ]"
+        "javascript": "[ 9, 5 * 2 ]"
       }
     },
     "inputs": {
@@ -622,19 +622,6 @@
   },
 
   {
-    "_name": "Image (base64 data, invalid)",
-
-    "valid": false,
-    "field": {
-      "type": "image"
-    },
-    "values": [
-      {"data": "YWJj%ZGVmZw=="},
-      {"data": ""}
-    ]
-  },
-
-  {
     "_name": "Repetition (limited, nested fields, invalid)",
 
     "valid": false,
@@ -726,7 +713,77 @@
   },
 
   {
-    "_name": "Image (valid base64 data)",
+    "_name": "Repetition (javascript, upper bound, valid)",
+
+    "valid": true,
+    "field": {
+      "id": "q1",
+      "type": "integer",
+      "repeat": { "javascript": "2 + 2;" }
+    },
+    "values": [
+      [ ],
+      [ 1 ],
+      [ 1, 2 ],
+      [ 1, 2, 3 ],
+      [ 1, 2, 3, 4 ]
+    ]
+  },
+
+  {
+    "_name": "Repetition (javascript, array, required, invalid)",
+
+    "valid": false,
+    "field": {
+      "id": "q1",
+      "required": true,
+      "type": "integer",
+      "repeat": { "javascript": "[ lower - 1, upper + 1 ];" }
+    },
+    "values": [
+      [ ],
+      [ 1, 2, 3 ],
+      [ 1, 2, 3, 4 ],
+      [ 1, 2, 3, 4, 5 ],
+      [ 1, 2, 3, 4, 5, 6 ]
+    ],
+    "inputs": {
+      "lower": 4, "upper": 5
+    }
+  },
+
+  {
+    "_name": "Repetition (javascript, invalid return)",
+
+    "valid": false,
+    "field": {
+      "id": "q1",
+      "required": true,
+      "type": "integer",
+      "repeat": { "javascript": "{ javascript: '2 + 2' }" }
+    },
+    "values": [
+      [ 1 ],
+      [ 1, 2 ],
+      [ 1, 2, 3 ],
+      [ 1, 2, 3, 4 ]
+    ]
+  },
+
+  {
+    "_name": "Image (base64 data, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "image"
+    },
+    "values": [
+      {"data": "YWJj%ZGVmZw=="},
+      {"data": ""}
+    ]
+  },
+  {
+    "_name": "Image (base64 data, valid)",
 
     "valid": false,
     "field": {
@@ -738,7 +795,7 @@
   },
 
   {
-    "_name": "Image (valid base64 data, invalid format)",
+    "_name": "Image (base64 data, invalid format)",
 
     "valid": false,
     "field": {
@@ -750,7 +807,7 @@
   },
 
   {
-    "_name": "Image (valid formats: jpeg, gif, png, tiff)",
+    "_name": "Image (valid, jpeg/gif/png/tiff)",
 
     "valid": true,
     "async" : true,
