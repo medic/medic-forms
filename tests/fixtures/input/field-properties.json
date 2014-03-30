@@ -50,7 +50,7 @@
     "field": {
       "type": "number",
       "required": {
-        "javascript": "true"
+        "javascript": "return true"
       }
     },
     "values": [ "", null ]
@@ -63,7 +63,7 @@
     "field": {
       "type": "number",
       "required": {
-        "javascript": "true"
+        "javascript": "return true"
       }
     },
     "values": [ 1, 0 ]
@@ -76,7 +76,7 @@
     "field": {
       "type": "number",
       "required": {
-        "javascript": "false"
+        "javascript": "return false"
       }
     },
     "values": [ true, false, null, 1, 0 ]
@@ -90,7 +90,7 @@
     "field": {
       "type": "string",
       "required": {
-        "javascript": "inputs.parent === 'cheese'"
+        "javascript": "return (inputs.parent === 'cheese')"
       }
     },
     "inputs": {
@@ -106,7 +106,7 @@
     "field": {
       "type": "number",
       "required": {
-        "javascript": "inputs.parent === 'cheese'"
+        "javascript": "return (inputs.parent === 'cheese')"
       }
     },
     "inputs": {
@@ -122,7 +122,7 @@
     "field": {
       "type": "number",
       "required": {
-        "javascript": "inputs.parent === 'brie'"
+        "javascript": "return (inputs.parent === 'brie')"
       }
     },
     "inputs": {
@@ -182,7 +182,7 @@
     "field": {
       "type": "number",
       "range": {
-        "javascript": "inputs.maximum + 1"
+        "javascript": "return (inputs.maximum + 1)"
       }
     },
     "inputs": {
@@ -198,7 +198,7 @@
     "field": {
       "type": "integer",
       "range": {
-        "javascript": "[ 4, inputs.maximum + 1 ]"
+        "javascript": "return [ 4, inputs.maximum + 1 ]"
       }
     },
     "inputs": {
@@ -214,7 +214,7 @@
     "field": {
       "type": "integer",
       "range": {
-        "javascript": "inputs.maximum + 1"
+        "javascript": "return (inputs.maximum + 1)"
       }
     },
     "inputs": {
@@ -230,7 +230,7 @@
     "field": {
       "type": "number",
       "range": {
-        "javascript": "[ 3, inputs.maximum + 1 ];"
+        "javascript": "return [ 3, inputs.maximum + 1 ];"
       }
     },
     "inputs": {
@@ -301,7 +301,7 @@
     "field": {
       "type": "string",
       "length": {
-        "javascript": "inputs.limit + 1"
+        "javascript": "return (inputs.limit + 1)"
       }
     },
     "inputs": {
@@ -317,7 +317,7 @@
     "field": {
       "type": "string",
       "length": {
-        "javascript": "inputs.limit + 1"
+        "javascript": "return (inputs.limit + 1)"
       }
     },
     "inputs": {
@@ -333,7 +333,7 @@
     "field": {
       "type": "string",
       "length": {
-        "javascript": "[ 3, 2 + 2 ];"
+        "javascript": "return [ 3, 2 + 2 ];"
       }
     },
     "inputs": {
@@ -349,7 +349,7 @@
     "field": {
       "type": "string",
       "length": {
-        "javascript": "[ 9, 5 * 2 ]"
+        "javascript": "return [ 9, 5 * 2 ]"
       }
     },
     "inputs": {
@@ -552,7 +552,7 @@
     "valid": true,
     "field": {
       "type": "integer",
-      "repeat": { "javascript": "2 + 2;" }
+      "repeat": { "javascript": "return 2 + 2;" }
     },
     "values": [
       [ ],
@@ -570,7 +570,9 @@
     "field": {
       "required": true,
       "type": "integer",
-      "repeat": { "javascript": "[ lower - 1, upper + 1 ];" }
+      "repeat": {
+        "javascript": "return [ lower - 1, upper + 1 ];"
+      }
     },
     "values": [
       [ ],
@@ -591,7 +593,9 @@
     "field": {
       "required": true,
       "type": "integer",
-      "repeat": { "javascript": "{ javascript: '2 + 2' }" }
+      "repeat": {
+        "javascript": "return { javascript: 'return 2 + 2' }"
+      }
     },
     "values": [
       [ 1 ],
@@ -624,7 +628,7 @@
       "type": "integer",
       "validations": {
         "javascript": {
-          "default": "true"
+          "default": "return true"
         },
         "registered": {}
       }
@@ -640,7 +644,7 @@
       "type": "integer",
       "validations": {
         "javascript": {
-          "default": "input == 10"
+          "default": "return input == 10"
         },
         "registered": {}
       }
@@ -657,7 +661,7 @@
       "validations": {
         "operator": "&&",
         "javascript": {
-          "default": "input > 10"
+          "default": "return input > 10"
         },
         "registered": {}
       }
@@ -674,8 +678,8 @@
       "validations": {
         "operator": "&&",
         "javascript": {
-          "big": "input > 10",
-          "even": "input % 2 == 0"
+          "big": "return input > 10",
+          "even": "return input % 2 == 0"
         },
         "registered": {}
       }
@@ -692,8 +696,8 @@
       "validations": {
         "operator": "||",
         "javascript": {
-          "big": "input > 10",
-          "even": "input % 2 == 0"
+          "big": "return input > 10",
+          "even": "return input % 2 == 0"
         },
         "registered": {}
       }
@@ -710,8 +714,8 @@
       "validations": {
         "operator": "||",
         "javascript": {
-          "big": "input > 10",
-          "even": "input % 2 == 0"
+          "big": "return input > 10",
+          "even": "return input % 2 == 0"
         },
         "registered": {}
       }
@@ -805,7 +809,7 @@
         "type": "integer",
         "validations": {
           "javascript": {
-            "upper": "inputs.top && input <= inputs.bounds.max"
+            "upper": "return inputs.top && input <= inputs.bounds.max"
           }
         }
       }, {
@@ -813,7 +817,7 @@
         "type": "integer",
         "validations": {
           "javascript": {
-            "lower": "inputs.top && input >= inputs.bounds.min"
+            "lower": "return inputs.top && input >= inputs.bounds.min"
           }
         }
       }]
@@ -838,7 +842,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {
-          "default": "true"
+          "default": "return true"
         },
         "structured": {}
       }
@@ -856,7 +860,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {
-          "default": "true"
+          "default": "return true"
         },
         "structured": {}
       }
@@ -874,7 +878,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {
-          "default": "false"
+          "default": "return false"
         },
         "structured": {}
       }
@@ -893,7 +897,7 @@
       "conditions": {
         "operator": "||",
         "javascript": {
-          "default": "false"
+          "default": "return false"
         },
         "structured": {}
       }
@@ -912,8 +916,8 @@
       "conditions": {
         "operator": "||",
         "javascript": {
-          "one": "false",
-          "two": "true"
+          "one": "return false",
+          "two": "return true"
         },
         "structured": {}
       }
@@ -931,8 +935,8 @@
       "conditions": {
         "operator": "||",
         "javascript": {
-          "one": "false",
-          "two": "true && false"
+          "one": "return false",
+          "two": "return (true && false)"
         },
         "structured": {}
       }
@@ -1029,6 +1033,49 @@
       "animal": "elephant"
     },
     "values": [ "", false, null ]
+  },
+
+  {
+    "_name": "Selection list (javascript, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "select",
+      "items": {
+        "javascript": "
+          var rv = [];
+          for (var i = 0; i < 100; i += 2) {
+            rv.push(i);
+          }
+          return rv;
+        "
+      }
+    },
+    "values": [
+      2, 20, 48, 96, null, false, true
+    ]
+  },
+
+  {
+    "_name": "Selection list (javascript, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "select",
+      "required": true,
+      "items": {
+        "javascript": "
+          var rv = [];
+          for (var i = 1; i < 100; i += 2) {
+            rv.push([ i, 'Number ' + i ]);
+          }
+          return rv;
+        "
+      }
+    },
+    "values": [
+      2, 20, 48, 96, null, false, true
+    ]
   }
 
 ]
