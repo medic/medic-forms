@@ -242,6 +242,7 @@
             "oneOf": [
               { "type": "integer" },
               { "$ref": "#/library/l10n" },
+              { "$ref": "#/library/script-specifier" },
               {
                 "type": "array",
                 "minItems": 1,

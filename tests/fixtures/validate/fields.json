@@ -525,7 +525,7 @@
         "id": "q1",
         "type": "integer",
         "required": {
-          "javascript": "((new Date()).getDay() % 2 == 0)"
+          "javascript": "return ((new Date()).getDay() % 2 == 0)"
         }
       }
     ]
@@ -547,21 +547,21 @@
         "id": "q1",
         "type": "integer",
         "length": {
-          "javascript": "2 + 2"
+          "javascript": "return 2 + 2"
         }
       },
       {
         "id": "q2",
         "type": "integer",
         "length": {
-          "javascript": "[ 2 + 2 ]"
+          "javascript": "return [ 2 + 2 ]"
         }
       },
       {
         "id": "q3",
         "type": "integer",
         "length": {
-          "javascript": "[ 2 + 2, 5 * 2 ]"
+          "javascript": "return [ 2 + 2, 5 * 2 ]"
         }
       }
     ]
@@ -583,21 +583,51 @@
         "id": "q1",
         "type": "integer",
         "range": {
-          "javascript": "3 + 3"
+          "javascript": "return 3 + 3"
         }
       },
       {
         "id": "q2",
         "type": "integer",
         "range": {
-          "javascript": "[ 1 + 1 ]"
+          "javascript": "return [ 1 + 1 ]"
         }
       },
       {
         "id": "q3",
         "type": "integer",
         "range": {
-          "javascript": "[ 1 + 1, 10 * 2 ]"
+          "javascript": "return [ 1 + 1, 10 * 2 ]"
+        }
+      }
+    ]
+  }]
+},
+
+
+{
+  "_name": "Scripted properties (selection list items)",
+
+  "all": true,
+  "valid": true,
+
+  "forms": [{
+    "meta": {
+      "id": "f1"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "select",
+        "items": {
+          "javascript": "return [ 1, 2, 3 ];"
+        }
+      },
+      {
+        "id": "q2",
+        "type": "select",
+        "items": {
+          "javascript": "return [ [ 1, 'Hi' ], [ 2, 'Bye' ] ];"
         }
       }
     ]

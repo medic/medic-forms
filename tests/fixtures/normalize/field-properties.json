@@ -1370,7 +1370,27 @@
       "range": { "javascript": "[ 20, 50 * 2 ]" }
     }]
   }]
-}
+},
 
+{
+  "_name": "Scripted properties (selection list items)",
+
+  "check": [ "items" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": { "javascript": "return [ [ 1, 'A' ], [ 2, 'B' ] ];" }
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": { "javascript": "return [ [ 1, 'A' ], [ 2, 'B' ] ];" }
+    }]
+  }]
+}
 
 ]
