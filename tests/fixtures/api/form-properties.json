@@ -70,16 +70,16 @@
       "fields": [
         {
           "id": "id",
-          "type": "integer"
+          "type": "integer",
+          "conditions": {
+            "structured": {
+              "id": 2
+            }
+          }
         },
         {
           "id": "name",
-          "type": "string",
-          "conditions": {
-            "structured": {
-              "id": "yes"
-            }
-          }
+          "type": "string"
         },
         {
           "id": "email",
@@ -89,6 +89,8 @@
     }],
 
     "input": [
+      { "$form": "form", "id": 1 },
+      { "$form": "form", "id": 2, "name": "Human" }
     ]
   },
 
@@ -167,6 +169,8 @@
     },
 
     "fill": [
+      { "valid": false },
+      { "valid": true }
     ]
   }
 }
