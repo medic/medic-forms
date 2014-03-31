@@ -70,10 +70,11 @@
       "fields": [
         {
           "id": "id",
+          "required": true,
           "type": "integer",
           "conditions": {
             "structured": {
-              "id": 2
+              "name": "Human"
             }
           }
         },
@@ -89,8 +90,9 @@
     }],
 
     "input": [
-      { "$form": "form", "id": 1 },
-      { "$form": "form", "id": 2, "name": "Human" }
+      { "$form": "form", "id": 2, "name": "Human" },
+      { "$form": "form", "id": null, "name": "Human" },
+      { "$form": "form", "id": 1, "email": "me@example.net" }
     ]
   },
 
@@ -111,12 +113,12 @@
             "description": { "un": "id" },
             "repeat": false,
             "range": [ -1e9999, 1e9999 ],
-            "length": [ 0, 1e9999 ],
-            "required": false,
+            "length": [ 1, 1e9999 ],
+            "required": true,
             "conditions": {
               "operator": "&&",
               "javascript": {},
-              "structured": {}
+              "structured": { "name": "Human" }
             },
             "validations": {
               "operator": "&&",
@@ -136,7 +138,7 @@
             "conditions": {
               "operator": "&&",
               "javascript": {},
-              "structured": { "id": "yes" }
+              "structured": {}
             },
             "validations": {
               "operator": "&&",
@@ -169,8 +171,8 @@
     },
 
     "fill": [
-      { "valid": false },
-      { "valid": true }
+      { "valid": true },
+      { "valid": false }, { "valid": false }
     ]
   }
 }
