@@ -838,7 +838,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {
-          "default": "true"
+          "default": "false"
         },
         "structured": {}
       }
@@ -856,7 +856,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {
-          "default": "true"
+          "default": "false"
         },
         "structured": {}
       }
@@ -874,7 +874,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {
-          "default": "false"
+          "default": "true"
         },
         "structured": {}
       }
@@ -893,7 +893,7 @@
       "conditions": {
         "operator": "||",
         "javascript": {
-          "default": "false"
+          "default": "true"
         },
         "structured": {}
       }
@@ -952,7 +952,7 @@
         "operator": "&&",
         "javascript": {},
         "structured": {
-          "some_radio_input": "no"
+          "some_radio_input": "yes"
         }
       }
     },
@@ -1010,8 +1010,8 @@
   {
     "_name": "Conditions (structured, 'and' operator, invalid, not skipped)",
 
-    "valid": true,
-    "skipped": true,
+    "valid": false,
+    "skipped": false,
     "field": {
       "type": "string",
       "required": true,
@@ -1019,7 +1019,7 @@
         "operator": "&&",
         "javascript": {},
         "structured": {
-          "some_radio_input": "no",
+          "some_radio_input": "yes",
           "animal": "elephant"
         }
       }
