@@ -1,0 +1,102 @@
+[
+
+{
+  "_name": "Identifiers (l10n, valid)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form",
+        "language": "en",
+        "description": "Example form"
+      },
+      "fields": [{
+        "id": "f1",
+        "type": "integer"
+      }, {
+        "id": "f2",
+        "type": "number",
+        "name": "second-field"
+      }, {
+        "id": "f3",
+        "type": "string",
+        "description": "Third field"
+      }, {
+        "id": "f4",
+        "type": "timestamp",
+        "name": "fourth-field",
+        "description": "Fourth field"
+      }, {
+        "id": "f5",
+        "type": "date",
+        "name": { "en": "Hello", "fr": "Bonjour" }
+      }, {
+        "id": "f6",
+        "type": "gps",
+        "description": { "en": "Hello", "fr": "Bonjour" }
+      }, {
+        "id": "f7",
+        "type": "image",
+        "name": { "es": "Hola" },
+        "description": { "fr": "Bonjour" }
+      }]
+    }],
+
+    "input": [{
+      "$form": "form", "f7": false,
+      "f1": 1, "f2": 2, "f3": "Hello",
+      "f4": "2012-11-05T13:40:52.280Z",
+      "f5": "2014-04-02", "f6": [ 45.52, -122.681944 ]
+    }]
+  },
+
+  "expect": {
+    "load": {
+      "valid": true,
+      "result": [{
+        "meta": {
+          "id": "form",
+          "name": { "en": "form" },
+          "description": { "en": "Example form" }
+        },
+        "fields": [{
+          "name": { "en": "f1" },
+          "description": { "en": "f1" }
+        }, {
+          "name": { "en": "second-field" },
+          "description": { "en": "second-field" }
+        }, {
+          "name": { "en": "f3" },
+          "description": { "en": "Third field" }
+        }, {
+          "name": { "en": "fourth-field" },
+          "description": { "en": "Fourth field" }
+        }, {
+          "name": { "en": "Hello", "fr": "Bonjour" },
+          "description": { "en": "Hello", "fr": "Bonjour" }
+        }, {
+          "name": { "en": "f6" },
+          "description": { "en": "Hello", "fr": "Bonjour" }
+        }, {
+          "name": { "es": "Hola" },
+          "description": { "fr": "Bonjour" }
+        }]
+      }]
+    },
+
+    "fill": [{
+      "valid": true,
+      "detail": {
+        "f1": { "valid": true },
+        "f2": { "valid": true },
+        "f3": { "valid": true },
+        "f4": { "valid": true },
+        "f5": { "valid": true },
+        "f6": { "valid": true },
+        "f7": { "valid": true, "omitted": true }
+      }
+    }]
+  }
+}
+
+]

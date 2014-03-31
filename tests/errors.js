@@ -76,6 +76,6 @@ var _assert = function (_test, _fixture, _value) {
 
 /* Tests */
 util.make_tests(
-  'input-validation-errors', exports,
+  'input-validation', exports,
     fixtures.errors.input, _assert
 );

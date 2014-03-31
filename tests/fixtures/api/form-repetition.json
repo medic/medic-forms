@@ -1,0 +1,173 @@
+[
+
+{
+  "_name": "Repeat (valid)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "repeat": true,
+        "type": "integer"
+      }]
+    }],
+
+    "input": [
+      { "$form": "form", "field": [ 1, 2, 3, 4 ] }
+    ]
+  },
+
+  "expect": {
+    "load": {
+      "valid": true,
+      "result": [{
+        "fields": [{
+          "repeat": [ 0, 1e9999 ]
+        }]
+      }]
+    },
+
+    "fill": [{
+      "valid": true,
+      "detail": {
+        "field": {
+          "valid": true,
+          "detail": [
+            { "valid": true }, { "valid": true },
+            { "valid": true }, { "valid": true }
+          ]
+        }
+      }
+    }]
+  }
+},
+
+{
+  "_name": "Repeat (required, valid)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "repeat": true,
+        "required": true,
+        "type": "integer"
+      }]
+    }],
+
+    "input": [
+    ]
+  },
+
+  "expect": {
+    "load": {
+      "valid": true,
+      "result": [{
+        "fields": [{
+          "repeat": [ 1, 1e9999 ]
+        }]
+      }]
+    },
+
+    "fill": [
+    ]
+  }
+},
+
+{
+  "_name": "Repeat (string, invalid)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer",
+        "repeat": "Testing"
+      }]
+    }],
+
+    "input": [
+    ]
+  },
+
+  "expect": {
+    "load": {
+      "valid": false,
+      "phase": "schema"
+    },
+
+    "fill": [
+    ]
+  }
+},
+
+{
+  "_name": "Repeat (negative, invalid)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer",
+        "repeat": -1
+      }]
+    }],
+
+    "input": [
+    ]
+  },
+
+  "expect": {
+    "load": {
+      "valid": false,
+      "phase": "schema"
+    },
+
+    "fill": [
+    ]
+  }
+},
+
+{
+  "_name": "Repeat (negative array items, invalid)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "field",
+        "type": "integer",
+        "repeat": [ -2, -1 ]
+      }]
+    }],
+
+    "input": [
+    ]
+  },
+
+  "expect": {
+    "load": {
+      "valid": false,
+      "phase": "schema"
+    },
+
+    "fill": [
+    ]
+  }
+}
+
+]

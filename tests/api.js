@@ -38,7 +38,8 @@ var fs = require('fs'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
     api = require('../lib/api'),
-    util = require('./include/util'),
+    util = require('../lib/util'),
+    test_utils = require('./include/util'),
     fixtures = require('./fixtures/compiled');
 
 
@@ -47,46 +48,37 @@ var fs = require('fs'),
  */
 var _assert = function (_test, _fixture) {
 
-  /* Top-level fixtures */
   var fixtures = _fixture.fixtures;
   var expect = _fixture.expect;
 
   _test.ok(
-    _.isObject(fixtures),
+    util.is_plain_object(fixtures),
       'must have valid `fixtures` property'
   );
 
   _test.ok(
-    _.isObject(expect),
+    util.is_plain_object(expect),
       'must have valid `expect` property'
   );
 
-  /* Form-specific fixtures */
-  var forms = fixtures.forms;
-  var expect_forms = expect.forms;
-
   _test.ok(
-    _.isObject(forms),
+    _.isArray(fixtures.forms),
       'must have valid `fixtures.forms` property'
   );
 
   _test.ok(
-    _.isObject(expect_forms),
-      'must have valid `expect.forms` property'
+    util.is_plain_object(expect.load),
+      'must have valid `expect.load` property'
   );
 
-  /* Input-specific fixtures */
-  var input = fixtures.input;
-  var expect_input = expect.input;
-
   _test.ok(
-    _.isObject(input),
+    _.isArray(fixtures.input),
       'must have valid `fixtures.input` property'
   );
 
   _test.ok(
-    _.isObject(expect_input),
-      'must have valid `expect.input` property'
+    _.isArray(expect.fill),
+      'must have valid `expect.fill` property'
   );
 
   /* Test API */
@@ -108,11 +100,12 @@ var _assert = function (_test, _fixture) {
     /* Test `load` API */
     function (_api, _next_fn) {
 
-      _api.load(forms, function (_rv) {
+      /* API: load a form */
+      _api.load(fixtures.forms, function (_rv) {
 
         _test.ok(
-          util.is_recursive_subset(expect.forms, _rv),
-            'should produce expected result object'
+          test_utils.is_recursive_subset(expect.load, _rv),
+            'should produce expected `load` result object'
         );
 
         return _next_fn(null, _api);
@@ -122,7 +115,35 @@ var _assert = function (_test, _fixture) {
     /* Test `fill` API */
     function (_api, _next_fn) {
 
-      return _next_fn();
+      /* Offset */
+      var i = 0;
+
+      /* One at a time */
+      async.eachSeries(
+
+        /* Arguments */
+        fixtures.input,
+
+        /* Per-item function */
+        function (_input, _continue_fn) {
+
+          /* API: apply input to a form */
+          _api.fill(_input, function (_rv) {
+
+            _test.ok(
+              test_utils.is_recursive_subset(expect.fill[i++], _rv),
+                'should produce expected `fill` result object'
+            );
+
+            return _continue_fn();
+          });
+        },
+
+        /* Completion */
+        function () {
+          return _next_fn();
+        }
+      );
     }
 
   ], function (_err) {
@@ -134,7 +155,17 @@ var _assert = function (_test, _fixture) {
 }
 
 /* Tests */
-util.make_tests(
-  'load-forms',
-    exports, fixtures.api.load, _assert
+test_utils.make_tests(
+  'form-identifiers',
+    exports, fixtures.api.form_identifiers, _assert
+);
+
+test_utils.make_tests(
+  'form-properties',
+    exports, fixtures.api.form_properties, _assert
+);
+
+test_utils.make_tests(
+  'form-repetition',
+    exports, fixtures.api.form_repetition, _assert
 );
