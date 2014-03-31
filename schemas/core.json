@@ -74,6 +74,7 @@
         { "$ref": "#/library/field-gps" },
         { "$ref": "#/library/field-image" },
         { "$ref": "#/library/field-select" },
+        { "$ref": "#/library/field-email" },
         { "$ref": "#/library/field-recursive" }
       ]
     },
@@ -275,6 +276,26 @@
 
         "type": { "enum": [ "fields" ] },
         "fields": { "$ref": "#/library/fieldset" }
+      }
+    },
+
+    "field-email": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "$ref": "#/library/required" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "type": "any" },
+
+        "type": { "enum": [ "email" ] },
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
 

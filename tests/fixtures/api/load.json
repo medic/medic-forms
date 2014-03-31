@@ -275,6 +275,94 @@
     "input": [
     ]
   }
+},
+
+{
+  "_name": "Properties (multiple, valid)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form"
+      },
+      "fields": [
+        {
+          "id": "id",
+          "type": "integer"
+        },
+        {
+          "id": "name",
+          "type": "string",
+          "conditions": {
+            "structured": {
+              "some_radio_input": "yes"
+            }
+          }
+        },
+        {
+          "id": "email",
+          "type": "email"
+        }
+      ]
+    }],
+    "input": [
+    ]
+  },
+
+  "expect": {
+    "forms": {
+      "valid": true,
+      "result": [{
+        "meta": {
+          "id": "form",
+          "name": { "un": "form" },
+          "description": { "un": "form" }
+        },
+        "fields": [
+          {
+            "id": "id",
+            "type": "integer",
+            "name": { "un": "id" },
+            "description": { "un": "id" },
+            "repeat": false,
+            "range": [ -1e9999, 1e9999 ],
+            "length": [ 0, 1e9999 ],
+            "required": false,
+            "conditions": { "operator": "&&", "javascript": {}, "structured": {} },
+            "validations": { "operator": "&&", "javascript": {}, "registered": {} }
+          },
+          {
+            "id": "name",
+            "type": "string",
+            "name": { "un": "name" },
+            "description": { "un": "name" },
+            "repeat": false,
+            "range": [ -1e9999, 1e9999 ],
+            "length": [ 0, 1e9999 ],
+            "required": false,
+            "conditions": { "operator": "&&", "javascript": {}, "structured": {
+              "some_radio_input": "yes"
+            } },
+            "validations": { "operator": "&&", "javascript": {}, "registered": {} }
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "name": { "un": "email" },
+            "description": { "un": "email" },
+            "repeat": false,
+            "range": [ -1e9999, 1e9999 ],
+            "length": [ 0, 1e9999 ],
+            "required": false,
+            "conditions": { "operator": "&&", "javascript": {}, "structured": {} },
+            "validations": { "operator": "&&", "javascript": {}, "registered": {} }
+          }
+        ]
+      }]
+    },
+    "input": [
+    ]
+  }
 }
 
 ]
