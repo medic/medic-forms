@@ -632,6 +632,35 @@
       }
     ]
   }]
+},
+
+
+{
+  "_name": "Conditional properties (invalid if references unknown field) TODO",
+
+  "all": true,
+  "valid": true, 
+
+  "forms": [{
+    "meta": {
+      "id": "f1"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "conditions": {
+          "structured": {
+            "q3": "banana"
+          }
+        }
+      },
+      {
+        "id": "q2",
+        "type": "select"
+      }
+    ]
+  }]
 }
 
 ]
