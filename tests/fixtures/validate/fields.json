@@ -636,10 +636,10 @@
 
 
 {
-  "_name": "Conditional properties (invalid if references unknown field) TODO",
+  "_name": "Conditional properties (invalid if references unknown field)",
 
   "all": true,
-  "valid": true, 
+  "valid": false, 
 
   "forms": [{
     "meta": {

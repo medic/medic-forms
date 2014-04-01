@@ -295,7 +295,7 @@
           "type": "string",
           "conditions": {
             "structured": {
-              "some_radio_input": "yes"
+              "id": "yes"
             }
           }
         },
@@ -341,7 +341,7 @@
             "length": [ 0, 1e9999 ],
             "required": false,
             "conditions": { "operator": "&&", "javascript": {}, "structured": {
-              "some_radio_input": "yes"
+              "id": "yes"
             } },
             "validations": { "operator": "&&", "javascript": {}, "registered": {} }
           },
