@@ -16,7 +16,10 @@
     }],
 
     "input": [
-      { "$form": "form", "field": [ 1, 2, 3, 4 ] }
+      { "$form": "form", "field": [ 1, 2, 3, 4 ] },
+      { "$form": "form", "field": false },
+      { "$form": "form", "field": [ ] },
+      { "$form": "form", "field": [ 1, "Hello", 2, [ ], { } ] }
     ]
   },
 
@@ -41,6 +44,28 @@
           ]
         }
       }
+    }, {
+      "valid": true,
+      "field": { "valid": true, "omitted": true }
+    }, {
+      "valid": true,
+      "detail": {
+        "field": { "valid": true, "detail": [ ] }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "field": {
+          "valid": false,
+          "detail": [
+            { "valid": true },
+            { "valid": false, "error": "Value must be an integer" },
+            { "valid": true },
+            { "valid": false, "error": "Value must be an integer" },
+            { "valid": false, "error": "Value must be an integer" }
+          ]
+        }
+      }
     }]
   }
 },
@@ -62,6 +87,9 @@
     }],
 
     "input": [
+      { "$form": "form", "field": [ ] },
+      { "$form": "form", "field": false },
+      { "$form": "form", "extra": "property" }
     ]
   },
 
@@ -75,8 +103,30 @@
       }]
     },
 
-    "fill": [
-    ]
+    "fill": [{
+      "valid": false,
+      "detail": {
+        "field": {
+          "valid": false
+        }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "field": {
+          "valid": false,
+          "error": "Value for repeating field must be an array"
+        }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "field": {
+          "valid": false,
+          "error": "Value for repeating field must be an array"
+        }
+      }
+    }]
   }
 },
 

@@ -47,6 +47,12 @@
       "f1": 1, "f2": 2, "f3": "Hello",
       "f4": "2012-11-05T13:40:52.280Z",
       "f5": "2014-04-02", "f6": [ 45.52, -122.681944 ]
+    }, {
+      "$form": "form"
+    }, {
+      "$form": "form",
+      "f4": "1/1/2013", "f5": "3-5-2014",
+      "f6": { "latitude": 45.52, "longitude": -122.68 }
     }]
   },
 
@@ -95,6 +101,18 @@
         "f6": { "valid": true },
         "f7": { "valid": true, "omitted": true }
       }
+    }, {
+        "f1": { "valid": true, "omitted": true },
+        "f2": { "valid": true, "omitted": true },
+        "f3": { "valid": true, "omitted": true },
+        "f4": { "valid": true, "omitted": true },
+        "f5": { "valid": true, "omitted": true },
+        "f6": { "valid": true, "omitted": true },
+        "f7": { "valid": true, "omitted": true }
+    }, {
+        "f6": { "valid": true },
+        "f5": { "valid": false, "error": "Value must be a valid date" },
+        "f4": { "valid": false, "error": "Value must be a valid timestamp" }
     }]
   }
 }
