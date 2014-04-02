@@ -107,7 +107,8 @@
       "valid": false,
       "detail": {
         "field": {
-          "valid": false
+          "valid": false,
+          "error": "Field must contain at least one item"
         }
       }
     }, {
@@ -155,8 +156,7 @@
       "phase": "schema"
     },
 
-    "fill": [
-    ]
+    "fill": [ ]
   }
 },
 
@@ -174,9 +174,7 @@
         "repeat": -1
       }]
     }],
-
-    "input": [
-    ]
+    "input": [ ]
   },
 
   "expect": {
@@ -184,9 +182,7 @@
       "valid": false,
       "phase": "schema"
     },
-
-    "fill": [
-    ]
+    "fill": [ ]
   }
 },
 
@@ -204,9 +200,7 @@
         "repeat": [ -2, -1 ]
       }]
     }],
-
-    "input": [
-    ]
+    "input": [ ]
   },
 
   "expect": {
@@ -214,9 +208,7 @@
       "valid": false,
       "phase": "schema"
     },
-
-    "fill": [
-    ]
+    "fill": [ ]
   }
 }
 
