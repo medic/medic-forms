@@ -252,7 +252,10 @@
       "data": [ { "f1": 1, "f2": [ 1 ] } ]
     }, {
       "$form": "form",
-      "data": [ { "f1": 10, "f2": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] } ]
+      "data": [ { "f1": 8, "f2": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] } ]
+    }, {
+      "$form": "form",
+      "data": [ { "f1": 7, "f2": [ 1, 2, 3, 4, 5, 6, 7, 8 ] } ]
     }]
   },
 
@@ -296,9 +299,7 @@
             },
             "f2": {
               "valid": true,
-              "detail": [
-                { "valid": true }
-              ]
+              "detail": [{ "valid": true }]
             }
           }]
         }
@@ -309,13 +310,33 @@
         "data": {
           "valid": false,
           "detail": [{
-            "f1": {
-              "valid": false,
-              "error": "Value provided is not in list of allowed values"
-            },
-            "f2": {
-              "valid": false,
-              "error": "Field cannot repeat more than 8 times"
+            "valid": false,
+            "detail": {
+              "f1": {
+                "valid": false,
+                "error": "Value provided is not in list of allowed values"
+              },
+              "f2": {
+                "valid": false,
+                "error": "Field cannot repeat more than 8 times"
+              }
+            }
+          }]
+        }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "data": {
+          "valid": false,
+          "detail": [{
+            "valid": false,
+            "detail": {
+              "f1": { "valid": true },
+              "f2": {
+                "valid": false,
+                "error": "Field cannot repeat more than 7 times"
+              }
             }
           }]
         }
