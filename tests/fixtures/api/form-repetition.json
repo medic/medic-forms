@@ -108,7 +108,7 @@
       "detail": {
         "field": {
           "valid": false,
-          "error": "Field must contain at least one item"
+          "error": "Field must appear at least once"
         }
       }
     }, {
@@ -256,6 +256,12 @@
     }, {
       "$form": "form",
       "data": [ { "f1": 7, "f2": [ 1, 2, 3, 4, 5, 6, 7, 8 ] } ]
+    }, {
+      "$form": "form",
+      "data": [ { "f1": 8, "f2": [ 1, 2 ] } ]
+    }, {
+      "$form": "form",
+      "data": [ { "f1": 1, "f2": [ 1, 2 ] } ]
     }]
   },
 
@@ -318,7 +324,7 @@
               },
               "f2": {
                 "valid": false,
-                "error": "Field cannot repeat more than 8 times"
+                "error": "Field cannot appear more than 8 times"
               }
             }
           }]
@@ -335,7 +341,41 @@
               "f1": { "valid": true },
               "f2": {
                 "valid": false,
-                "error": "Field cannot repeat more than 7 times"
+                "error": "Field cannot appear more than 7 times"
+              }
+            }
+          }]
+        }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "data": {
+          "valid": false,
+          "detail": [{
+            "valid": false,
+            "detail": {
+              "f1": {
+                "valid": false,
+                "error": "Value provided is not in list of allowed values"
+              },
+              "f2": { "valid": true }
+            }
+          }]
+        }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "data": {
+          "valid": false,
+          "detail": [{
+            "valid": false,
+            "detail": {
+              "f1": { "valid": true },
+              "f2": {
+                "valid": false,
+                "error": "Field cannot appear more than once"
               }
             }
           }]
