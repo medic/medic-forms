@@ -1,0 +1,115 @@
+[
+
+{
+  "_name": "Simple (valid form, mixed input)",
+
+  "fixtures": {
+    "forms": [{
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "f",
+        "type": "fields",
+        "required": false,
+        "fields": [{
+          "id": "f1",
+          "type": "select",
+          "required": false,
+          "repeat": [ 1, 5 ],
+          "items": [
+            1, [ 2, "Second Item" ],
+            "Third Item", { "en": "Fourth Item" },
+            [ 9, { "en": "Fifth Item", "fr": "L'élément française" } ]
+          ]
+        }, {
+          "id": "f2",
+          "type": "fields",
+          "fields": [{
+            "id": "numbers",
+            "type": "number",
+            "range": [ 1.1, 1.95 ],
+            "repeat": [ 2 ]
+          }]
+        }]
+      }]
+    }],
+
+    "input": [{
+      "$form": "form",
+      "f": { "f1": [ 3, 4, 9 ], "f2": { "numbers": [ 1.1, 1.4 ] } }
+    }, {
+      "$form": "form",
+      "f": { "f1": false, "f2": { "numbers": [ 1, "hello", [], {}, false ] } }
+    }]
+  },
+
+  "expect": {
+    "load": {
+      "valid": true,
+      "result": [{
+        "meta": {
+          "id": "form"
+        },
+        "fields": [{
+        }]
+      }]
+    },
+
+    "fill": [{
+      "valid": true,
+      "detail": {
+        "f": {
+          "valid": true,
+          "detail": {
+            "f1": {
+              "valid": true
+            },
+            "f2": {
+              "valid": true,
+              "detail": {
+                "numbers": {
+                  "valid": true,
+                  "detail": [
+                    { "valid": true },
+                    { "valid": true }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }, {
+      "valid": false,
+      "detail": {
+        "f": {
+          "valid": false,
+          "detail": {
+            "f1": {
+              "valid": true,
+              "omitted": true
+            },
+            "f2": {
+              "valid": false,
+              "details": [
+                { "valid": true },
+                { "valid": false,
+                  "error": "Value must be numeric" },
+                { "valid": false,
+                  "error": "Value must be numeric" },
+                { "valid": false,
+                  "error": "Value must be numeric" },
+                { "valid": false,
+                  "error": "Items in a repeating list may not be omitted" }
+
+              ]
+            }
+          }
+        }
+      }
+    }]
+  }
+}
+
+]
