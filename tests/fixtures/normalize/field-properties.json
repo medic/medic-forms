@@ -23,7 +23,7 @@
 },
 
 {
-  "_name": "Repetition (short array, auto-require)",
+  "_name": "Repetition (short array, not required)",
 
   "check": [ "repeat", "required" ],
 
@@ -39,7 +39,7 @@
       "id": "f1",
       "type": "integer",
       "repeat": [ 4, 1e9999 ],
-      "required": true
+      "required": false
     }]
   }]
 },
@@ -59,8 +59,8 @@
   "to": [{
     "fields": [{
       "id": "f1",
-      "required": true,
       "type": "integer",
+      "required": false,
       "repeat": [ 5, 1e9999 ]
     }]
   }]
@@ -81,8 +81,8 @@
   "to": [{
     "fields": [{
       "id": "f1",
-      "required": true,
       "type": "integer",
+      "required": false,
       "repeat": [ 6, 1e9999 ]
     }]
   }]
@@ -96,6 +96,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "required": true,
       "type": "integer",
       "repeat": [ 6, true ]
     }]

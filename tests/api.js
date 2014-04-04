@@ -169,3 +169,9 @@ test_utils.make_tests(
   'form-repetition',
     exports, fixtures.api.form_repetition, _assert
 );
+
+test_utils.make_tests(
+  'form-nested-fields',
+    exports, fixtures.api.form_nested_fields, _assert
+);
+
