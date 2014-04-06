@@ -1,0 +1,15 @@
+<html>
+<head>
+  <title>Medic Forms: Test Framework</title>
+</head>
+<body>
+  {{#if result}}
+  <div id="serialized">{{result}}</div>
+  {{else}}
+  <form id="test-form" method="POST" action="/">
+    {{{form}}}
+    <button id="submit-button" name="submit" value="{{page}}">Submit</button>
+  </form>
+  {{/if}}
+</body>
+</html>
