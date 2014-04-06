@@ -19,6 +19,9 @@ main()
 {
   npm run-script postinstall &&
   run_tests reference schema validate normalize input errors api
+  cd tests/functional
+  node test.js
+  cd ../../
 }
 
 main "$@"
