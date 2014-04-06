@@ -71,14 +71,7 @@ exports.run = function(cb) {
           callback(err);
         });
       }, 
-      function(err) {
-        if (err) {
-          console.log('Test failed: ' + err);
-        } else {
-          console.log(Object.keys(tests).length + ' tests exectuted successfully');
-        }
-        cb();
-      }
+      cb
     );
   });
   

@@ -10,9 +10,14 @@ server.start(function(err) {
     server.stop();
   }
   runner.run(function(err) {
-    if (err) {
-      console.log(err);
-    }
     server.stop();
+    if (err) {
+      console.log('Test failed');
+      console.log(err);
+      process.exit(1);
+    } else {
+      console.log('Tests passed!');
+      process.exit();
+    }
   });
 });
