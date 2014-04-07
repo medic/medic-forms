@@ -18,7 +18,7 @@ run_tests()
 main()
 {
   npm run-script postinstall &&
-  run_tests reference schema validate normalize input errors api &&
+  run_tests reference schema validate normalize input errors api render &&
   cd tests/functional &&
   node test.js &&
   cd ../../

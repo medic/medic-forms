@@ -17,6 +17,7 @@
     "nodeunit": "0.x",
     "tv4": "1.0.14",
     "underscore": "1.x",
+    "underscore.string": "2.3.x",
     "validator": "3.x",
     "handlebars": "2.x",
     "zombie": "1.x"

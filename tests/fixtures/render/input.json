@@ -1,0 +1,19 @@
+[
+  {
+    "_name": "Single string field",
+
+    "form": {
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string"
+      }]
+    },
+    "expect": "single-string-field.html"
+  }
+]

@@ -18,25 +18,25 @@ var framework = {
       throw new Error('callback is required');
     }
     browser
-      .visit('http://127.0.0.1:7357/')
+      .visit('http://127.0.0.1:7357/?formDefinition=' + JSON.stringify(definition))
+      // .then(function() {
+      //   browser
+      //     .fill('formDefinition', JSON.stringify(definition))
+      //     .pressButton('submit')
       .then(function() {
-        browser
-          .fill('formDefinition', JSON.stringify(definition))
-          .pressButton('submit')
-          .then(function() {
-            interactions.call(this, browser)
-            .then(function() {
-              try {
-                assertions.call(this, browser);
-                callback();
-              } catch(err) {
-                callback(err);
-              }
-            })
-            .fail(callback);
-          })
-          .fail(callback);
+        interactions.call(this, browser)
+        .then(function() {
+          try {
+            assertions.call(this, browser);
+            callback();
+          } catch(err) {
+            callback(err);
+          }
+        })
+        .fail(callback);
       })
+      //     .fail(callback);
+      // })
       .fail(function(err) {
         if (err.code === 'ECONNREFUSED') {
           console.log('HINT: Is the server running?');
