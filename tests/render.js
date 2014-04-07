@@ -44,15 +44,13 @@ var fs = require('fs'),
  * @name _assert
  */
 var _assert = function (_test, _fixture) {
-  _test.expect(3);
-  renderer.render_all(_fixture.form, function(err, actual) {
+  _test.expect(2);
+  var actual = renderer.render_all(_fixture.form);
+  var filename = __dirname + '/fixtures/render/' + _fixture.expect
+  fs.readFile(filename, 'utf8', function(err, expect) {
     _test.ok(!err, err);
-    var filename = __dirname + '/fixtures/render/' + _fixture.expect
-    fs.readFile(filename, {encoding: 'UTF-8'}, function(err, expect) {
-      _test.ok(!err, err);
-      _test.equal(_s.clean(actual), _s.clean(expect));
-      _test.done();
-    });
+    _test.equal(_s.clean(actual), _s.clean(expect));
+    _test.done();
   });
 }
 

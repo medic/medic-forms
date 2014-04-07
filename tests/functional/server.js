@@ -30,14 +30,9 @@ var _startServer = function (callback) {
     req.on('end', function () {
       if (req.method === 'GET') {
         formDefinition = JSON.parse(unescape(req.url.split('=')[1]));
-        render.render_all(
-          formDefinition,
-          function(err, html) {
-            _sendOk(res, templates.render({
-              form: html
-            }));
-          }
-        );
+        _sendOk(res, templates.render({
+          form: render.render_all(formDefinition)
+        }));
       } else {
         var parsed = qs.parse(body);
         _serialize(parsed, function(valid, serialized) {
@@ -46,14 +41,9 @@ var _startServer = function (callback) {
               result: JSON.stringify(serialized)
             }));
           } else {
-            render.render_all(
-              JSON.parse(formDefinition),
-              function(err, html) {
-                _sendOk(res, templates.render({
-                  form: html
-                }));
-              }
-            )
+            _sendOk(res, templates.render({
+              form: render.render_all(formDefinition)
+            }));
           }
         });
       }
