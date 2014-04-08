@@ -104,5 +104,55 @@
       "valid": true,
       "result": "<form><field><id>moniker</id><value>joe</value></field></form>"
     }
+  },
+
+  {
+    "_name": "Single string field with default",
+
+    "form": {
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string",
+        "default": "jack"
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>moniker</id><value>jack</value></field></form>"
+    }
+  },
+
+  {
+    "_name": "Multiple string fields",
+
+    "form": {
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [
+        {
+          "id": "moniker",
+          "name": "Patient Name",
+          "type": "string"
+        },
+        {
+          "id": "prefix",
+          "name": "Title",
+          "type": "string"
+        }
+      ]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>moniker</id></field><field><id>prefix</id></field></form>"
+    }
   }
 ]

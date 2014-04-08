@@ -61,8 +61,8 @@ var stringRenderer = {
       result += '<error>' + validation.error + '</error>';
     }
     result += '<id>' + field.id + '</id>';
-    if (value) {
-      result += '<value>' + value + '</value>';
+    if (value || field.default) {
+      result += '<value>' + (value || field.default) + '</value>';
     }
     result += '</field>';
     return result;
