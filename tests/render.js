@@ -35,8 +35,7 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
-    _s = require('underscore.string'),
-    renderer = require('../lib/render'),
+    render = require('../lib/render'),
     test_utils = require('./include/util'),
     fixtures = require('./fixtures/compiled');
 
@@ -44,17 +43,24 @@ var fs = require('fs'),
  * @name _assert
  */
 var _assert = function (_test, _fixture) {
-  _test.expect(2);
-  var actual = renderer.render_all(_fixture.form).result;
-  var filename = __dirname + '/fixtures/render/' + _fixture.expect
-  fs.readFile(filename, 'utf8', function(err, expect) {
-    _test.ok(!err, err);
-    _test.equal(_s.clean(actual), _s.clean(expect));
-    _test.done();
-  });
+  _test.expect(1);
+  _test.same(render.render_all(_fixture.form), _fixture.expect);
+  _test.done();
 }
 
-// TODO test invalid
+var stringRenderer = {
+  applies_to: function(field) {
+    return field.type === 'string'
+  },
+  render: function(field) {
+    return '<p>' + field.id + '</p>';
+  }
+};
+
+render.set_renderers({
+  formTemplate: '<form>{{{content}}}</form>',
+  modules: [stringRenderer]
+});
 
 /* Tests */
 test_utils.make_tests(

@@ -14,6 +14,30 @@
         "type": "string"
       }]
     },
-    "expect": "single-string-field.html"
+    "expect": {
+      "valid": true,
+      "result": "<form><p>moniker</p></form>"
+    }
+  },
+
+  {
+    "_name": "Unknown renderer",
+
+    "form": {
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "hoozit"
+      }]
+    },
+    "expect": {
+      "valid": false,
+      "error": "No renderers could be found for: moniker"
+    }
   }
 ]
