@@ -23,15 +23,14 @@ exports['valid form'] = function(test, callback) {
   }, callback);
 }
 
-// TODO fix this test
-/*exports['missing required field'] = function(test, callback) {
+exports['missing required field'] = function(test, callback) {
   test.run(form, function(browser) {
     return browser
-      .pressButton('submit');
+      .pressButton('button');
   }, function(browser) {
     assert.equal(
-      browser.query('div.row-name span.error').innerHTML, 
+      browser.query('#row-name.error span.error-message').innerHTML, 
       'Value must be a single plain-text string'
     );
   }, callback);
-}*/
+}

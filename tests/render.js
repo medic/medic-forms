@@ -44,7 +44,10 @@ var fs = require('fs'),
  */
 var _assert = function (_test, _fixture) {
   _test.expect(1);
-  _test.same(render.render_all(_fixture.form), _fixture.expect);
+  var actual = render.render_all(
+    _fixture.form, _fixture.values, _fixture.validation
+  );
+  _test.same(actual, _fixture.expect);
   _test.done();
 }
 
@@ -52,8 +55,17 @@ var stringRenderer = {
   applies_to: function(field) {
     return field.type === 'string'
   },
-  render: function(field) {
-    return '<p>' + field.id + '</p>';
+  render: function(field, value, validation) {
+    var result = '<field>';
+    if (validation && !validation.valid) {
+      result += '<error>' + validation.error + '</error>';
+    }
+    result += '<id>' + field.id + '</id>';
+    if (value) {
+      result += '<value>' + value + '</value>';
+    }
+    result += '</field>';
+    return result;
   }
 };
 

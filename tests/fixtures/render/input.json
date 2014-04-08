@@ -1,26 +1,5 @@
 [
   {
-    "_name": "Single string field",
-
-    "form": {
-      "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
-      },
-      "fields": [{
-        "id": "moniker",
-        "name": "Patient Name",
-        "type": "string"
-      }]
-    },
-    "expect": {
-      "valid": true,
-      "result": "<form><p>moniker</p></form>"
-    }
-  },
-
-  {
     "_name": "Unknown renderer",
 
     "form": {
@@ -38,6 +17,92 @@
     "expect": {
       "valid": false,
       "error": "No renderers could be found for: moniker"
+    }
+  },
+
+  {
+    "_name": "Single string field",
+
+    "form": {
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string"
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>moniker</id></field></form>"
+    }
+  },
+
+  {
+    "_name": "Single string field with validation error",
+
+    "form": {
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string"
+      }]
+    },
+    "values": {
+      "moniker": ""
+    },
+    "validation": {
+      "valid": false,
+      "detail": {
+        "moniker": {
+          "valid": false,
+          "error": "wrong"
+        }
+      }
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><error>wrong</error><id>moniker</id></field></form>"
+    }
+  },
+
+  {
+    "_name": "Single string field with value",
+
+    "form": {
+      "meta": {
+        "id": "form",
+        "name": { "un": "form" },
+        "description": { "un": "form" }
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string"
+      }]
+    },
+    "values": {
+      "moniker": "joe"
+    },
+    "validation": {
+      "valid": true,
+      "detail": {
+        "moniker": {
+          "valid": true
+        }
+      }
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>moniker</id><value>joe</value></field></form>"
     }
   }
 ]

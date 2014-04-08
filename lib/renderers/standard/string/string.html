@@ -1,4 +1,7 @@
-<li id="row-{{id}}" class="string">
-  <label for="field-{{id}}">{{name}}</label>
-  <input id="field-{{id}}" type="string" name="{{id}}"/>
+<li id="row-{{field.id}}" class="string{{#if validation.error}} error{{/if}}">
+  {{#if validation.error}}
+  <span class="error-message">{{validation.error}}</span>
+  {{/if}}
+  <label for="field-{{field.id}}">{{field.name}}</label>
+  <input id="field-{{field.id}}" type="string" name="{{field.id}}"/>
 </li>

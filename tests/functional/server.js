@@ -26,8 +26,8 @@ var _sendError = function (res, error) {
   res.writeHead(500, {'Content-Type': 'text/html'});
 };
 
-var _sendForm = function(res) {
-  var form = render.render_all(formDefinition);
+var _sendForm = function(res, parsed, valid) {
+  var form = render.render_all(formDefinition, parsed, valid);
   if (!form.valid) {
     _sendError(res, form.error);
   } else {
@@ -53,7 +53,7 @@ var _startServer = function (callback) {
               result: JSON.stringify(serialized)
             }));
           } else {
-            _sendForm(res);
+            _sendForm(res, parsed, valid);
           }
         });
       }
