@@ -10,16 +10,17 @@
   "dependencies": {
     "async": "0.x",
     "clone": "0.x",
-    "deep-equal": "0.x",
     "jsDump": "1.x",
     "mmmagic": "0.x",
     "moment": "2.x",
-    "nodeunit": "0.x",
     "tv4": "1.0.14",
     "underscore": "1.x",
-    "underscore.string": "2.3.x",
     "validator": "3.x",
-    "handlebars": "2.x",
+    "handlebars": "2.x"
+  },
+  "devDependencies": {
+    "nodeunit": "0.x",
+    "deep-equal": "0.x",
     "zombie": "1.x"
   },
   "readme": "README",
