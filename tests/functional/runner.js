@@ -19,10 +19,6 @@ var framework = {
     }
     browser
       .visit('http://127.0.0.1:7357/?formDefinition=' + JSON.stringify(definition))
-      // .then(function() {
-      //   browser
-      //     .fill('formDefinition', JSON.stringify(definition))
-      //     .pressButton('submit')
       .then(function() {
         interactions.call(this, browser)
         .then(function() {
@@ -35,8 +31,6 @@ var framework = {
         })
         .fail(callback);
       })
-      //     .fail(callback);
-      // })
       .fail(function(err) {
         if (err.code === 'ECONNREFUSED') {
           console.log('HINT: Is the server running?');

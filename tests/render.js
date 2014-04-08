@@ -45,7 +45,7 @@ var fs = require('fs'),
  */
 var _assert = function (_test, _fixture) {
   _test.expect(2);
-  var actual = renderer.render_all(_fixture.form);
+  var actual = renderer.render_all(_fixture.form).result;
   var filename = __dirname + '/fixtures/render/' + _fixture.expect
   fs.readFile(filename, 'utf8', function(err, expect) {
     _test.ok(!err, err);
@@ -53,6 +53,8 @@ var _assert = function (_test, _fixture) {
     _test.done();
   });
 }
+
+// TODO test invalid
 
 /* Tests */
 test_utils.make_tests(

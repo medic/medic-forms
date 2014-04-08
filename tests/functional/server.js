@@ -16,9 +16,23 @@ var _serialize = function (parsed, callback) {
   });
 };
 
-var _sendOk = function (res, context) {
+var _sendOk = function (res, content) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end(context);
+  res.end(content);
+};
+
+var _sendError = function (res, error) {
+  console.log(error);
+  res.writeHead(500, {'Content-Type': 'text/html'});
+};
+
+var _sendForm = function(res) {
+  var form = render.render_all(formDefinition);
+  if (!form.valid) {
+    _sendError(res, form.error);
+  } else {
+    _sendOk(res, templates.render({ form: form.result }));
+  }
 };
 
 var _startServer = function (callback) {
@@ -30,9 +44,7 @@ var _startServer = function (callback) {
     req.on('end', function () {
       if (req.method === 'GET') {
         formDefinition = JSON.parse(unescape(req.url.split('=')[1]));
-        _sendOk(res, templates.render({
-          form: render.render_all(formDefinition)
-        }));
+        _sendForm(res);
       } else {
         var parsed = qs.parse(body);
         _serialize(parsed, function(valid, serialized) {
@@ -41,9 +53,7 @@ var _startServer = function (callback) {
               result: JSON.stringify(serialized)
             }));
           } else {
-            _sendOk(res, templates.render({
-              form: render.render_all(formDefinition)
-            }));
+            _sendForm(res);
           }
         });
       }
