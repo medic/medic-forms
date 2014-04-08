@@ -8,38 +8,49 @@ var path = require('path'),
   pass = String.fromCharCode(10004),
   fail = String.fromCharCode(10006);
 
+
 var framework = {
 
   /**
    * Renders the given form in the DOM.
    */
   run: function(definition, interactions, assertions, callback) {
+
     if (!callback) {
       throw new Error('callback is required');
     }
+
+    var _runInteractions = function () {
+      if (interactions) {
+        return interactions.call(this, browser);
+      } else {
+        return {
+          // null promise
+          then: function(fn) {
+            fn.apply(this, arguments);
+          }
+        }
+      }
+    }
+
+    var _runAssertions = function () {
+      try {
+        assertions.call(this, browser);
+        callback();
+      } catch(err) {
+        callback(err);
+      }
+    };
+
     browser
       .visit('http://127.0.0.1:7357/?formDefinition=' + JSON.stringify(definition))
       .then(function() {
-        interactions.call(this, browser)
-        .then(function() {
-          try {
-            assertions.call(this, browser);
-            callback();
-          } catch(err) {
-            callback(err);
-          }
-        })
-        .fail(callback);
+        _runInteractions().then(_runAssertions);
       })
-      .fail(function(err) {
-        if (err.code === 'ECONNREFUSED') {
-          console.log('HINT: Is the server running?');
-        }
-        callback(err);
-      });
+      .fail(callback);
   }
-
 }
+
 
 exports.run = function(cb) {
   fs.readdir(testsDir, function (err, files) {
