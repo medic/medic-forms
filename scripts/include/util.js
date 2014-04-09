@@ -8,8 +8,10 @@
 exports.escape_json_string = function (_string) {
 
   return (
-    _string.toString().replace(/\\/g, "\\\\")
-      .replace(/'/g, "\\'").replace(/[\n\t\s]+/g, ' ')
+    _string.toString()
+      .replace(/\\/g, "\\\\")
+      .replace(/'/g, "\\'")
+      .replace(/[\n\t\s]+/g, ' ')
   );
 };
 
