@@ -515,6 +515,24 @@
       }
     ]
   }]
+},
+{
+  "_name": "Render hints are valid",
+
+  "content": [{
+    "meta": {
+      "id": "test",
+      "name": "Example Form",
+      "description": "Example Form"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "render": "textarea"
+      }
+    ]
+  }]
 }
 
 ]

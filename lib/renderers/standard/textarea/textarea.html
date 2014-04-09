@@ -1,0 +1,7 @@
+<li id="row-{{field.id}}" class="string{{#if validation.error}} error{{/if}}">
+  {{#if validation.error}}
+  <span class="error-message">{{validation.error}}</span>
+  {{/if}}
+  <label for="field-{{field.id}}">{{field.name}}</label>
+  <textarea id="field-{{field.id}}" name="{{field.id}}">{{value}}</textarea>
+</li>

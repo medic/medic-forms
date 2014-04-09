@@ -4,9 +4,7 @@
 
     "form": {
       "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
+        "id": "form"
       },
       "fields": [{
         "id": "moniker",
@@ -21,13 +19,31 @@
   },
 
   {
+    "_name": "Unknown named renderer",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string",
+        "render": "hoozit"
+      }]
+    },
+    "expect": {
+      "valid": false,
+      "error": "No renderers could be found for: moniker"
+    }
+  },
+
+  {
     "_name": "Single string field",
 
     "form": {
       "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
+        "id": "form"
       },
       "fields": [{
         "id": "moniker",
@@ -46,9 +62,7 @@
 
     "form": {
       "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
+        "id": "form"
       },
       "fields": [{
         "id": "moniker",
@@ -79,9 +93,7 @@
 
     "form": {
       "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
+        "id": "form"
       },
       "fields": [{
         "id": "moniker",
@@ -111,9 +123,7 @@
 
     "form": {
       "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
+        "id": "form"
       },
       "fields": [{
         "id": "moniker",
@@ -133,9 +143,7 @@
 
     "form": {
       "meta": {
-        "id": "form",
-        "name": { "un": "form" },
-        "description": { "un": "form" }
+        "id": "form"
       },
       "fields": [
         {
@@ -153,6 +161,26 @@
     "expect": {
       "valid": true,
       "result": "<form><field><id>moniker</id></field><field><id>prefix</id></field></form>"
+    }
+  },
+
+  {
+    "_name": "Single textarea field",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "description",
+        "name": "Description",
+        "type": "string",
+        "render": "textarea"
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><textarea><id>description</id></textarea></form>"
     }
   }
 ]
