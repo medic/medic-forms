@@ -92,7 +92,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "string" ] },
@@ -113,7 +113,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "integer" ] },
@@ -135,7 +135,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "number" ] },
@@ -157,7 +157,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "date" ] },
@@ -178,7 +178,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "timestamp" ] },
@@ -199,7 +199,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "image" ] }
@@ -220,7 +220,7 @@
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
         "range": { "$ref": "#/library/range-specifier-number" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "gps" ] },
@@ -241,7 +241,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "select" ] },
@@ -280,7 +280,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "fields" ] },
@@ -301,7 +301,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { "type": "any" },
+        "default": { },
         "render": { "type": "string" },
 
         "type": { "enum": [ "email" ] },

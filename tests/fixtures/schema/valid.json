@@ -533,6 +533,24 @@
       }
     ]
   }]
+},
+{
+  "_name": "Default values",
+
+  "content": [{
+    "meta": {
+      "id": "test",
+      "name": "Example Form",
+      "description": "Example Form"
+    },
+    "fields": [
+      {
+        "id": "q1",
+        "type": "string",
+        "default": "'ello guvnor!"
+      }
+    ]
+  }]
 }
 
 ]
