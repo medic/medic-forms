@@ -23,7 +23,9 @@ var form = {
 exports['valid form render'] = function(test, callback) {
   test.run(form, null, function(browser) {
     assert.equal(browser.query('#row-name input').value, '');
+    assert.equal(browser.query('#row-name').className, 'required');
     assert.equal(browser.query('#row-pokemon input').value, 'Pikachu');
+    assert.equal(browser.query('#row-pokemon').className, '');
   }, callback);
 };
 
