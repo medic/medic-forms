@@ -4,15 +4,22 @@ var _ = require('underscore'),
     fs = require('fs'),
     handlebars = require('handlebars'),
     qs = require('querystring'),
-    input = require('../../lib/input'),
+    api = require('../../lib/api').create(),
     render = require('../../lib/render'),
     server,
     formDefinition,
     templates = {};
 
 var _serialize = function (parsed, callback) {
-  input.validate([formDefinition], 'TEST', parsed, function(result) {
-    callback(result, parsed);
+  api.load([formDefinition], function(_result) {
+    if (!_result.valid) {
+      console.log('Failed loading form: ' + JSON.stringify(_result));
+      return callback(_result);
+    }
+    var submission = _.extend({$form: 'TEST'}, parsed); 
+    api.fill(submission, function(_result) {
+      callback(_result);
+    });
   });
 };
 
@@ -47,10 +54,10 @@ var _startServer = function (callback) {
         _sendForm(res);
       } else {
         var parsed = qs.parse(body);
-        _serialize(parsed, function(valid, serialized) {
+        _serialize(parsed, function(valid) {
           if (valid.valid) {
             _sendOk(res, templates.result({
-              result: JSON.stringify(serialized)
+              result: JSON.stringify(parsed)
             }));
           } else {
             _sendForm(res, parsed, valid);
