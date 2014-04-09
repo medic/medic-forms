@@ -27,7 +27,7 @@ var _sendError = function (res, error) {
 };
 
 var _sendForm = function(res, parsed, valid) {
-  var form = render.render_all(formDefinition, parsed, valid);
+  var form = render.render_form(formDefinition, parsed, valid);
   if (!form.valid) {
     _sendError(res, form.error);
   } else {

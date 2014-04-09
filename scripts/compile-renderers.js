@@ -59,7 +59,6 @@ var main = function (_argc, _argv) {
   /* Build file */
   var data = [];
   _write_header(data);
-  _write_form_template(data);
   _write_modules(data, modules);
 
   /* Write output */
@@ -84,15 +83,6 @@ function _write_header (_data) {
 }
 
 /**
- * @name _write_form_template:
- */
-function _write_form_template (_data) {
-  _data.push('exports.formTemplate = \'' + 
-    util.escape_json_string(fs.readFileSync(base_path + '/_form.html')) + 
-    '\';\n');
-};
-
-/**
  * @name _write_modules:
  */
 function _write_modules (_data, _modules) {
@@ -101,9 +91,7 @@ function _write_modules (_data, _modules) {
         JSON.stringify(module.attachments) + ')';
   });
   _data.push('exports.modules = [');
-  _.each(_modules, function(module) {
-    _data.push(required.join(',\n'));
-  });
+  _data.push(required.join(',\n'));
   _data.push('];');
 }
 
