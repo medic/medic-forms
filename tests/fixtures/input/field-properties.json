@@ -9,18 +9,7 @@
     },
     "values": [ null, "" ]
   },
-
-  {
-    "_name": "Required fields (empty is valid)",
-
-    "valid": false,
-    "field": {
-      "type": "string",
-      "required": true
-    },
-    "values": [ "" ]
-  },
-
+  
   {
     "_name": "Required fields (false, empty is valid)",
 
