@@ -740,6 +740,28 @@
     }]
   }]
 },
+
+{
+  "_name": "Range (string, unsupported)",
+
+  "check": [ "range" ],
+
+  "from": [{
+    "fields": [{
+      "id": "f1",
+      "type": "string",
+      "range": [ 10, 100 ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "range": false,
+      "type": "string"
+    }]
+  }]
+},
+
 {
   "_name": "Range (number, integer range)",
 

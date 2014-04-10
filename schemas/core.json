@@ -12,6 +12,20 @@
 
   "library": {
 
+    "anything": {},
+
+    "infinity": {
+      "type": "number", "minimum": 1e9999
+    },
+
+    "omitted-value": {
+      "type": [ "boolean", "null" ]
+    },
+
+    "unsupported": {
+      "type": [ "boolean", "null" ]
+    },
+
     "l10n": {
       "oneOf": [
         { "$ref": "#/library/l10n-object" },
@@ -92,10 +106,11 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "string" ] },
+        "range": { "$ref": "#/library/unsupported" },
         "length": { "$ref": "#/library/length-specifier" }
       }
     },
@@ -113,7 +128,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "integer" ] },
@@ -135,7 +150,7 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "number" ] },
@@ -157,10 +172,11 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "date" ] },
+        "range": { "$ref": "#/library/unsupported" },
         "repeat": { "$ref": "#/library/repeat-specifier" }
       }
     },
@@ -178,10 +194,11 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "timestamp" ] },
+        "range": { "$ref": "#/library/unsupported" },
         "repeat": { "$ref": "#/library/repeat-specifier" }
       }
     },
@@ -199,10 +216,11 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
-        "type": { "enum": [ "image" ] }
+        "type": { "enum": [ "image" ] },
+        "range": { "$ref": "#/library/unsupported" }
       }
     },
 
@@ -220,11 +238,12 @@
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
         "range": { "$ref": "#/library/range-specifier-number" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "gps" ] },
-        "elevation": {"type": [ "boolean", "null" ]  }
+        "range": { "$ref": "#/library/unsupported" },
+        "elevation": { "type": [ "boolean", "null" ] }
       }
     },
 
@@ -241,10 +260,12 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "select" ] },
+        "range": { "$ref": "#/library/range-specifier-integer" },
+
         "items": {
           "type": "array",
           "items": {
@@ -280,11 +301,12 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "fields" ] },
-        "fields": { "$ref": "#/library/fieldset" }
+        "fields": { "$ref": "#/library/fieldset" },
+        "range": { "$ref": "#/library/unsupported" }
       }
     },
 
@@ -301,10 +323,11 @@
         "conditions": { "$ref": "#/library/conditions" },
         "validations": { "$ref": "#/library/validations" },
         "repeat": { "$ref": "#/library/repeat-specifier" },
-        "default": { },
+        "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
         "type": { "enum": [ "email" ] },
+        "range": { "$ref": "#/library/unsupported" },
         "length": { "$ref": "#/library/length-specifier" }
       }
     },
@@ -331,8 +354,8 @@
 
     "length-specifier": {
       "oneOf": [
-        { "type": [ "boolean", "null" ] },
         { "type": "integer", "minimum": 0 },
+        { "$ref": "#/library/omitted-value" },
         { "$ref": "#/library/script-specifier" },
         {
           "type": "array",
@@ -340,8 +363,9 @@
           "minItems": 1, "maxItems": 2,
           "items": {
             "oneOf": [
-              { "type": [ "boolean", "null" ] },
-              { "type": "integer", "minimum": 0 }
+              { "$ref": "#/library/infinity" },
+              { "type": "integer", "minimum": 0 },
+              { "$ref": "#/library/omitted-value" }
             ]
           }
         }
@@ -350,7 +374,7 @@
 
     "repeat-specifier": {
       "oneOf": [
-        { "type": [ "boolean", "null" ] },
+        { "$ref": "#/library/omitted-value" },
         { "type": "integer", "minimum": 0 },
         { "$ref": "#/library/script-specifier" },
         {
@@ -359,8 +383,9 @@
           "minItems": 1, "maxItems": 2,
           "items": {
             "oneOf": [
-              { "type": [ "boolean", "null" ] },
-              { "type": "integer", "minimum": 0 }
+              { "$ref": "#/library/infinity" },
+              { "type": "integer", "minimum": 0 },
+              { "$ref": "#/library/omitted-value" }
             ]
           }
         }
@@ -376,7 +401,11 @@
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
           "items": {
-            "type": [ "integer", "boolean", "null" ]
+            "oneOf": [
+              { "type": "integer" },
+              { "$ref": "#/library/infinity" },
+              { "$ref": "#/library/omitted-value" }
+            ]
           }
         }
       ]
@@ -391,7 +420,11 @@
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
           "items": {
-            "type": [ "integer", "number", "boolean", "null" ]
+            "oneOf": [
+              { "type": "number" },
+              { "$ref": "#/library/infinity" },
+              { "$ref": "#/library/omitted-value" }
+            ]
           }
         }
       ]

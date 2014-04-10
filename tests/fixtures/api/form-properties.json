@@ -132,7 +132,7 @@
             "name": { "un": "name" },
             "description": { "un": "name" },
             "repeat": false,
-            "range": [ -1e9999, 1e9999 ],
+            "range": false,
             "length": [ 0, 1e9999 ],
             "required": false,
             "conditions": {
@@ -152,7 +152,7 @@
             "name": { "un": "email" },
             "description": { "un": "email" },
             "repeat": false,
-            "range": [ -1e9999, 1e9999 ],
+            "range": false,
             "length": [ 0, 1e9999 ],
             "required": false,
             "conditions": {

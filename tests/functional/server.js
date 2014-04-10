@@ -2,6 +2,7 @@ var _ = require('underscore'),
     http = require('http'),
     async = require('async'),
     fs = require('fs'),
+    jsdump = require('jsDump'),
     handlebars = require('handlebars'),
     qs = require('querystring'),
     api = require('../../lib/api').create(),
@@ -11,10 +12,8 @@ var _ = require('underscore'),
     templates = {};
 
 var _serialize = function (parsed, callback) {
-  var formDefinitionClone = JSON.parse(JSON.stringify(formDefinition));
-  api.load([formDefinitionClone], function(_result) {
+  api.load([formDefinition], function(_result) {
     if (!_result.valid) {
-      console.log('Failed loading form: ' + JSON.stringify(_result));
       return callback(_result);
     }
     var submission = _.extend({$form: 'TEST'}, parsed); 
