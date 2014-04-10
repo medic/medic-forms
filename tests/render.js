@@ -45,7 +45,7 @@ var fs = require('fs'),
 var _assert = function (_test, _fixture) {
   _test.expect(1);
   var actual = render.render_form(
-    _fixture.form, _fixture.values, _fixture.validation
+    _fixture.form, _fixture.values, _fixture.validation, _fixture.options
   );
   _test.same(actual, _fixture.expect);
   _test.done();
@@ -57,7 +57,7 @@ var stringRenderer = {
   },
   render: function(field, value, validation) {
     var result = '<field>';
-    if (validation && !validation.valid) {
+    if (validation && validation.error) {
       result += '<error>' + validation.error + '</error>';
     }
     result += '<id>' + field.id + '</id>';

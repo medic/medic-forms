@@ -89,6 +89,40 @@
   },
 
   {
+    "_name": "Single string field with validation error on initial render",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string"
+      }]
+    },
+    "values": {
+      "moniker": ""
+    },
+    "validation": {
+      "valid": false,
+      "detail": {
+        "moniker": {
+          "valid": false,
+          "error": "wrong"
+        }
+      }
+    },
+    "options": {
+      "initial": true
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>moniker</id></field></form>"
+    }
+  },
+
+  {
     "_name": "Single string field with value",
 
     "form": {

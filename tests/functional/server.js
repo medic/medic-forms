@@ -11,7 +11,8 @@ var _ = require('underscore'),
     templates = {};
 
 var _serialize = function (parsed, callback) {
-  api.load([formDefinition], function(_result) {
+  var formDefinitionClone = JSON.parse(JSON.stringify(formDefinition));
+  api.load([formDefinitionClone], function(_result) {
     if (!_result.valid) {
       console.log('Failed loading form: ' + JSON.stringify(_result));
       return callback(_result);
@@ -33,12 +34,12 @@ var _sendError = function (res, error) {
   res.writeHead(500, {'Content-Type': 'text/html'});
 };
 
-var _sendForm = function(res, parsed, valid) {
-  var form = render.render_form(formDefinition, parsed, valid);
-  if (!form.valid) {
-    _sendError(res, form.error);
-  } else {
+var _sendForm = function(res, parsed, valid, options) {
+  var form = render.render_form(formDefinition, parsed, valid, options);
+  if (form.valid || options.initial) {
     _sendOk(res, templates.render({ form: form.result }));
+  } else {
+    _sendError(res, form.error);
   }
 };
 
@@ -51,7 +52,9 @@ var _startServer = function (callback) {
     req.on('end', function () {
       if (req.method === 'GET') {
         formDefinition = JSON.parse(unescape(req.url.split('=')[1]));
-        _sendForm(res);
+        _serialize({}, function(valid) {
+          _sendForm(res, {}, valid, {initial: true});
+        });
       } else {
         var parsed = qs.parse(body);
         _serialize(parsed, function(valid) {
