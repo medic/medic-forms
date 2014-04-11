@@ -42,8 +42,10 @@ var framework = {
       }
     };
 
+    var formDefinition = escape(JSON.stringify(definition));
+
     browser
-      .visit('http://127.0.0.1:7357/?formDefinition=' + JSON.stringify(definition))
+      .visit('http://127.0.0.1:7357/?formDefinition=' + formDefinition)
       .then(function() {
         _runInteractions().then(_runAssertions);
       })
