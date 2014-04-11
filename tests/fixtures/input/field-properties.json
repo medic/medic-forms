@@ -11,7 +11,7 @@
   },
   
   {
-    "_name": "Required fields (false, empty is valid)",
+    "_name": "Required fields (true, false, empty is valid)",
 
     "valid": true,
     "field": {
@@ -22,7 +22,7 @@
   },
 
   {
-    "_name": "Required fields (true, non-empty is valid)",
+    "_name": "Required fields (non-empty is valid)",
 
     "valid": true,
     "field": {
@@ -924,8 +924,8 @@
       "conditions": {
         "operator": "||",
         "javascript": {
-          "one": "return false",
-          "two": "return (true && false)"
+          "one": "return true",
+          "two": "return (true || false)"
         },
         "structured": {}
       }
@@ -971,7 +971,7 @@
       }
     },
     "inputs": {
-      "some_radio_input": "yes"
+      "some_radio_input": "no"
     },
     "values": [ "", false, null ]
   },
