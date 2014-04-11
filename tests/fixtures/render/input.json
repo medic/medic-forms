@@ -14,7 +14,7 @@
     },
     "expect": {
       "valid": false,
-      "error": "No renderers could be found for: moniker"
+      "error": "No renderers could be found for moniker"
     }
   },
 
@@ -34,7 +34,7 @@
     },
     "expect": {
       "valid": false,
-      "error": "No renderers could be found for: moniker"
+      "error": "No renderers could be found for moniker"
     }
   },
 
@@ -215,6 +215,70 @@
     "expect": {
       "valid": true,
       "result": "<form><textarea><id>description</id></textarea></form>"
+    }
+  },
+
+  {
+    "_name": "Required field (simple)",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "description",
+        "name": "Description",
+        "type": "string",
+        "required": true
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>description</id><required/></field></form>"
+    }
+  },
+
+  {
+    "_name": "Required field (javascript true)",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "description",
+        "name": "Description",
+        "type": "string",
+        "required": {
+          "javascript": "return 1 === 1"
+        }
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>description</id><required/></field></form>"
+    }
+  },
+
+  {
+    "_name": "Required field (javascript false)",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "description",
+        "name": "Description",
+        "type": "string",
+        "required": {
+          "javascript": "return 1 !== 1"
+        }
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><field><id>description</id></field></form>"
     }
   }
 ]

@@ -79,6 +79,3 @@ exports['javascript skip conditions are evaluated'] = function(test, callback) {
     assert.equal(browser.query('#row-skip').className, 'required skipped');
   }, callback);
 };
-
-// TODO test default evaluation
-// TODO test required evaluation
