@@ -47,6 +47,7 @@ exports['missing required field'] = function(test, callback) {
       .fill('pokemon', 'Diancie')
       .pressButton('button');
   }, function(browser) {
+    assert.equal(browser.query('#row-name').className, 'error required');
     assert.equal(
       browser.query('#row-name.error span.error-message').innerHTML, 
       'Value must be a single plain-text string'
