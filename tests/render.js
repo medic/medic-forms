@@ -55,7 +55,10 @@ var stringRenderer = {
   applies_to: function(field) {
     return field.type === 'string'
   },
-  render: function(field, value, validation) {
+  render: function(options) {
+    var validation = options.validation;
+    var field = options.field;
+    var value = options.value;
     var result = '<field>';
     if (validation && validation.error) {
       result += '<error>' + validation.error + '</error>';
@@ -64,8 +67,8 @@ var stringRenderer = {
     if (field.required) {
       result += '<required/>';
     }
-    if (value || field.default) {
-      result += '<value>' + (value || field.default) + '</value>';
+    if (value) {
+      result += '<value>' + value + '</value>';
     }
     result += '</field>';
     return result;
@@ -77,8 +80,8 @@ var textareaRenderer = {
   applies_to: function(field) {
     return false;
   },
-  render: function(field, value, validation) {
-    return '<textarea><id>' + field.id + '</id></textarea>';
+  render: function(options) {
+    return '<textarea><id>' + options.field.id + '</id></textarea>';
   }
 };
 
