@@ -1,0 +1,12 @@
+{{#row field error validation}}
+
+  {{> errorMessage}}
+  {{> label}}
+  
+  <select id="field-{{field.id}}" name="{{field.id}}">
+    {{#each field.items}}
+    <option value="{{[0]}}" {{#eq ../value [0]}}selected="selected"{{/eq}}>{{[1]}}</option>
+    {{/each}}
+  </select>
+
+{{/row}}

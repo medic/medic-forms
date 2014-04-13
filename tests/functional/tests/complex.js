@@ -24,6 +24,15 @@ var form = {
       "id": "email",
       "name": "EMail Address",
       "type": "email"
+    },
+    {
+      "id": "sex",
+      "name": "Sex",
+      "type": "select",
+      "items": [
+        [1, 'Right'],
+        [2, 'Wrong']
+      ]
     }/*,
     {
       "id": "lmp",
@@ -35,11 +44,7 @@ var form = {
       "name": "Appointment Time",
       "type": "timestamp"
     },
-    {
-      "id": "sex",
-      "name": "Sex",
-      "type": "select"
-    },
+
     {
       "id": "location",
       "name": "GPS Location",
@@ -59,6 +64,7 @@ exports['field type validation'] = function(test, callback) {
       .fill('age', 'twenty one')
       .fill('cholesterol', 'pretty high')
       .fill('email', 'gareth<at>medicmobile.org')
+      .select('sex', '2')
       .pressButton('button');
   }, function(browser) {
     _assertError(browser, 'age', 'Value must be an integer');
