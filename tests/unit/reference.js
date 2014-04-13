@@ -33,46 +33,48 @@
 
 'use strict';
 
-var tv4 = require('tv4'),
+var fs = require('fs'),
     _ = require('underscore'),
-    util = require('./include/util'),
-    schemas = require('../lib/schemas/all'),
+    jsdump = require('jsDump'),
+    deepEqual = require('deep-equal'),
+    test_utils = require('../include/util'),
     fixtures = require('./fixtures/compiled'),
-    reference_rewriter = require('../lib/reference');
+    reference_rewriter = require('../../lib/reference');
 
 
 /**
  * @name _assert
  */
-var _assert = function(_test, _fixture, _value, _valid) {
+var _assert = function(_test, _fixture) {
 
-  _test.expect(2);
-
-  /* Rewrite references */
-  var rv = reference_rewriter.rewrite_all(_fixture.content);
+  _test.expect(4);
 
   _test.ok(
-    rv.valid, 'Rewriting must succeed'
+    _.isObject(_fixture.to),
+      'Fixture must have `to` property'
   );
 
-  /* Validate against schema */
-  rv = tv4.validateResult(_fixture.content, schemas.core);
+  _test.ok(
+    _.isObject(_fixture.from),
+      'Fixture must have `from` property'
+  );
 
-  _test.equal(
-    rv.valid, _valid, 
-      ' must ' + (!_valid ? 'not ' : '') + 'validate'
+  var rv = reference_rewriter.rewrite(_fixture.from);
+
+  _test.ok(
+    rv.valid, 'Reference rewriting must succeed'
+  );
+
+  _test.ok(
+    deepEqual(_fixture.from, _fixture.to),
+      'Rewritten result must match expected'
   );
 
   _test.done();
 }
 
-util.make_tests(
-  'valid', exports,
-    fixtures.schema.valid, _assert, [ true ]
+/* Tests */
+test_utils.make_tests(
+  'rewriting', exports,
+    fixtures.reference.rewrite, _assert
 );
-
-util.make_tests(
-  'invalid', exports,
-    fixtures.schema.invalid, _assert, [ false ]
-);
-

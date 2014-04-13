@@ -51,7 +51,7 @@ var fs = require('fs'),
  */
 var main = function (_argc, _argv) {
 
-  var output_path = "tests/fixtures/compiled.js";
+  var output_path = "tests/unit/fixtures/compiled.js";
 
   /* Build file */
   var data = [
@@ -63,7 +63,7 @@ var main = function (_argc, _argv) {
   ];
 
   /* Append all test fixtures */
-  _read_directory("tests/fixtures", data);
+  _read_directory("tests/unit/fixtures", data);
 
   /* Write output */
   fs.writeFileSync(output_path, data.join("\n"));

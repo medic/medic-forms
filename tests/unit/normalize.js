@@ -37,11 +37,11 @@ var fs = require('fs'),
     clone = require('clone'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
-    api = require('../lib/api'),
-    util = require('./include/util'),
+    api = require('../../lib/api'),
     deepEqual = require('deep-equal'),
-    normalizer = require('../lib/normalize'),
-    fixtures = require('./fixtures/compiled');
+    test_utils = require('../include/util'),
+    fixtures = require('./fixtures/compiled'),
+    normalizer = require('../../lib/normalize');
 
 
 /**
@@ -152,31 +152,31 @@ var _assert = function(_test, _fixture, _value, _scope) {
 
 
 /* Tests */
-util.make_tests(
+test_utils.make_tests(
   'field-identifiers', exports,
     fixtures.normalize.field_identifiers, _assert, [ 'fields' ]
 );
-util.make_tests(
+test_utils.make_tests(
   'field-properties', exports,
     fixtures.normalize.field_properties, _assert, [ 'fields' ]
 );
-util.make_tests(
+test_utils.make_tests(
   'field-select-lists', exports,
     fixtures.normalize.field_select_lists, _assert, [ 'fields' ]
 );
-util.make_tests(
+test_utils.make_tests(
   'form-identifiers', exports,
     fixtures.normalize.form_identifiers, _assert, [ 'meta' ]
 );
-util.make_tests(
+test_utils.make_tests(
   'field-properties', exports,
     fixtures.normalize.form_properties, _assert, [ 'meta' ]
 );
-util.make_tests(
+test_utils.make_tests(
   'field-validations', exports,
     fixtures.normalize.field_validations, _assert, [ 'fields' ]
 );
-util.make_tests(
+test_utils.make_tests(
   'field-conditions', exports,
     fixtures.normalize.field_conditions, _assert, [ 'fields' ]
 );

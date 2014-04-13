@@ -11,17 +11,21 @@ run_tests()
   local driver='node_modules/nodeunit/bin/nodeunit'
 
   for harness in "$@"; do
-    "$driver" "tests/$harness.js" || fatal
+    "$driver" "tests/unit/$harness.js" || fatal
   done
 }
 
 main()
 {
+  # Compile fixtures
   npm run-script postinstall &&
-  run_tests reference schema validate normalize input errors api render &&
-  cd tests/functional &&
-  node test.js &&
-  cd ../../
+  \
+  # Unit tests
+  run_tests reference schema \
+    validate normalize input errors api render &&
+  \
+  # Functional tests
+  (cd tests/functional && node test.js)
 }
 
 main "$@"

@@ -35,70 +35,127 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
-    render = require('../lib/render'),
-    test_utils = require('./include/util'),
+    render = require('../../lib/render'),
+    test_utils = require('../include/util'),
     fixtures = require('./fixtures/compiled');
+
 
 /**
  * @name _assert
  */
 var _assert = function (_test, _fixture) {
+
   _test.expect(1);
+
   var actual = render.render_form(
-    _fixture.form, _fixture.values, _fixture.validation, _fixture.options
+    _fixture.form, _fixture.values,
+      _fixture.validation, _fixture.options
   );
+
   _test.same(actual, _fixture.expect);
   _test.done();
-}
+};
 
+
+/**
+ * @name stringRenderer
+ */
 var stringRenderer = {
-  applies_to: function(field) {
-    return field.type === 'string'
+
+  /**
+   * @name applies_to
+   */
+  applies_to: function (_field) {
+
+    return (_field.type === 'string')
   },
-  render: function(options) {
-    var validation = options.validation;
-    var field = options.field;
-    var value = options.value;
+
+  /**
+   * @name render
+   */
+  render: function (_options) {
+
     var result = '<field>';
+
+    var field = _options.field;
+    var value = _options.value;
+    var validation = _options.validation;
+
     if (validation && validation.error) {
       result += '<error>' + validation.error + '</error>';
     }
     result += '<id>' + field.id + '</id>';
+
     if (field.required) {
       result += '<required/>';
     }
+
     if (value) {
       result += '<value>' + value + '</value>';
     }
+
     result += '</field>';
     return result;
   }
 };
 
+
+/**
+ * @name textareaRenderer
+ */
 var textareaRenderer = {
+
   id: 'textarea',
-  applies_to: function(field) {
+
+  /**
+   * @name applies_to
+   */
+  applies_to: function (_field) {
+
     return false;
   },
-  render: function(options) {
-    return '<textarea><id>' + options.field.id + '</id></textarea>';
+
+  /**
+   * @name render
+   */
+  render: function (_options) {
+
+    return '<textarea><id>' + _options.field.id + '</id></textarea>';
   }
 };
 
+
+/**
+ * @name formRenderer
+ */
 var formRenderer = {
-  applies_to: function(form) {
-    return !!form.meta;
+
+  /**
+   * @name applies_to
+   */
+  applies_to: function (_form) {
+
+    return !!_form.meta;
   },
-  render: function(content) {
-    return '<form>' + content + '</form>';
+
+  /**
+   * @name render
+   */
+  render: function (_content) {
+
+    return '<form>' + _content + '</form>';
   }
 };
 
+
+/* Setup mock renderers */
 render.set_renderers({
-  modules: [stringRenderer, textareaRenderer, formRenderer]
+  modules: [ stringRenderer, textareaRenderer, formRenderer ]
 });
 
-/* Tests */
+
+/* Run tests */
 test_utils.make_tests(
   'render', exports, fixtures.render.input, _assert
 );
+

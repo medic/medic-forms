@@ -36,9 +36,9 @@
 var fs = require('fs'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
-    util = require('./include/util'),
-    input_validator = require('../lib/input'),
-    fixtures = require('./fixtures/compiled');
+    test_utils = require('../include/util'),
+    fixtures = require('./fixtures/compiled'),
+    input_validator = require('../../lib/input');
 
 
 /**
@@ -112,12 +112,12 @@ var _assert = function (_test, _fixture, _value) {
   );
 };
 
-util.make_tests(
+test_utils.make_tests(
   'field-types', exports,
     fixtures.input.field_types, _assert
 );
 
-util.make_tests(
+test_utils.make_tests(
   'field-properties', exports,
     fixtures.input.field_properties, _assert
 );

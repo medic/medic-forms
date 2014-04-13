@@ -35,71 +35,47 @@
 
 var fs = require('fs'),
     _ = require('underscore'),
-    util = require('./include/util'),
+    deepEqual = require('deep-equal'),
+    test_utils = require('../include/util'),
     fixtures = require('./fixtures/compiled'),
-    form_validator = require('../lib/validate');
+    normalizer = require('../../lib/normalize'),
+    input_validator = require('../../lib/input');
 
 
 /**
  * @name _assert
  */
-var _assert = function (_test, _fixture) {
+var _assert = function (_test, _fixture, _value) {
 
-  var forms = _fixture.forms;
-  var label = 'must ' + (_fixture.valid ? '' : 'not ') + 'validate';
+  var form = _fixture.form;
+  var input = _value.input;
+  var expect = _value.expect;
 
-  /* Paranoia:
-   *   These assertions test the test fixtures. */
-  _test.ok(
-    _.isArray(forms), 'must provide an array for the `forms` property'
-  );
+  _test.expect(5);
 
-  form_validator.validate_all(forms, function (_rv) {
+  /* Sanity check */
+  _test.ok(_.isObject(form), 'must have valid `form` property');
+  _test.ok(_.isObject(input), 'must have valid `input` property');
+  _test.ok(_.isObject(expect), 'must have valid `expect` property');
 
-    /* Check top-level validity:
-     *   This is an all-or-nothing result for all form
-     *   definitions provided by the current test fixture. */
+  var forms = [ form ];
+  var fields = normalizer.normalize_all(forms)[0].fields;
 
-    _test.equal(_rv.valid, _fixture.valid, label);
+  _test.ok(_.isArray(fields), 'must normalize properly');
 
-    /* Check individual form validity:
-     *   We only do this if the `all` parameter is present, indicating
-     *   that the `valid` property should match the validity of *all*
-     *   forms in the test fixture, not just the top-level result. */
-
-    if (_fixture.all) {
-
-      var detail = _rv.detail;
-
-      _test.equal(
-        forms.length, detail.length,
-          'must have one detailed result for every form'
+  input_validator.validate_all(
+    fields, _value.input, false, function (_rv) {
+      _test.ok(
+        test_utils.is_recursive_subset(_value.expect, _rv),
+          'should produce expected output'
       );
-
-      for (var i = 0, len = detail.length; i < len; ++i) {
-        _test.equal(
-          detail[i].valid, _fixture.valid, label + ' at offset ' + i
-        );
-      }
+      _test.done();
     }
-
-    /* Finished */
-    _test.done();
-  });
+  );
 }
 
-
 /* Tests */
-util.make_tests(
-  'forms', exports,
-    fixtures.validate.forms, _assert
+test_utils.make_tests(
+  'input-validation', exports,
+    fixtures.errors.input, _assert
 );
-util.make_tests(
-  'fields', exports,
-    fixtures.validate.fields, _assert
-);
-util.make_tests(
-  'select-lists', exports,
-    fixtures.validate.select_lists, _assert
-);
-

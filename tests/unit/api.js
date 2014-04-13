@@ -37,9 +37,9 @@ var fs = require('fs'),
     async = require('async'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
-    api = require('../lib/api'),
-    util = require('../lib/util'),
-    test_utils = require('./include/util'),
+    api = require('../../lib/api'),
+    util = require('../../lib/util'),
+    test_utils = require('../include/util'),
     fixtures = require('./fixtures/compiled');
 
 
