@@ -1,3 +1,4 @@
+
 var path = require('path'),
   fs = require('fs'),
   async = require('async'),
@@ -9,12 +10,15 @@ var path = require('path'),
   fail = String.fromCharCode(10006);
 
 
+/**
+ * @name framework
+ */
 var framework = {
 
   /**
    * Renders the given form in the DOM.
    */
-  run: function(definition, interactions, assertions, callback) {
+  run: function (definition, interactions, assertions, callback) {
 
     if (!callback) {
       throw new Error('callback is required');
@@ -26,12 +30,12 @@ var framework = {
       } else {
         return {
           // null promise
-          then: function(fn) {
+          then: function (fn) {
             fn.apply(this, arguments);
           }
         }
       }
-    }
+    };
 
     var _runAssertions = function () {
       try {
@@ -46,15 +50,19 @@ var framework = {
 
     browser
       .visit('http://127.0.0.1:7357/?formDefinition=' + formDefinition)
-      .then(function() {
+      .then(function () {
         _runInteractions().then(_runAssertions);
       })
       .fail(callback);
   }
-}
+};
 
 
-exports.run = function(cb) {
+/**
+ * @name run
+ */
+exports.run = function (cb) {
+
   fs.readdir(testsDir, function (err, files) {
     files.forEach(function (file) {
       if (!file.match(/\.js$/)) {
@@ -68,8 +76,8 @@ exports.run = function(cb) {
 
     async.eachSeries(
       Object.keys(tests),
-      function(key, callback) {
-        tests[key].call(this, framework, function(err) {
+      function (key, callback) {
+        tests[key].call(this, framework, function (err) {
           if (err) {
             console.error(fail + ' ' + key);
           } else {
