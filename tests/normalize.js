@@ -34,10 +34,13 @@
 'use strict';
 
 var fs = require('fs'),
+    clone = require('clone'),
     _ = require('underscore'),
-    n = require('../lib/normalize'),
+    jsdump = require('jsDump'),
+    api = require('../lib/api'),
     util = require('./include/util'),
     deepEqual = require('deep-equal'),
+    normalizer = require('../lib/normalize'),
     fixtures = require('./fixtures/compiled');
 
 
@@ -83,10 +86,12 @@ var check_fields = function (_test, _fields,
   /* For each checkable object in scope */
   for (var i = 0, len = _expected.length; i < len; ++i) {
 
-    if (_expected[i].type == 'fields') {
+    var expected = _expected[i];
+
+    if (expected.type == 'fields') {
 
       check_fields(
-        _test, (_fields[i].fields || []), (_expected[i].fields || []),
+        _test, (_fields[i].fields || []), (expected.fields || []),
           _properties, context.concat([ i ])
       );
 
@@ -98,7 +103,7 @@ var check_fields = function (_test, _fields,
       );
 
       _test.ok(
-        compare_partial(_expected[i], _fields[i], _properties),
+        compare_partial(expected, _fields[i], _properties),
         ('properties ' +
           JSON.stringify(_properties) + ' must match' + path_text)
       );
@@ -117,7 +122,7 @@ var _assert = function(_test, _fixture, _value, _scope) {
   _test.ok(_.isObject(to), 'must have `to` property');
   _test.ok(_.isObject(from), 'must have `from` property');
 
-  n.normalize_all(from);
+  normalizer.normalize_all(from);
 
   /* For each form */
   for (var i = 0, len = from.length; i < len; ++i) {
@@ -127,7 +132,22 @@ var _assert = function(_test, _fixture, _value, _scope) {
     );
   }
 
-  _test.done();
+  /* Check validity of normalized form:
+   *   We want to make sure that all of our normalization output
+   *   also validates properly and conforms to the JSON schema. */
+
+  var forms = _.map(from, function (_object) {
+    return _.extend(clone(_object), { meta: { id: 'f' } });
+  });
+
+  api.create().load(forms, function (_rv) {
+    if (!_rv.valid) {
+    console.log('form', jsdump.parse(forms));
+    console.log('rv', jsdump.parse(_rv));
+    }
+    _test.ok(_rv.valid, 'normalized form must be loadable');
+    _test.done();
+  });
 }
 
 

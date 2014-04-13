@@ -7,7 +7,8 @@
 
   "from": [{
     "fields": [{
-      "id": "f1"
+      "id": "f1",
+      "type": "integer"
     }]
   }],
   "to": [{
@@ -29,7 +30,8 @@
       "language": "en"
     },
     "fields": [{
-      "id": "f1"
+      "id": "f1",
+      "type": "integer"
     }]
   }],
   "to": [{
@@ -52,6 +54,7 @@
     },
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "description": "Field One"
     }]
   }],
@@ -75,6 +78,7 @@
     },
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "name": "Field One"
     }]
   }],
@@ -98,6 +102,7 @@
     },
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "name": "Field One",
       "description": "This is the first field"
     }]
@@ -122,6 +127,7 @@
     },
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "name": "Field One",
       "description": "This is the first field"
     }, {
@@ -130,10 +136,12 @@
       "name": { "es": "Segundo campo" },
       "fields": [{
         "id": "f3",
+        "type": "integer",
         "name": "Field Three",
         "description": { "fr": "C'est le troisième domaine" }
       }, {
         "id": "f4",
+        "type": "integer",
         "name": "Field Four",
         "description": {
           "en": "This is the fourth field",
@@ -145,6 +153,7 @@
   "to": [{
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "name": { "en": "Field One" },
       "description": { "en": "This is the first field" }
     }, {
@@ -156,6 +165,7 @@
       },
       "fields": [{
         "id": "f3",
+        "type": "integer",
         "name": { "en": "Field Three" },
         "description": {
           "en": "Field Three",
@@ -163,6 +173,7 @@
         }
       }, {
         "id": "f4",
+        "type": "string",
         "name": { "en": "Field Four" },
         "description": {
           "en": "This is the fourth field",
@@ -184,6 +195,7 @@
     },
     "fields": [{
       "id": "f1",
+      "type": "string",
       "name": { "es": "Campo uno" },
       "description": { "fr": "Premier champ" }
     }, {
@@ -191,6 +203,7 @@
       "type": "fields",
       "fields": [{
         "id": "f3",
+        "type": "number",
         "name": { "es": "Tercer campo" },
         "description": {
           "en": "Third field",
@@ -198,6 +211,7 @@
         }
       }, {
         "id": "f4",
+        "type": "number",
         "name": {
           "en": "Fourth field",
           "es": "Cuarto campo"
@@ -209,6 +223,7 @@
   "to": [{
     "fields": [{
       "id": "f1",
+      "type": "gps",
       "name": {
         "en": "f1",
         "es": "Campo uno"
@@ -222,6 +237,7 @@
       "type": "fields",
       "fields": [{
         "id": "f3",
+        "type": "date",
         "name": {
           "en": "f3",
           "es": "Tercer campo"
@@ -232,6 +248,7 @@
         }
       }, {
         "id": "f4",
+        "type": "timestamp",
         "name": {
           "en": "Fourth field",
           "es": "Cuarto campo"

@@ -7,7 +7,8 @@
 
   "from": [{
     "fields": [{
-      "id": "f1"
+      "id": "f1",
+      "type": "string"
     }]
   }],
   "to": [{
@@ -29,6 +30,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "string",
       "validations": {
         "javascript": {}
       }
@@ -53,6 +55,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "string",
       "validations": {
         "operator": "||",
         "javascript": "return true;"
@@ -80,6 +83,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "week",
       "validations": {
         "operator": "&&",
         "registered": {}
@@ -105,6 +109,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "day",
       "validations": {
         "operator": "&&",
         "javascript": {}
@@ -130,6 +135,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "date",
       "validations": {
         "operator": "&&",
         "javascript": {},

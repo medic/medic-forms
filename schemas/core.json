@@ -15,7 +15,10 @@
     "anything": {},
 
     "infinity": {
-      "type": "number", "minimum": 1e9999
+      "oneOf": [
+        { "type": "number", "minimum": 1e9999 },
+        { "type": "number", "maximum": -1e9999 }
+      ]
     },
 
     "omitted-value": {
@@ -85,6 +88,9 @@
         { "$ref": "#/library/field-number" },
         { "$ref": "#/library/field-date" },
         { "$ref": "#/library/field-timestamp" },
+        { "$ref": "#/library/field-day" },
+        { "$ref": "#/library/field-week" },
+        { "$ref": "#/library/field-month" },
         { "$ref": "#/library/field-gps" },
         { "$ref": "#/library/field-image" },
         { "$ref": "#/library/field-select" },
@@ -177,7 +183,7 @@
 
         "type": { "enum": [ "date" ] },
         "range": { "$ref": "#/library/unsupported" },
-        "repeat": { "$ref": "#/library/repeat-specifier" }
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
 
@@ -199,7 +205,73 @@
 
         "type": { "enum": [ "timestamp" ] },
         "range": { "$ref": "#/library/unsupported" },
-        "repeat": { "$ref": "#/library/repeat-specifier" }
+        "length": { "$ref": "#/library/length-specifier" }
+      }
+    },
+
+    "field-day": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "$ref": "#/library/required" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "$ref": "#/library/anything" },
+        "render": { "type": "string" },
+
+        "type": { "enum": [ "day" ] },
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
+      }
+    },
+
+    "field-week": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "$ref": "#/library/required" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "$ref": "#/library/anything" },
+        "render": { "type": "string" },
+
+        "type": { "enum": [ "week" ] },
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
+      }
+    },
+
+    "field-month": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "$ref": "#/library/required" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "$ref": "#/library/anything" },
+        "render": { "type": "string" },
+
+        "type": { "enum": [ "month" ] },
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
 
@@ -220,10 +292,10 @@
         "render": { "type": "string" },
 
         "type": { "enum": [ "image" ] },
-        "range": { "$ref": "#/library/unsupported" }
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
-
 
     "field-gps": {
       "type": "object",
@@ -242,8 +314,9 @@
         "render": { "type": "string" },
 
         "type": { "enum": [ "gps" ] },
+        "elevation": { "type": [ "boolean", "null" ] },
         "range": { "$ref": "#/library/unsupported" },
-        "elevation": { "type": [ "boolean", "null" ] }
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
 
@@ -263,28 +336,16 @@
         "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
-        "type": { "enum": [ "select" ] },
-        "range": { "$ref": "#/library/range-specifier-integer" },
-
         "items": {
-          "type": "array",
-          "items": {
-            "oneOf": [
-              { "type": "integer" },
-              { "$ref": "#/library/l10n" },
-              { "$ref": "#/library/script-specifier" },
-              {
-                "type": "array",
-                "minItems": 1,
-                "maxItems": 2,
-                "items": [
-                  { "type": [ "integer", "string" ] },
-                  { "$ref": "#/library/l10n" }
-                ]
-              }
-            ]
-          }
-        }
+          "oneOf": [
+            { "$ref": "#/library/selection-list" },
+            { "$ref": "#/library/script-specifier" }
+          ]
+        },
+
+        "type": { "enum": [ "select" ] },
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
 
@@ -304,9 +365,11 @@
         "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
-        "type": { "enum": [ "fields" ] },
         "fields": { "$ref": "#/library/fieldset" },
-        "range": { "$ref": "#/library/unsupported" }
+
+        "type": { "enum": [ "fields" ] },
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
 
@@ -420,8 +483,8 @@
           "uniqueItems": false,
           "minItems": 1, "maxItems": 2,
           "items": {
-            "oneOf": [
-              { "type": "number" },
+            "anyOf": [
+              { "type": [ "integer", "number" ] },
               { "$ref": "#/library/infinity" },
               { "$ref": "#/library/omitted-value" }
             ]
@@ -476,6 +539,36 @@
         "registered": {
           "type": [ "string", "object" ]
         }
+      }
+    },
+
+    "selection-list": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "integer" },
+          { "$ref": "#/library/l10n" },
+          {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+              "oneOf": [
+                { "type": "integer" },
+                { "$ref": "#/library/l10n" }
+              ]
+            }
+          },
+          {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+              { "type": [ "integer", "string" ] },
+              { "$ref": "#/library/l10n" }
+            ]
+          }
+        ]
       }
     }
   }

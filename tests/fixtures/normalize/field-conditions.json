@@ -6,7 +6,8 @@
 
   "from": [{
     "fields": [{
-      "id": "f1"
+      "id": "f1",
+      "type": "integer"
     }]
   }],
   "to": [{
@@ -27,6 +28,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "conditions": {
         "javascript": {}
       }
@@ -50,6 +52,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "conditions": {
         "operator": "||",
         "javascript": "return true;"
@@ -76,6 +79,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "conditions": {
         "operator": "&&",
         "structured": {}
@@ -101,6 +105,7 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "conditions": {
         "operator": "&&",
         "javascript": {}
@@ -126,11 +131,15 @@
   "from": [{
     "fields": [{
       "id": "f1",
+      "type": "integer",
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "structured": "foo"
+        "structured": "f2"
       }
+    }, {
+      "id": "f2",
+      "type": "string"
     }]
   }],
   "to": [{
@@ -138,7 +147,7 @@
       "conditions": {
         "operator": "&&",
         "javascript": {},
-        "structured": { "foo": true }
+        "structured": { "f2": true }
       }
     }]
   }]
