@@ -14,7 +14,33 @@
     },
     "expect": {
       "valid": false,
-      "error": "No renderers could be found for moniker"
+      "error": "No renderers could be found for 'moniker'."
+    }
+  },
+
+  {
+    "_name": "Unknown renderer in second field",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [
+        {
+          "id": "moniker",
+          "name": "Patient Name",
+          "type": "string"
+        },
+        {
+          "id": "hoozit",
+          "name": "Huh?",
+          "type": "hoozit"
+        }
+      ]
+    },
+    "expect": {
+      "valid": false,
+      "error": "No renderers could be found for 'hoozit'."
     }
   },
 
@@ -34,7 +60,7 @@
     },
     "expect": {
       "valid": false,
-      "error": "No renderers could be found for moniker"
+      "error": "No renderers could be found for 'moniker'."
     }
   },
 
