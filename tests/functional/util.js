@@ -65,7 +65,7 @@ exports.get_result = function (_browser) {
   return JSON.parse(serialized);
 };
 
-exports.assert_error = function(_browser, _id, _error) {
+exports.assert_error = function (_browser, _id, _error) {
   var row = get_row(_browser, _id);
   assert.ok(
     row, 
@@ -78,5 +78,12 @@ exports.assert_error = function(_browser, _id, _error) {
   assert.equal(
     _browser.query(get_row_class(_id) + ' span.error-message').innerHTML, 
     _error
+  );
+};
+
+exports.assert_attribute = function (_browser, _field, _attribute, _expected) {
+  assert.equal(
+    _expected, 
+    _browser.query(get_row_class(_field) + ' input').getAttribute(_attribute)
   );
 };

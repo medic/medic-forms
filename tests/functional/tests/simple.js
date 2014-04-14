@@ -45,8 +45,10 @@ exports['valid form render'] = function(test, callback) {
   test.run(form, null, function(browser) {
     assert.equal(browser.query('.field-id-name input').value, '');
     assert.ok(util.has_class(browser, 'name', 'required'));
+
     assert.equal(browser.query('.field-id-pokemon input').value, 'Pikachu');
     assert.ok(!util.has_class(browser, 'pokemon', 'required'));
+    
     assert.equal(util.get_select_value(browser, 'colour'), '1');
   }, callback);
 };
