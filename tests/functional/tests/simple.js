@@ -60,8 +60,7 @@ exports['valid form submission'] = function(test, callback) {
       .fill('pokemon', 'Diancie')
       .pressButton('button');
   }, function(browser) {
-    var serialized = browser.text('#serialized');
-    assert.deepEqual(JSON.parse(serialized), {
+    util.assert_result(browser, {
       name: 'gareth', 
       pokemon: 'Diancie',
       colour: '1'

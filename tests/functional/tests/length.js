@@ -40,5 +40,3 @@ exports['test length attribute'] = function(test, callback) {
     assert.ok(!browser.query('.field-id-comments input').hasAttribute('maxlength'));
   }, callback);
 };
-
-// TODO test scripted values

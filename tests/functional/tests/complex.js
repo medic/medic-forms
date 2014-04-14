@@ -89,7 +89,7 @@ exports['valid submission'] = function(test, callback) {
       .fill('seen', '2014-01-14T14:03:55.554Z')
       .pressButton('button');
   }, function(browser) {
-    assert.deepEqual(util.get_result(browser), {
+    util.assert_result(browser, {
       age: '21',
       cholesterol: '11.5',
       email: 'gareth@medicmobile.org',

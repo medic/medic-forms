@@ -56,14 +56,14 @@ exports.has_class = function (_browser, _id, _class) {
   return elem_has_class(get_row(_browser, _id), _class);
 };
 
-exports.get_result = function (_browser) {
+exports.assert_result = function (_browser, _expected) {
   var serialized = _browser.text('#serialized');
   if (!serialized) {
     assert.fail('Submission was not valid:' + 
       _browser.query('form').innerHTML);
   }
-  return JSON.parse(serialized);
-};
+  assert.deepEqual(_expected, JSON.parse(serialized));
+}
 
 exports.assert_error = function (_browser, _id, _error) {
   var row = get_row(_browser, _id);
