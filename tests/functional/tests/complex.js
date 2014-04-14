@@ -1,4 +1,5 @@
-var assert = require('assert');
+var assert = require('assert'),
+    util = require('../util');
 
 var form = {
   "meta": {
@@ -69,11 +70,11 @@ exports['field type validation'] = function(test, callback) {
       .fill('seen', 'noon today')
       .pressButton('button');
   }, function(browser) {
-    _assertError(browser, 'age', 'Value must be an integer');
-    _assertError(browser, 'cholesterol', 'Value must be numeric');
-    _assertError(browser, 'email', 'Value must be a valid email address');
-    _assertError(browser, 'lmp', 'Value must be a valid date');
-    _assertError(browser, 'seen', 'Value must be a valid timestamp');
+    util.assert_error(browser, 'age', 'Value must be an integer');
+    util.assert_error(browser, 'cholesterol', 'Value must be numeric');
+    util.assert_error(browser, 'email', 'Value must be a valid email address');
+    util.assert_error(browser, 'lmp', 'Value must be a valid date');
+    util.assert_error(browser, 'seen', 'Value must be a valid timestamp');
   }, callback);
 };
 
@@ -88,7 +89,7 @@ exports['valid submission'] = function(test, callback) {
       .fill('seen', '2014-01-14T14:03:55.554Z')
       .pressButton('button');
   }, function(browser) {
-    assert.deepEqual(_serialize(browser), {
+    assert.deepEqual(util.get_result(browser), {
       age: '21',
       cholesterol: '11.5',
       email: 'gareth@medicmobile.org',
@@ -99,20 +100,3 @@ exports['valid submission'] = function(test, callback) {
   }, callback);
 };
 
-var _serialize = function (browser) {
-  var serialized = browser.text('#serialized');
-  if (!serialized) {
-    assert.fail('Submission was not valid:' + 
-      browser.query('form').innerHTML);
-  }
-  return JSON.parse(serialized);
-};
-
-var _assertError = function(browser, id, error) {
-  var elemId = '#row-' + id;
-  assert.equal(browser.query(elemId).className, 'error');
-  assert.equal(
-    browser.query(elemId + '.error span.error-message').innerHTML, 
-    error
-  );
-};

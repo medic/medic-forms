@@ -1,4 +1,5 @@
-var assert = require('assert');
+var assert = require('assert'),
+    util = require('../util');
 
 exports['skip conditions are evaluated'] = function(test, callback) {
   var form = {
@@ -34,8 +35,8 @@ exports['skip conditions are evaluated'] = function(test, callback) {
     ]
   };
   test.run(form, null, function(browser) {
-    assert.equal(browser.query('#row-skip').className, 'skipped');
-    assert.equal(browser.query('#row-noskip').className, '');
+    assert.ok(util.has_class(browser, 'skip', 'skipped'));
+    assert.ok(!util.has_class(browser, 'noskip', 'skipped'));
   }, callback);
 };
 
@@ -75,7 +76,9 @@ exports['javascript skip conditions are evaluated'] = function(test, callback) {
       .fill('title', 'short')
       .pressButton('button');
   }, function(browser) {
-    assert.equal(browser.query('#row-noskip').className, 'error required');
-    assert.equal(browser.query('#row-skip').className, 'required skipped');
+    assert.ok(util.has_class(browser, 'skip', 'skipped'));
+    assert.ok(!util.has_class(browser, 'skip', 'error'));
+    assert.ok(!util.has_class(browser, 'noskip', 'skipped'));
+    assert.ok(util.has_class(browser, 'noskip', 'error'));
   }, callback);
 };

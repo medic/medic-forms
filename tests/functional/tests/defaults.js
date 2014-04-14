@@ -16,7 +16,7 @@ var form = {
 
 exports['render defaults'] = function(test, callback) {
   test.run(form, null, function(browser) {
-    assert.equal(browser.query('#row-name input').value, 'Curious George');
+    assert.equal(browser.query('.field-id-name input').value, 'Curious George');
   }, callback);
 };
 

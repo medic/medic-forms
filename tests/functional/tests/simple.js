@@ -1,4 +1,5 @@
-var assert = require('assert');
+var assert = require('assert'),
+    util = require('../util');
 
 var form = {
   "meta": {
@@ -33,11 +34,11 @@ var form = {
 
 exports['valid form render'] = function(test, callback) {
   test.run(form, null, function(browser) {
-    assert.equal(browser.query('#row-name input').value, '');
-    assert.equal(browser.query('#row-name').className, 'required');
-    assert.equal(browser.query('#row-pokemon input').value, 'Pikachu');
-    assert.equal(browser.query('#row-pokemon').className, '');
-    assert.equal(_get_select_value(browser, 'colour'), '1');
+    assert.equal(browser.query('.field-id-name input').value, '');
+    assert.ok(util.has_class(browser, 'name', 'required'));
+    assert.equal(browser.query('.field-id-pokemon input').value, 'Pikachu');
+    assert.ok(!util.has_class(browser, 'pokemon', 'required'));
+    assert.equal(util.get_select_value(browser, 'colour'), '1');
   }, callback);
 };
 
@@ -64,17 +65,14 @@ exports['missing required field'] = function(test, callback) {
       .select('colour', '2')
       .pressButton('button');
   }, function(browser) {
-    assert.equal(browser.query('#row-name').className, 'error required');
+    assert.ok(util.has_class(browser, 'name', 'error'));
+    assert.ok(util.has_class(browser, 'name', 'required'));
     assert.equal(
-      browser.query('#row-name.error span.error-message').innerHTML, 
+      browser.query('.field-id-name.error span.error-message').innerHTML, 
       'Value must be a single plain-text string'
     );
-    assert.equal(browser.query('#row-pokemon input').value, 'Diancie');
-    assert.equal(_get_select_value(browser, 'colour'), '2');
+    assert.equal(browser.query('.field-id-pokemon input').value, 'Diancie');
+    assert.equal(util.get_select_value(browser, 'colour'), '2');
   }, callback);
 };
 
-var _get_select_value = function (_browser, _id) {
-  var selected = _browser.query('#row-' + _id + ' option:checked');
-  return selected && selected.value;
-}

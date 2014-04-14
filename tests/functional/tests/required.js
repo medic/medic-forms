@@ -1,4 +1,5 @@
-var assert = require('assert');
+var assert = require('assert'),
+    util = require('../util');
 
 var form = {
   "meta": {
@@ -26,7 +27,7 @@ var form = {
 
 exports['render required fields'] = function(test, callback) {
   test.run(form, null, function(browser) {
-    assert.equal(browser.query('#row-name').className, 'required');
-    assert.equal(browser.query('#row-parent').className, '');
+    assert.ok(util.has_class(browser, 'name', 'required'));
+    assert.ok(!util.has_class(browser, 'parent', 'required'));
   }, callback);
 };

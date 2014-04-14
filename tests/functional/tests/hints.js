@@ -23,7 +23,7 @@ var form = {
 
 exports['render hints take priority'] = function(test, callback) {
   test.run(form, null, function(browser) {
-    assert.equal(browser.query('#row-title input').name, 'title');
-    assert.equal(browser.query('#row-description textarea').name, 'description');
+    assert.equal(browser.query('.field-id-title input').name, 'title');
+    assert.equal(browser.query('.field-id-description textarea').name, 'description');
   }, callback);
 };
