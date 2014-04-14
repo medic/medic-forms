@@ -138,6 +138,46 @@
       "items": []
     }]
   }]
+},
+
+{
+  "_name": "Items (short arrays, default language label)",
+
+  "check": [ "items" ],
+
+  "from": [{
+    "meta": {
+      "language": "za"
+    },
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [
+        [ 1 ],
+        [ "Hello" ],
+        2,
+        "Goodbye",
+        [ 3, "Goodbye" ],
+        [ "Mahalo", "Goodbye" ],
+        [ "Greetings", { "en": "Hello" } ]
+      ]
+    }]
+  }],
+  "to": [{
+    "fields": [{
+      "id": "f1",
+      "type": "select",
+      "items": [
+        [ 1, { "za": "1" } ],
+        [ "Hello", { "za": "Hello" } ],
+        [ 2, { "za": "2" } ],
+        [ 4, { "za": "Goodbye" } ],
+        [ 3, { "za": "Goodbye" } ],
+        [ "Mahalo", { "za": "Goodbye" } ],
+        [ "Greetings", { "en": "Hello", "za": "Greetings" } ]
+      ]
+    }]
+  }]
 }
 
 ]

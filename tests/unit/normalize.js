@@ -86,26 +86,26 @@ var check_fields = function (_test, _fields,
   /* For each checkable object in scope */
   for (var i = 0, len = _expected.length; i < len; ++i) {
 
+    var field = _fields[i];
     var expected = _expected[i];
 
     if (expected.type == 'fields') {
 
       check_fields(
-        _test, (_fields[i].fields || []), (expected.fields || []),
+        _test, (field.fields || []), (expected.fields || []),
           _properties, context.concat([ i ])
       );
 
     } else {
 
-      var path_text = (
-        context.length > 0 ?
-          ' along subfield path ' + JSON.stringify(context) : ''
+      var message = (
+        'properties ' + JSON.stringify(_properties) + ' must match' +
+          (context.length > 0 ?
+            ' along subfield path ' + JSON.stringify(context) : '')
       );
 
       _test.ok(
-        compare_partial(expected, _fields[i], _properties),
-        ('properties ' +
-          JSON.stringify(_properties) + ' must match' + path_text)
+        compare_partial(expected, field, _properties), message
       );
     }
   }
@@ -141,10 +141,6 @@ var _assert = function(_test, _fixture, _value, _scope) {
   });
 
   api.create().load(forms, function (_rv) {
-    if (!_rv.valid) {
-    console.log('form', jsdump.parse(forms));
-    console.log('rv', jsdump.parse(_rv));
-    }
     _test.ok(_rv.valid, 'normalized form must be loadable');
     _test.done();
   });
