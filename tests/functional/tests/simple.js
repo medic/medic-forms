@@ -32,6 +32,15 @@ var form = {
   ]
 };
 
+exports['test id generation'] = function(test, callback) {
+  test.run(form, null, function(browser) {
+    var inputId = browser.query('.field-id-name input').id;
+    var labelFor = browser.query('.field-id-name label').getAttribute('for');
+    assert.ok(inputId.trim() !== '');
+    assert.equal(labelFor, inputId);
+  }, callback);
+};
+
 exports['valid form render'] = function(test, callback) {
   test.run(form, null, function(browser) {
     assert.equal(browser.query('.field-id-name input').value, '');
