@@ -80,8 +80,8 @@ exports['field type validation'] = function(test, callback) {
 exports['valid submission'] = function(test, callback) {
   test.run(form, function(browser) {
     return browser
-      // .fill('age', '21')
-      // .fill('cholesterol', '11.5')
+      .fill('age', '21')
+      .fill('cholesterol', '11.5')
       .fill('email', 'gareth@medicmobile.org')
       .select('sex', '2')
       .fill('lmp', '2014-04-14')
@@ -89,6 +89,8 @@ exports['valid submission'] = function(test, callback) {
       .pressButton('button');
   }, function(browser) {
     assert.deepEqual(_serialize(browser), {
+      age: '21',
+      cholesterol: '11.5',
       email: 'gareth@medicmobile.org',
       sex: '2',
       lmp: '2014-04-14',
