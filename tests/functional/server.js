@@ -97,6 +97,11 @@ var _startServer = function (callback) {
       } else {
 
         var parsed = qs.parse(body);
+        _.each(_.keys(parsed), function(key) {
+          if (parsed[key] === '') {
+            delete parsed[key];
+          }
+        });
 
         _serialize(parsed, function (valid) {
           if (valid.valid) {

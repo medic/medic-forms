@@ -1,0 +1,6 @@
+{
+  "module": "renderer",
+  "attachments": {
+    "template": "date.html"
+  }
+}

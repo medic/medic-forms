@@ -1,0 +1,9 @@
+{{#row field error validation}}
+
+  {{> errorMessage}}
+  {{> label}}
+  
+  <input id="field-{{field.id}}" type="datetime" name="{{field.id}}" 
+    value="{{value}}"/>
+
+{{/row}}
