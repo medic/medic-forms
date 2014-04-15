@@ -82,3 +82,5 @@ exports['javascript skip conditions are evaluated'] = function(test, callback) {
     assert.ok(util.has_class(browser, 'noskip', 'error'));
   }, callback);
 };
+
+// TODO skipped fields should not be submitted

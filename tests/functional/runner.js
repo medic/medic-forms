@@ -26,9 +26,7 @@ var framework = {
 
     var _runInteractions = function (_interactions, cb) {
       if (_.isFunction(_interactions)) {
-        _interactions
-          .call(this, browser)
-          .then(cb);
+        _interactions.call(this, browser).then(cb);
       } else if (_.isArray(_interactions)) {
         async.eachSeries(_interactions, _runInteractions, cb);
       } else {
