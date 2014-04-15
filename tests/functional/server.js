@@ -7,7 +7,6 @@ var _ = require('underscore'),
     handlebars = require('handlebars'),
     qs = require('querystring'),
     api = require('../../lib/api').create(),
-    render = require('../../lib/render'),
     server, formDefinition,
     templates = {};
 
@@ -57,8 +56,8 @@ var _sendError = function (res, error) {
  */
 var _sendForm = function (res, parsed, valid, options) {
 
-  var form = render.render_form(
-    formDefinition, parsed, valid, options
+  var form = api.render(
+    'TEST', parsed, valid, options
   );
 
   if (form.valid || options.initial) {
