@@ -1,13 +1,13 @@
-
-var path = require('path'),
-  fs = require('fs'),
-  async = require('async'),
-  testsDir = __dirname + '/tests',
-  tests = {},
-  zombie = require('zombie'),
-  browser = new zombie(),
-  pass = String.fromCharCode(10004),
-  fail = String.fromCharCode(10006);
+var _ = require('underscore'),
+    path = require('path'),
+    fs = require('fs'),
+    async = require('async'),
+    testsDir = __dirname + '/tests',
+    tests = {},
+    zombie = require('zombie'),
+    browser = new zombie(),
+    pass = String.fromCharCode(10004),
+    fail = String.fromCharCode(10006);
 
 
 /**
@@ -24,16 +24,15 @@ var framework = {
       throw new Error('callback is required');
     }
 
-    var _runInteractions = function () {
-      if (interactions) {
-        return interactions.call(this, browser);
+    var _runInteractions = function (_interactions, cb) {
+      if (_.isFunction(_interactions)) {
+        _interactions
+          .call(this, browser)
+          .then(cb);
+      } else if (_.isArray(_interactions)) {
+        async.eachSeries(_interactions, _runInteractions, cb);
       } else {
-        return {
-          // null promise
-          then: function (fn) {
-            fn.apply(this, arguments);
-          }
-        }
+        cb();
       }
     };
 
@@ -51,9 +50,10 @@ var framework = {
     browser
       .visit('http://127.0.0.1:7357/?formDefinition=' + formDefinition)
       .then(function () {
-        _runInteractions().then(_runAssertions);
-      })
-      .fail(callback);
+        _runInteractions(interactions, function() {
+          _runAssertions();
+        });
+      });
   }
 };
 
