@@ -21,9 +21,7 @@ var _serialize = function (parsed, callback) {
       return callback(_result);
     }
 
-    var submission = _.extend({$form: 'TEST'}, parsed); 
-
-    api.fill(submission, function (_result) {
+    api.fill(parsed, function (_result) {
       callback(_result);
     });
   });
@@ -88,7 +86,7 @@ var _startServer = function (callback) {
           unescape(req.url.split('=')[1])
         );
 
-        _serialize({}, function (valid) {
+        _serialize({$form: 'TEST'}, function (valid) {
           _sendForm(res, {}, valid, { initial: true });
         });
 
@@ -101,6 +99,7 @@ var _startServer = function (callback) {
         } else {
           _serialize(parsed.result, function (serialized) {
             if (serialized.valid) {
+              delete parsed.result.$form;
               _sendOk(res, templates.result({
                 result: JSON.stringify(parsed.result)
               }));

@@ -22,7 +22,7 @@ main()
   \
   # Unit tests
   run_tests reference schema \
-    validate normalize input errors api render &&
+    validate normalize input errors api render parser &&
   \
   # Functional tests
   (cd tests/functional && node test.js)

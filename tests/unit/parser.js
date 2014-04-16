@@ -33,54 +33,31 @@
 
 'use strict';
 
-var _ = require('underscore'),
-    qs = require('querystring'),
-    util = require('./util');
+var fs = require('fs'),
+    _ = require('underscore'),
+    parser = require('../../lib/parser'),
+    test_utils = require('../include/util'),
+    fixtures = require('./fixtures/compiled');
 
-var _parsers = {
-  httppost: function (_input, _getFormFn) {
-    var parsed = qs.parse(_input);
-    var form = _getFormFn(parsed.$form);
-    if (!form.valid) {
-      return form;
-    }
-    var cleaned = {};
-    _.each(_.keys(parsed), function(key) {
-      var value = parsed[key];
-      if (value) {
-        var repeating = /(.+)\[([0-9]+)\]$/.exec(key);
-        if (repeating) {
-          key = repeating[1];
-          var index = repeating[2];
-          if (!cleaned[key]) {
-            cleaned[key] = [];
-          }
-          cleaned[key][index] = value;
-        } else {
-          cleaned[key] = value;
-        }
-      }
-    });
-    _.each(_.keys(cleaned), function(key) {
-      if (_.isArray(cleaned[key])) {
-        cleaned[key] = _.compact(cleaned[key]);
-      }
-    });
-    return {
-      valid: true,
-      result: cleaned
-    }
-  }
+
+/**
+ * @name _assert
+ */
+var _assert = function (_test, _fixture, _value, _parser_id) {
+
+  _test.expect(1);
+
+  var actual = parser.parse(
+    _fixture.forms, _fixture.input, _parser_id
+  );
+
+  _test.deepEqual(actual, _fixture.expect);
+  _test.done();
 };
 
-exports.parse = function (_forms, _input, _parser_id) {
-  var parser = _parsers[_parser_id];
-  if (!parser) {
-    return {
-      valid: false,
-      error: 'Unknown parser ' + _parser_id
-    }
-  }
-  var getFormFn = _.partial(util.get_form, _forms);
-  return parser.call(this, _input, getFormFn);
-};
+/* Run tests */
+test_utils.make_tests(
+  'parser-httppost', exports, fixtures.parser.httppost,
+    _assert, [ 'httppost' ]
+);
+
