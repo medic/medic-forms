@@ -200,7 +200,7 @@
 },
 
 {
-  "_name": "Repetition (array, first item is false, required)",
+  "_name": "Repetition (array, first item is false, required 2)",
 
   "check": [ "repeat", "required" ],
 
@@ -361,7 +361,7 @@
 },
 
 {
-  "_name": "Repetition (unbounded, zero/false array, not required)",
+  "_name": "Repetition (unbounded, zero/false array, explicitely not required)",
 
   "check": [ "repeat", "required" ],
 
@@ -384,7 +384,7 @@
 },
 
 {
-  "_name": "Repetition (unbounded, zero/null array, not required)",
+  "_name": "Repetition (unbounded, zero/null array, explicitely not required)",
 
   "check": [ "repeat", "required" ],
 
