@@ -5,7 +5,6 @@ var _ = require('underscore'),
     fs = require('fs'),
     jsdump = require('jsDump'),
     handlebars = require('handlebars'),
-    qs = require('querystring'),
     api = require('../../lib/api').create(),
     server, formDefinition,
     templates = {};
@@ -95,22 +94,22 @@ var _startServer = function (callback) {
 
       } else {
 
-        var parsed = qs.parse(body);
-        _.each(_.keys(parsed), function(key) {
-          if (parsed[key] === '') {
-            delete parsed[key];
-          }
-        });
+        var parsed = api.parse(body, 'httppost');
 
-        _serialize(parsed, function (valid) {
-          if (valid.valid) {
-            _sendOk(res, templates.result({
-              result: JSON.stringify(parsed)
-            }));
-          } else {
-            _sendForm(res, parsed, valid);
-          }
-        });
+        if (!parsed.valid) {
+          _sendError(res, parsed.error);
+        } else {
+          _serialize(parsed.result, function (serialized) {
+            if (serialized.valid) {
+              _sendOk(res, templates.result({
+                result: JSON.stringify(parsed.result)
+              }));
+            } else {
+              _sendForm(res, parsed.result, serialized);
+            }
+          });
+        }
+
       }
     });
   });
@@ -151,27 +150,21 @@ exports.start = function (callback) {
 
       fs.readFile(_template.template, 'utf8', function (err, data) {
 
-        if (err) {
-          return _callback(err);
+        if (!err) {
+          templates[_template.name] = handlebars.compile(data);
         }
+        
+        _callback(err);
 
-        return _callback(null, {
-          name: _template.name,
-          template: handlebars.compile(data)
-        });
       });
     }, 
 
     /* Completion function */
-    function (_err, _results) {
+    function (_err) {
 
       if (_err) {
-        return callback(err);
+        return callback(_err);
       }
-
-      _.each(_results, function (result) {
-        templates[result.name] = result.template;
-      });
 
       _startServer(callback);
     }
