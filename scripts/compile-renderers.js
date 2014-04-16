@@ -70,7 +70,7 @@ var main = function (_cb) {
 function _update_compiled (_renderers) {
 
   var data = [];
-  var output_path = base_path + '/_compiled.js';
+  var output_path = path.join(base_path, '_compiled.js');
 
   /* Render content */
   _write_header(data);
@@ -118,7 +118,7 @@ function _update_behavior (_renderers, _cb) {
 function _write_behavior (_behaviors, _cb) {
 
   var data = [];
-  var output_path = base_path + '/_behavior.js';
+  var output_path = path.join(base_path, '_behavior.js');
 
   _write_header(data);
   _write_includes(data);
@@ -128,8 +128,10 @@ function _write_behavior (_behaviors, _cb) {
   fs.appendFile(output_path, _behaviors, function (err) {
 
     process.stderr.write(
-      err || 'File `' + output_path + '` generated successfully.\n'
+      (err ? 'Error: ' + err :
+       'File `' + output_path + '` generated successfully.\n')
     );
+
     _cb(err);
   });
 }
@@ -140,7 +142,11 @@ function _write_behavior (_behaviors, _cb) {
  */
 function _write_includes (_data) {
 
-  _data.push(fs.readFileSync(base_path + '/jquery-1.8.3.min.js'));
+  _data.push(
+    fs.readFileSync(
+      path.join(base_path, 'jquery-1.8.3.min.js')
+    )
+  );
 }
 
 
@@ -161,8 +167,8 @@ function _write_header (_data) {
  */
 function _write_helpers (_data) {
 
-  var path = base_path + '/helpers';
-  var files = fs.readdirSync(path);
+  var dir = path.join(base_path, 'helpers');
+  var files = fs.readdirSync(dir);
 
   _data.push("var handlebars = require('handlebars');\n");
   _data.push('/* Extensions */');
@@ -183,16 +189,17 @@ function _write_helpers (_data) {
  */
 function _write_partials (_data) {
 
-  var path = base_path + '/partials';
-  var files = fs.readdirSync(path);
+  var dir = path.join(base_path, 'partials');
+  var files = fs.readdirSync(dir);
 
   _data.push('/* Handlebars partials */');
 
   _.each(files, function (_element) {
 
     if (_element.match(/.*\.html/)) {
+
       var name = _element.split('.')[0];
-      var contents = _read_and_escape(path + '/' + _element);
+      var contents = _read_and_escape(path.join(dir, _element));
 
       _data.push(
         "handlebars.registerPartial('" +
@@ -232,7 +239,7 @@ function _write_modules (_data, _renderers) {
 /**
  * @name _get_renderers:
  */
-function _get_renderers(_path, _renderers) {
+function _get_renderers (_path, _renderers) {
 
   var files = fs.readdirSync(_path);
 
@@ -247,7 +254,7 @@ function _get_renderers(_path, _renderers) {
     var fstats = fs.statSync(fpath);
     
     if (fstats.isDirectory()) {
-      if (fs.existsSync(fpath + '/renderer.json')) {
+      if (fs.existsSync(path.join(fpath, 'renderer.json'))) {
         _renderers.push(_create_module(fpath));
       } else {
         _read_directory(fpath, _renderers);
@@ -275,7 +282,7 @@ function _read_directory (_path, _modules) {
     var fstats = fs.statSync(fpath);
     
     if (fstats.isDirectory()) {
-      if (fs.existsSync(fpath + '/renderer.json')) {
+      if (fs.existsSync(path.join(fpath, 'renderer.json'))) {
         _modules.push(_create_module(fpath));
       } else {
         _read_directory(fpath, _modules);
@@ -291,24 +298,27 @@ function _read_directory (_path, _modules) {
 function _create_module (_fpath) {
 
   var renderer = JSON.parse(
-    fs.readFileSync(_fpath + '/renderer.json')
+    fs.readFileSync(path.join(_fpath, 'renderer.json'))
   );
 
   var result = {
-    module: '../../' + _fpath + '/' + renderer.module
-  }
+    module: path.join('..', '..', _fpath, renderer.module)
+  };
 
+  /* Client-side behaviors */
   if (renderer.behavior) {
-    result.behavior = './' + _fpath + '/' + renderer.behavior;
+    result.behavior = (
+      '.' + path.sep + path.join(_fpath, renderer.behavior)
+    );
   }
 
+  /* Attachments */
   if (renderer.attachments) {
-
     result.attachments = {};
-
     _.each(_.pairs(renderer.attachments), function (entry) {
+
       result.attachments[entry[0]] =
-        _read_and_escape(_fpath + '/' + entry[1]);
+        _read_and_escape(path.join(_fpath, entry[1]));
     });
   }
 
@@ -319,7 +329,8 @@ function _create_module (_fpath) {
 /**
  * @name _read_and_escape:
  */
-function _read_and_escape(_path) {
+function _read_and_escape (_path) {
+
   return util.escape_json_string(fs.readFileSync(_path));
 }
 
