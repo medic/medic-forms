@@ -1,0 +1,148 @@
+[
+  {
+    "_name": "Single string",
+
+    "forms": [{
+      "meta": {
+        "id": "ACDC"
+      },
+      "fields": [{
+        "id": "moniker",
+        "name": "Patient Name",
+        "type": "string"
+      }]
+    }],
+    "input": "$form=ACDC&moniker=Brian%20Johnson",
+    "expect": {
+      "valid": true,
+      "result": {
+        "$form": "ACDC",
+        "moniker": "Brian Johnson"
+      }
+    }
+  },
+  {
+    "_name": "Empty field",
+
+    "forms": [{
+      "meta": {
+        "id": "ACDC"
+      },
+      "fields": [
+        {
+          "id": "moniker",
+          "name": "Patient Name",
+          "type": "string"
+        },
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "string"
+        }
+      ]
+    }],
+    "input": "$form=ACDC&moniker=Brian%20Johnson&title=",
+    "expect": {
+      "valid": true,
+      "result": {
+        "$form": "ACDC",
+        "moniker": "Brian Johnson"
+      }
+    }
+  },
+  {
+    "_name": "Unknown form",
+
+    "forms": [{
+      "meta": {
+        "id": "ACDC"
+      },
+      "fields": [
+        {
+          "id": "moniker",
+          "name": "Patient Name",
+          "type": "string"
+        },
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "string"
+        }
+      ]
+    }],
+    "input": "$form=ZZZZ&moniker=Brian%20Johnson&title=",
+    "expect": {
+      "valid": false,
+      "error": "No form found matching specified identifier"
+    }
+  },
+  {
+    "_name": "Repeating field",
+
+    "forms": [{
+      "meta": {
+        "id": "ACDC"
+      },
+      "fields": [{
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": true
+      }]
+    }],
+    "input": "$form=ACDC&comments[0]=first&comments[1]=second",
+    "expect": {
+      "valid": true,
+      "result": {
+        "$form": "ACDC",
+        "comments": ["first", "second"]
+      }
+    }
+  },
+  {
+    "_name": "Repeating field in incorrect order",
+
+    "forms": [{
+      "meta": {
+        "id": "ACDC"
+      },
+      "fields": [{
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": true
+      }]
+    }],
+    "input": "$form=ACDC&comments[1]=second&comments[0]=first",
+    "expect": {
+      "valid": true,
+      "result": {
+        "$form": "ACDC",
+        "comments": ["first", "second"]
+      }
+    }
+  },
+  {
+    "_name": "Repeating field with missing values",
+
+    "forms": [{
+      "meta": {
+        "id": "ACDC"
+      },
+      "fields": [{
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": true
+      }]
+    }],
+    "input": "$form=ACDC&comments[1]=second&comments[2]=third",
+    "expect": {
+      "valid": true,
+      "result": {
+        "$form": "ACDC",
+        "comments": ["second", "third"]
+      }
+    }
+  }
+]

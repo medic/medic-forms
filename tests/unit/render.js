@@ -143,7 +143,7 @@ var formRenderer = {
    */
   render: function (_content) {
 
-    return '<form>' + _content + '</form>';
+    return '<form>' + _content.content + '</form>';
   }
 };
 

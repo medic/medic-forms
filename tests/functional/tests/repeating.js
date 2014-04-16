@@ -37,7 +37,7 @@ exports['single repetition'] = function(test, callback) {
     }
   ], function(browser) {
     util.assert_result(browser, {
-      "comments[0]": "first"
+      "comments": ["first"]
     });
   }, callback);
 };
@@ -65,14 +65,12 @@ exports['multiple repetitions'] = function(test, callback) {
     }
   ], function(browser) {
     util.assert_result(browser, {
-      "comments[0]": "first",
-      "comments[1]": "second",
-      "comments[2]": "third"
+      "comments": ["first", "second", "third"]
     });
   }, callback);
 };
 
-// TODO delete removes repition
+// TODO delete removes repetition
 // TODO bind repetition values on error
 // TODO array of defaults
 // TODO scripted or integer repeat property

@@ -114,6 +114,10 @@ exports.make_tests = function (_name, _exports,
 var _export = function (_name, _fixture, _exports,
                         _test_fn, _test_args, _value) {
 
+  if (_exports[_name]) {
+    throw Error('Two tests have the same name: ' + _name);
+  }
+
   _exports[_name] = function (_test) {
     _test_fn.apply(
       this, [ _test, _fixture, _value ].concat(_test_args)

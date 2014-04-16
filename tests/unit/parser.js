@@ -33,23 +33,31 @@
 
 'use strict';
 
-var handlebars = require('handlebars');
+var fs = require('fs'),
+    _ = require('underscore'),
+    parser = require('../../lib/parser'),
+    test_utils = require('../include/util'),
+    fixtures = require('./fixtures/compiled');
 
 
 /**
- * @name init:
+ * @name _assert
  */
-exports.init = function (_attachments) {
+var _assert = function (_test, _fixture, _value, _parser_id) {
 
-  var template = handlebars.compile(_attachments.template);
+  _test.expect(1);
 
-  return {
-    applies_to: function(form) {
-      return !!form.meta;
-    },
-    render: function (_content) {
-      return template(_content);
-    }
-  };
+  var actual = parser.parse(
+    _fixture.forms, _fixture.input, _parser_id
+  );
+
+  _test.deepEqual(actual, _fixture.expect);
+  _test.done();
 };
+
+/* Run tests */
+test_utils.make_tests(
+  'parser-httppost', exports, fixtures.parser.httppost,
+    _assert, [ 'httppost' ]
+);
 
