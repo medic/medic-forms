@@ -1,0 +1,7 @@
+{
+  "module": "renderer",
+  "behavior": "behavior.js",
+  "attachments": {
+    "template": "repeat.html"
+  }
+}

@@ -80,35 +80,44 @@ var _startServer = function (callback) {
 
     req.on('end', function () {
 
-      if (req.method === 'GET') {
+      var urlParts = req.url.split('?');
 
-        formDefinition = JSON.parse(
-          unescape(req.url.split('=')[1])
-        );
+      if (urlParts[0] === '/') {
+        if (req.method === 'GET') {
+          
+          formDefinition = JSON.parse(unescape(
+            urlParts[1].split('=')[1]
+          ));
 
-        _serialize({$form: 'TEST'}, function (valid) {
-          _sendForm(res, {}, valid, { initial: true });
-        });
-
-      } else {
-
-        var parsed = api.parse(body, 'httppost');
-
-        if (!parsed.valid) {
-          _sendError(res, parsed.error);
-        } else {
-          _serialize(parsed.result, function (serialized) {
-            if (serialized.valid) {
-              delete parsed.result.$form;
-              _sendOk(res, templates.result({
-                result: JSON.stringify(parsed.result)
-              }));
-            } else {
-              _sendForm(res, parsed.result, serialized);
-            }
+          _serialize({$form: 'TEST'}, function (valid) {
+            _sendForm(res, {}, valid, { initial: true });
           });
+
+        } else {
+
+          var parsed = api.parse(body, 'httppost');
+
+          if (!parsed.valid) {
+            _sendError(res, parsed.error);
+          } else {
+            _serialize(parsed.result, function (serialized) {
+              if (serialized.valid) {
+                delete parsed.result.$form;
+                _sendOk(res, templates.result({
+                  result: JSON.stringify(parsed.result)
+                }));
+              } else {
+                _sendForm(res, parsed.result, serialized);
+              }
+            });
+          }
         }
 
+      } else if (urlParts[0] === '/scripts/behavior.js') {
+        fs.readFile('../../lib/renderers/_behavior.js', 'utf8', function (err, data) {
+          res.writeHead(200, {'Content-Type': 'application/javascript'});
+          res.end(data);
+        });
       }
     });
   });
@@ -141,16 +150,22 @@ exports.start = function (callback) {
 
   async.map(
 
-    [ { name: 'render', template: 'template.html' },
-      { name: 'result', template: 'template-results.html' } ], 
+    [ 
+      { name: 'render', file: 'template.html', compile: true },
+      { name: 'result', file: 'template-results.html', compile: true },
+      { name: 'behavior', file: '../../lib/renderers/_behavior.js' } 
+    ],
 
     /* Iterator function */
     function (_template, _callback) {
 
-      fs.readFile(_template.template, 'utf8', function (err, data) {
+      fs.readFile(_template.file, 'utf8', function (err, data) {
 
         if (!err) {
-          templates[_template.name] = handlebars.compile(data);
+          if (_template.compile) {
+            data = handlebars.compile(data);
+          }
+          templates[_template.name] = data;
         }
         
         _callback(err);

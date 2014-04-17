@@ -4,25 +4,6 @@
 </head>
 <body>
   {{{form}}}
-  <script>
-    document.body.addEventListener('click', function(event) { 
-      if (event.target.className === 'add-item') {
-        event.preventDefault();
-        event.stopPropagation();
-        var buttonRow = event.target.parentNode;
-        var list = buttonRow.parentNode;
-        var template = list.firstChild;
-        var item = template.cloneNode(true);
-        item.className = template.className.replace('skipped', '');
-        // subtract two because we ignore the template
-        var index = list.childNodes.length - 2;
-        var inputs = item.querySelectorAll('input, textarea, select');
-        for (var i = 0; i < inputs.length; ++i) {
-          inputs[i].name += '[' + index + ']';
-        }
-        list.insertBefore(item, buttonRow);
-      }
-    });
-  </script>
+  <script src="scripts/behavior.js"></script>
 </body>
 </html>

@@ -130,12 +130,14 @@ var textareaRenderer = {
  */
 var formRenderer = {
 
+  id: 'form',
+
   /**
    * @name applies_to
    */
   applies_to: function (_form) {
 
-    return !!_form.meta;
+    return false;
   },
 
   /**
