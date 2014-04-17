@@ -347,5 +347,28 @@
       "valid": true,
       "result": "<form><repeat><field><id>description</id></field><field><id>description[0]</id><value>a</value></field><field><id>description[1]</id><value>b</value></field></repeat></form>"
     }
+  },
+
+  {
+    "_name": "Repeating field values",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "description",
+        "name": "Description",
+        "type": "string",
+        "repeat": true
+      }]
+    },
+    "values": {
+      "description": ["a", "b"]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><repeat><field><id>description</id></field><field><id>description[0]</id><value>a</value></field><field><id>description[1]</id><value>b</value></field></repeat></form>"
+    }
   }
 ]
