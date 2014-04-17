@@ -76,11 +76,12 @@ var stringRenderer = {
   render: function (_options) {
 
     var result = '<field>';
-
     var validation = _options.validation;
+
     if (validation && validation.error) {
       result += '<error>' + validation.error + '</error>';
     }
+
     result += '<id>' + _options.name + '</id>';
 
     if (_options.field.required) {
@@ -88,6 +89,7 @@ var stringRenderer = {
     }
 
     var value = _options.value;
+
     if (value) {
       result += '<value>' + value + '</value>';
     }
