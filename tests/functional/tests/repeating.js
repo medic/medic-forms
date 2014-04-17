@@ -94,6 +94,53 @@ exports['defaults bound'] = function(test, callback) {
   }, callback);
 };
 
+exports['repeating values bound on error'] = function(test, callback) {
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": true
+      },
+      {
+        "id": "missing",
+        "name": "Missing",
+        "type": "string",
+        "required": true
+      }
+    ]
+  };
+
+  test.run(form, [
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .fill('comments[0]', 'first')
+        .fill('comments[1]', 'second')
+        .fill('comments[2]', 'third')
+        .pressButton('button');
+    }
+  ], function(browser) {
+    util.assert_attribute(browser, 'comments\\[0\\]', 'value', 'first');
+    util.assert_attribute(browser, 'comments\\[1\\]', 'value', 'second');
+    util.assert_attribute(browser, 'comments\\[2\\]', 'value', 'third');
+  }, callback);
+};
+
 // TODO delete removes repetition
-// TODO bind repetition values on error
 // TODO scripted or integer repeat property
