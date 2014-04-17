@@ -82,8 +82,7 @@ exports.assert_error = function (_browser, _id, _error) {
 };
 
 exports.assert_attribute = function (_browser, _field, _attribute, _expected) {
-  assert.equal(
-    _expected, 
-    _browser.query(get_row_class(_field) + ' input').getAttribute(_attribute)
-  );
+  var input = _browser.query('[name=' + (_field) + ']');
+  assert.ok(!!input, 'Field input not found: ' + _field);
+  assert.equal(_expected, input.getAttribute(_attribute));
 };

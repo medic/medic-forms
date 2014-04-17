@@ -3,7 +3,7 @@
   {{> errorMessage}}
   {{> label}}
   
-  <select id="{{@elementId}}" name="{{field.id}}">
+  <select id="{{@elementId}}" name="{{name}}">
     {{#each field.items}}
     <option value="{{[0]}}" {{#eq ../value [0]}}selected="selected"{{/eq}}>{{translate [1]}}</option>
     {{/each}}

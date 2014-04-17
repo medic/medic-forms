@@ -77,19 +77,17 @@ var stringRenderer = {
 
     var result = '<field>';
 
-    var field = _options.field;
-    var value = _options.value;
     var validation = _options.validation;
-
     if (validation && validation.error) {
       result += '<error>' + validation.error + '</error>';
     }
-    result += '<id>' + field.id + '</id>';
+    result += '<id>' + _options.name + '</id>';
 
-    if (field.required) {
+    if (_options.field.required) {
       result += '<required/>';
     }
 
+    var value = _options.value;
     if (value) {
       result += '<value>' + value + '</value>';
     }
@@ -120,7 +118,7 @@ var textareaRenderer = {
    */
   render: function (_options) {
 
-    return '<textarea><id>' + _options.field.id + '</id></textarea>';
+    return '<textarea><id>' + _options.name + '</id></textarea>';
   }
 };
 
@@ -150,9 +148,34 @@ var formRenderer = {
 };
 
 
+/**
+ * @name repeatRenderer
+ */
+var repeatRenderer = {
+
+  id: 'repeat',
+
+  /**
+   * @name applies_to
+   */
+  applies_to: function (_form) {
+
+    return false;
+  },
+
+  /**
+   * @name render
+   */
+  render: function (_content) {
+
+    return '<repeat>' + _content.content + '</repeat>';
+  }
+};
+
+
 /* Setup mock renderers */
 render.set_renderers({
-  modules: [ stringRenderer, textareaRenderer, formRenderer ]
+  modules: [ stringRenderer, textareaRenderer, formRenderer, repeatRenderer ]
 });
 
 

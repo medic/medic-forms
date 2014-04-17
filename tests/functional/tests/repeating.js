@@ -70,7 +70,30 @@ exports['multiple repetitions'] = function(test, callback) {
   }, callback);
 };
 
+exports['defaults bound'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": true,
+        "default": ["un", "deux", "trois"]
+      }
+    ]
+  };
+
+  test.run(form, undefined, function(browser) {
+    util.assert_attribute(browser, 'comments\\[0\\]', 'value', 'un');
+    util.assert_attribute(browser, 'comments\\[1\\]', 'value', 'deux');
+    util.assert_attribute(browser, 'comments\\[2\\]', 'value', 'trois');
+  }, callback);
+};
+
 // TODO delete removes repetition
 // TODO bind repetition values on error
-// TODO array of defaults
 // TODO scripted or integer repeat property
