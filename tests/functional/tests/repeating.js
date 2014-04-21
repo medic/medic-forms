@@ -144,3 +144,4 @@ exports['repeating values bound on error'] = function(test, callback) {
 
 // TODO delete removes repetition
 // TODO scripted or integer repeat property
+// TODO validation on individual fields
