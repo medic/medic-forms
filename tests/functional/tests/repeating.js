@@ -142,6 +142,55 @@ exports['repeating values bound on error'] = function(test, callback) {
   }, callback);
 };
 
+exports['repetition validation'] = function(test, callback) {
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "email",
+        "name": "Email",
+        "type": "email",
+        "repeat": true
+      }
+    ]
+  };
+
+  test.run(form, [
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-email .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-email .add-item');
+    },
+    function(browser) {
+      return browser
+        .fill('email[0]', 'first')
+        .fill('email[1]', 'second@third.com')
+        .pressButton('button');
+    }
+  ], function(browser) {
+    assert.ok(
+      !browser.query('.field-id-email.error [name=email]'),
+      'Error class on email template field'
+    );
+    assert.ok(
+      !!browser.query('.field-id-email.error [name=email\\[0\\]]'),
+      'No error class on email[0] field'
+    );
+    assert.ok(
+      !browser.query('.field-id-email.error [name=email\\[1\\]]'),
+      'Error class on email[1] field'
+    );
+    assert.equal(
+      browser.query('.field-id-email.error span.error-message').innerHTML, 
+      'Value must be a valid email address'
+    );
+  }, callback);
+};
+
 // TODO delete removes repetition
 // TODO scripted or integer repeat property
-// TODO validation on individual fields
