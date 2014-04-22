@@ -1,0 +1,147 @@
+[
+  {
+    "_name": "Default property (with input)",
+
+    "form": {
+      "fields": [{
+        "id": "f",
+        "type": "integer",
+        "default": {
+          "javascript": "return value;"
+        }
+      }]
+    },
+    "input": {
+      "value": 1
+    },
+    "expect": {
+      "fields": [{
+        "id": "f",
+        "type": "integer",
+        "default": 1
+      }]
+    }
+  },
+
+  {
+    "_name": "Length property (simple, with input)",
+
+    "form": {
+      "fields": [{
+        "id": "f",
+        "type": "string",
+        "length": {
+          "javascript": "return [ 5, value ];"
+        }
+      }]
+    },
+    "input": {
+      "value": 10
+    },
+    "expect": {
+      "fields": [{
+        "id": "f",
+        "type": "string",
+        "length": [ 5, 10 ]
+      }]
+    }
+  },
+
+  {
+    "_name": "Length property (normalized, required)",
+
+    "form": {
+      "fields": [{
+        "id": "f",
+        "type": "string",
+        "required": true,
+        "length": {
+          "javascript": "return 10;"
+        }
+      }]
+    },
+    "expect": {
+      "fields": [{
+        "id": "f",
+        "type": "string",
+        "required": true,
+        "length": [ 1, 10 ]
+      }]
+    }
+  },
+
+  {
+    "_name": "Range property (normalized, with input)",
+
+    "form": {
+      "fields": [{
+        "id": "f",
+        "type": "number",
+        "range": {
+          "javascript": "return (x * 2);"
+        }
+      }]
+    },
+    "input": {
+      "x": 100
+    },
+    "expect": {
+      "fields": [{
+        "id": "f",
+        "type": "number",
+        "required": false,
+        "range": [ -1e9999, 200 ]
+      }]
+    }
+  },
+
+  {
+    "_name": "Selection list items",
+
+    "form": {
+      "meta": {
+        "language": "en"
+      },
+      "fields": [{
+        "id": "f",
+        "type": "select",
+        "items": {
+          "javascript": "
+            var rv = [];
+            for (var i = 0; i < n; ++i) {
+              if (i % 2 == 0) {
+                rv.push([ i, 'Item ' + i ]);
+              } else {
+                rv.push(i);
+              }
+            }
+            rv[0][1].un = 'Unused';
+            return rv;
+          "
+        }
+      }]
+    },
+    "input": {
+      "n": 10
+    },
+    "expect": {
+      "fields": [{
+        "id": "f",
+        "type": "select",
+        "required": false,
+        "items": [
+          [ 0, { "en": "Item 0", "un": "Unused" } ],
+          [ 1, { "en": "1" } ],
+          [ 2, { "en": "Item 2" } ],
+          [ 3, { "en": "3" } ],
+          [ 4, { "en": "Item 4" } ],
+          [ 5, { "en": "5" } ],
+          [ 6, { "en": "Item 6" } ],
+          [ 7, { "en": "7" } ],
+          [ 8, { "en": "Item 8" } ],
+          [ 9, { "en": "9" } ]
+        ]
+      }]
+    }
+  }
+]

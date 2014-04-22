@@ -38,33 +38,9 @@ var fs = require('fs'),
     _ = require('underscore'),
     jsdump = require('jsDump'),
     api = require('../../lib/api'),
-    deepEqual = require('deep-equal'),
     test_utils = require('../include/util'),
     fixtures = require('./fixtures/compiled'),
     normalizer = require('../../lib/normalize');
-
-
-/**
- * @name compare_partial:
- */
-var compare_partial = function (_lhs, _rhs, _properties) {
-
-  var properties = (_properties || []);
-
-  if (properties.length == 0) {
-    return deepEqual(_lhs, _rhs);
-  } else {
-    for (var i = 0, len = _properties.length; i < len; ++i) {
-      var k = _properties[i];
-
-      if (!deepEqual(_lhs[k], _rhs[k])) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-};
 
 
 /**
@@ -105,7 +81,7 @@ var check_fields = function (_test, _fields,
       );
 
       _test.ok(
-        compare_partial(expected, field, _properties), message
+        test_utils.compare_partial(expected, field, _properties), message
       );
     }
   }

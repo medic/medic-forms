@@ -80,6 +80,34 @@ exports.is_recursive_subset = function (_subset, _superset) {
 
 
 /**
+ * @name compare_partial:
+ *   Compare the objects `_lhs` and `_rhs` to each other. If
+ *   `_properties` is specified, it will be interpreted as an array
+ *   of property names, and the comparison of `_lhs` to `_rhs` will
+ *   be limited to those properties. Returns true if `_lhs` and `_rhs`
+ *   are equal; false otherwise.
+ */
+exports.compare_partial = function (_lhs, _rhs, _properties) {
+
+  var properties = (_properties || []);
+
+  if (properties.length == 0) {
+    return deep_equal(_lhs, _rhs);
+  } else {
+    for (var i = 0, len = _properties.length; i < len; ++i) {
+      var k = _properties[i];
+
+      if (!deep_equal(_lhs[k], _rhs[k])) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+};
+
+
+/**
  * @name make_tests
  *   Creates a list of tests for `nodeunit`, given an `_exports`
  *   object in which to create the tests, a `_name`a `_fixtures` object
