@@ -112,4 +112,44 @@ exports['recursive nesting'] = function(test, callback) {
     });
   }, callback);
 };
-// TODO: nested repetition, repetitive nesting, defaults
+
+exports['nesting defaults'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "string",
+        "default": "Barack"
+      },
+      {
+        "id": "address",
+        "name": "Address",
+        "type": "fields",
+        "fields": [
+          {
+            "id": "street",
+            "name": "Street",
+            "type": "string",
+            "default": "1600 Pennsylvania Ave"
+          },
+          {
+            "id": "city",
+            "name": "City",
+            "type": "string",
+            "default": "Washington, DC"
+          }
+        ]
+      }
+    ]
+  };
+
+  test.run(form, null, function(browser) {
+    assert.equal(browser.query('.field-id-street input').value, '1600 Pennsylvania Ave');
+  }, callback);
+};
+// TODO: nested repetition, repetitive nesting, binding
