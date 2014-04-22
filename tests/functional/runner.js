@@ -47,9 +47,7 @@ var framework = {
     browser
       .visit('http://127.0.0.1:7357/?formDefinition=' + formDefinition)
       .then(function () {
-        _runInteractions(interactions, function() {
-          _runAssertions();
-        });
+        _runInteractions(interactions, _runAssertions);
       });
   }
 };

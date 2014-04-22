@@ -73,22 +73,22 @@ var stringRenderer = {
   /**
    * @name render
    */
-  render: function (_options) {
+  render: function (_context) {
 
     var result = '<field>';
-    var validation = _options.validation;
+    var validation = _context.validation;
 
     if (validation && validation.error) {
       result += '<error>' + validation.error + '</error>';
     }
 
-    result += '<id>' + _options.name + '</id>';
+    result += '<id>' + _context.name + '</id>';
 
-    if (_options.field.required) {
+    if (_context.field.required) {
       result += '<required/>';
     }
 
-    var value = _options.value;
+    var value = _context.value;
 
     if (value) {
       result += '<value>' + value + '</value>';
@@ -118,9 +118,9 @@ var textareaRenderer = {
   /**
    * @name render
    */
-  render: function (_options) {
+  render: function (_context) {
 
-    return '<textarea><id>' + _options.name + '</id></textarea>';
+    return '<textarea><id>' + _context.name + '</id></textarea>';
   }
 };
 
@@ -143,9 +143,9 @@ var formRenderer = {
   /**
    * @name render
    */
-  render: function (_content) {
+  render: function (_context) {
 
-    return '<form>' + _content.content + '</form>';
+    return '<form>' + _context.content + '</form>';
   }
 };
 
@@ -168,16 +168,40 @@ var repeatRenderer = {
   /**
    * @name render
    */
-  render: function (_content) {
+  render: function (_context) {
 
-    return '<repeat>' + _content.content + '</repeat>';
+    return '<repeat>' + _context.content + '</repeat>';
   }
 };
 
 
+/**
+ * @name nestedRenderer
+ */
+var nestedRenderer = {
+
+  id: 'nest',
+
+  /**
+   * @name applies_to
+   */
+  applies_to: function (_form) {
+
+    return false;
+  },
+
+  /**
+   * @name render
+   */
+  render: function (_context) {
+
+    return '<nest><id>' + _context.name + '</id>' + _context.content + '</nest>';
+  }
+};
+
 /* Setup mock renderers */
 render.set_renderers({
-  modules: [ stringRenderer, textareaRenderer, formRenderer, repeatRenderer ]
+  modules: [ stringRenderer, textareaRenderer, formRenderer, repeatRenderer, nestedRenderer ]
 });
 
 

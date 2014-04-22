@@ -144,5 +144,39 @@
         "comments": ["second", "third"]
       }
     }
+  },
+  {
+    "_name": "Nested fields",
+
+    "forms": [{
+      "meta": {
+        "id": "SIMPSON"
+      },
+      "fields": [{
+        "id": "children",
+        "type": "fields",
+        "fields": [
+          {
+            "id": "boy",
+            "type": "string"
+          },
+          {
+            "id": "girl",
+            "type": "string"
+          }
+        ]
+      }]
+    }],
+    "input": "$form=SIMPSON&children.boy=Bart&children.girl=Lisa",
+    "expect": {
+      "valid": true,
+      "result": {
+        "$form": "SIMPSON",
+        "children": {
+          "boy": "Bart",
+          "girl": "Lisa"
+        }
+      }
+    }
   }
 ]

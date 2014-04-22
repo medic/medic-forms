@@ -370,5 +370,29 @@
       "valid": true,
       "result": "<form><repeat><field><id>description</id></field><field><id>description[0]</id><value>a</value></field><field><id>description[1]</id><value>b</value></field></repeat></form>"
     }
+  },
+
+  {
+    "_name": "Nested field values",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "address",
+        "name": "Address",
+        "type": "fields",
+        "fields": [{
+          "id": "street",
+          "name": "Street",
+          "type": "string"
+        }]
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><nest><id>address</id><field><id>address.street</id></field></nest></form>"
+    }
   }
 ]

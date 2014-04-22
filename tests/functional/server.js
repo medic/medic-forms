@@ -32,7 +32,6 @@ var _serialize = function (parsed, callback) {
  * @name _sendOk:
  */
 var _sendOk = function (res, content) {
-
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end(content);
 };
