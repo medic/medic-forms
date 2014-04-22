@@ -271,5 +271,69 @@ exports['nested fields can be repeated'] = function (test, callback) {
   }, callback);
 };
 
-// TODO: nested repetition
 
+exports['repeated fields can be nested'] = function (test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "id": "address",
+        "name": "Address",
+        "type": "fields",
+        "fields": [
+          {
+            "id": "street",
+            "name": "Street",
+            "type": "string",
+            "repeat": true
+          },
+          {
+            "id": "city",
+            "name": "City",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  };
+  
+  test.run(form, [
+
+    function (browser) {
+      return browser
+        .clickLink('.repeat-id-street .add-item')
+    },
+
+    function (browser) {
+      return browser
+        .clickLink('.repeat-id-street .add-item')
+    },
+
+    function (browser) {
+      return browser
+        .fill('name', 'Barack')
+        .fill('address.street[0]', '1600')
+        .fill('address.street[1]', 'Pennsylvania Ave')
+        .fill('address.city', 'Washington, DC')
+        .pressButton('button');
+    }
+
+  ], function (browser) {
+    util.assert_result(browser, {
+      "name": "Barack",
+      "address": {
+        "street": ["1600", "Pennsylvania Ave"],
+        "city": "Washington, DC"
+      }
+    });
+
+  }, callback);
+};
