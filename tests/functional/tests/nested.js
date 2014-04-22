@@ -165,4 +165,73 @@ exports['binding nested values'] = function(test, callback) {
     assert.equal(browser.query('.field-id-city input').value, 'Washington, DC');
   }, callback);
 };
-// TODO: nested repetition, repetitive nesting
+
+exports['nested fields can be repeated'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "id": "address",
+        "name": "Address",
+        "type": "fields",
+        "repeat": true,
+        "fields": [
+          {
+            "id": "street",
+            "name": "Street",
+            "type": "string"
+          },
+          {
+            "id": "city",
+            "name": "City",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  };
+  
+  test.run(form, [
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-address .add-item')
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-address .add-item')
+    },
+    function(browser) {
+      return browser
+        .fill('name', 'Barack')
+        .fill('address[0].street', '1600 Pennsylvania Ave')
+        .fill('address[0].city', 'Washington, DC. 20500')
+        .fill('address[1].street', '730 12th St')
+        .fill('address[1].city', 'Washington, DC. 20005')
+        .pressButton('button');
+    }
+  ], function(browser) {
+    util.assert_result(browser, {
+      "name": "Barack",
+      "address": [
+        {
+          "street": "1600 Pennsylvania Ave",
+          "city": "Washington, DC. 20500"
+        },
+        {
+          "street": "730 12th St",
+          "city": "Washington, DC. 20005"
+        }
+      ]
+    });
+  }, callback);
+};
+
+// TODO: nested repetition
