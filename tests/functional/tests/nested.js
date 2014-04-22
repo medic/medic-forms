@@ -1,37 +1,38 @@
 var assert = require('assert'),
     util = require('../util');
 
-exports['simple nesting'] = function(test, callback) {
-
-  var form = {
-    "meta": {
-      "id": "TEST"
+var form = {
+  "meta": {
+    "id": "TEST"
+  },
+  "fields": [
+    {
+      "id": "name",
+      "name": "Name",
+      "type": "string",
+      "required": true
     },
-    "fields": [
-      {
-        "id": "name",
-        "name": "Name",
-        "type": "string"
-      },
-      {
-        "id": "address",
-        "name": "Address",
-        "type": "fields",
-        "fields": [
-          {
-            "id": "street",
-            "name": "Street",
-            "type": "string"
-          },
-          {
-            "id": "city",
-            "name": "City",
-            "type": "string"
-          }
-        ]
-      }
-    ]
-  };
+    {
+      "id": "address",
+      "name": "Address",
+      "type": "fields",
+      "fields": [
+        {
+          "id": "street",
+          "name": "Street",
+          "type": "string"
+        },
+        {
+          "id": "city",
+          "name": "City",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+};
+
+exports['simple nesting'] = function(test, callback) {
 
   test.run(form, function(browser) {
     return browser
@@ -152,4 +153,16 @@ exports['nesting defaults'] = function(test, callback) {
     assert.equal(browser.query('.field-id-street input').value, '1600 Pennsylvania Ave');
   }, callback);
 };
-// TODO: nested repetition, repetitive nesting, binding
+
+exports['binding nested values'] = function(test, callback) {
+  test.run(form, function(browser) {
+    return browser
+      .fill('address.street', '1600 Pennsylvania Ave')
+      .fill('address.city', 'Washington, DC')
+      .pressButton('button');
+  }, function(browser) {
+    assert.equal(browser.query('.field-id-street input').value, '1600 Pennsylvania Ave');
+    assert.equal(browser.query('.field-id-city input').value, 'Washington, DC');
+  }, callback);
+};
+// TODO: nested repetition, repetitive nesting
