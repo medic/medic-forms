@@ -1,7 +1,9 @@
 var assert = require('assert'),
     util = require('../util');
 
-exports['skip conditions are evaluated'] = function(test, callback) {
+
+exports['skip conditions are evaluated'] = function (test, callback) {
+
   var form = {
     "meta": {
       "id": "TEST"
@@ -34,13 +36,18 @@ exports['skip conditions are evaluated'] = function(test, callback) {
       }
     ]
   };
-  test.run(form, null, function(browser) {
+
+  test.run(form, null, function (browser) {
+
     assert.ok(util.has_class(browser, 'skip', 'skipped'));
     assert.ok(!util.has_class(browser, 'noskip', 'skipped'));
+
   }, callback);
 };
 
-exports['javascript skip conditions are evaluated'] = function(test, callback) {
+
+exports['javascript conditions are evaluated'] = function (test, callback) {
+
   var form = {
     "meta": {
       "id": "TEST"
@@ -71,16 +78,22 @@ exports['javascript skip conditions are evaluated'] = function(test, callback) {
       }
     ]
   };
-  test.run(form, function(browser) {
+
+  test.run(form, function (browser) {
+
     return browser
       .fill('title', 'short')
       .pressButton('button');
-  }, function(browser) {
+
+  }, function (browser) {
+
     assert.ok(util.has_class(browser, 'skip', 'skipped'));
     assert.ok(!util.has_class(browser, 'skip', 'error'));
     assert.ok(!util.has_class(browser, 'noskip', 'skipped'));
     assert.ok(util.has_class(browser, 'noskip', 'error'));
+
   }, callback);
 };
 
 // TODO skipped fields should not be submitted
+

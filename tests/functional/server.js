@@ -32,6 +32,7 @@ var _serialize = function (parsed, callback) {
  * @name _sendOk:
  */
 var _sendOk = function (res, content) {
+
   res.writeHead(200, {'Content-Type': 'text/html'});
   res.end(content);
 };
@@ -113,10 +114,13 @@ var _startServer = function (callback) {
         }
 
       } else if (urlParts[0] === '/scripts/behavior.js') {
-        fs.readFile('../../lib/renderers/_behavior.js', 'utf8', function (err, data) {
-          res.writeHead(200, {'Content-Type': 'application/javascript'});
-          res.end(data);
-        });
+        fs.readFile(
+          '../../lib/renderers/_behavior.js', 'utf8',
+          function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'application/javascript' });
+            res.end(data);
+          }
+        );
       }
     });
   });

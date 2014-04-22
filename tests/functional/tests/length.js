@@ -1,5 +1,7 @@
+
 var assert = require('assert'),
     util = require('../util');
+
 
 var form = {
   "meta": {
@@ -32,11 +34,21 @@ var form = {
   ]
 };
 
-exports['test length attribute'] = function(test, callback) {
-  test.run(form, null, function(browser) {
+
+exports['test length attribute'] = function (test, callback) {
+
+  test.run(form, null, function (browser) {
+
     util.assert_attribute(browser, 'name', 'maxlength', '50');
     util.assert_attribute(browser, 'email', 'maxlength', '150');
-    assert.ok(!browser.query('.field-id-title input').hasAttribute('maxlength'));
-    assert.ok(!browser.query('.field-id-comments input').hasAttribute('maxlength'));
+
+    assert.ok(
+      !browser.query('.field-id-title input').hasAttribute('maxlength')
+    );
+    assert.ok(
+      !browser.query('.field-id-comments input').hasAttribute('maxlength')
+    );
+
   }, callback);
 };
+

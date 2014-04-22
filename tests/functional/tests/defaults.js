@@ -1,4 +1,6 @@
+
 var assert = require('assert');
+
 
 var form = {
   "meta": {
@@ -14,10 +16,19 @@ var form = {
   ]
 };
 
-exports['render defaults'] = function(test, callback) {
-  test.run(form, null, function(browser) {
-    assert.equal(browser.query('.field-id-name input').value, 'Curious George');
+
+exports['render defaults'] = function (test, callback) {
+
+  test.run(form, null, function (browser) {
+
+    assert.equal(
+      browser.query('.field-id-name input').value,
+        'Curious George'
+    );
+
   }, callback);
 };
 
+
 // TODO scripted defaults
+

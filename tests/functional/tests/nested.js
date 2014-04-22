@@ -1,5 +1,7 @@
+
 var assert = require('assert'),
     util = require('../util');
+
 
 var form = {
   "meta": {
@@ -32,15 +34,19 @@ var form = {
   ]
 };
 
-exports['simple nesting'] = function(test, callback) {
 
-  test.run(form, function(browser) {
+exports['simple nesting'] = function (test, callback) {
+
+  test.run(form, function (browser) {
+
     return browser
       .fill('name', 'Barack')
       .fill('address.street', '1600 Pennsylvania Ave')
       .fill('address.city', 'Washington, DC')
       .pressButton('button');
-  }, function(browser) {
+
+  }, function (browser) {
+
     util.assert_result(browser, {
       "name": "Barack",
       "address": {
@@ -48,10 +54,12 @@ exports['simple nesting'] = function(test, callback) {
         "city": "Washington, DC"
       }
     });
+
   }, callback);
 };
 
-exports['recursive nesting'] = function(test, callback) {
+
+exports['recursive nesting'] = function (test, callback) {
 
   var form = {
     "meta": {
@@ -93,14 +101,17 @@ exports['recursive nesting'] = function(test, callback) {
     ]
   };
   
-  test.run(form, function(browser) {
+  test.run(form, function (browser) {
+
     return browser
       .fill('name', 'Barack')
       .fill('address.street.line1', '1600')
       .fill('address.street.line2', 'Pennsylvania Ave')
       .fill('address.city', 'Washington, DC')
       .pressButton('button');
-  }, function(browser) {
+
+  }, function (browser) {
+
     util.assert_result(browser, {
       "name": "Barack",
       "address": {
@@ -111,10 +122,12 @@ exports['recursive nesting'] = function(test, callback) {
         "city": "Washington, DC"
       }
     });
+
   }, callback);
 };
 
-exports['nesting defaults'] = function(test, callback) {
+
+exports['nesting defaults'] = function (test, callback) {
 
   var form = {
     "meta": {
@@ -149,24 +162,42 @@ exports['nesting defaults'] = function(test, callback) {
     ]
   };
 
-  test.run(form, null, function(browser) {
-    assert.equal(browser.query('.field-id-street input').value, '1600 Pennsylvania Ave');
+  test.run(form, null, function (browser) {
+
+    assert.equal(
+      browser.query('.field-id-street input').value,
+        '1600 Pennsylvania Ave'
+    );
+
   }, callback);
 };
 
-exports['binding nested values'] = function(test, callback) {
-  test.run(form, function(browser) {
+
+exports['binding nested values'] = function (test, callback) {
+
+  test.run(form, function (browser) {
+
     return browser
       .fill('address.street', '1600 Pennsylvania Ave')
       .fill('address.city', 'Washington, DC')
       .pressButton('button');
-  }, function(browser) {
-    assert.equal(browser.query('.field-id-street input').value, '1600 Pennsylvania Ave');
-    assert.equal(browser.query('.field-id-city input').value, 'Washington, DC');
+
+  }, function (browser) {
+
+    assert.equal(
+      browser.query('.field-id-street input').value,
+        '1600 Pennsylvania Ave'
+    );
+    assert.equal(
+      browser.query('.field-id-city input').value,
+        'Washington, DC'
+    );
+
   }, callback);
 };
 
-exports['nested fields can be repeated'] = function(test, callback) {
+
+exports['nested fields can be repeated'] = function (test, callback) {
 
   var form = {
     "meta": {
@@ -200,15 +231,18 @@ exports['nested fields can be repeated'] = function(test, callback) {
   };
   
   test.run(form, [
-    function(browser) {
+
+    function (browser) {
       return browser
         .clickLink('.repeat-id-address .add-item')
     },
-    function(browser) {
+
+    function (browser) {
       return browser
         .clickLink('.repeat-id-address .add-item')
     },
-    function(browser) {
+
+    function (browser) {
       return browser
         .fill('name', 'Barack')
         .fill('address[0].street', '1600 Pennsylvania Ave')
@@ -217,7 +251,9 @@ exports['nested fields can be repeated'] = function(test, callback) {
         .fill('address[1].city', 'Washington, DC. 20005')
         .pressButton('button');
     }
-  ], function(browser) {
+
+  ], function (browser) {
+
     util.assert_result(browser, {
       "name": "Barack",
       "address": [
@@ -231,7 +267,9 @@ exports['nested fields can be repeated'] = function(test, callback) {
         }
       ]
     });
+
   }, callback);
 };
 
 // TODO: nested repetition
+

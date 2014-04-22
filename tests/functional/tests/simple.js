@@ -1,5 +1,7 @@
+
 var assert = require('assert'),
     util = require('../util');
+
 
 var form = {
   "meta": {
@@ -32,17 +34,25 @@ var form = {
   ]
 };
 
-exports['test id generation'] = function(test, callback) {
-  test.run(form, null, function(browser) {
+
+exports['test id generation'] = function (test, callback) {
+
+  test.run(form, null, function (browser) {
+
     var inputId = browser.query('.field-id-name input').id;
     var labelFor = browser.query('.field-id-name label').getAttribute('for');
+
     assert.ok(inputId.trim() !== '');
     assert.equal(labelFor, inputId);
+
   }, callback);
 };
 
-exports['valid form render'] = function(test, callback) {
-  test.run(form, null, function(browser) {
+
+exports['valid form render'] = function (test, callback) {
+
+  test.run(form, null, function (browser) {
+
     assert.equal(browser.query('.field-id-name input').value, '');
     assert.ok(util.has_class(browser, 'name', 'required'));
 
@@ -50,39 +60,53 @@ exports['valid form render'] = function(test, callback) {
     assert.ok(!util.has_class(browser, 'pokemon', 'required'));
     
     assert.equal(util.get_select_value(browser, 'colour'), '1');
+
   }, callback);
 };
 
-exports['valid form submission'] = function(test, callback) {
-  test.run(form, function(browser) {
+
+exports['valid form submission'] = function (test, callback) {
+
+  test.run(form, function (browser) {
+
     return browser
       .fill('name', 'gareth')
       .fill('pokemon', 'Diancie')
       .pressButton('button');
-  }, function(browser) {
+
+  }, function (browser) {
+
     util.assert_result(browser, {
       name: 'gareth', 
       pokemon: 'Diancie',
       colour: '1'
     });
+
   }, callback);
 };
 
-exports['missing required field'] = function(test, callback) {
-  test.run(form, function(browser) {
+
+exports['missing required field'] = function (test, callback) {
+
+  test.run(form, function (browser) {
+
     return browser
       .fill('pokemon', 'Diancie')
-      .select('colour', '2')
-      .pressButton('button');
-  }, function(browser) {
+      .select('colour', '2').pressButton('button');
+
+  }, function (browser) {
+
     assert.ok(util.has_class(browser, 'name', 'error'));
     assert.ok(util.has_class(browser, 'name', 'required'));
+
     assert.equal(
       browser.query('.field-id-name.error span.error-message').innerHTML, 
       'Value must be a single plain-text string'
     );
+
     assert.equal(browser.query('.field-id-pokemon input').value, 'Diancie');
     assert.equal(util.get_select_value(browser, 'colour'), '2');
+
   }, callback);
 };
 

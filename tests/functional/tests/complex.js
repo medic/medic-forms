@@ -1,5 +1,7 @@
+
 var assert = require('assert'),
     util = require('../util');
+
 
 var form = {
   "meta": {
@@ -45,7 +47,6 @@ var form = {
       "name": "Appointment Time",
       "type": "timestamp"
     }/*,
-
     {
       "id": "location",
       "name": "GPS Location",
@@ -59,8 +60,11 @@ var form = {
   ]
 };
 
-exports['field type validation'] = function(test, callback) {
-  test.run(form, function(browser) {
+
+exports['field type validation'] = function (test, callback) {
+
+  test.run(form, function (browser) {
+
     return browser
       .fill('age', 'twenty one')
       .fill('cholesterol', 'pretty high')
@@ -69,17 +73,23 @@ exports['field type validation'] = function(test, callback) {
       .fill('lmp', 'yesterday')
       .fill('seen', 'noon today')
       .pressButton('button');
-  }, function(browser) {
+
+  }, function (browser) {
+
     util.assert_error(browser, 'age', 'Value must be an integer');
     util.assert_error(browser, 'cholesterol', 'Value must be numeric');
     util.assert_error(browser, 'email', 'Value must be a valid email address');
     util.assert_error(browser, 'lmp', 'Value must be a valid date');
     util.assert_error(browser, 'seen', 'Value must be a valid timestamp');
+
   }, callback);
 };
 
-exports['valid submission'] = function(test, callback) {
-  test.run(form, function(browser) {
+
+exports['valid submission'] = function (test, callback) {
+
+  test.run(form, function (browser) {
+
     return browser
       .fill('age', '21')
       .fill('cholesterol', '11.5')
@@ -88,7 +98,9 @@ exports['valid submission'] = function(test, callback) {
       .fill('lmp', '2014-04-14')
       .fill('seen', '2014-01-14T14:03:55.554Z')
       .pressButton('button');
-  }, function(browser) {
+
+  }, function (browser) {
+
     util.assert_result(browser, {
       age: '21',
       cholesterol: '11.5',
@@ -97,6 +109,7 @@ exports['valid submission'] = function(test, callback) {
       lmp: '2014-04-14',
       seen: '2014-01-14T14:03:55.554Z'
     });
+
   }, callback);
 };
 
