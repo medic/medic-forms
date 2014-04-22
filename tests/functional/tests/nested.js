@@ -1,37 +1,38 @@
 var assert = require('assert'),
     util = require('../util');
 
-var form = {
-  "meta": {
-    "id": "TEST"
-  },
-  "fields": [
-    {
-      "id": "name",
-      "name": "Name",
-      "type": "string"
-    },
-    {
-      "id": "address",
-      "name": "Address",
-      "type": "fields",
-      "fields": [
-        {
-          "id": "street",
-          "name": "Street",
-          "type": "string"
-        },
-        {
-          "id": "city",
-          "name": "City",
-          "type": "string"
-        }
-      ]
-    }
-  ]
-};
-
 exports['simple nesting'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "id": "address",
+        "name": "Address",
+        "type": "fields",
+        "fields": [
+          {
+            "id": "street",
+            "name": "Street",
+            "type": "string"
+          },
+          {
+            "id": "city",
+            "name": "City",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  };
+
   test.run(form, function(browser) {
     return browser
       .fill('name', 'Barack')
@@ -49,4 +50,66 @@ exports['simple nesting'] = function(test, callback) {
   }, callback);
 };
 
-// TODO: nested repetition, repetitive nesting, defaults, recursively nested fields
+exports['recursive nesting'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "name",
+        "name": "Name",
+        "type": "string"
+      },
+      {
+        "id": "address",
+        "name": "Address",
+        "type": "fields",
+        "fields": [
+          {
+            "id": "street",
+            "name": "Street",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "line1",
+                "type": "string"
+              },
+              {
+                "id": "line2",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "id": "city",
+            "name": "City",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  };
+  
+  test.run(form, function(browser) {
+    return browser
+      .fill('name', 'Barack')
+      .fill('address.street.line1', '1600')
+      .fill('address.street.line2', 'Pennsylvania Ave')
+      .fill('address.city', 'Washington, DC')
+      .pressButton('button');
+  }, function(browser) {
+    util.assert_result(browser, {
+      "name": "Barack",
+      "address": {
+        "street": {
+          "line1": "1600",
+          "line2": "Pennsylvania Ave"
+        },
+        "city": "Washington, DC"
+      }
+    });
+  }, callback);
+};
+// TODO: nested repetition, repetitive nesting, defaults

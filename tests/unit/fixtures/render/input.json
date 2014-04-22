@@ -394,5 +394,34 @@
       "valid": true,
       "result": "<form><nest><id>address</id><field><id>address.street</id></field></nest></form>"
     }
+  },
+
+  {
+    "_name": "Recursively nested field values",
+
+    "form": {
+      "meta": {
+        "id": "form"
+      },
+      "fields": [{
+        "id": "address",
+        "name": "Address",
+        "type": "fields",
+        "fields": [{
+          "id": "street",
+          "name": "Street",
+          "type": "fields",
+          "fields": [{
+            "id": "number",
+            "name": "Street number",
+            "type": "string"
+          }]
+        }]
+      }]
+    },
+    "expect": {
+      "valid": true,
+      "result": "<form><nest><id>address</id><nest><id>address.street</id><field><id>address.street.number</id></field></nest></nest></form>"
+    }
   }
 ]
