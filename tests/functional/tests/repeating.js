@@ -223,4 +223,47 @@ exports['delete repetition'] = function(test, callback) {
   }, callback);
 };
 
-// TODO scripted or integer repeat property
+exports['scripted repetition'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": { "javascript": "[ 1, 2 + 3 ]" }
+      }
+    ]
+  };
+
+  test.run(form, [
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .fill('comments[0]', 'first')
+        .fill('comments[1]', 'second')
+        .fill('comments[2]', 'third')
+        .pressButton('button');
+    }
+  ], function(browser) {
+    util.assert_result(browser, {
+      "comments": ["first", "second", "third"]
+    });
+  }, callback);
+};
+
+// TODO test min max validation
