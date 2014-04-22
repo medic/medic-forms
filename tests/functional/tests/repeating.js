@@ -139,6 +139,10 @@ exports['repeating values bound on error'] = function(test, callback) {
     util.assert_attribute(browser, 'comments\\[0\\]', 'value', 'first');
     util.assert_attribute(browser, 'comments\\[1\\]', 'value', 'second');
     util.assert_attribute(browser, 'comments\\[2\\]', 'value', 'third');
+    assert.ok(
+      !browser.query('.repeat-id-missing .delete-item'), 
+      'Non repeating elements should not have delete button'
+    );
   }, callback);
 };
 
@@ -192,5 +196,31 @@ exports['repetition validation'] = function(test, callback) {
   }, callback);
 };
 
-// TODO delete removes repetition
+exports['delete repetition'] = function(test, callback) {
+  test.run(form, [
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .fill('comments[0]', 'first')
+        .fill('comments[1]', 'second')
+        .clickLink('.repeat-id-comments li:nth-child(2) .delete-item');
+    },
+    function(browser) {
+      return browser
+        .pressButton('button');
+    }
+  ], function(browser) {
+    util.assert_result(browser, {
+      "comments": ["second"]
+    });
+  }, callback);
+};
+
 // TODO scripted or integer repeat property
