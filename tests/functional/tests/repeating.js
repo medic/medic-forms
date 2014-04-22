@@ -266,4 +266,90 @@ exports['scripted repetition'] = function(test, callback) {
   }, callback);
 };
 
-// TODO test min max validation
+exports['repetition with a min value'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": [2,4]
+      }
+    ]
+  };
+
+  test.run(form, [
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .fill('comments[0]', 'first')
+        .pressButton('button');
+    }
+  ], function(browser) {
+    assert.equal(
+      browser.query('.fieldlist > li > span.error-message').innerHTML, 
+      'Field must appear between 2 and 4 times'
+    );
+  }, callback);
+};
+
+exports['repetition with a max value'] = function(test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "comments",
+        "name": "Comments",
+        "type": "string",
+        "repeat": [2,4]
+      }
+    ]
+  };
+
+  test.run(form, [
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .clickLink('.repeat-id-comments .add-item');
+    },
+    function(browser) {
+      return browser
+        .fill('comments[0]', 'first')
+        .fill('comments[1]', 'second')
+        .fill('comments[2]', 'third')
+        .fill('comments[3]', 'fourth')
+        .fill('comments[4]', 'fifth')
+        .pressButton('button');
+    }
+  ], function(browser) {
+    assert.equal(
+      browser.query('.fieldlist > li > span.error-message').innerHTML, 
+      'Field must appear between 2 and 4 times'
+    );
+  }, callback);
+};
