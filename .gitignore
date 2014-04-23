@@ -2,3 +2,4 @@ node_modules
 tests/functional/node_modules
 lib/renderers/_compiled.js
 lib/renderers/_behavior.js
+lib/renderers/_style.css

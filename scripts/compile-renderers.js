@@ -36,7 +36,9 @@
 var fs = require('fs'),
     path = require('path'),
     _ = require('underscore'),
+    async = require('async'),
     moment = require('moment'),
+    less = require('less'),
     browserify = require('browserify'),
     util = require('./include/util'),
     base_path = 'lib/renderers';
@@ -45,20 +47,26 @@ var fs = require('fs'),
 /**
  * @name main:
  */
-var main = function (_cb) {
+var main = function () {
 
   var renderers = [];
-
   _get_renderers(base_path, renderers);
-  _update_compiled(renderers);
 
-  _update_behavior(renderers, function (_err) {
-
-    if (_err) {
-      console.log(_err);
+  async.waterfall([
+    function(cb) { 
+      _update_compiled (renderers, cb);
+    },
+    function(cb) { 
+      _update_behavior (renderers, cb);
+    },
+    function(cb) { 
+      _update_style (renderers, cb);
     }
-
-    process.exit(_err ? 1 : 0);
+  ], function(err) {
+    if (err) {
+      console.log(err);
+    }
+    process.exit(err ? 1 : 0);
   });
 
 };
@@ -67,7 +75,7 @@ var main = function (_cb) {
 /**
  * @name _update_compiled:
  */
-function _update_compiled (_renderers) {
+function _update_compiled (_renderers, _cb) {
 
   var data = [];
   var output_path = path.join(base_path, '_compiled.js');
@@ -79,12 +87,16 @@ function _update_compiled (_renderers) {
   _write_modules(data, _renderers);
 
   /* Write file */
-  fs.writeFileSync(output_path, data.join('\n'));
+  fs.writeFile(output_path, data.join('\n'), function(err) {
+    if (!err) {
+      /* Indicate success */
+      process.stdout.write(
+        'File `' + output_path + '` generated successfully.\n'
+      );
+    }
+    _cb(err);
+  });
 
-  /* Indicate success */
-  process.stderr.write(
-    'File `' + output_path + '` generated successfully.\n'
-  );
 }
 
 
@@ -113,6 +125,42 @@ function _update_behavior (_renderers, _cb) {
 
 
 /**
+ * @name _update_style:
+ */
+function _update_style (_renderers, _cb) {
+
+  var output_path = path.join(base_path, '_style.css');
+
+  var imports = _.map(
+    _.filter(_renderers, function (renderer) {
+      return renderer.style;
+    }), function (renderer) {
+      return '@import "' + renderer.style + '";';
+    }
+  );
+
+  less.render(imports.join('\n'), function (err, css) {
+    if (err) {
+      _cb(err);
+    } else {
+      var data = [];
+      _write_header(data);
+      data.push(css);
+      fs.writeFile(output_path, data.join('\n'), function(err) {
+        if (!err) {
+          /* Indicate success */
+          process.stdout.write(
+            'File `' + output_path + '` generated successfully.\n'
+          );
+        }
+        _cb(err);
+      });
+    }
+  });
+
+}
+
+/**
  * @name _write_behavior:
  */
 function _write_behavior (_behaviors, _cb) {
@@ -123,17 +171,23 @@ function _write_behavior (_behaviors, _cb) {
   _write_header(data);
   _write_includes(data);
 
-  fs.writeFileSync(output_path, data.join('\n'));
+  fs.writeFile(output_path, data.join('\n'), function(err) {
+    if (err) {
+      _cb(err);
+    } else {
+      fs.appendFile(output_path, _behaviors, function (err) {
 
-  fs.appendFile(output_path, _behaviors, function (err) {
+        if (!err) {
+          process.stdout.write(
+            'File `' + output_path + '` generated successfully.\n'
+          );
+        }
 
-    process.stderr.write(
-      (err ? 'Error: ' + err :
-       'File `' + output_path + '` generated successfully.\n')
-    );
-
-    _cb(err);
+        _cb(err);
+      });
+    }
   });
+
 }
 
 
@@ -309,6 +363,13 @@ function _create_module (_fpath) {
   if (renderer.behavior) {
     result.behavior = (
       '.' + path.sep + path.join(_fpath, renderer.behavior)
+    );
+  }
+
+  /* Client-side styles */
+  if (renderer.style) {
+    result.style = (
+      '.' + path.sep + path.join(_fpath, renderer.style)
     );
   }
 

@@ -52,20 +52,34 @@ var _fill = function (parsed, callback) {
 /**
  * @name _sendOk:
  */
-var _sendOk = function (res, content) {
-
-  res.writeHead(200, {'Content-Type': 'text/html'});
+var _sendOk = function (res, content, options) {
+  options = options || {};
+  _.defaults(options, {mimetype: 'text/html'});
+  res.writeHead(200, {'Content-Type': options.mimetype});
   res.end(content);
 };
 
+/**
+ * @name _sendScript:
+ */
+var _sendScript = function(res, content) {
+  _sendOk(res, content, { mimetype: 'application/javascript' });
+};
+
+/**
+ * @name _sendStyle:
+ */
+var _sendStyle = function(res, content) {
+  _sendOk(res, content, { mimetype: 'text/css' });
+};
 
 /**
  * @name _sendError:
  */
 var _sendError = function (res, error) {
-
   console.log(error);
   res.writeHead(500, {'Content-Type': 'text/html'});
+  res.end();
 };
 
 
@@ -89,12 +103,18 @@ var _sendForm = function (res, formId, input, validation, options) {
   }
 };
 
+/**
+ * @name _fillAndSendForm:
+ */
 var _fillAndSendForm = function(res, formId, input) {
   _fill({$form: formId}, function (filled) {
     _sendForm(res, formId, input || {}, filled, { initial: true });
   });
 };
 
+/**
+ * @name _sendResult:
+ */
 var _sendResult = function(res, parsed) {
   _fill(parsed.result, function (filled) {
     if (filled.valid) {
@@ -106,11 +126,6 @@ var _sendResult = function(res, parsed) {
       _sendForm(res, 'TEST', parsed.result, filled);
     }
   });
-};
-
-var _sendScript = function(res, content) {
-  res.writeHead(200, { 'Content-Type': 'application/javascript' });
-  res.end(content);
 };
 
 /**
@@ -153,6 +168,8 @@ var _startServer = function (callback) {
         _sendScript(res, templates.behavior);
       } else if (urlParts[0] === '/scripts/uat.js') {
         _sendScript(res, templates.uat);
+      } else if (urlParts[0] === '/style/style.css') {
+        _sendStyle(res, templates.style);
       }
     });
   });
@@ -186,7 +203,8 @@ exports.start = function (callback) {
       { name: 'render', file: 'template.html', compile: true },
       { name: 'result', file: 'template-results.html', compile: true },
       { name: 'behavior', file: '../../lib/renderers/_behavior.js' },
-      { name: 'uat', file: 'uat.js' } 
+      { name: 'uat', file: 'uat.js' },
+      { name: 'style', file: '../../lib/renderers/_style.css' } 
     ],
 
     /* Iterator function */
