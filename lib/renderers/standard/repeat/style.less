@@ -1,3 +1,10 @@
-li.template {
-  display: none;
+ul.repeat {
+  /* Hide the template used for rendering repeats only */
+  li.template {
+    display: none;
+  }
+  /* Hide the label so it only shows once */
+  > li > label {
+    display: none;
+  }
 }

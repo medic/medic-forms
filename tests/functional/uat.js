@@ -67,6 +67,36 @@ $(function() {
           ]
         }
       ]
+    },
+    repeatingNested: {
+      "meta": {
+        "id": "TEST"
+      },
+      "fields": [
+        {
+          "id": "name",
+          "name": "Name",
+          "type": "string"
+        },
+        {
+          "id": "address",
+          "name": "Address",
+          "type": "fields",
+          "repeat": true,
+          "fields": [
+            {
+              "id": "street",
+              "name": "Street",
+              "type": "string"
+            },
+            {
+              "id": "city",
+              "name": "City",
+              "type": "string"
+            }
+          ]
+        }
+      ]
     }
   };
 
