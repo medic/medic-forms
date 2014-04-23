@@ -1,0 +1,12 @@
+#!/bin/sh
+
+main()
+{
+  # Compile fixtures
+  npm run-script postinstall &&
+  \
+  # Functional tests
+  node scripts/uat.js
+}
+
+main "$@"

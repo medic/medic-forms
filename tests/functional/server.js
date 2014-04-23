@@ -1,28 +1,49 @@
 
 var _ = require('underscore'),
+    path = require('path'),
     http = require('http'),
     async = require('async'),
     fs = require('fs'),
     jsdump = require('jsDump'),
     handlebars = require('handlebars'),
     api = require('../../lib/api').create(),
-    server, formDefinition,
+    server, 
+    formDefinition,
     templates = {};
 
+/* mmmmm dogfood */
+var definitionSubmissionForm = {
+  "meta": {
+    "id": "DEFN"
+  },
+  "fields": [
+    {
+      "id": "formDefinition",
+      "name": "Form Definition",
+      "type": "string",
+      "render": "textarea"
+    }
+  ]
+};
 
 /**
- * @name _serialize:
+ * @name _fill:
  */
-var _serialize = function (parsed, callback) {
+var _fill = function (parsed, callback) {
 
-  api.load([ formDefinition ], function (_result) {
+  var definitions = [ definitionSubmissionForm ];
+  if (formDefinition) {
+    definitions.push(formDefinition);
+  }
 
-    if (!_result.valid) {
-      return callback(_result);
+  api.load(definitions, function (_loaded) {
+
+    if (!_loaded.valid) {
+      return callback(_loaded);
     }
 
-    api.fill(parsed, function (_result) {
-      callback(_result);
+    api.fill(parsed, function (_filled) {
+      callback(_filled);
     });
   });
 };
@@ -51,19 +72,46 @@ var _sendError = function (res, error) {
 /**
  * @name _sendForm:
  */
-var _sendForm = function (res, parsed, valid, options) {
+var _sendForm = function (res, formId, input, validation, options) {
 
   var form = api.render(
-    'TEST', parsed, valid, options
+    formId, input, validation, options
   );
 
   if (form.valid || options.initial) {
-    _sendOk(res, templates.render({ form: form.result }));
+    var content = templates.render({ 
+      form: form.result, 
+      showLinks: formId === 'DEFN' 
+    });
+    _sendOk(res, content);
   } else {
     _sendError(res, form.error);
   }
 };
 
+var _fillAndSendForm = function(res, formId, input) {
+  _fill({$form: formId}, function (filled) {
+    _sendForm(res, formId, input || {}, filled, { initial: true });
+  });
+};
+
+var _sendResult = function(res, parsed) {
+  _fill(parsed.result, function (filled) {
+    if (filled.valid) {
+      delete parsed.result.$form;
+      _sendOk(res, templates.result({
+        result: JSON.stringify(parsed.result, null, '  ')
+      }));
+    } else {
+      _sendForm(res, 'TEST', parsed.result, filled);
+    }
+  });
+};
+
+var _sendScript = function(res, content) {
+  res.writeHead(200, { 'Content-Type': 'application/javascript' });
+  res.end(content);
+};
 
 /**
  * @name _startServer:
@@ -84,51 +132,32 @@ var _startServer = function (callback) {
 
       if (urlParts[0] === '/') {
         if (req.method === 'GET') {
-          
-          formDefinition = JSON.parse(unescape(
-            urlParts[1].split('=')[1]
-          ));
-
-          _serialize({$form: 'TEST'}, function (valid) {
-            _sendForm(res, {}, valid, { initial: true });
-          });
-
+          _fillAndSendForm(res, 'DEFN');
         } else {
 
           var parsed = api.parse(body, 'httppost');
 
           if (!parsed.valid) {
             _sendError(res, parsed.error);
+          } else if (parsed.result.$form === 'DEFN') {
+            formDefinition = JSON.parse(unescape(
+              parsed.result.formDefinition
+            ));
+            _fillAndSendForm(res, 'TEST', parsed.result);
           } else {
-            _serialize(parsed.result, function (serialized) {
-              if (serialized.valid) {
-                delete parsed.result.$form;
-                _sendOk(res, templates.result({
-                  result: JSON.stringify(parsed.result)
-                }));
-              } else {
-                _sendForm(res, parsed.result, serialized);
-              }
-            });
+            _sendResult(res, parsed);
           }
         }
 
       } else if (urlParts[0] === '/scripts/behavior.js') {
-        fs.readFile(
-          '../../lib/renderers/_behavior.js', 'utf8',
-          function (err, data) {
-            res.writeHead(200, { 'Content-Type': 'application/javascript' });
-            res.end(data);
-          }
-        );
+        _sendScript(res, templates.behavior);
+      } else if (urlParts[0] === '/scripts/uat.js') {
+        _sendScript(res, templates.uat);
       }
     });
   });
 
-  server.listen(7357, 'localhost', function () {
-    console.log('Server running at http://localhost:7357/');
-    callback();
-  });
+  server.listen(7357, 'localhost', callback);
 };
 
 
@@ -156,13 +185,16 @@ exports.start = function (callback) {
     [ 
       { name: 'render', file: 'template.html', compile: true },
       { name: 'result', file: 'template-results.html', compile: true },
-      { name: 'behavior', file: '../../lib/renderers/_behavior.js' } 
+      { name: 'behavior', file: '../../lib/renderers/_behavior.js' },
+      { name: 'uat', file: 'uat.js' } 
     ],
 
     /* Iterator function */
     function (_template, _callback) {
 
-      fs.readFile(_template.file, 'utf8', function (err, data) {
+      var fullpath = path.join(__dirname, _template.file);
+
+      fs.readFile(fullpath, 'utf8', function (err, data) {
 
         if (!err) {
           if (_template.compile) {

@@ -5,7 +5,8 @@
   "main": "lib/main.js",
   "scripts": {
     "test": "scripts/run-tests",
-    "postinstall": "scripts/postinstall"
+    "postinstall": "scripts/postinstall",
+    "start": "scripts/run-uat"
   },
   "dependencies": {
     "async": "0.x",

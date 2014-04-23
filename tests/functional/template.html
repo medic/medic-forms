@@ -1,9 +1,22 @@
 <html>
 <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>Medic Forms: Test Framework</title>
 </head>
 <body>
+  {{#if showLinks}}
+    <h1>Provide Form Definition</h1>
+    <ul id="shortcuts">
+      <li><a href="#" data-definition="simple">Single string field</a></li>
+      <li><a href="#" data-definition="repeating">Repeating string field</a></li>
+      <li><a href="#" data-definition="required">Required string field</a></li>
+      <li><a href="#" data-definition="nested">Nested string fields</a></li>
+    </ul>
+  {{else}}
+    <h1>Form Definition Output</h1>
+  {{/if}}
   {{{form}}}
   <script src="scripts/behavior.js"></script>
+  <script src="scripts/uat.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ main()
     validate normalize input errors api render parser expand &&
   \
   # Functional tests
-  (cd tests/functional && node test.js)
+  node tests/functional/test.js
 }
 
 main "$@"

@@ -44,12 +44,21 @@ var framework = {
       }
     };
 
-    var formDefinition = escape(JSON.stringify(definition));
+    var formDefinition = JSON.stringify(definition);
     browser
-      .visit('http://127.0.0.1:7357/?formDefinition=' + formDefinition)
+      .visit('http://127.0.0.1:7357')
       .then(function () {
-        _runInteractions(interactions, _runAssertions);
+        browser
+          .fill('formDefinition', formDefinition)
+          .pressButton('button')
+          .then(function () {
+            _runInteractions(interactions, _runAssertions);
+          });
       });
+      // .visit('http://127.0.0.1:7357/?formDefinition=' + formDefinition)
+      // .then(function () {
+      //   _runInteractions(interactions, _runAssertions);
+      // });
   }
 };
 
