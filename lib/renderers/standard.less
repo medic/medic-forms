@@ -1,3 +1,22 @@
-li.skipped {
-  display: none;
+.fieldlist {
+  &, ul, ol {
+    padding: 0;
+    list-style-type: none;
+  }
+  li.skipped {
+    display: none;
+  }
+  .nest, .delete-item {
+    margin-left: 1em;
+  }
+  label {
+    display: block;
+  }
+  li {
+    margin: 0.5em 0;
+  }
+  textarea {
+    width: 100%;
+    height: 100px;
+  }
 }
