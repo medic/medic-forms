@@ -139,6 +139,9 @@ function _update_style (_renderers, _cb) {
     }
   );
 
+  var standard_include = path.join(base_path, 'standard.less');
+  imports.unshift('@import "' + standard_include + '";');
+
   less.render(imports.join('\n'), function (err, css) {
     if (err) {
       _cb(err);

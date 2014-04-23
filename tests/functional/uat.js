@@ -98,6 +98,38 @@ $(function() {
       }
     ]
   };
+  definitions['Structured conditions'] = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "string"
+      },
+      {
+        "id": "noskip",
+        "name": "Shows when Title is blank",
+        "type": "string",
+        "conditions": {
+          "structured": {
+            "title": ""
+          }
+        }
+      },
+      {
+        "id": "skip",
+        "name": "Shows when Title is 2",
+        "type": "string",
+        "conditions": {
+          "structured": {
+            "title": "2"
+          }
+        }
+      }
+    ]
+  };
 
   $('body').on('click', '#shortcuts a', function (e) {
 
