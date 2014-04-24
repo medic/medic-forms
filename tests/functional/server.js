@@ -20,7 +20,7 @@ var definitionSubmissionForm = {
     {
       "id": "formDefinition",
       "name": "Form Definition",
-      "type": "string",
+      "type": "json",
       "render": "textarea"
     }
   ]
@@ -106,7 +106,7 @@ var _sendForm = function (res, formId, input, validation, options) {
 /**
  * @name _fillAndSendForm:
  */
-var _fillAndSendForm = function(res, formId, input) {
+var _fillAndSendForm = function(res, formId, input, options) {
   _fill({$form: formId}, function (filled) {
     _sendForm(res, formId, input || {}, filled, { initial: true });
   });
@@ -151,14 +151,19 @@ var _startServer = function (callback) {
         } else {
 
           var parsed = api.parse(body, 'httppost');
-
+          console.log(JSON.stringify(parsed));
           if (!parsed.valid) {
             _sendError(res, parsed.error);
           } else if (parsed.result.$form === 'DEFN') {
-            formDefinition = JSON.parse(unescape(
-              parsed.result.formDefinition
-            ));
-            _fillAndSendForm(res, 'TEST', parsed.result);
+            _fill(parsed.result, function(e) {
+              console.log('e: ' + JSON.stringify(e));
+              if (e.valid) {
+                formDefinition = JSON.parse(parsed.result.formDefinition);
+                _fillAndSendForm(res, 'TEST', parsed.result);
+              } else {
+                _sendForm(res, 'DEFN', parsed.result, e);
+              }
+            });
           } else {
             _sendResult(res, parsed);
           }
