@@ -46,6 +46,8 @@ var fs = require('fs'),
 
 /**
  * @name main:
+ *    Updates the JavaScript and CSS for rendering and interacting
+ *    with forms.
  */
 var main = function () {
 
@@ -74,6 +76,7 @@ var main = function () {
 
 /**
  * @name _update_compiled:
+ *    Creates the JavaScript for rendering the forms
  */
 function _update_compiled (_renderers, _cb) {
 
@@ -102,6 +105,7 @@ function _update_compiled (_renderers, _cb) {
 
 /**
  * @name _update_behavior:
+ *    Creates the JavaScript for interacting with rendered forms
  */
 function _update_behavior (_renderers, _cb) {
 
@@ -126,6 +130,7 @@ function _update_behavior (_renderers, _cb) {
 
 /**
  * @name _update_style:
+ *    Compiles the CSS used for rendering forms
  */
 function _update_style (_renderers, _cb) {
 
