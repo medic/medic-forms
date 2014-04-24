@@ -364,6 +364,26 @@
       "type": "timestamp"
     },
     "values": [ "2012-11-05T25:40:52.280Z" ]
+  },
+
+  {
+    "_name": "JSON (simple, valid)",
+
+    "valid": true,
+    "field": {
+      "type": "json"
+    },
+    "values": [ "{}", "{\"one\": \"two\"}", "{\"one\": [1, \"three\", {}]}" ]
+  },
+
+  {
+    "_name": "JSON (simple, invalid)",
+
+    "valid": false,
+    "field": {
+      "type": "json"
+    },
+    "values": [ "a" ]
   }
 ]
 

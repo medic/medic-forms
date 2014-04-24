@@ -95,7 +95,8 @@
         { "$ref": "#/library/field-image" },
         { "$ref": "#/library/field-select" },
         { "$ref": "#/library/field-email" },
-        { "$ref": "#/library/field-recursive" }
+        { "$ref": "#/library/field-recursive" },
+        { "$ref": "#/library/field-json" }
       ]
     },
 
@@ -392,6 +393,26 @@
         "type": { "enum": [ "email" ] },
         "range": { "$ref": "#/library/unsupported" },
         "length": { "$ref": "#/library/length-specifier" }
+      }
+    },
+
+    "field-json": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "$ref": "#/library/required" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "$ref": "#/library/anything" },
+        "render": { "type": "string" },
+
+        "type": { "enum": [ "json" ] }
       }
     },
 

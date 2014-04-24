@@ -40,6 +40,36 @@ var fs = require('fs'),
     fixtures = require('./fixtures/compiled'),
     input_validator = require('../../lib/input');
 
+/**
+ * @name _startsWithA:
+ */
+var _startsWithA = function (_input) {
+
+  if (_input.charAt(0) === 'A') {
+    return { valid: true };
+  }
+
+  return {
+    valid: false,
+    error: 'Input does not start with the letter A'
+  };
+};
+
+/**
+ * @name _endsWithA:
+ */
+var _endsWithA = function (_input) {
+
+  if (_input.charAt(_input.length - 1) === 'A') {
+    return { valid: true };
+  }
+
+  return {
+    valid: false,
+    error: 'Input does not end with the letter A'
+  };
+};
+
 
 /**
  * @name _assert:
@@ -55,31 +85,9 @@ var _assert = function (_test, _fixture, _value) {
   /* Count expected assertions */
   _test.expect(error ? 3 : 2);
 
-  /* Register native validation function */
-  input_validator.register_validator('startsWithA', function (_input) {
-
-    if (_input.charAt(0) === 'A') {
-      return { valid: true };
-    }
-
-    return {
-      valid: false,
-      error: 'Input does not start with the letter A'
-    };
-  });
-
-  /* Register native validation function */
-  input_validator.register_validator('endsWithA', function (_input) {
-
-    if (_input.charAt(_input.length - 1) === 'A') {
-      return { valid: true };
-    }
-
-    return {
-      valid: false,
-      error: 'Input does not end with the letter A'
-    };
-  });
+  /* Register native validation functions */
+  input_validator.register_validator('startsWithA', _startsWithA);
+  input_validator.register_validator('endsWithA', _endsWithA);
 
   /* Set up validation context */
   var context = { inputs: inputs };
@@ -95,7 +103,8 @@ var _assert = function (_test, _fixture, _value) {
 
       _test.equal(
         _r.valid, valid, 
-          _value + ' must ' + (valid ? '' : 'not ') + 'validate'
+          _value + ' must ' + (valid ? '' : 'not ') + 
+          'validate.' + (valid ? ' Error: ' + _r.error : '')
       );
 
       _test.equal(
