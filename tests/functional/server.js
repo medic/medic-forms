@@ -151,12 +151,10 @@ var _startServer = function (callback) {
         } else {
 
           var parsed = api.parse(body, 'httppost');
-          console.log(JSON.stringify(parsed));
           if (!parsed.valid) {
             _sendError(res, parsed.error);
           } else if (parsed.result.$form === 'DEFN') {
             _fill(parsed.result, function(e) {
-              console.log('e: ' + JSON.stringify(e));
               if (e.valid) {
                 formDefinition = JSON.parse(parsed.result.formDefinition);
                 _fillAndSendForm(res, 'TEST', parsed.result);
