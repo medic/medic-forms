@@ -412,7 +412,9 @@
         "default": { "$ref": "#/library/anything" },
         "render": { "type": "string" },
 
-        "type": { "enum": [ "json" ] }
+        "type": { "enum": [ "json" ] },
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
       }
     },
 
