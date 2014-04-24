@@ -21,7 +21,8 @@ var definitionSubmissionForm = {
       "id": "formDefinition",
       "name": "Form Definition",
       "type": "json",
-      "render": "textarea"
+      "render": "textarea",
+      "required": true
     }
   ]
 };
@@ -42,9 +43,7 @@ var _fill = function (parsed, callback) {
       return callback(_loaded);
     }
 
-    api.fill(parsed, function (_filled) {
-      callback(_filled);
-    });
+    api.fill(parsed, callback);
   });
 };
 
