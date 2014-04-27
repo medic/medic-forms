@@ -62,6 +62,9 @@ var main = function () {
       _update_behavior (renderers, cb);
     },
     function(cb) { 
+      _update_uat (cb);
+    },
+    function(cb) { 
       _update_style (renderers, cb);
     }
   ], function(err) {
@@ -129,6 +132,28 @@ function _update_behavior (_renderers, _cb) {
 
 
 /**
+ * @name _update_uat:
+ *    Creates the JavaScript for the UAT server
+ */
+function _update_uat (_cb) {
+
+  var b = browserify();
+
+  b.ignore('.' + path.sep + path.join('lib', 'platforms', 'node.js'));
+  b.add('.' + path.sep + path.join('tests', 'functional', 'uat'));
+
+
+  b.bundle(function (err, behaviors) {
+
+    if (err) {
+      return _cb(err);
+    }
+    _write_uat(behaviors, _cb);
+  });
+}
+
+
+/**
  * @name _update_style:
  *    Compiles the CSS used for rendering forms
  */
@@ -179,6 +204,37 @@ function _write_behavior (_behaviors, _cb) {
 
   _write_header(data);
   _write_includes(data);
+
+  fs.writeFile(output_path, data.join('\n'), function(err) {
+    if (err) {
+      _cb(err);
+    } else {
+      fs.appendFile(output_path, _behaviors, function (err) {
+
+        if (!err) {
+          process.stdout.write(
+            'File `' + output_path + '` generated successfully.\n'
+          );
+        }
+
+        _cb(err);
+      });
+    }
+  });
+
+}
+
+
+
+/**
+ * @name _write_uat:
+ */
+function _write_uat (_behaviors, _cb) {
+
+  var data = [];
+  var output_path = path.join('tests', 'functional', '_uat.js');
+
+  _write_header(data);
 
   fs.writeFile(output_path, data.join('\n'), function(err) {
     if (err) {

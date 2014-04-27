@@ -1,5 +1,6 @@
 node_modules
 tests/functional/node_modules
+tests/functional/_uat.js
 lib/renderers/_compiled.js
 lib/renderers/_behavior.js
 lib/renderers/_style.css

@@ -55,10 +55,6 @@ var framework = {
             _runInteractions(interactions, _runAssertions);
           });
       });
-      // .visit('http://127.0.0.1:7357/?formDefinition=' + formDefinition)
-      // .then(function () {
-      //   _runInteractions(interactions, _runAssertions);
-      // });
   }
 };
 

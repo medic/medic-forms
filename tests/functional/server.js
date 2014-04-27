@@ -9,7 +9,8 @@ var _ = require('underscore'),
     api = require('../../lib/api').create(),
     server, 
     formDefinition,
-    templates = {};
+    templates = {},
+    uat = false;
 
 /* mmmmm dogfood */
 var definitionSubmissionForm = {
@@ -94,7 +95,8 @@ var _sendForm = function (res, formId, input, validation, options) {
   if (form.valid || options.initial) {
     var content = templates.render({ 
       form: form.result, 
-      showLinks: formId === 'DEFN' 
+      showLinks: formId === 'DEFN',
+      uat: uat
     });
     _sendOk(res, content);
   } else {
@@ -168,10 +170,12 @@ var _startServer = function (callback) {
 
       } else if (urlParts[0] === '/scripts/behavior.js') {
         _sendScript(res, templates.behavior);
-      } else if (urlParts[0] === '/scripts/uat.js') {
+      } else if (urlParts[0] === '/scripts/_uat.js') {
         _sendScript(res, templates.uat);
       } else if (urlParts[0] === '/style/style.css') {
         _sendStyle(res, templates.style);
+      } else {
+        _sendError(res, 'Unknown resource: ' + req.url);
       }
     });
   });
@@ -193,7 +197,13 @@ exports.stop = function () {
 /**
  * @name start:
  */
-exports.start = function (callback) {
+exports.start = function (_options, callback) {
+
+  if (!callback) {
+    callback = _options;
+    _options = {};
+  }
+  uat = !!_options.uat;
 
   if (server) {
     return callback('Stop the server before starting a new one');
@@ -205,7 +215,7 @@ exports.start = function (callback) {
       { name: 'render', file: 'template.html', compile: true },
       { name: 'result', file: 'template-results.html', compile: true },
       { name: 'behavior', file: '../../lib/renderers/_behavior.js' },
-      { name: 'uat', file: 'uat.js' },
+      { name: 'uat', file: '_uat.js' },
       { name: 'style', file: '../../lib/renderers/_style.css' } 
     ],
 
