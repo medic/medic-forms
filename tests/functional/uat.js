@@ -106,27 +106,28 @@ $(function() {
     },
     "fields": [
       {
-        "id": "title",
-        "name": "Title",
-        "type": "string"
+        "id": "option",
+        "name": "Contact Option",
+        "type": "select",
+        "items": ["email", "sms"]
       },
       {
-        "id": "noskip",
-        "name": "Shows when Title is blank",
-        "type": "string",
+        "id": "email",
+        "name": "Email address",
+        "type": "email",
         "conditions": {
           "structured": {
-            "title": ""
+            "option": "1"
           }
         }
       },
       {
-        "id": "skip",
-        "name": "Shows when Title is 2",
+        "id": "phone",
+        "name": "Phone number",
         "type": "string",
         "conditions": {
           "structured": {
-            "title": "2"
+            "option": "2"
           }
         }
       }
@@ -194,14 +195,15 @@ $(function() {
       var input = api.parse(_form.serialize(), 'httppost');
       api.fill(input.result, _options, function(_filled) {
         _form.find('.error-message').remove();
-        if (!_filled.valid) {
-          for (var field in _filled.detail) {
-            var detail = _filled.detail[field];
-            var row = $('[name=' + field + ']').closest('li');
-            if (!detail.valid) {
-              row.prepend('<span class="error-message">' + detail.error + '</span>');
-            }
+        _form.find('li.error').removeClass('error');
+        for (var field in _filled.detail) {
+          var detail = _filled.detail[field];
+          var row = $('[name=' + field + ']').closest('li');
+          if (!detail.valid) {
+            row.addClass('error');
+            row.prepend('<span class="error-message">' + detail.error + '</span>');
           }
+          row.toggleClass('skipped', !!detail.skipped);
         }
         if (_cb) {
           _cb(_filled);

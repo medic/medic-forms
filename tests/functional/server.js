@@ -155,12 +155,12 @@ var _startServer = function (callback) {
           if (!parsed.valid) {
             _sendError(res, parsed.error);
           } else if (parsed.result.$form === 'DEFN') {
-            _fill(parsed.result, function(e) {
-              if (e.valid) {
+            _fill(parsed.result, function(_filled) {
+              if (_filled.valid) {
                 formDefinition = JSON.parse(parsed.result.formDefinition);
                 _fillAndSendForm(res, 'TEST', parsed.result);
               } else {
-                _sendForm(res, 'DEFN', parsed.result, e);
+                _sendForm(res, 'DEFN', parsed.result, _filled);
               }
             });
           } else {
