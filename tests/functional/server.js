@@ -8,7 +8,6 @@ var _ = require('underscore'),
     handlebars = require('handlebars'),
     api = require('../../lib/api').create(),
     server, 
-    formDefinition,
     templates = {},
     uat = false;
 
@@ -31,14 +30,9 @@ var definitionSubmissionForm = {
 /**
  * @name _fill:
  */
-var _fill = function (parsed, callback) {
+var _fill = function (definition, parsed, callback) {
 
-  var definitions = [ definitionSubmissionForm ];
-  if (formDefinition) {
-    definitions.push(formDefinition);
-  }
-
-  api.load(definitions, function (_loaded) {
+  api.load([ definition ], function (_loaded) {
 
     if (!_loaded.valid) {
       return callback(_loaded);
@@ -107,13 +101,14 @@ var _sendForm = function (res, formId, input, validation, options) {
 /**
  * @name _fillAndSendForm:
  */
-var _fillAndSendForm = function(res, formId, input, options) {
-  _fill({$form: formId}, function (filled) {
+var _fillAndSendForm = function(res, definition, input, options) {
+  var formId = definition.meta.id;
+  _fill(definition, {$form: formId}, function (filled) {
     if (!filled.valid && filled.phase === 'validate') {
       var validation = {
         detail: {
           formDefinition: {
-            error: filled.detail.detail[1].error
+            error: filled.detail.detail[0].error
           }
         }
       };
@@ -128,7 +123,7 @@ var _fillAndSendForm = function(res, formId, input, options) {
  * @name _sendResult:
  */
 var _sendResult = function(res, parsed) {
-  _fill(parsed.result, function (filled) {
+  api.fill(parsed.result, function (filled) {
     if (filled.valid) {
       delete parsed.result.$form;
       _sendOk(res, templates.result({
@@ -159,17 +154,17 @@ var _startServer = function (callback) {
 
       if (urlParts[0] === '/') {
         if (req.method === 'GET') {
-          _fillAndSendForm(res, 'DEFN');
+          _fillAndSendForm(res, definitionSubmissionForm);
         } else {
 
           var parsed = api.parse(body, 'httppost');
           if (!parsed.valid) {
             _sendError(res, parsed.error);
           } else if (parsed.result.$form === 'DEFN') {
-            _fill(parsed.result, function(_filled) {
+            _fill(definitionSubmissionForm, parsed.result, function(_filled) {
               if (_filled.valid) {
-                formDefinition = JSON.parse(parsed.result.formDefinition);
-                _fillAndSendForm(res, 'TEST', parsed.result);
+                var formDefinition = JSON.parse(parsed.result.formDefinition);
+                _fillAndSendForm(res, formDefinition, parsed.result);
               } else {
                 _sendForm(res, 'DEFN', parsed.result, _filled);
               }
