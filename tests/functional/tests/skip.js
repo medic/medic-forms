@@ -132,5 +132,49 @@ exports['invalid skip conditions'] = function (test, callback) {
   }, callback);
 };
 
+exports['skip conditions evaluated for defaults'] = function (test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "string",
+        "default": "1"
+      },
+      {
+        "id": "noskip",
+        "name": "Description1",
+        "type": "string",
+        "conditions": {
+          "structured": {
+            "title": "1"
+          }
+        }
+      },
+      {
+        "id": "skip",
+        "name": "Description2",
+        "type": "string",
+        "conditions": {
+          "structured": {
+            "title": "2"
+          }
+        }
+      }
+    ]
+  };
+
+  test.run(form, null, function (browser) {
+
+    assert.ok(util.has_class(browser, 'skip', 'skipped'));
+    assert.ok(!util.has_class(browser, 'noskip', 'skipped'));
+
+  }, callback);
+};
+
 // TODO skipped fields should not be submitted
 

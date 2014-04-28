@@ -1,23 +1,21 @@
-
 var assert = require('assert');
 
-
-var form = {
-  "meta": {
-    "id": "TEST"
-  },
-  "fields": [
-    {
-      "id": "name",
-      "name": "Patient Name",
-      "type": "string",
-      "default": "Curious George"
-    }
-  ]
-};
-
-
 exports['render defaults'] = function (test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "name",
+        "name": "Patient Name",
+        "type": "string",
+        "default": "Curious George"
+      }
+    ]
+  };
+
 
   test.run(form, null, function (browser) {
 

@@ -934,7 +934,7 @@
   },
 
   {
-    "_name": "Conditions (javascript, 'and' operator, valid, skipped)",
+    "_name": "Conditions (structured, 'and' operator, valid, skipped)",
 
     "valid": true,
     "skipped": true,
@@ -956,7 +956,7 @@
   },
 
   {
-    "_name": "Conditions (javascript, 'and' operator, valid, not skipped)",
+    "_name": "Conditions (structured, 'and' operator, valid, not skipped)",
 
     "valid": true,
     "skipped": false,
