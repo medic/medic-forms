@@ -44,12 +44,11 @@ var framework = {
       }
     };
 
-    var formDefinition = JSON.stringify(definition);
     browser
       .visit('http://127.0.0.1:7357')
       .then(function () {
         browser
-          .fill('formDefinition', formDefinition)
+          .fill('formDefinition', JSON.stringify(definition))
           .pressButton('button')
           .then(function () {
             _runInteractions(interactions, _runAssertions);

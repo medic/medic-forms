@@ -95,5 +95,42 @@ exports['javascript conditions are evaluated'] = function (test, callback) {
   }, callback);
 };
 
+
+exports['invalid skip conditions'] = function (test, callback) {
+
+  var form = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "title",
+        "name": "Title",
+        "type": "string"
+      },
+      {
+        "id": "noskip",
+        "name": "Description1",
+        "type": "string",
+        "conditions": {
+          "structured": {
+            "fieldthatdoesnotexist": ""
+          }
+        }
+      }
+    ]
+  };
+
+  test.run(form, null, function (browser) {
+
+    util.assert_error(
+      browser, 
+      'formDefinition', 
+      'Condition refers to itself or non-existent field'
+    );
+
+  }, callback);
+};
+
 // TODO skipped fields should not be submitted
 

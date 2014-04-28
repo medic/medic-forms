@@ -99,8 +99,9 @@ exports['missing required field'] = function (test, callback) {
     assert.ok(util.has_class(browser, 'name', 'error'));
     assert.ok(util.has_class(browser, 'name', 'required'));
 
-    assert.equal(
-      browser.query('.field-id-name.error span.error-message').innerHTML, 
+    util.assert_error(
+      browser, 
+      'name', 
       'Value must be a single plain-text string'
     );
 

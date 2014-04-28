@@ -109,7 +109,18 @@ var _sendForm = function (res, formId, input, validation, options) {
  */
 var _fillAndSendForm = function(res, formId, input, options) {
   _fill({$form: formId}, function (filled) {
-    _sendForm(res, formId, input || {}, filled, { initial: true });
+    if (!filled.valid && filled.phase === 'validate') {
+      var validation = {
+        detail: {
+          formDefinition: {
+            error: filled.detail.detail[1].error
+          }
+        }
+      };
+      _sendForm(res, 'DEFN', input, validation);
+    } else {
+      _sendForm(res, formId, input || {}, filled, { initial: true });
+    }
   });
 };
 
