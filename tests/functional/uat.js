@@ -176,6 +176,16 @@ $(function() {
         "name": "Select",
         "type": "select",
         "items": ["one", "two", "three"]
+      },
+      {
+        "id": "date",
+        "name": "Date",
+        "type": "date"
+      },
+      {
+        "id": "timestamp",
+        "name": "Timestamp",
+        "type": "timestamp"
       }
     ]
   };

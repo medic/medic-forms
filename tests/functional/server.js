@@ -70,9 +70,13 @@ var _sendStyle = function(res, content) {
 /**
  * @name _sendError:
  */
-var _sendError = function (res, error) {
-  console.log(error);
-  res.writeHead(500, {'Content-Type': 'text/html'});
+var _sendError = function (res, options) {
+  options = options || {};
+  _.defaults(options, { code: 500 });
+  if (options.error) {
+    console.log(options.error);
+  }
+  res.writeHead(options.code, {'Content-Type': 'text/html'});
   res.end();
 };
 
@@ -159,7 +163,7 @@ var _startServer = function (callback) {
 
           var parsed = api.parse(body, 'httppost');
           if (!parsed.valid) {
-            _sendError(res, parsed.error);
+            _sendError(res, { error: parsed.error });
           } else if (parsed.result.$form === 'DEFN') {
             _fill(definitionSubmissionForm, parsed.result, function(_filled) {
               if (_filled.valid) {
@@ -180,8 +184,10 @@ var _startServer = function (callback) {
         _sendScript(res, templates.uat);
       } else if (urlParts[0] === '/style/style.css') {
         _sendStyle(res, templates.style);
+      } else if (urlParts[0] === '/favicon.ico') {
+        _sendError(res, { code: 404 });
       } else {
-        _sendError(res, 'Unknown resource: ' + req.url);
+        _sendError(res, { error: 'Unknown resource: ' + req.url });
       }
     });
   });
