@@ -189,6 +189,80 @@ $(function() {
       }
     ]
   };
+  definitions['Form builder'] = {
+    "meta": {
+      "id": "TEST"
+    },
+    "fields": [
+      {
+        "id": "fields",
+        "name": "Fields",
+        "type": "fields",
+        "repeat": true,
+        "fields": [
+          {
+            "id": "id",
+            "name": "ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "id": "type",
+            "name": "Type",
+            "type": "select",
+            "items": ["string"],
+            "required": true
+          },
+          {
+            "id": "repeat",
+            "name": "Repeat",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "repeat-type",
+                "name": "Type",
+                "type": "select",
+                "items": ["none", "maximum", "between", "script"]
+              },
+              {
+                "id": "repeat-min",
+                "name": "Minimum",
+                "type": "integer",
+                "required": true,
+                "conditions": {
+                  "structured": {
+                    "repeat-type": "3"
+                  }
+                }
+              },
+              {
+                "id": "repeat-max",
+                "name": "Maximum",
+                "type": "integer",
+                "required": true,
+                "conditions": {
+                  "structured": {
+                    "repeat-type": ["2","3"]
+                  }
+                }
+              },
+              {
+                "id": "repeat-script",
+                "name": "Script",
+                "type": "string",
+                "required": true,
+                "conditions": {
+                  "structured": {
+                    "repeat-type": "4"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
 
   $('body').on('click', '#shortcuts a', function (e) {
 
@@ -199,28 +273,59 @@ $(function() {
     $('[name=formDefinition]').val(JSON.stringify(form, null, '  '));
   });
 
-  var _validate = function (_form, _options, _cb) {
-    var definition = _form.data('definition');
-    api.load([definition], function(_loaded) {
-      var input = api.parse(_form.serialize(), 'httppost');
-      api.fill(input.result, _options, function(_filled) {
-        _form.find('.error-message').remove();
-        _form.find('li.error').removeClass('error');
-        for (var field in _filled.detail) {
-          var detail = _filled.detail[field];
-          var row = $('[name=' + field + ']').closest('li');
+  var _getFieldName = function(prefix, name) {
+    if (!prefix) {
+      return name;
+    }
+    if (isNaN(parseInt(name))) {
+      return prefix + '.' + name;
+    }
+    return prefix + '[' + name + ']';
+  }
+
+  var _validationResult = function(details, prefix) {
+    for (var field in details) {
+      var detail = details[field];
+      var fieldName = _getFieldName(prefix, field);
+      var row = $('[name="' + fieldName + '"]').closest('li');
+      row.toggleClass('skipped', !!detail.skipped);
+      if (!detail.skipped) {
+        if (detail.detail) {
+          _validationResult(detail.detail, fieldName);
+        } else {
           if (!detail.valid) {
             row.addClass('error');
             row.prepend('<span class="error-message">' + detail.error + '</span>');
           }
           row.toggleClass('skipped', !!detail.skipped);
         }
+      }
+    }
+  };
+
+  var _validate = function (_form, _options, _cb) {
+    var definition = _form.data('definition');
+    api.load([definition], function(_loaded) {
+      if (!_loaded.valid) {
+        _clearErrors(_form);
+        _form.prepend('<span class="error-message">' + _loaded.error + ': ' + _loaded.detail.message + '</span>');
+        return;
+      }
+      var input = api.parse(_form.serialize(), 'httppost');
+      api.fill(input.result, _options, function(_filled) {
+        _clearErrors(_form);
+        _validationResult(_filled.detail);
         if (_cb) {
           _cb(_filled);
         }
       });
     });
   };
+
+  var _clearErrors = function(_form) {
+    _form.find('.error-message').remove();
+    _form.find('li.error').removeClass('error');
+  }
 
   $('body').on('click', 'button', function (e) {
 
