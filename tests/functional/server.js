@@ -105,7 +105,7 @@ var _sendForm = function (res, formId, input, validation, options) {
 /**
  * @name _fillAndSendForm:
  */
-var _fillAndSendForm = function(res, definition, input, options) {
+var _fillAndSendForm = function(res, definition, input) {
   var formId = definition.meta.id;
   _fill(definition, {$form: formId}, function (filled) {
     if (!filled.valid && filled.phase === 'validate') {

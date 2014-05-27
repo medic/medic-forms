@@ -198,7 +198,7 @@ $(function() {
         "id": "fields",
         "name": "Fields",
         "type": "fields",
-        "repeat": true,
+        "repeat": false,
         "fields": [
           {
             "id": "id",
@@ -222,8 +222,13 @@ $(function() {
                 "id": "repeat-type",
                 "name": "Type",
                 "type": "select",
+                "default": "none",
                 "items": [
-                  "none", "minimum", "maximum", "between", "script"
+                  ["none","none"],
+                  ["minimum","minimum"],
+                  ["maximum","maximum"],
+                  ["between","between"],
+                  ["script","script"]
                 ]
               },
               {
@@ -233,7 +238,7 @@ $(function() {
                 "required": true,
                 "conditions": {
                   "structured": {
-                    "fields.repeat.repeat-type": ["2","4"]
+                    "fields.repeat.repeat-type": ["minimum","between"]
                   }
                 }
               },
@@ -244,7 +249,7 @@ $(function() {
                 "required": true,
                 "conditions": {
                   "structured": {
-                    "fields.repeat.repeat-type": ["3","4"]
+                    "fields.repeat.repeat-type": ["maximum","between"]
                   }
                 }
               },
@@ -255,7 +260,7 @@ $(function() {
                 "required": true,
                 "conditions": {
                   "structured": {
-                    "fields.repeat.repeat-type": "5"
+                    "fields.repeat.repeat-type": "script"
                   }
                 }
               }
