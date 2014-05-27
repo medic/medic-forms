@@ -222,7 +222,9 @@ $(function() {
                 "id": "repeat-type",
                 "name": "Type",
                 "type": "select",
-                "items": ["none", "maximum", "between", "script"]
+                "items": [
+                  "none", "minimum", "maximum", "between", "script"
+                ]
               },
               {
                 "id": "repeat-min",
@@ -231,7 +233,7 @@ $(function() {
                 "required": true,
                 "conditions": {
                   "structured": {
-                    "repeat-type": "3"
+                    "fields.repeat.repeat-type": ["2","4"]
                   }
                 }
               },
@@ -242,7 +244,7 @@ $(function() {
                 "required": true,
                 "conditions": {
                   "structured": {
-                    "repeat-type": ["2","3"]
+                    "fields.repeat.repeat-type": ["3","4"]
                   }
                 }
               },
@@ -253,7 +255,7 @@ $(function() {
                 "required": true,
                 "conditions": {
                   "structured": {
-                    "repeat-type": "4"
+                    "fields.repeat.repeat-type": "5"
                   }
                 }
               }
