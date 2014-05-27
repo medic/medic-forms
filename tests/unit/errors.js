@@ -67,7 +67,8 @@ var _assert = function (_test, _fixture, _value) {
     fields, _value.input, false, function (_rv) {
       _test.ok(
         test_utils.is_recursive_subset(_value.expect, _rv),
-          'should produce expected output'
+        '\nExpected: ' + JSON.stringify(_value.expect) + 
+        '\nActual:   ' + JSON.stringify(_rv)
       );
       _test.done();
     }

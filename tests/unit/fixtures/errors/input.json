@@ -171,14 +171,22 @@
           "q1": 1
         },
         "expect": {
-          "valid": true,
+          "valid": false,
           "detail": {
             "q1": {
               "valid": true
             },
             "q2": {
-              "valid": true,
-              "omitted": true
+              "valid": false,
+              "detail": {
+                "q3": {
+                  "valid": true,
+                  "omitted": true
+                },
+                "q4": {
+                  "valid": false
+                }
+              }
             }
           }
         }
