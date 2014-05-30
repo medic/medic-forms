@@ -198,7 +198,7 @@ $(function() {
         "id": "fields",
         "name": "Fields",
         "type": "fields",
-        "repeat": false,
+        "repeat": true,
         "fields": [
           {
             "id": "id",
