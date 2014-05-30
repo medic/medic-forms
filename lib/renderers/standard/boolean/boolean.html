@@ -1,0 +1,9 @@
+{{#row field error validation}}
+
+  {{> errorMessage}}
+  {{> label}}
+  
+  <input id="{{@elementId}}" type="checkbox" name="{{name}}" value="true"
+    {{#eq ../value "true"}}checked="checked"{{/eq}}"/>
+
+{{/row}}

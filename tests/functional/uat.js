@@ -214,6 +214,44 @@ $(function() {
             "required": true
           },
           {
+            "id": "required",
+            "name": "Required",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "required-type",
+                "name": "Type",
+                "type": "select",
+                "default": "boolean",
+                "items": [
+                  ["boolean","Boolean"],
+                  ["script","Scripted"]
+                ]
+              },
+              {
+                "id": "required-boolean",
+                "name": "Boolean",
+                "type": "boolean",
+                "conditions": {
+                  "structured": {
+                    "fields.required.required-type": "boolean"
+                  }
+                }
+              },
+              {
+                "id": "required-script",
+                "name": "Script",
+                "type": "string",
+                "required": true,
+                "conditions": {
+                  "structured": {
+                    "fields.required.required-type": "script"
+                  }
+                }
+              }
+            ]
+          },
+          {
             "id": "repeat",
             "name": "Repeat",
             "type": "fields",
@@ -224,11 +262,11 @@ $(function() {
                 "type": "select",
                 "default": "none",
                 "items": [
-                  ["none","none"],
-                  ["minimum","minimum"],
-                  ["maximum","maximum"],
-                  ["between","between"],
-                  ["script","script"]
+                  ["none","None"],
+                  ["minimum","Minimum"],
+                  ["maximum","Maximum"],
+                  ["between","Between"],
+                  ["script","Scripted"]
                 ]
               },
               {

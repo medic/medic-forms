@@ -84,6 +84,7 @@
       "type": "object",
       "oneOf": [
         { "$ref": "#/library/field-string" },
+        { "$ref": "#/library/field-boolean" },
         { "$ref": "#/library/field-integer" },
         { "$ref": "#/library/field-number" },
         { "$ref": "#/library/field-date" },
@@ -117,6 +118,28 @@
         "render": { "type": "string" },
 
         "type": { "enum": [ "string" ] },
+        "range": { "$ref": "#/library/unsupported" },
+        "length": { "$ref": "#/library/length-specifier" }
+      }
+    },
+
+    "field-boolean": {
+      "type": "object",
+      "required": [ "id", "type" ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "required": { "$ref": "#/library/required" },
+        "name": { "$ref": "#/library/l10n" },
+        "description": { "$ref": "#/library/l10n" },
+        "flags": { "$ref": "#/library/flags" },
+        "conditions": { "$ref": "#/library/conditions" },
+        "validations": { "$ref": "#/library/validations" },
+        "repeat": { "$ref": "#/library/repeat-specifier" },
+        "default": { "$ref": "#/library/anything" },
+        "render": { "type": "string" },
+
+        "type": { "enum": [ "boolean" ] },
         "range": { "$ref": "#/library/unsupported" },
         "length": { "$ref": "#/library/length-specifier" }
       }
