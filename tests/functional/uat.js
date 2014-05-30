@@ -247,6 +247,12 @@ $(function() {
                 "name": "Maximum",
                 "type": "integer",
                 "required": true,
+                "range": [1],
+                "validations": {
+                  "javascript": {
+                    "greaterThanMin": "return ((parseInt(inputs.fields[repeatIndex.fields].repeat['repeat-min']) || 0) <= (parseInt(input) || Infinity))"
+                  }
+                },
                 "conditions": {
                   "structured": {
                     "fields.repeat.repeat-type": ["maximum","between"]
@@ -297,14 +303,11 @@ $(function() {
       var row = $('[name="' + fieldName + '"]').closest('li');
       row.toggleClass('skipped', !!detail.skipped);
       if (!detail.skipped) {
-        if (detail.detail) {
+        if (detail.detail && !detail.error) {
           _validationResult(detail.detail, fieldName);
-        } else {
-          if (!detail.valid) {
-            row.addClass('error');
-            row.prepend('<span class="error-message">' + detail.error + '</span>');
-          }
-          row.toggleClass('skipped', !!detail.skipped);
+        } else if (!detail.valid) {
+          row.addClass('error');
+          row.prepend('<span class="error-message">' + detail.error + '</span>');
         }
       }
     }
