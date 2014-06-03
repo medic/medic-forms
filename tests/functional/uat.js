@@ -210,8 +210,39 @@ $(function() {
             "id": "type",
             "name": "Type",
             "type": "select",
-            "items": ["string"],
+            "items": [
+              ["string","String"],
+              ["select","Select"]
+            ],
             "required": true
+          },
+          {
+            "id": "values",
+            "name": "Values",
+            "type": "fields",
+            "repeat": true,
+            "fields": [
+              {
+                "id": "values-key",
+                "name": "Value",
+                "type": "string"
+              },
+              {
+                "id": "values-label",
+                "name": "Display Name",
+                "type": "string"
+              }
+            ],
+            "conditions": {
+              "structured": {
+                "fields.type": "select"
+              }
+            }
+          },
+          {
+            "id": "default",
+            "name": "Default Value",
+            "type": "string"
           },
           {
             "id": "required",
@@ -325,27 +356,38 @@ $(function() {
   });
 
   var _getFieldName = function(prefix, name) {
-    if (!prefix) {
-      return name;
+    prefix = prefix || '';
+    var index = parseInt(name);
+    if (!isNaN(index)) {
+      // +1 because css is 1 based, +1 to skip the template
+      return prefix + ':nth-of-type(' + (index + 2) + ')';
     }
-    if (isNaN(parseInt(name))) {
-      return prefix + '.' + name;
-    }
-    return prefix + '[' + name + ']';
+    return prefix + ' .field-id-' + name;
   }
+
+  var _setSkipped = function(row, skip) {
+    row.toggleClass('skipped', skip);
+    var parentList = row.closest('ul');
+    if (parentList.hasClass('repeat')) {
+      parentList.closest('li').toggleClass('skipped', skip);
+      parentList.find('li.skipped').toggleClass('skipped', skip);
+    }
+  };
 
   var _validationResult = function(details, prefix) {
     for (var field in details) {
       var detail = details[field];
       var fieldName = _getFieldName(prefix, field);
-      var row = $('[name="' + fieldName + '"]').closest('li');
-      row.toggleClass('skipped', !!detail.skipped);
+      var row = $(fieldName);
+      _setSkipped(row, detail.skipped === true);
       if (!detail.skipped) {
         if (detail.detail && !detail.error) {
           _validationResult(detail.detail, fieldName);
-        } else if (!detail.valid) {
-          row.addClass('error');
-          row.prepend('<span class="error-message">' + detail.error + '</span>');
+        } else {
+          if (!detail.valid) {
+            row.addClass('error');
+            row.prepend('<span class="error-message">' + detail.error + '</span>');
+          }
         }
       }
     }

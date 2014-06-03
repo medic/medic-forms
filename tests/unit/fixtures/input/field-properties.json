@@ -840,6 +840,29 @@
   },
 
   {
+    "_name": "Conditions on nested fields (not required, valid, skipped)",
+
+    "valid": true,
+    "skipped": true,
+    "field": {
+      "type": "fields",
+      "fields": [{
+        "id": "inner",
+        "name": "Inner",
+        "type": "string"
+      }],
+      "conditions": {
+        "operator": "&&",
+        "javascript": {
+          "default": "return false"
+        },
+        "structured": {}
+      }
+    },
+    "values": [ ]
+  },
+
+  {
     "_name": "Conditions (not required, invalid, skipped)",
 
     "valid": false,
