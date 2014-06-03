@@ -347,7 +347,7 @@ $(function() {
             "type": "fields",
             "fields": [
               {
-                "id": "operator",
+                "id": "conditions-operator",
                 "name": "Operator",
                 "type": "select",
                 "default": "&&",
@@ -377,6 +377,35 @@ $(function() {
               {
                 "id": "conditions-javascript",
                 "name": "Scripted",
+                "type": "string",
+                "repeat": true
+              }
+            ]
+          },
+          {
+            "id": "validations",
+            "name": "Validations",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "validations-operator",
+                "name": "Operator",
+                "type": "select",
+                "default": "&&",
+                "items": [
+                  ["&&","And"],
+                  ["||","Or"]
+                ]
+              },
+              {
+                "id": "validations-javascript",
+                "name": "Scripted",
+                "type": "string",
+                "repeat": true
+              },
+              {
+                "id": "validations-registered",
+                "name": "Registered",
                 "type": "string",
                 "repeat": true
               }
