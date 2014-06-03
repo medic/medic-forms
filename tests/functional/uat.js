@@ -558,6 +558,11 @@ $(function() {
 
   var _setSkipped = function(row, skip) {
     row.toggleClass('skipped', skip);
+    row.find('input, select, textarea').each(function() {
+      if(!$(this).closest('.template').length) {
+        $(this).prop('disabled', skip);
+      }
+    });
     var parentList = row.closest('ul');
     if (parentList.hasClass('repeat')) {
       parentList.closest('li').toggleClass('skipped', skip);
@@ -584,13 +589,18 @@ $(function() {
     }
   };
 
+  var _formError = function(_form, _message, _obj) {
+    _form.prepend('<span class="error-message">' + _message + '</span>');
+    console.log(_message, _obj);
+  }
+
   var _validate = function (_form, _options, _cb) {
     var definition = _form.data('definition');
     api.load([definition], function(_loaded) {
       if (!_loaded.valid) {
         _clearErrors(_form);
-        _form.prepend('<span class="error-message">' + _loaded.error + ': ' + _loaded.detail.message + '</span>');
-        return;
+        var msg = _loaded.error + ': ' + _loaded.detail.message;
+        return _formError(_form, msg, _loaded);
       }
       var input = api.parse(_form.serialize(), 'httppost');
       api.fill(input.result, _options, function(_filled) {
@@ -617,6 +627,8 @@ $(function() {
     _validate(form, {}, function(_result) {
       if (_result.valid) {
         form.submit();
+      } else {
+        _formError(form, 'Error filling form', _result);
       }
     });
 
