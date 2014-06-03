@@ -340,6 +340,47 @@ $(function() {
                 }
               }
             ]
+          },
+          {
+            "id": "conditions",
+            "name": "Conditions",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "operator",
+                "name": "Operator",
+                "type": "select",
+                "default": "&&",
+                "items": [
+                  ["&&","And"],
+                  ["||","Or"]
+                ]
+              },
+              {
+                "id": "conditions-structured",
+                "name": "Structured",
+                "type": "fields",
+                "repeat": true,
+                "fields": [
+                  {
+                    "id": "conditions-structured-field",
+                    "name": "Field Path",
+                    "type": "string"
+                  },
+                  {
+                    "id": "conditions-structured-value",
+                    "name": "Expected Value",
+                    "type": "string"
+                  }
+                ]
+              },
+              {
+                "id": "conditions-javascript",
+                "name": "Scripted",
+                "type": "string",
+                "repeat": true
+              }
+            ]
           }
         ]
       }
