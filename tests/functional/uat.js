@@ -212,7 +212,11 @@ $(function() {
             "type": "select",
             "items": [
               ["string","String"],
-              ["select","Select"]
+              ["integer","Integer"],
+              ["number","Number"],
+              ["select","Select"],
+              ["email","Email"],
+              ["json","JSON"]
             ],
             "required": true
           },
@@ -243,6 +247,116 @@ $(function() {
             "id": "default",
             "name": "Default Value",
             "type": "string"
+          },
+          {
+            "id": "length",
+            "name": "Length",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "length-type",
+                "name": "Length Validation",
+                "type": "select",
+                "default": "none",
+                "items": [
+                  ["none","None"],
+                  ["minimum","Minimum"],
+                  ["maximum","Maximum"],
+                  ["between","Between"],
+                  ["script","Scripted"]
+                ]
+              },
+              {
+                "id": "length-minimum",
+                "name": "Minimum",
+                "type": "number",
+                "conditions": {
+                  "structured": {
+                    "fields.length.length-type": ["minimum","between"]
+                  }
+                }
+              },
+              {
+                "id": "length-maximum",
+                "name": "Maximum",
+                "type": "number",
+                "conditions": {
+                  "structured": {
+                    "fields.length.length-type": ["maximum","between"]
+                  }
+                }
+              },
+              {
+                "id": "length-script",
+                "name": "Script",
+                "type": "string",
+                "conditions": {
+                  "structured": {
+                    "fields.length.length-type": ["script"]
+                  }
+                }
+              }
+            ],
+            "conditions": {
+              "structured": {
+                "fields.type": ["string","email","json"]
+              }
+            }
+          },
+          {
+            "id": "range",
+            "name": "Range Validation",
+            "type": "fields",
+            "fields": [
+              {
+                "id": "range-type",
+                "name": "Valid Range",
+                "type": "select",
+                "default": "none",
+                "items": [
+                  ["none","None"],
+                  ["minimum","Minimum"],
+                  ["maximum","Maximum"],
+                  ["between","Between"],
+                  ["script","Scripted"]
+                ]
+              },
+              {
+                "id": "range-minimum",
+                "name": "Minimum",
+                "type": "number",
+                "conditions": {
+                  "structured": {
+                    "fields.range.range-type": ["minimum","between"]
+                  }
+                }
+              },
+              {
+                "id": "range-maximum",
+                "name": "Maximum",
+                "type": "number",
+                "conditions": {
+                  "structured": {
+                    "fields.range.range-type": ["maximum","between"]
+                  }
+                }
+              },
+              {
+                "id": "range-script",
+                "name": "Script",
+                "type": "string",
+                "conditions": {
+                  "structured": {
+                    "fields.range.range-type": ["script"]
+                  }
+                }
+              }
+            ],
+            "conditions": {
+              "structured": {
+                "fields.type": ["integer","number"]
+              }
+            }
           },
           {
             "id": "required",
